@@ -33,6 +33,7 @@
     a{color:inherit; text-decoration:none}
     .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
 
+    /* Sparkling live background canvas (NO grid) */
     .bg-canvas{
       position:fixed;
       inset:0;
@@ -42,6 +43,7 @@
       filter: drop-shadow(0 0 18px rgba(201,162,77,.06));
     }
 
+    /* Navigation */
     header{
       position:sticky;
       top:0;
@@ -50,7 +52,6 @@
       background: rgba(0,0,0,.55);
       border-bottom:1px solid rgba(255,255,255,.06);
     }
-
     .nav{
       display:flex;
       align-items:center;
@@ -58,21 +59,18 @@
       gap:16px;
       padding:14px 0;
     }
-
     .brand{
       display:flex;
       align-items:center;
       gap:10px;
       min-width:240px;
     }
-
     .dot{
       width:10px; height:10px; border-radius:50%;
       background:var(--gold);
       box-shadow:0 0 0 4px rgba(201,162,77,.12);
       flex:none;
     }
-
     .name{
       font-weight:760;
       letter-spacing:.08em;
@@ -81,7 +79,6 @@
       color:rgba(255,255,255,.88);
       white-space:nowrap;
     }
-
     nav ul{
       list-style:none;
       margin:0; padding:0;
@@ -90,7 +87,6 @@
       flex-wrap:wrap;
       justify-content:center;
     }
-
     nav a{
       display:inline-flex;
       align-items:center;
@@ -102,36 +98,35 @@
       transition: background .16s ease, border-color .16s ease, transform .12s ease, color .16s ease;
       white-space:nowrap;
     }
-
     nav a:hover{
       background:rgba(255,255,255,.06);
       border-color:rgba(255,255,255,.10);
       color:rgba(255,255,255,.96);
       transform: translateY(-1px);
     }
-
     .nav-spacer{min-width:240px;}
 
+    /* Layout: hero image center-top */
     main{
       min-height: calc(100vh - 64px);
       display:flex;
-      flex-direction:column;
-      align-items:center;
+      justify-content:center;
+      align-items:flex-start;     /* key: top, not vertical center */
     }
 
     .hero{
       width:100%;
       text-align:center;
-      padding:34px 0 30px;
+      padding: 34px 0 28px;      /* slightly tighter so grid follows naturally */
     }
 
+    /* Banner wrapper — seamless */
     .banner-card{
-      margin:18px auto 0;
-      max-width:920px;
+      margin: 18px auto 0;
+      max-width: 920px;          /* resize for visual flow */
       background:#000;
       overflow:hidden;
     }
-
     img.banner{
       width:100%;
       height:auto;
@@ -139,27 +134,28 @@
     }
 
     h1{
-      margin:26px auto 10px;
-      max-width:28ch;
+      margin: 26px auto 10px;
+      max-width: 28ch;
       font-size: clamp(28px, 3.6vw, 46px);
       line-height:1.06;
       letter-spacing:-.02em;
     }
 
     .subhead{
-      margin:0 auto 0;
-      max-width:64ch;
-      color:var(--muted);
-      font-size:15.5px;
+      margin: 0 auto 0;
+      max-width: 64ch;
+      color: var(--muted);
+      font-size: 15.5px;
       line-height:1.65;
     }
 
+    /* Fiery underline (replaces yellow divider) */
     .fire-underline{
       position:relative;
-      width:220px;
-      height:2px;
-      margin:18px auto 0;
-      border-radius:999px;
+      width: 220px;
+      height: 2px;
+      margin: 18px auto 0;
+      border-radius: 999px;
       background: linear-gradient(90deg,
         rgba(0,0,0,0),
         rgba(255,120,0,.95),
@@ -171,164 +167,330 @@
         0 0 10px rgba(255,120,0,.35),
         0 0 22px rgba(255,80,0,.22),
         0 0 40px rgba(255,80,0,.12);
+      filter: saturate(1.15);
+      overflow:visible;
     }
 
-    /* GRID SECTION */
+    /* heat haze glow */
+    .fire-underline::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:50%;
+      width: 320px;
+      height: 40px;
+      transform: translate(-50%,-50%);
+      background: radial-gradient(closest-side,
+        rgba(255,120,0,.18),
+        rgba(255,120,0,.10),
+        rgba(0,0,0,0)
+      );
+      filter: blur(8px);
+      pointer-events:none;
+    }
 
+    /* sparks */
+    .fire-underline::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:50%;
+      width: 340px;
+      height: 34px;
+      transform: translate(-50%,-50%);
+      background:
+        radial-gradient(circle at 20% 40%, rgba(255,210,70,.85) 0 1px, transparent 2px),
+        radial-gradient(circle at 32% 55%, rgba(255,120,0,.85) 0 1px, transparent 2px),
+        radial-gradient(circle at 46% 35%, rgba(255,210,70,.70) 0 1px, transparent 2px),
+        radial-gradient(circle at 58% 60%, rgba(255,120,0,.75) 0 1px, transparent 2px),
+        radial-gradient(circle at 74% 42%, rgba(255,210,70,.80) 0 1px, transparent 2px),
+        radial-gradient(circle at 86% 55%, rgba(255,120,0,.70) 0 1px, transparent 2px);
+      opacity:.75;
+      filter: blur(.2px);
+      animation: sparks 1.8s infinite ease-in-out alternate;
+      pointer-events:none;
+    }
+
+    @keyframes sparks{
+      0%   { opacity:.35; transform: translate(-50%,-50%) scale(.98); }
+      100% { opacity:.85; transform: translate(-50%,-50%) scale(1.02); }
+    }
+
+    /* ---------- NEW: Linked image+text grid ---------- */
     .grid-section{
-      padding:40px 0 80px;
       width:100%;
+      padding: 18px 0 76px;
+      position: relative;
+      z-index: 3; /* ensure visible above any effects */
     }
 
     .card-grid{
-      margin:0 auto;
-      max-width:980px;
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:18px;
+      margin: 22px auto 0;
+      max-width: 980px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+      position: relative;
+      z-index: 3;
     }
 
     .card-link{
-      display:block;
-      border-radius:18px;
-      overflow:hidden;
-      background:rgba(255,255,255,.03);
-      border:1px solid rgba(255,255,255,.08);
-      transition:transform .15s ease,border-color .15s ease;
+      display: block;
+      border-radius: 18px;
+      overflow: hidden;
+      background: rgba(255,255,255,.06); /* stronger so it's not "invisible" */
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 14px 34px rgba(0,0,0,.55);
+      transition: transform .14s ease, border-color .14s ease, background .14s ease;
     }
 
     .card-link:hover{
-      transform:translateY(-2px);
-      border-color:rgba(201,162,77,.45);
+      transform: translateY(-2px);
+      border-color: rgba(201,162,77,.45);
+      background: rgba(255,255,255,.08);
     }
 
     .card-media{
-      aspect-ratio:16/9;
-      background:#111;
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(201,162,77,.08)); /* visible even if image fails */
     }
 
     .card-media img{
-      width:100%;
-      height:100%;
-      object-fit:cover;
-      display:block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
     }
 
     .card-body{
-      padding:14px;
-      text-align:left;
+      padding: 14px 14px 16px;
+      text-align: left;
     }
 
     .card-title{
-      margin:0 0 6px;
-      font-size:15px;
-      color:rgba(255,255,255,.95);
+      margin: 0 0 6px;
+      font-size: 15px;
+      letter-spacing: .01em;
+      color: rgba(255,255,255,.93);
     }
 
     .card-text{
-      margin:0;
-      font-size:13px;
-      line-height:1.5;
-      color:var(--muted2);
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--muted2);
     }
+    /* ---------- /NEW GRID ---------- */
 
-    @media (max-width:900px){
+    @media (max-width: 980px){
+      nav ul{display:none}
+      .brand, .nav-spacer{min-width:auto}
+      .hero{padding-top: 26px;}
+      .banner-card{max-width: 980px;}
+      .fire-underline{width: 180px;}
+
+      .grid-section{ padding: 14px 0 64px; }
       .card-grid{
-        grid-template-columns:1fr;
+        grid-template-columns: 1fr;
+        gap: 12px;
       }
-      .card-body{
-        text-align:center;
-      }
+      .card-body{ text-align: center; }
     }
 
+    @media (prefers-reduced-motion: reduce){
+      .bg-canvas{display:none}
+      nav a{transition:none}
+      .fire-underline::after{animation:none}
+    }
   </style>
 </head>
 
 <body>
+  <canvas class="bg-canvas" id="circuit" aria-hidden="true"></canvas>
 
-<canvas class="bg-canvas" id="circuit"></canvas>
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Home">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="name">CMS Technical Optimization</span>
+        </a>
 
-<header>
-  <div class="wrap">
-    <div class="nav">
-      <a class="brand" href="#">
-        <span class="dot"></span>
-        <span class="name">CMS Technical Optimization</span>
-      </a>
+        <nav aria-label="Primary">
+          <ul>
+            <li><a href="#bootcamp">AI Bootcamp</a></li>
+            <li><a href="#bi">Customized Business Intelligence</a></li>
+            <li><a href="#training">Smart Team Training</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
 
-      <nav>
-        <ul>
-          <li><a href="#bootcamp">AI Bootcamp</a></li>
-          <li><a href="#bi">Customized Business Intelligence</a></li>
-          <li><a href="#training">Smart Team Training</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-      </nav>
-
-      <div class="nav-spacer"></div>
+        <div class="nav-spacer" aria-hidden="true"></div>
+      </div>
     </div>
-  </div>
-</header>
+  </header>
 
-<main>
+  <main id="top">
+    <div style="width:100%;">
+      <section class="hero">
+        <div class="wrap">
+          <!-- Hero image centered near top -->
+          <div class="banner-card">
+            <!-- FIX: use relative asset path (works in flat HTML hosting and subfolders) -->
+            <img class="banner" src="assets/cmslogo3.png" alt="CMS Technical Optimization" loading="eager" />
+          </div>
 
-<section class="hero">
-  <div class="wrap">
+          <!-- Title/subtitle below -->
+          <h1>Engineering practical AI systems for real organizations.</h1>
+          <p class="subhead">AI strategy, infrastructure, and team capability—built for execution.</p>
 
-    <div class="banner-card">
-      <img class="banner" src="/assets/cmslogo3.png" alt="CMS Technical Optimization" loading="eager"/>
+          <!-- Fiery underline -->
+          <div class="fire-underline" aria-hidden="true"></div>
+        </div>
+      </section>
+
+      <!-- NEW: visible linked image+text grid (outside hero) -->
+      <section class="grid-section" aria-label="Explore services">
+        <div class="wrap">
+          <div class="card-grid">
+
+            <a class="card-link" href="strategy.html">
+              <div class="card-media">
+                <img src="assets/newrodin.png" alt="Rodin Strategy" loading="lazy" />
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Rodin Strategy</h3>
+                <p class="card-text">Architecting applied AI strategy for real organizations.</p>
+              </div>
+            </a>
+
+            <a class="card-link" href="smartinfrastructure.html">
+              <div class="card-media">
+                <img src="assets/aichiago.png" alt="AI Infrastructure Chicago" loading="lazy" />
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">AI Infrastructure</h3>
+                <p class="card-text">Building the intelligent systems layer inside organizations.</p>
+              </div>
+            </a>
+
+            <a class="card-link" href="smartteams.html">
+              <div class="card-media">
+                <img src="assets/smartteams.png" alt="Intelligent Teams" loading="lazy" />
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Intelligent Teams</h3>
+                <p class="card-text">Train teams to operate faster and smarter with AI.</p>
+              </div>
+            </a>
+
+          </div>
+        </div>
+      </section>
     </div>
+  </main>
 
-    <h1>Engineering practical AI systems for real organizations.</h1>
-    <p class="subhead">AI strategy, infrastructure, and team capability—built for execution.</p>
+  <script>
+    // Sparkling "live" background (NO grid): subtle network + moving pulses.
+    (function(){
+      const canvas = document.getElementById('circuit');
+      const ctx = canvas.getContext('2d', { alpha: true });
 
-    <div class="fire-underline"></div>
+      let w, h, dpr;
+      const GOLD = 'rgba(201,162,77,0.55)';
 
-  </div>
-</section>
+      const nodes = [];
+      const links = [];
+      const NODE_COUNT = 44;
+      const LINK_COUNT = 80;
 
-<section class="grid-section">
-  <div class="wrap">
+      function resize(){
+        dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+        w = canvas.width  = Math.floor(window.innerWidth  * dpr);
+        h = canvas.height = Math.floor(window.innerHeight * dpr);
+        canvas.style.width  = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
 
-    <div class="card-grid">
+        nodes.length = 0;
+        links.length = 0;
 
-      <a class="card-link" href="strategy.html">
-        <div class="card-media">
-          <img src="/assets/newrodin.png" alt="Rodin Strategy"/>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">Rodin Strategy</h3>
-          <p class="card-text">Architecting applied AI strategy for real organizations.</p>
-        </div>
-      </a>
+        for(let i=0;i<NODE_COUNT;i++){
+          nodes.push({
+            x: Math.random()*w,
+            y: Math.random()*h,
+            r: (Math.random()*1.6 + 0.9)*dpr,
+            vx: (Math.random()*0.20 - 0.10)*dpr,
+            vy: (Math.random()*0.16 - 0.08)*dpr,
+            p: Math.random()*Math.PI*2
+          });
+        }
+        for(let i=0;i<LINK_COUNT;i++){
+          const a = Math.floor(Math.random()*NODE_COUNT);
+          const b = Math.floor(Math.random()*NODE_COUNT);
+          if(a !== b) links.push({ a, b, phase: Math.random()*Math.PI*2 });
+        }
+      }
 
-      <a class="card-link" href="smartinfrastructure.html">
-        <div class="card-media">
-          <img src="/assets/aichiago.png" alt="AI Infrastructure Chicago"/>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">AI Infrastructure</h3>
-          <p class="card-text">Building the intelligent systems layer inside organizations.</p>
-        </div>
-      </a>
+      function step(){
+        ctx.clearRect(0,0,w,h);
 
-      <a class="card-link" href="smartteams.html">
-        <div class="card-media">
-          <img src="/assets/smartteams.png" alt="Smart Teams"/>
-        </div>
-        <div class="card-body">
-          <h3 class="card-title">Intelligent Teams</h3>
-          <p class="card-text">Train teams to operate faster and smarter with AI.</p>
-        </div>
-      </a>
+        // Update nodes
+        for(const n of nodes){
+          n.x += n.vx; n.y += n.vy;
+          if(n.x < -60*dpr) n.x = w + 60*dpr;
+          if(n.x > w + 60*dpr) n.x = -60*dpr;
+          if(n.y < -60*dpr) n.y = h + 60*dpr;
+          if(n.y > h + 60*dpr) n.y = -60*dpr;
+          n.p += 0.018;
+        }
 
-    </div>
+        // Links + pulses (kept subtle)
+        const tNow = performance.now();
+        for(const L of links){
+          const A = nodes[L.a], B = nodes[L.b];
+          const dx = B.x - A.x, dy = B.y - A.y;
+          const dist = Math.hypot(dx,dy);
+          if(dist > 420*dpr) continue;
 
-  </div>
-</section>
+          // base line (very faint)
+          ctx.strokeStyle = 'rgba(255,255,255,0.035)';
+          ctx.lineWidth = 1*dpr;
+          ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.stroke();
 
-</main>
+          // moving spark
+          const t = (Math.sin(L.phase + tNow/1100) + 1) / 2;
+          const px = A.x + dx*t;
+          const py = A.y + dy*t;
 
+          ctx.fillStyle = GOLD;
+          ctx.beginPath();
+          ctx.arc(px, py, 1.9*dpr, 0, Math.PI*2);
+          ctx.fill();
+        }
+
+        // Nodes (with occasional gold twinkle)
+        for(const n of nodes){
+          ctx.fillStyle = 'rgba(255,255,255,0.08)';
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
+          ctx.fill();
+
+          if(Math.sin(n.p) > 0.93){
+            ctx.fillStyle = 'rgba(201,162,77,0.26)';
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r*2.7, 0, Math.PI*2);
+            ctx.fill();
+          }
+        }
+
+        requestAnimationFrame(step);
+      }
+
+      window.addEventListener('resize', resize, { passive:true });
+      resize();
+      requestAnimationFrame(step);
+    })();
+  </script>
 </body>
 </html>

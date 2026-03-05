@@ -9,29 +9,26 @@
 
   <style>
     :root{
-      --bg:#0b0b0c;
+      --bg:#000000;               /* MATCH banner black */
       --gold:#c9a24d;
       --text:rgba(255,255,255,.94);
       --muted:rgba(255,255,255,.74);
       --muted2:rgba(255,255,255,.62);
-      --line:rgba(255,255,255,.08);
       --max:1120px;
       --radius:18px;
-      --shadow:0 18px 70px rgba(0,0,0,.55);
+      --shadow:0 18px 70px rgba(0,0,0,.65);
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
+
     body{
       margin:0;
       font-family:var(--sans);
       color:var(--text);
-      background:
-        radial-gradient(1100px 700px at 20% 8%, rgba(201,162,77,.10), transparent 55%),
-        radial-gradient(900px 520px at 82% 18%, rgba(255,255,255,.06), transparent 60%),
-        var(--bg);
+      background: var(--bg);      /* REMOVE radial gradients */
       overflow-x:hidden;
     }
 
@@ -43,7 +40,7 @@
       position:fixed;
       inset:0;
       z-index:-1;
-      opacity:.75;
+      opacity:.80;
       pointer-events:none;
       filter: drop-shadow(0 0 18px rgba(201,162,77,.06));
     }
@@ -54,7 +51,7 @@
       top:0;
       z-index:10;
       backdrop-filter: blur(10px);
-      background: rgba(11,11,12,.62);
+      background: rgba(0,0,0,.55); /* match black */
       border-bottom:1px solid rgba(255,255,255,.06);
     }
     .nav{
@@ -109,7 +106,7 @@
       color:rgba(255,255,255,.96);
       transform: translateY(-1px);
     }
-    .nav-spacer{min-width:240px;} /* keeps menu centered */
+    .nav-spacer{min-width:240px;}
 
     /* Hero */
     main{
@@ -158,29 +155,6 @@
       line-height:1.65;
     }
 
-    .banner-card{
-      margin: 18px auto 0;
-      max-width: 980px;
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
-    }
-    .banner-card::after{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(700px 260px at 18% 45%, rgba(201,162,77,.14), transparent 55%);
-      pointer-events:none;
-    }
-    img.banner{
-      width:100%;
-      height:auto;
-      display:block;
-    }
-
-    /* Small, tasteful divider under text (optional but helps polish) */
     .micro-divider{
       width: 92px;
       height: 1px;
@@ -189,8 +163,28 @@
       opacity:.9;
     }
 
+    /* Banner card — force true black so it blends perfectly */
+    .banner-card{
+      margin: 18px auto 0;
+      max-width: 980px;
+      border-radius: var(--radius);
+      background: #000; /* critical */
+      border:1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    /* Optional: remove glow overlay that can change perceived edge color */
+    .banner-card::after{ content:none; }
+
+    img.banner{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
     @media (max-width: 980px){
-      nav ul{display:none} /* keep clean for now on mobile */
+      nav ul{display:none}
       .brand, .nav-spacer{min-width:auto}
       main{align-items:flex-start}
       .hero{padding-top: 34px;}
@@ -239,7 +233,6 @@
         <div class="micro-divider" aria-hidden="true"></div>
 
         <div class="banner-card">
-          <!-- NOTE: absolute path is required so it works on custom domain + GitHub Pages -->
           <img class="banner" src="/assets/cms-banner-dark.png" alt="CMS Technical Optimization banner" loading="eager" />
         </div>
       </div>
@@ -247,7 +240,6 @@
   </main>
 
   <script>
-    // Sparkling "live" background: subtle network + moving pulses.
     (function(){
       const canvas = document.getElementById('circuit');
       const ctx = canvas.getContext('2d', { alpha: true });
@@ -307,7 +299,6 @@
         ctx.clearRect(0,0,w,h);
         drawGrid();
 
-        // Update nodes
         for(const n of nodes){
           n.x += n.vx; n.y += n.vy;
           if(n.x < -60*dpr) n.x = w + 60*dpr;
@@ -317,7 +308,6 @@
           n.p += 0.018;
         }
 
-        // Links + pulses
         const tNow = performance.now();
         for(const L of links){
           const A = nodes[L.a], B = nodes[L.b];
@@ -325,13 +315,11 @@
           const dist = Math.hypot(dx,dy);
           if(dist > 420*dpr) continue;
 
-          // base line
           ctx.strokeStyle = 'rgba(255,255,255,0.055)';
           ctx.lineWidth = 1*dpr;
           ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.stroke();
 
-          // moving spark
-          const t = (Math.sin(L.phase + tNow/1100) + 1) / 2; // 0..1
+          const t = (Math.sin(L.phase + tNow/1100) + 1) / 2;
           const px = A.x + dx*t;
           const py = A.y + dy*t;
 
@@ -341,7 +329,6 @@
           ctx.fill();
         }
 
-        // Nodes (with occasional gold twinkle)
         for(const n of nodes){
           ctx.fillStyle = 'rgba(255,255,255,0.10)';
           ctx.beginPath();

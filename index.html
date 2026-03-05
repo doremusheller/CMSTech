@@ -1,313 +1,234 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="dark" />
-  <title>CMS Technical Optimization</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CMS Technical Optimization</title>
 
-  <style>
-    :root{
-      --bg:#0b0b0c;
-      --gold:#c9a24d;
-      --max:1120px;
-      --radius:18px;
-      --shadow:0 18px 70px rgba(0,0,0,.55);
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:var(--sans);
-      background:
-        radial-gradient(1100px 700px at 20% 8%, rgba(201,162,77,.10), transparent 55%),
-        radial-gradient(900px 520px at 82% 18%, rgba(255,255,255,.06), transparent 60%),
-        var(--bg);
-      color:#fff;
-      overflow-x:hidden;
-    }
-    a{color:inherit;text-decoration:none}
+<style>
 
-    /* Sparkling live background */
-    .bg-canvas{
-      position:fixed;
-      inset:0;
-      z-index:-1;
-      opacity:.75;
-      pointer-events:none;
-      filter: drop-shadow(0 0 18px rgba(201,162,77,.06));
-    }
+:root{
+  --bg:#0b0b0c;
+  --gold:#c9a24d;
+  --max:1120px;
+  --radius:18px;
+  --shadow:0 18px 70px rgba(0,0,0,.55);
+}
 
-    /* Minimal top nav */
-    header{
-      position:sticky;
-      top:0;
-      z-index:10;
-      backdrop-filter: blur(10px);
-      background: rgba(11,11,12,.62);
-      border-bottom:1px solid rgba(255,255,255,.06);
-    }
-    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
-    .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      padding:14px 0;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      min-width: 230px;
-    }
-    .dot{
-      width:10px; height:10px; border-radius:50%;
-      background: var(--gold);
-      box-shadow: 0 0 0 4px rgba(201,162,77,.12);
-    }
-    .name{
-      font-weight:750;
-      letter-spacing:.08em;
-      text-transform:uppercase;
-      font-size:12px;
-      color:rgba(255,255,255,.88);
-      white-space:nowrap;
-    }
-    nav ul{
-      list-style:none; margin:0; padding:0;
-      display:flex; gap:6px; flex-wrap:wrap; justify-content:center;
-    }
-    nav a{
-      display:inline-flex; align-items:center;
-      padding:10px 12px;
-      border-radius:12px;
-      font-size:13px;
-      color:rgba(255,255,255,.82);
-      border:1px solid transparent;
-      transition: background .16s ease, border-color .16s ease, transform .12s ease, color .16s ease;
-    }
-    nav a:hover{
-      background: rgba(255,255,255,.06);
-      border-color: rgba(255,255,255,.10);
-      color: rgba(255,255,255,.96);
-      transform: translateY(-1px);
-    }
+*{box-sizing:border-box}
+html,body{height:100%}
 
-    /* Hero centered banner only */
-    main{min-height:calc(100vh - 64px); display:flex; align-items:center}
-    .hero{
-      width:100%;
-      padding:44px 0 60px;
-    }
-    .kicker{
-      font-family:var(--mono);
-      font-size:12px;
-      letter-spacing:.14em;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.66);
-      display:flex; align-items:center; justify-content:center; gap:10px;
-      margin-bottom:14px;
-    }
-    .kicker::before{
-      content:"";
-      width:34px; height:1px;
-      background: linear-gradient(90deg, transparent, var(--gold));
-      opacity:.95;
-    }
-    .banner-card{
-      margin:0 auto;
-      max-width: 980px;
-      border-radius: var(--radius);
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
-    }
-    .banner-card::after{
-      content:"";
-      position:absolute; inset:0;
-      background: radial-gradient(700px 260px at 18% 45%, rgba(201,162,77,.14), transparent 55%);
-      pointer-events:none;
-    }
-    img.banner{
-      width:100%;
-      height:auto;
-      display:block;
-    }
+body{
+  margin:0;
+  background:
+    radial-gradient(1100px 700px at 20% 8%, rgba(201,162,77,.10), transparent 55%),
+    radial-gradient(900px 520px at 82% 18%, rgba(255,255,255,.06), transparent 60%),
+    var(--bg);
+  color:white;
+  font-family:system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  overflow-x:hidden;
+}
 
-    @media (max-width: 980px){
-      .brand{min-width:auto}
-      nav ul{display:none} /* keep minimal on mobile for now */
-      main{align-items:flex-start}
-    }
-    @media (prefers-reduced-motion: reduce){
-      .bg-canvas{display:none}
-      nav a{transition:none}
-    }
-  </style>
+.bg-canvas{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  opacity:.75;
+  pointer-events:none;
+}
+
+.wrap{
+  max-width:var(--max);
+  margin:auto;
+  padding:0 20px;
+}
+
+header{
+  position:sticky;
+  top:0;
+  backdrop-filter:blur(10px);
+  background:rgba(11,11,12,.62);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.nav{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 0;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--gold);
+}
+
+.name{
+  font-size:12px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+
+nav ul{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:flex;
+  gap:14px;
+}
+
+nav a{
+  font-size:13px;
+  color:rgba(255,255,255,.85);
+  text-decoration:none;
+}
+
+main{
+  min-height:calc(100vh - 64px);
+  display:flex;
+  align-items:center;
+}
+
+.hero{
+  width:100%;
+}
+
+.kicker{
+  text-align:center;
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:rgba(255,255,255,.66);
+  margin-bottom:14px;
+}
+
+.banner-card{
+  margin:auto;
+  max-width:980px;
+  border-radius:var(--radius);
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+
+.banner{
+  width:100%;
+  display:block;
+}
+
+</style>
 </head>
 
 <body>
-  <canvas class="bg-canvas" id="circuit" aria-hidden="true"></canvas>
 
-  <header>
-    <div class="wrap">
-      <div class="nav">
-        <a class="brand" href="#top" aria-label="Home">
-          <span class="dot" aria-hidden="true"></span>
-          <span class="name">CMS Technical Optimization</span>
-        </a>
+<canvas class="bg-canvas" id="circuit"></canvas>
 
-        <nav aria-label="Primary">
-          <ul>
-            <li><a href="#bootcamp">AI Bootcamp</a></li>
-            <li><a href="#bi">Customized Business Intelligence</a></li>
-            <li><a href="#training">Smart Team Training</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
+<header>
+<div class="wrap">
+<div class="nav">
 
-        <!-- placeholder spacing (keeps nav centered). We'll add CTAs later if you want. -->
-        <div style="min-width:230px;"></div>
-      </div>
-    </div>
-  </header>
+<div class="brand">
+<div class="dot"></div>
+<div class="name">CMS Technical Optimization</div>
+</div>
 
-  <main id="top">
-    <section class="hero">
-      <div class="wrap">
-        <div class="kicker">AI Systems Lab</div>
+<nav>
+<ul>
+<li><a href="#">AI Bootcamp</a></li>
+<li><a href="#">Customized Business Intelligence</a></li>
+<li><a href="#">Smart Team Training</a></li>
+<li><a href="#">About</a></li>
+<li><a href="#">Contact</a></li>
+</ul>
+</nav>
 
-        <div class="banner-card">
-          <!-- Put your banner at: /assets/cms-banner-dark.png -->
-          <img class="banner" src="assets/cms-banner-dark.png" alt="CMS Technical Optimization banner" loading="eager" />
-        </div>
-      </div>
-    </section>
-  </main>
+</div>
+</div>
+</header>
 
-  <script>
-    // Sparkling "live" background: subtle network + moving pulses.
-    (function(){
-      const canvas = document.getElementById('circuit');
-      const ctx = canvas.getContext('2d', { alpha: true });
+<main>
 
-      let w, h, dpr;
-      const GOLD = 'rgba(201,162,77,0.55)';
-      const DIM  = 'rgba(255,255,255,0.06)';
+<section class="hero">
+<div class="wrap">
 
-      const nodes = [];
-      const links = [];
+<div class="kicker">AI Systems Lab</div>
 
-      const NODE_COUNT = 44;
-      const LINK_COUNT = 80;
+<div class="banner-card">
 
-      function resize(){
-        dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-        w = canvas.width  = Math.floor(window.innerWidth  * dpr);
-        h = canvas.height = Math.floor(window.innerHeight * dpr);
-        canvas.style.width  = window.innerWidth + 'px';
-        canvas.style.height = window.innerHeight + 'px';
+<img
+class="banner"
+src="/assets/cms-banner-dark.png"
+alt="CMS Technical Optimization banner"
+>
 
-        nodes.length = 0;
-        links.length = 0;
+</div>
 
-        for(let i=0;i<NODE_COUNT;i++){
-          nodes.push({
-            x: Math.random()*w,
-            y: Math.random()*h,
-            r: (Math.random()*1.6 + 0.9)*dpr,
-            vx: (Math.random()*0.20 - 0.10)*dpr,
-            vy: (Math.random()*0.16 - 0.08)*dpr,
-            p: Math.random()*Math.PI*2
-          });
-        }
+</div>
+</section>
 
-        for(let i=0;i<LINK_COUNT;i++){
-          const a = Math.floor(Math.random()*NODE_COUNT);
-          const b = Math.floor(Math.random()*NODE_COUNT);
-          if(a !== b) links.push({ a, b, phase: Math.random()*Math.PI*2 });
-        }
-      }
+</main>
 
-      function drawGrid(){
-        ctx.save();
-        ctx.globalCompositeOperation = 'lighter';
-        ctx.strokeStyle = DIM;
-        ctx.lineWidth = 1*dpr;
-        const grid = 130*dpr;
-        for(let x=0; x<w; x+=grid){
-          ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,h); ctx.stroke();
-        }
-        for(let y=0; y<h; y+=grid){
-          ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke();
-        }
-        ctx.restore();
-      }
+<script>
 
-      function step(){
-        ctx.clearRect(0,0,w,h);
-        drawGrid();
+const canvas = document.getElementById("circuit");
+const ctx = canvas.getContext("2d");
 
-        // Update nodes
-        for(const n of nodes){
-          n.x += n.vx; n.y += n.vy;
-          if(n.x < -60*dpr) n.x = w + 60*dpr;
-          if(n.x > w + 60*dpr) n.x = -60*dpr;
-          if(n.y < -60*dpr) n.y = h + 60*dpr;
-          if(n.y > h + 60*dpr) n.y = -60*dpr;
-          n.p += 0.018;
-        }
+let w,h;
+let nodes=[];
 
-        // Links + pulses
-        const tNow = performance.now();
-        for(const L of links){
-          const A = nodes[L.a], B = nodes[L.b];
-          const dx = B.x - A.x, dy = B.y - A.y;
-          const dist = Math.hypot(dx,dy);
-          if(dist > 420*dpr) continue;
+function resize(){
+  w=canvas.width=window.innerWidth;
+  h=canvas.height=window.innerHeight;
 
-          // base line
-          ctx.strokeStyle = 'rgba(255,255,255,0.055)';
-          ctx.lineWidth = 1*dpr;
-          ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.stroke();
+  nodes=[];
+  for(let i=0;i<40;i++){
+    nodes.push({
+      x:Math.random()*w,
+      y:Math.random()*h,
+      vx:(Math.random()-.5)*0.2,
+      vy:(Math.random()-.5)*0.2
+    });
+  }
+}
 
-          // moving spark
-          const t = (Math.sin(L.phase + tNow/1100) + 1) / 2; // 0..1
-          const px = A.x + dx*t;
-          const py = A.y + dy*t;
+function draw(){
 
-          ctx.fillStyle = GOLD;
-          ctx.beginPath();
-          ctx.arc(px, py, 1.9*dpr, 0, Math.PI*2);
-          ctx.fill();
-        }
+ctx.clearRect(0,0,w,h);
 
-        // Nodes (with occasional gold twinkle)
-        for(const n of nodes){
-          ctx.fillStyle = 'rgba(255,255,255,0.10)';
-          ctx.beginPath();
-          ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
-          ctx.fill();
+for(let n of nodes){
 
-          if(Math.sin(n.p) > 0.93){
-            ctx.fillStyle = 'rgba(201,162,77,0.30)';
-            ctx.beginPath();
-            ctx.arc(n.x, n.y, n.r*2.7, 0, Math.PI*2);
-            ctx.fill();
-          }
-        }
+n.x+=n.vx;
+n.y+=n.vy;
 
-        requestAnimationFrame(step);
-      }
+if(n.x<0||n.x>w)n.vx*=-1;
+if(n.y<0||n.y>h)n.vy*=-1;
 
-      window.addEventListener('resize', resize, { passive:true });
-      resize();
-      requestAnimationFrame(step);
-    })();
-  </script>
+ctx.fillStyle="rgba(255,255,255,.12)";
+ctx.beginPath();
+ctx.arc(n.x,n.y,2,0,Math.PI*2);
+ctx.fill();
+
+}
+
+requestAnimationFrame(draw);
+
+}
+
+window.addEventListener("resize",resize);
+
+resize();
+draw();
+
+</script>
+
 </body>
 </html>

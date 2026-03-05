@@ -1,1 +1,873 @@
-INDEX
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>CMS Technical Optimization — AI Systems Lab</title>
+  <meta name="description" content="CMS Technical Optimization — Engineering practical AI systems: Artificial Intelligence, Infrastructure Design, Intelligent Teams." />
+
+  <!-- Social -->
+  <meta property="og:title" content="CMS Technical Optimization — AI Systems Lab" />
+  <meta property="og:description" content="Engineering practical AI systems: AI • Infrastructure • Intelligent Teams." />
+  <!-- Replace with your deployed absolute URL -->
+  <meta property="og:url" content="https://cmstech.ai/" />
+  <!-- Replace with your banner image path -->
+  <meta property="og:image" content="assets/cms-banner-dark.png" />
+
+  <link rel="icon" href="assets/favicon.png" />
+
+  <style>
+    :root{
+      --bg:#0b0b0c;
+      --panel:#0f1114;
+      --text:#ffffff;
+      --muted:#a7a7a7;
+      --line:#20242b;
+      --gold:#c9a24d;
+      --gold2:#a9863d;
+      --glow:rgba(201,162,77,.18);
+      --max:1120px;
+      --radius:18px;
+      --shadow:0 18px 60px rgba(0,0,0,.45);
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background: radial-gradient(1200px 800px at 20% 10%, rgba(201,162,77,.10), transparent 55%),
+                  radial-gradient(900px 600px at 80% 25%, rgba(255,255,255,.06), transparent 55%),
+                  var(--bg);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+    .sr-only{position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0}
+
+    /* Animated circuit background */
+    .bg-canvas{
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      opacity:.65;
+      filter: drop-shadow(0 0 22px rgba(201,162,77,.06));
+      pointer-events:none;
+    }
+
+    /* Top bar */
+    header{
+      position:sticky;
+      top:0;
+      z-index:20;
+      backdrop-filter: blur(10px);
+      background: rgba(11,11,12,.55);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding:14px 0;
+      gap:14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      text-decoration:none;
+    }
+    .brand .dot{
+      width:10px; height:10px; border-radius:50%;
+      background:var(--gold);
+      box-shadow:0 0 0 4px rgba(201,162,77,.12);
+    }
+    .brand .name{
+      font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+      font-size:12px; color:rgba(255,255,255,.92);
+    }
+
+    nav ul{
+      list-style:none; margin:0; padding:0;
+      display:flex; gap:16px; align-items:center;
+    }
+    nav a{
+      text-decoration:none;
+      color:rgba(255,255,255,.82);
+      font-size:13px;
+      letter-spacing:.02em;
+      padding:10px 10px;
+      border-radius:12px;
+      transition: background .18s ease, color .18s ease;
+    }
+    nav a:hover{ background:rgba(255,255,255,.06); color:#fff }
+
+    .nav-cta{
+      display:flex; gap:10px; align-items:center;
+    }
+
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:11px 14px;
+      border-radius:14px;
+      font-weight:650;
+      font-size:13px;
+      letter-spacing:.02em;
+      text-decoration:none;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.04);
+      color: rgba(255,255,255,.92);
+      transition: transform .12s ease, background .18s ease, border-color .18s ease, box-shadow .18s ease;
+      white-space:nowrap;
+    }
+    .btn:hover{
+      transform: translateY(-1px);
+      border-color: rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+    }
+    .btn-primary{
+      background: linear-gradient(180deg, rgba(201,162,77,.98), rgba(169,134,61,.98));
+      border-color: rgba(201,162,77,.55);
+      color:#0b0b0c;
+      box-shadow: 0 10px 28px rgba(201,162,77,.18);
+    }
+    .btn-primary:hover{
+      box-shadow: 0 14px 36px rgba(201,162,77,.24);
+      transform: translateY(-1px);
+    }
+
+    /* Sections */
+    section{padding:68px 0}
+    .hero{padding:64px 0 56px}
+    .kicker{
+      font-family:var(--mono);
+      color:rgba(255,255,255,.70);
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      display:flex; align-items:center; gap:10px;
+    }
+    .kicker::before{
+      content:"";
+      width:34px; height:1px;
+      background: linear-gradient(90deg, transparent, var(--gold));
+      opacity:.95;
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:28px;
+      align-items:center;
+    }
+    .hero h1{
+      margin:14px 0 12px;
+      font-size: clamp(36px, 5vw, 56px);
+      line-height:1.04;
+      letter-spacing:-.02em;
+    }
+    .hero p{
+      margin:0 0 18px;
+      color: rgba(255,255,255,.78);
+      font-size:16px;
+      line-height:1.6;
+      max-width: 52ch;
+    }
+    .hero .actions{display:flex; gap:12px; flex-wrap:wrap}
+
+    .banner-card{
+      border-radius: var(--radius);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+    .banner-card::after{
+      content:"";
+      position:absolute; inset:0;
+      background: radial-gradient(600px 200px at 25% 40%, rgba(201,162,77,.16), transparent 55%);
+      pointer-events:none;
+    }
+    .banner{
+      width:100%;
+      display:block;
+      height:auto;
+    }
+    .banner-meta{
+      padding:14px 16px 16px;
+      border-top:1px solid rgba(255,255,255,.08);
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      color:rgba(255,255,255,.74);
+      font-size:12px;
+      letter-spacing:.02em;
+    }
+    .pill{
+      display:inline-flex; align-items:center; gap:8px;
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.14);
+    }
+    .pill i{
+      width:7px; height:7px; border-radius:50%;
+      background: var(--gold);
+      box-shadow:0 0 0 4px rgba(201,162,77,.12);
+      display:inline-block;
+    }
+
+    /* Framework diagram */
+    .framework{
+      background: rgba(255,255,255,.03);
+      border-top:1px solid rgba(255,255,255,.06);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .framework-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:26px;
+      align-items:center;
+    }
+    .framework h2{margin:0 0 10px; font-size:28px; letter-spacing:-.01em}
+    .framework p{margin:0; color:rgba(255,255,255,.76); line-height:1.65}
+
+    .diagram{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(15,17,20,.78), rgba(15,17,20,.45));
+      box-shadow: var(--shadow);
+      padding:16px;
+      position:relative;
+      overflow:hidden;
+    }
+    .diagram::before{
+      content:"";
+      position:absolute; inset:-40px;
+      background:
+        radial-gradient(520px 220px at 20% 20%, rgba(201,162,77,.12), transparent 60%),
+        radial-gradient(420px 220px at 80% 65%, rgba(255,255,255,.07), transparent 62%);
+      pointer-events:none;
+    }
+    .diag-title{
+      font-family:var(--mono);
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color:rgba(255,255,255,.68);
+      margin:0 0 10px;
+      position:relative;
+    }
+    .nodes{
+      display:grid;
+      gap:10px;
+      position:relative;
+    }
+    .node{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:14px 14px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.18);
+    }
+    .node strong{font-size:14px; letter-spacing:.02em}
+    .node span{
+      font-family:var(--mono);
+      font-size:12px;
+      color:rgba(255,255,255,.64);
+    }
+    .arrow{
+      height:12px;
+      margin:4px 0;
+      background:
+        linear-gradient(90deg, transparent, rgba(201,162,77,.92), transparent);
+      clip-path: polygon(0 45%, 86% 45%, 86% 20%, 100% 50%, 86% 80%, 86% 55%, 0 55%);
+      opacity:.9;
+    }
+
+    /* Capability cards */
+    .cards{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:16px;
+    }
+    .card{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow: 0 10px 40px rgba(0,0,0,.35);
+      padding:18px 18px 16px;
+      position:relative;
+      overflow:hidden;
+      transition: transform .14s ease, border-color .14s ease, box-shadow .14s ease;
+    }
+    .card:hover{
+      transform: translateY(-2px);
+      border-color: rgba(201,162,77,.35);
+      box-shadow: 0 14px 52px rgba(0,0,0,.45);
+    }
+    .card .tag{
+      font-family:var(--mono);
+      font-size:12px;
+      letter-spacing:.12em;
+      text-transform:uppercase;
+      color: rgba(255,255,255,.68);
+      display:flex; align-items:center; gap:10px;
+      margin-bottom:10px;
+    }
+    .card .tag::before{
+      content:"";
+      width:10px; height:10px; border-radius:3px;
+      background: rgba(201,162,77,.92);
+      box-shadow:0 0 0 5px rgba(201,162,77,.10);
+    }
+    .card h3{margin:0 0 8px; font-size:18px; letter-spacing:-.01em}
+    .card p{margin:0 0 12px; color:rgba(255,255,255,.74); line-height:1.6; font-size:14px}
+    .list{margin:0; padding:0; list-style:none; display:grid; gap:8px}
+    .list li{
+      display:flex; align-items:flex-start; gap:10px;
+      color: rgba(255,255,255,.78);
+      font-size:13px;
+      line-height:1.45;
+    }
+    .list li::before{
+      content:"";
+      width:7px; height:7px; margin-top:6px;
+      border-radius:50%;
+      background: var(--gold);
+      box-shadow:0 0 0 4px rgba(201,162,77,.10);
+      flex:none;
+    }
+
+    /* Boot camp + Use cases */
+    .two-col{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:18px;
+      align-items:start;
+    }
+    .panel{
+      border-radius: var(--radius);
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.03);
+      padding:18px;
+      box-shadow: var(--shadow);
+    }
+    .panel h2{margin:0 0 10px; font-size:26px}
+    .panel p{margin:0 0 12px; color:rgba(255,255,255,.76); line-height:1.65}
+    .metrics{display:grid; gap:10px; margin-top:10px}
+    .metric{
+      display:flex; gap:10px; align-items:baseline; justify-content:space-between;
+      padding:12px 12px;
+      border-radius:14px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.16);
+    }
+    .metric strong{font-size:14px}
+    .metric span{font-family:var(--mono); font-size:12px; color:rgba(255,255,255,.62)}
+    .case-grid{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap:12px;
+    }
+    .case{
+      border-radius: 16px;
+      border:1px solid rgba(255,255,255,.10);
+      background: rgba(0,0,0,.16);
+      padding:14px;
+      transition: border-color .14s ease, transform .14s ease;
+    }
+    .case:hover{border-color: rgba(201,162,77,.30); transform: translateY(-1px)}
+    .case h4{margin:0 0 6px; font-size:14px}
+    .case code{
+      display:block;
+      font-family:var(--mono);
+      font-size:12px;
+      color:rgba(255,255,255,.72);
+      background: rgba(255,255,255,.05);
+      border:1px solid rgba(255,255,255,.08);
+      border-radius:12px;
+      padding:10px;
+      white-space:nowrap;
+      overflow:auto;
+    }
+
+    /* About */
+    .about-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:18px;
+      align-items:center;
+    }
+    .about .sig{
+      font-family:var(--mono);
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:12px;
+      color:rgba(255,255,255,.68);
+    }
+
+    /* Contact */
+    form{
+      display:grid;
+      gap:12px;
+      margin-top:12px;
+    }
+    label{font-size:13px; color:rgba(255,255,255,.78)}
+    input, textarea{
+      width:100%;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.12);
+      background: rgba(0,0,0,.18);
+      color:rgba(255,255,255,.92);
+      padding:12px 12px;
+      font-size:14px;
+      outline:none;
+    }
+    input:focus, textarea:focus{
+      border-color: rgba(201,162,77,.45);
+      box-shadow: 0 0 0 4px rgba(201,162,77,.10);
+    }
+    textarea{min-height:120px; resize:vertical}
+
+    footer{
+      padding:28px 0 38px;
+      border-top:1px solid rgba(255,255,255,.06);
+      color:rgba(255,255,255,.62);
+      font-size:13px;
+    }
+    .foot{
+      display:flex; gap:14px; justify-content:space-between; align-items:center; flex-wrap:wrap;
+    }
+    .foot a{color:rgba(255,255,255,.72); text-decoration:none}
+    .foot a:hover{color:#fff}
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .hero-grid, .framework-grid, .two-col, .about-grid{grid-template-columns:1fr}
+      .cards{grid-template-columns:1fr}
+      .case-grid{grid-template-columns:1fr}
+      nav ul{display:none}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .bg-canvas{display:none}
+      .btn, .card, .case{transition:none}
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Animated background -->
+  <canvas class="bg-canvas" id="circuit" aria-hidden="true"></canvas>
+
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="CMS Technical Optimization home">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="name">CMS Technical Optimization</span>
+        </a>
+
+        <nav aria-label="Primary">
+          <ul>
+            <li><a href="#lab">AI Lab</a></li>
+            <li><a href="#capabilities">Capabilities</a></li>
+            <li><a href="#bootcamp">Boot Camp</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-cta">
+          <a class="btn" href="#lab">Explore the Lab</a>
+          <a class="btn btn-primary" href="#contact">Book a Strategy Session</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero" id="lab">
+      <div class="wrap">
+        <div class="hero-grid">
+          <div>
+            <div class="kicker">AI Systems Lab</div>
+            <h1>Engineering Practical AI Systems</h1>
+            <p>
+              We build AI-enabled infrastructure, implement applied AI systems, and train teams to operate confidently in the AI age.
+            </p>
+            <div class="actions">
+              <a class="btn btn-primary" href="#capabilities">Explore Capabilities</a>
+              <a class="btn" href="#bootcamp">View Boot Camp</a>
+            </div>
+          </div>
+
+          <div class="banner-card">
+            <!-- Replace the src with your exact filename in your repo -->
+            <!-- Put your banner image in: /assets/cms-banner-dark.png -->
+            <img class="banner" src="assets/cms-banner-dark.png" alt="CMS Technical Optimization banner" loading="eager" />
+            <div class="banner-meta" aria-label="Core services">
+              <span class="pill"><i aria-hidden="true"></i>Artificial Intelligence</span>
+              <span class="pill"><i aria-hidden="true"></i>Infrastructure Design</span>
+              <span class="pill"><i aria-hidden="true"></i>Intelligent Teams</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FRAMEWORK -->
+    <section class="framework">
+      <div class="wrap">
+        <div class="framework-grid">
+          <div>
+            <h2>How Organizations Operationalize AI</h2>
+            <p>
+              Practical AI requires more than tools. It requires a systems approach: the right infrastructure, well-scoped AI systems,
+              and teams trained to execute with governance and confidence.
+            </p>
+          </div>
+
+          <div class="diagram" role="img" aria-label="Infrastructure leads to AI Systems leads to Intelligent Teams">
+            <div class="diag-title">Operational AI Framework</div>
+            <div class="nodes">
+              <div class="node">
+                <strong>Infrastructure</strong>
+                <span>data • integration • security</span>
+              </div>
+              <div class="arrow" aria-hidden="true"></div>
+              <div class="node">
+                <strong>AI Systems</strong>
+                <span>automation • insight • knowledge</span>
+              </div>
+              <div class="arrow" aria-hidden="true"></div>
+              <div class="node">
+                <strong>Intelligent Teams</strong>
+                <span>training • adoption • governance</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CAPABILITIES -->
+    <section id="capabilities">
+      <div class="wrap">
+        <div class="kicker">Capabilities</div>
+        <h2 style="margin:14px 0 10px; font-size:28px; letter-spacing:-.01em;">What We Build in the Lab</h2>
+        <p style="margin:0 0 18px; color:rgba(255,255,255,.76); max-width:68ch; line-height:1.65;">
+          Three pillars. One outcome: operational AI that improves productivity, decision quality, and execution speed.
+        </p>
+
+        <div class="cards">
+          <article class="card">
+            <div class="tag">Artificial Intelligence</div>
+            <h3>Applied AI Systems</h3>
+            <p>Implement AI where it drives measurable outcomes—not novelty.</p>
+            <ul class="list">
+              <li>AI workflow design & automation</li>
+              <li>Decision support & scenario modeling</li>
+              <li>Knowledge systems (RAG / internal search)</li>
+              <li>Content & communication acceleration</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="tag">Infrastructure Design</div>
+            <h3>AI-Ready Architecture</h3>
+            <p>Make AI reliable with the right systems underneath it.</p>
+            <ul class="list">
+              <li>Data quality & integration strategy</li>
+              <li>Security, access, and governance patterns</li>
+              <li>Tooling and platform selection</li>
+              <li>Scalable implementation plans</li>
+            </ul>
+          </article>
+
+          <article class="card">
+            <div class="tag">Intelligent Teams</div>
+            <h3>Enablement & Adoption</h3>
+            <p>Train teams to use AI effectively, safely, and consistently.</p>
+            <ul class="list">
+              <li>Hands-on training & playbooks</li>
+              <li>Leadership alignment & change management</li>
+              <li>Governance guardrails</li>
+              <li>Internal champions & adoption cadence</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- BOOT CAMP + USE CASES -->
+    <section id="bootcamp">
+      <div class="wrap">
+        <div class="two-col">
+          <div class="panel">
+            <div class="kicker">Training</div>
+            <h2>Applied Business AI Boot Camp</h2>
+            <p>
+              A 5-day, 20-hour intensive for business professionals. Participants leave with productivity gains, one KPI-tied insight,
+              a revenue experiment design, and a practical 90-day roadmap.
+            </p>
+
+            <div class="metrics" aria-label="Boot camp outcomes">
+              <div class="metric"><strong>Productivity impact</strong><span>30–50% task-time reduction</span></div>
+              <div class="metric"><strong>Decision advantage</strong><span>AI-assisted KPI analysis</span></div>
+              <div class="metric"><strong>Growth</strong><span>Revenue experiment design</span></div>
+              <div class="metric"><strong>Execution</strong><span>90-day roadmap</span></div>
+            </div>
+
+            <div style="margin-top:14px; display:flex; gap:12px; flex-wrap:wrap;">
+              <a class="btn btn-primary" href="#contact">Request a Cohort</a>
+              <a class="btn" href="#contact">Ask for the Syllabus</a>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="kicker">Systems in Action</div>
+            <h2>AI Implementation Examples</h2>
+            <p>Practical lab patterns you can deploy quickly.</p>
+
+            <div class="case-grid">
+              <div class="case">
+                <h4>AI Sales Enablement</h4>
+                <code>HubSpot → AI briefs → outreach & objections</code>
+              </div>
+              <div class="case">
+                <h4>AI Knowledge Systems</h4>
+                <code>Docs → retrieval → answers with citations</code>
+              </div>
+              <div class="case">
+                <h4>Decision Support</h4>
+                <code>Assumptions → scenarios → pre-mortems</code>
+              </div>
+              <div class="case">
+                <h4>Workflow Automation</h4>
+                <code>Triggers → AI steps → updated CRM/ops</code>
+              </div>
+            </div>
+
+            <div style="margin-top:14px;">
+              <a class="btn" href="#contact">Discuss a Pilot</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section id="about" class="about">
+      <div class="wrap">
+        <div class="about-grid">
+          <div class="panel">
+            <div class="kicker">About</div>
+            <h2>CMS Technical Optimization</h2>
+            <p>
+              CMS Technical Optimization helps organizations move from AI experimentation to operational capability—through applied AI systems,
+              infrastructure design, and team training.
+            </p>
+            <p class="sig" style="margin:14px 0 0;">AI • Infrastructure • Intelligent Teams</p>
+          </div>
+
+          <div class="panel">
+            <div class="kicker">Leadership</div>
+            <h2>Craig Schneider</h2>
+            <p>
+              Technologist and educator with 25+ years leading corporate, startup, educational, and nonprofit technology organizations.
+              Educated and trained at Washington University in St. Louis.
+            </p>
+            <p style="margin:0; color:rgba(255,255,255,.70);">
+              Focus: practical AI adoption, systems design, and workforce enablement.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <div class="wrap">
+        <div class="two-col">
+          <div>
+            <div class="kicker">Contact</div>
+            <h2 style="margin:14px 0 10px; font-size:28px;">Start a Conversation</h2>
+            <p style="margin:0; color:rgba(255,255,255,.76); line-height:1.65; max-width:60ch;">
+              Tell us what you’re trying to build or improve. We’ll recommend a practical next step: assessment, pilot, training, or architecture work.
+            </p>
+          </div>
+
+          <div class="panel">
+            <!-- Replace action with your form handler (Formspree, Netlify, HubSpot, etc.) -->
+            <form action="#" method="post">
+              <div>
+                <label for="name">Name</label>
+                <input id="name" name="name" autocomplete="name" required />
+              </div>
+              <div>
+                <label for="company">Company</label>
+                <input id="company" name="company" autocomplete="organization" />
+              </div>
+              <div>
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" autocomplete="email" required />
+              </div>
+              <div>
+                <label for="message">What are you trying to solve?</label>
+                <textarea id="message" name="message" placeholder="Example: We want to automate sales follow-ups in HubSpot and improve internal knowledge search."></textarea>
+              </div>
+              <button class="btn btn-primary" type="submit">Send</button>
+              <p style="margin:0; color:rgba(255,255,255,.62); font-size:12px; line-height:1.5;">
+                Prefer email? Add a mailto link here once your domain email is set up.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div class="foot">
+        <div>© <span id="year"></span> CMS Technical Optimization</div>
+        <div style="display:flex; gap:14px; flex-wrap:wrap;">
+          <a href="#lab">AI Lab</a>
+          <a href="#bootcamp">Boot Camp</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Animated "circuit" background (lightweight, no deps).
+    // Respects prefers-reduced-motion via CSS hiding canvas.
+    (function(){
+      const canvas = document.getElementById('circuit');
+      const ctx = canvas.getContext('2d', { alpha: true });
+      let w, h, dpr;
+
+      const GOLD = 'rgba(201,162,77,0.55)';
+      const DIM  = 'rgba(255,255,255,0.06)';
+      const DARK = 'rgba(0,0,0,0.0)';
+
+      const nodes = [];
+      const links = [];
+      const NODE_COUNT = 42;         // small + smooth
+      const LINK_COUNT = 72;
+
+      function resize(){
+        dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+        w = canvas.width  = Math.floor(window.innerWidth * dpr);
+        h = canvas.height = Math.floor(window.innerHeight * dpr);
+        canvas.style.width = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+
+        // rebuild points
+        nodes.length = 0;
+        links.length = 0;
+
+        for(let i=0;i<NODE_COUNT;i++){
+          nodes.push({
+            x: Math.random()*w,
+            y: Math.random()*h,
+            r: (Math.random()*1.6 + 1.0)*dpr,
+            vx: (Math.random()*0.22 - 0.11)*dpr,
+            vy: (Math.random()*0.18 - 0.09)*dpr,
+            p: Math.random()*1.0
+          });
+        }
+        for(let i=0;i<LINK_COUNT;i++){
+          const a = Math.floor(Math.random()*NODE_COUNT);
+          const b = Math.floor(Math.random()*NODE_COUNT);
+          if(a!==b) links.push({a,b, phase: Math.random()*Math.PI*2});
+        }
+      }
+
+      function step(){
+        ctx.clearRect(0,0,w,h);
+
+        // faint grid lines
+        ctx.save();
+        ctx.globalCompositeOperation = 'lighter';
+        ctx.strokeStyle = DIM;
+        ctx.lineWidth = 1*dpr;
+        const grid = 120*dpr;
+        for(let x=0; x<w; x+=grid){
+          ctx.beginPath(); ctx.moveTo(x,0); ctx.lineTo(x,h); ctx.stroke();
+        }
+        for(let y=0; y<h; y+=grid){
+          ctx.beginPath(); ctx.moveTo(0,y); ctx.lineTo(w,y); ctx.stroke();
+        }
+        ctx.restore();
+
+        // update nodes
+        for(const n of nodes){
+          n.x += n.vx; n.y += n.vy;
+          if(n.x < -60*dpr) n.x = w + 60*dpr;
+          if(n.x > w + 60*dpr) n.x = -60*dpr;
+          if(n.y < -60*dpr) n.y = h + 60*dpr;
+          if(n.y > h + 60*dpr) n.y = -60*dpr;
+          n.p += 0.015;
+        }
+
+        // draw links with small "pulse" moving along
+        for(const L of links){
+          const A = nodes[L.a], B = nodes[L.b];
+          const dx = B.x - A.x, dy = B.y - A.y;
+          const dist = Math.hypot(dx,dy);
+          if(dist > 420*dpr) continue;
+
+          // base line
+          ctx.strokeStyle = 'rgba(255,255,255,0.06)';
+          ctx.lineWidth = 1*dpr;
+          ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.stroke();
+
+          // pulse dot
+          const t = (Math.sin(L.phase + performance.now()/1100) + 1)/2; // 0..1
+          const px = A.x + dx*t;
+          const py = A.y + dy*t;
+
+          ctx.fillStyle = GOLD;
+          ctx.beginPath();
+          ctx.arc(px,py, 1.8*dpr, 0, Math.PI*2);
+          ctx.fill();
+        }
+
+        // draw nodes
+        for(const n of nodes){
+          ctx.fillStyle = 'rgba(255,255,255,0.10)';
+          ctx.beginPath();
+          ctx.arc(n.x,n.y,n.r,0,Math.PI*2);
+          ctx.fill();
+
+          // occasional gold glow
+          if(Math.sin(n.p) > 0.92){
+            ctx.fillStyle = 'rgba(201,162,77,0.35)';
+            ctx.beginPath();
+            ctx.arc(n.x,n.y,n.r*2.6,0,Math.PI*2);
+            ctx.fill();
+          }
+        }
+
+        requestAnimationFrame(step);
+      }
+
+      window.addEventListener('resize', resize, { passive:true });
+      resize();
+      requestAnimationFrame(step);
+    })();
+  </script>
+</body>
+</html>

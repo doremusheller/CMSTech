@@ -1,0 +1,545 @@
+```html
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>AI Strategy • CMS Technical Optimization</title>
+  <meta name="description" content="AI Strategy that turns into executable systems: priorities, architecture, operating model, and ROI path." />
+
+  <style>
+    :root{
+      --bg:#000000;
+      --gold:#c9a24d;
+      --text:rgba(255,255,255,.94);
+      --muted:rgba(255,255,255,.74);
+      --muted2:rgba(255,255,255,.62);
+      --max:1120px;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:var(--bg);
+      overflow-x:hidden;
+    }
+
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
+
+    /* Sparkling live background canvas (NO grid) */
+    .bg-canvas{
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      opacity:.80;
+      pointer-events:none;
+      filter: drop-shadow(0 0 18px rgba(201,162,77,.06));
+    }
+
+    /* Navigation */
+    header{
+      position:sticky;
+      top:0;
+      z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(0,0,0,.55);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:240px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background:var(--gold);
+      box-shadow:0 0 0 4px rgba(201,162,77,.12);
+      flex:none;
+    }
+    .name{
+      font-weight:760;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:12px;
+      color:rgba(255,255,255,.88);
+      white-space:nowrap;
+    }
+    nav ul{
+      list-style:none;
+      margin:0; padding:0;
+      display:flex;
+      gap:6px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    nav a{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:12px;
+      font-size:13px;
+      color:rgba(255,255,255,.82);
+      border:1px solid transparent;
+      transition: background .16s ease, border-color .16s ease, transform .12s ease, color .16s ease;
+      white-space:nowrap;
+    }
+    nav a:hover{
+      background:rgba(255,255,255,.06);
+      border-color:rgba(255,255,255,.10);
+      color:rgba(255,255,255,.96);
+      transform: translateY(-1px);
+    }
+    .nav-spacer{min-width:240px;}
+
+    /* Page layout */
+    main{
+      min-height: calc(100vh - 64px);
+      display:flex;
+      flex-direction:column;
+      align-items:stretch;
+      justify-content:flex-start;
+    }
+
+    .hero{
+      width:100%;
+      text-align:center;
+      padding: 34px 0 18px;
+    }
+
+    /* Banner wrapper — seamless */
+    .banner-card{
+      margin: 18px auto 0;
+      max-width: 980px;
+      background:#000;
+      overflow:hidden;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.08);
+      box-shadow: 0 18px 44px rgba(0,0,0,.55);
+    }
+    img.banner{
+      width:100%;
+      height:auto;
+      display:block;
+    }
+
+    h1{
+      margin: 24px auto 10px;
+      max-width: 32ch;
+      font-size: clamp(28px, 3.6vw, 46px);
+      line-height:1.06;
+      letter-spacing:-.02em;
+    }
+
+    .subhead{
+      margin: 0 auto 0;
+      max-width: 70ch;
+      color: var(--muted);
+      font-size: 15.5px;
+      line-height:1.65;
+    }
+
+    /* Fiery underline */
+    .fire-underline{
+      position:relative;
+      width: 220px;
+      height: 2px;
+      margin: 18px auto 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg,
+        rgba(0,0,0,0),
+        rgba(255,120,0,.95),
+        rgba(255,210,70,1),
+        rgba(255,120,0,.95),
+        rgba(0,0,0,0)
+      );
+      box-shadow:
+        0 0 10px rgba(255,120,0,.35),
+        0 0 22px rgba(255,80,0,.22),
+        0 0 40px rgba(255,80,0,.12);
+      filter: saturate(1.15);
+      overflow:visible;
+    }
+    .fire-underline::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:50%;
+      width: 320px;
+      height: 40px;
+      transform: translate(-50%,-50%);
+      background: radial-gradient(closest-side,
+        rgba(255,120,0,.18),
+        rgba(255,120,0,.10),
+        rgba(0,0,0,0)
+      );
+      filter: blur(8px);
+      pointer-events:none;
+    }
+    .fire-underline::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:50%;
+      width: 340px;
+      height: 34px;
+      transform: translate(-50%,-50%);
+      background:
+        radial-gradient(circle at 20% 40%, rgba(255,210,70,.85) 0 1px, transparent 2px),
+        radial-gradient(circle at 32% 55%, rgba(255,120,0,.85) 0 1px, transparent 2px),
+        radial-gradient(circle at 46% 35%, rgba(255,210,70,.70) 0 1px, transparent 2px),
+        radial-gradient(circle at 58% 60%, rgba(255,120,0,.75) 0 1px, transparent 2px),
+        radial-gradient(circle at 74% 42%, rgba(255,210,70,.80) 0 1px, transparent 2px),
+        radial-gradient(circle at 86% 55%, rgba(255,120,0,.70) 0 1px, transparent 2px);
+      opacity:.75;
+      filter: blur(.2px);
+      animation: sparks 1.8s infinite ease-in-out alternate;
+      pointer-events:none;
+    }
+    @keyframes sparks{
+      0%   { opacity:.35; transform: translate(-50%,-50%) scale(.98); }
+      100% { opacity:.85; transform: translate(-50%,-50%) scale(1.02); }
+    }
+
+    /* Content section */
+    .content{
+      padding: 30px 0 80px;
+    }
+    .content-grid{
+      max-width: 980px;
+      margin: 0 auto;
+      display:grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 18px;
+      align-items:start;
+    }
+
+    .panel{
+      border-radius: 18px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      box-shadow: 0 16px 40px rgba(0,0,0,.45);
+      overflow:hidden;
+    }
+    .panel-inner{ padding: 18px 18px 20px; }
+
+    .kicker{
+      font-size: 12px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.78);
+      margin: 0 0 10px;
+    }
+
+    .h2{
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: -.01em;
+    }
+
+    .p{
+      margin: 0 0 12px;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 14px;
+    }
+
+    .list{
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+      display:flex;
+      flex-direction:column;
+      gap: 10px;
+    }
+    .li{
+      display:flex;
+      gap: 10px;
+      align-items:flex-start;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(0,0,0,.25);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .bullet{
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 4px rgba(201,162,77,.12);
+      margin-top: 5px;
+      flex:none;
+    }
+    .li strong{ color: rgba(255,255,255,.92); font-weight: 700; }
+    .li span{ color: var(--muted2); font-size: 13px; line-height: 1.55; display:block; }
+
+    .cta{
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+    }
+    .cta a{
+      display:inline-flex;
+      justify-content:center;
+      align-items:center;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      transition: transform .14s ease, border-color .14s ease, background .14s ease;
+      font-size: 13px;
+      color: rgba(255,255,255,.92);
+    }
+    .cta a:hover{
+      transform: translateY(-1px);
+      border-color: rgba(201,162,77,.55);
+      background: rgba(255,255,255,.09);
+    }
+    .hint{
+      font-size: 12px;
+      color: var(--muted2);
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    @media (max-width: 980px){
+      nav ul{display:none}
+      .brand, .nav-spacer{min-width:auto}
+      .hero{padding-top: 26px;}
+      .banner-card{max-width: 980px;}
+      .fire-underline{width: 180px;}
+      .content-grid{grid-template-columns: 1fr; }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .bg-canvas{display:none}
+      nav a{transition:none}
+      .fire-underline::after{animation:none}
+    }
+  </style>
+</head>
+
+<body>
+  <canvas class="bg-canvas" id="circuit" aria-hidden="true"></canvas>
+
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="index.html" aria-label="Home">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="name">CMS Technical Optimization</span>
+        </a>
+
+        <nav aria-label="Primary">
+          <ul>
+            <li><a href="index.html#bootcamp">AI Bootcamp</a></li>
+            <li><a href="index.html#bi">Customized Business Intelligence</a></li>
+            <li><a href="index.html#training">Smart Team Training</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+          </ul>
+        </nav>
+
+        <div class="nav-spacer" aria-hidden="true"></div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap">
+        <div class="banner-card">
+          <img class="banner" src="assets/stratroom.png" alt="AI Strategy" loading="eager" />
+        </div>
+
+        <h1>AI Strategy that becomes execution.</h1>
+        <p class="subhead">Clarify the highest-leverage use cases, data pathways, and operating model—then build a roadmap that ships.</p>
+
+        <div class="fire-underline" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="content" aria-label="AI Strategy details">
+      <div class="wrap">
+        <div class="content-grid">
+
+          <div class="panel">
+            <div class="panel-inner">
+              <p class="kicker">What this delivers</p>
+              <h2 class="h2">A practical strategy blueprint</h2>
+              <p class="p">
+                Strategy should reduce uncertainty and accelerate delivery. This page outlines the core outputs
+                used to align leadership, technical teams, and day-to-day execution.
+              </p>
+
+              <ul class="list">
+                <li class="li">
+                  <span class="bullet" aria-hidden="true"></span>
+                  <div>
+                    <strong>Use-case portfolio</strong>
+                    <span>Ranked by impact, feasibility, and time-to-value—with clear owners and success metrics.</span>
+                  </div>
+                </li>
+                <li class="li">
+                  <span class="bullet" aria-hidden="true"></span>
+                  <div>
+                    <strong>Data + systems map</strong>
+                    <span>Where the data lives, how it moves, what needs to change, and what can ship now.</span>
+                  </div>
+                </li>
+                <li class="li">
+                  <span class="bullet" aria-hidden="true"></span>
+                  <div>
+                    <strong>Operating model</strong>
+                    <span>Roles, governance, evaluation, security, and how teams work with AI safely.</span>
+                  </div>
+                </li>
+                <li class="li">
+                  <span class="bullet" aria-hidden="true"></span>
+                  <div>
+                    <strong>Roadmap</strong>
+                    <span>90-day plan + phased build sequence that connects wins to scalable foundations.</span>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <aside class="panel">
+            <div class="panel-inner cta">
+              <p class="kicker">Next steps</p>
+              <h2 class="h2">Build the first system</h2>
+              <p class="hint">Link these to your preferred pages when ready.</p>
+
+              <a href="smartinfrastructure.html">Explore Smart Infrastructure</a>
+              <a href="smartteams.html">Explore Intelligent Teams</a>
+              <a href="index.html">Back to Home</a>
+
+              <p class="hint">
+                Tip: keep hero images consistent (dark + gold/orange circuitry) so the site reads as one system.
+              </p>
+            </div>
+          </aside>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Sparkling "live" background (NO grid): subtle network + moving pulses.
+    (function(){
+      const canvas = document.getElementById('circuit');
+      const ctx = canvas.getContext('2d', { alpha: true });
+
+      let w, h, dpr;
+      const GOLD = 'rgba(201,162,77,0.55)';
+
+      const nodes = [];
+      const links = [];
+      const NODE_COUNT = 44;
+      const LINK_COUNT = 80;
+
+      function resize(){
+        dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+        w = canvas.width  = Math.floor(window.innerWidth  * dpr);
+        h = canvas.height = Math.floor(window.innerHeight * dpr);
+        canvas.style.width  = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
+
+        nodes.length = 0;
+        links.length = 0;
+
+        for(let i=0;i<NODE_COUNT;i++){
+          nodes.push({
+            x: Math.random()*w,
+            y: Math.random()*h,
+            r: (Math.random()*1.6 + 0.9)*dpr,
+            vx: (Math.random()*0.20 - 0.10)*dpr,
+            vy: (Math.random()*0.16 - 0.08)*dpr,
+            p: Math.random()*Math.PI*2
+          });
+        }
+        for(let i=0;i<LINK_COUNT;i++){
+          const a = Math.floor(Math.random()*NODE_COUNT);
+          const b = Math.floor(Math.random()*NODE_COUNT);
+          if(a !== b) links.push({ a, b, phase: Math.random()*Math.PI*2 });
+        }
+      }
+
+      function step(){
+        ctx.clearRect(0,0,w,h);
+
+        // Update nodes
+        for(const n of nodes){
+          n.x += n.vx; n.y += n.vy;
+          if(n.x < -60*dpr) n.x = w + 60*dpr;
+          if(n.x > w + 60*dpr) n.x = -60*dpr;
+          if(n.y < -60*dpr) n.y = h + 60*dpr;
+          if(n.y > h + 60*dpr) n.y = -60*dpr;
+          n.p += 0.018;
+        }
+
+        // Links + pulses (kept subtle)
+        const tNow = performance.now();
+        for(const L of links){
+          const A = nodes[L.a], B = nodes[L.b];
+          const dx = B.x - A.x, dy = B.y - A.y;
+          const dist = Math.hypot(dx,dy);
+          if(dist > 420*dpr) continue;
+
+          // base line (very faint)
+          ctx.strokeStyle = 'rgba(255,255,255,0.035)';
+          ctx.lineWidth = 1*dpr;
+          ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.stroke();
+
+          // moving spark
+          const t = (Math.sin(L.phase + tNow/1100) + 1) / 2;
+          const px = A.x + dx*t;
+          const py = A.y + dy*t;
+
+          ctx.fillStyle = GOLD;
+          ctx.beginPath();
+          ctx.arc(px, py, 1.9*dpr, 0, Math.PI*2);
+          ctx.fill();
+        }
+
+        // Nodes (with occasional gold twinkle)
+        for(const n of nodes){
+          ctx.fillStyle = 'rgba(255,255,255,0.08)';
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
+          ctx.fill();
+
+          if(Math.sin(n.p) > 0.93){
+            ctx.fillStyle = 'rgba(201,162,77,0.26)';
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r*2.7, 0, Math.PI*2);
+            ctx.fill();
+          }
+        }
+
+        requestAnimationFrame(step);
+      }
+
+      window.addEventListener('resize', resize, { passive:true });
+      resize();
+      requestAnimationFrame(step);
+    })();
+  </script>
+</body>
+</html>
+```

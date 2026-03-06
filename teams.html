@@ -1,0 +1,398 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>Intelligent Teams • CMS Technical Optimization</title>
+  <meta name="description" content="AI-powered teams that automate workflows, accelerate decisions, and operate faster across the organization." />
+
+<style>
+:root{
+  --bg:#000000;
+  --gold:#c9a24d;
+  --text:rgba(255,255,255,.94);
+  --muted:rgba(255,255,255,.74);
+  --muted2:rgba(255,255,255,.62);
+  --max:1120px;
+  --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+
+body{
+  margin:0;
+  font-family:var(--sans);
+  color:var(--text);
+  background:var(--bg);
+  overflow-x:hidden;
+}
+
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+
+/* animated background */
+.bg-canvas{
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  opacity:.80;
+  pointer-events:none;
+}
+
+/* NAV */
+
+header{
+  position:sticky;
+  top:0;
+  z-index:10;
+  backdrop-filter: blur(10px);
+  background: rgba(0,0,0,.55);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.nav{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:14px 0;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  min-width:240px;
+}
+
+.dot{
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--gold);
+  box-shadow:0 0 0 4px rgba(201,162,77,.12);
+}
+
+.name{
+  font-weight:760;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  font-size:12px;
+}
+
+nav ul{
+  list-style:none;
+  display:flex;
+  gap:6px;
+  padding:0;
+  margin:0;
+}
+
+nav a{
+  padding:10px 12px;
+  border-radius:12px;
+  font-size:13px;
+  color:rgba(255,255,255,.82);
+  transition:.15s ease;
+}
+
+nav a:hover{
+  background:rgba(255,255,255,.06);
+}
+
+.nav-spacer{min-width:240px}
+
+/* HERO */
+
+.hero{
+  text-align:center;
+  padding:34px 0 18px;
+}
+
+.banner-card{
+  margin:18px auto 0;
+  max-width:980px;
+  border-radius:18px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,.08);
+  box-shadow:0 18px 44px rgba(0,0,0,.55);
+}
+
+img.banner{
+  width:100%;
+  display:block;
+}
+
+h1{
+  margin:24px auto 10px;
+  font-size:clamp(28px,3.6vw,46px);
+  max-width:34ch;
+  line-height:1.05;
+}
+
+.subhead{
+  max-width:70ch;
+  margin:0 auto;
+  color:var(--muted);
+  font-size:15.5px;
+  line-height:1.6;
+}
+
+/* underline */
+
+.fire-underline{
+  width:220px;
+  height:2px;
+  margin:18px auto 0;
+  background:linear-gradient(90deg,transparent,#ff8c00,#ffd24a,#ff8c00,transparent);
+}
+
+/* CONTENT */
+
+.content{
+  padding:30px 0 80px;
+}
+
+.content-grid{
+  max-width:980px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:1.25fr .75fr;
+  gap:18px;
+}
+
+.panel{
+  border-radius:18px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.10);
+  box-shadow:0 16px 40px rgba(0,0,0,.45);
+}
+
+.panel-inner{
+  padding:20px;
+}
+
+.kicker{
+  font-size:12px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  margin-bottom:10px;
+  color:rgba(255,255,255,.78);
+}
+
+.h2{
+  margin:0 0 10px;
+  font-size:18px;
+}
+
+.p{
+  margin:0 0 14px;
+  color:var(--muted);
+  line-height:1.7;
+  font-size:14px;
+}
+
+.list{
+  list-style:none;
+  padding:0;
+  margin:0;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.li{
+  display:flex;
+  gap:10px;
+  padding:10px 12px;
+  border-radius:14px;
+  background:rgba(0,0,0,.25);
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.bullet{
+  width:8px;
+  height:8px;
+  border-radius:50%;
+  background:var(--gold);
+  margin-top:5px;
+}
+
+.li span{
+  color:var(--muted2);
+  font-size:13px;
+}
+
+/* CTA */
+
+.cta{
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+}
+
+.cta a{
+  padding:12px;
+  border-radius:14px;
+  text-align:center;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.06);
+}
+
+.cta a:hover{
+  border-color:rgba(201,162,77,.55);
+}
+
+.hint{
+  font-size:12px;
+  color:var(--muted2);
+}
+
+/* MOBILE */
+
+@media (max-width:980px){
+
+  nav ul{display:none}
+
+  .content-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<canvas class="bg-canvas" id="circuit"></canvas>
+
+<header>
+<div class="wrap">
+<div class="nav">
+
+<a class="brand" href="index.html">
+<span class="dot"></span>
+<span class="name">CMS Technical Optimization</span>
+</a>
+
+<nav>
+<ul>
+<li><a href="index.html#bootcamp">AI Bootcamp</a></li>
+<li><a href="index.html#bi">Customized Business Intelligence</a></li>
+<li><a href="index.html#training">Smart Team Training</a></li>
+<li><a href="index.html#about">About</a></li>
+<li><a href="index.html#contact">Contact</a></li>
+</ul>
+</nav>
+
+<div class="nav-spacer"></div>
+
+</div>
+</div>
+</header>
+
+<main>
+
+<section class="hero">
+
+<div class="wrap">
+
+<div class="banner-card">
+<img class="banner" src="assets/smartflow.png" alt="Intelligent Teams">
+</div>
+
+<h1>Teams that move at AI speed.</h1>
+
+<p class="subhead">
+Automated workflows, decision support, and operational intelligence—
+so teams focus on outcomes instead of busywork.
+</p>
+
+<div class="fire-underline"></div>
+
+</div>
+</section>
+
+<section class="content">
+
+<div class="wrap">
+
+<div class="content-grid">
+
+<div class="panel">
+<div class="panel-inner">
+
+<p class="kicker">What this delivers</p>
+<h2 class="h2">Operational intelligence for everyday work</h2>
+
+<p class="p">
+AI should amplify teams, not replace them. Intelligent workflows
+reduce friction across departments and ensure routine tasks
+execute automatically while humans focus on judgment and strategy.
+</p>
+
+<ul class="list">
+
+<li class="li">
+<span class="bullet"></span>
+<div>
+<strong>Automated workflows</strong>
+<span>Routine tasks in audits, procurement, legal, and sales handled automatically.</span>
+</div>
+</li>
+
+<li class="li">
+<span class="bullet"></span>
+<div>
+<strong>Decision support</strong>
+<span>AI assists with research, analysis, summaries, and recommendations.</span>
+</div>
+</li>
+
+<li class="li">
+<span class="bullet"></span>
+<div>
+<strong>Cross-team coordination</strong>
+<span>Systems route work to the right person at the right time.</span>
+</div>
+</li>
+
+<li class="li">
+<span class="bullet"></span>
+<div>
+<strong>Faster execution</strong>
+<span>Teams move from idea to delivery dramatically faster.</span>
+</div>
+</li>
+
+</ul>
+
+</div>
+</div>
+
+<aside class="panel">
+<div class="panel-inner cta">
+
+<p class="kicker">Next steps</p>
+<h2 class="h2">Complete the system</h2>
+
+<a href="strategy.html">Explore AI Strategy</a>
+<a href="design.html">Explore Infrastructure Design</a>
+<a href="index.html">Back to Home</a>
+
+<p class="hint">
+AI strategy, infrastructure, and intelligent teams form a single system.
+</p>
+
+</div>
+</aside>
+
+</div>
+</div>
+</section>
+
+</main>
+
+</body>
+</html>

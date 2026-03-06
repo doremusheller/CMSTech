@@ -1,329 +1,502 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="color-scheme" content="dark" />
-<title>CMS Technical Optimization</title>
-<meta name="description" content="Engineering practical AI systems for real organizations." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>CMS Technical Optimization</title>
+  <meta name="description" content="Engineering practical AI systems for real organizations." />
 
-<style>
+  <style>
+    :root{
+      --bg:#000000;
+      --gold:#c9a24d;
+      --text:rgba(255,255,255,.94);
+      --muted:rgba(255,255,255,.74);
+      --muted2:rgba(255,255,255,.62);
+      --max:1120px;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    }
 
-:root{
---bg:#000000;
---gold:#c9a24d;
---text:rgba(255,255,255,.94);
---muted:rgba(255,255,255,.74);
---muted2:rgba(255,255,255,.62);
---max:1120px;
---sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-}
+    *{box-sizing:border-box}
+    html,body{height:100%}
 
-*{box-sizing:border-box}
-html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--sans);
+      color:var(--text);
+      background:var(--bg);
+      overflow-x:hidden;
+    }
 
-body{
-margin:0;
-font-family:var(--sans);
-color:var(--text);
-background:var(--bg);
-overflow-x:hidden;
-}
+    a{color:inherit; text-decoration:none}
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 20px}
 
-a{color:inherit;text-decoration:none}
-.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+    /* Sparkling live background canvas (NO grid) */
+    .bg-canvas{
+      position:fixed;
+      inset:0;
+      z-index:-1;
+      opacity:.80;
+      pointer-events:none;
+      filter: drop-shadow(0 0 18px rgba(201,162,77,.06));
+    }
 
-.bg-canvas{
-position:fixed;
-inset:0;
-z-index:-1;
-opacity:.8;
-pointer-events:none;
-}
+    /* Navigation */
+    header{
+      position:sticky;
+      top:0;
+      z-index:10;
+      backdrop-filter: blur(10px);
+      background: rgba(0,0,0,.55);
+      border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:16px;
+      padding:14px 0;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      min-width:240px;
+    }
+    .dot{
+      width:10px; height:10px; border-radius:50%;
+      background:var(--gold);
+      box-shadow:0 0 0 4px rgba(201,162,77,.12);
+      flex:none;
+    }
+    .name{
+      font-weight:760;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:12px;
+      color:rgba(255,255,255,.88);
+      white-space:nowrap;
+    }
+    nav ul{
+      list-style:none;
+      margin:0; padding:0;
+      display:flex;
+      gap:6px;
+      flex-wrap:wrap;
+      justify-content:center;
+    }
+    nav a{
+      display:inline-flex;
+      align-items:center;
+      padding:10px 12px;
+      border-radius:12px;
+      font-size:13px;
+      color:rgba(255,255,255,.82);
+      border:1px solid transparent;
+      transition: background .16s ease, border-color .16s ease, transform .12s ease, color .16s ease;
+      white-space:nowrap;
+    }
+    nav a:hover{
+      background:rgba(255,255,255,.06);
+      border-color:rgba(255,255,255,.10);
+      color:rgba(255,255,255,.96);
+      transform: translateY(-1px);
+    }
+    .nav-spacer{min-width:240px;}
 
-header{
-position:sticky;
-top:0;
-z-index:10;
-backdrop-filter: blur(10px);
-background:rgba(0,0,0,.55);
-border-bottom:1px solid rgba(255,255,255,.06);
-}
+    /* Layout */
+    main{
+      min-height: calc(100vh - 64px);
+      display:flex;
+      justify-content:center;
+      align-items:flex-start;
+    }
 
-.nav{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:16px;
-padding:14px 0;
-}
+    .hero{
+      width:100%;
+      text-align:center;
+      padding: 34px 0 28px;
+    }
 
-.brand{
-display:flex;
-align-items:center;
-gap:10px;
-min-width:240px;
-}
+    /* Banner wrapper */
+    .banner-card{
+      margin: 18px auto 0;
+      max-width: 920px;
+      background:#000;
+      overflow:hidden;
+    }
+    img.banner{
+      width:100%;
+      height:auto;
+      display:block;
+    }
 
-.dot{
-width:10px;height:10px;border-radius:50%;
-background:var(--gold);
-box-shadow:0 0 0 4px rgba(201,162,77,.12);
-}
+    h1{
+      margin: 26px auto 10px;
+      max-width: 28ch;
+      font-size: clamp(28px, 3.6vw, 46px);
+      line-height:1.06;
+      letter-spacing:-.02em;
+    }
 
-.name{
-font-weight:760;
-letter-spacing:.08em;
-text-transform:uppercase;
-font-size:12px;
-color:rgba(255,255,255,.88);
-white-space:nowrap;
-}
+    .subhead{
+      margin: 0 auto 0;
+      max-width: 64ch;
+      color: var(--muted);
+      font-size: 15.5px;
+      line-height:1.65;
+    }
 
-nav ul{
-list-style:none;
-margin:0;padding:0;
-display:flex;
-gap:6px;
-flex-wrap:wrap;
-justify-content:center;
-}
+    /* Fiery underline */
+    .fire-underline{
+      position:relative;
+      width: 220px;
+      height: 2px;
+      margin: 18px auto 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg,
+        rgba(0,0,0,0),
+        rgba(255,120,0,.95),
+        rgba(255,210,70,1),
+        rgba(255,120,0,.95),
+        rgba(0,0,0,0)
+      );
+      box-shadow:
+        0 0 10px rgba(255,120,0,.35),
+        0 0 22px rgba(255,80,0,.22),
+        0 0 40px rgba(255,80,0,.12);
+      filter: saturate(1.15);
+      overflow:visible;
+    }
 
-nav a{
-display:inline-flex;
-align-items:center;
-padding:10px 12px;
-border-radius:12px;
-font-size:13px;
-color:rgba(255,255,255,.82);
-border:1px solid transparent;
-transition:.16s;
-}
+    .fire-underline::before{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:50%;
+      width: 320px;
+      height: 40px;
+      transform: translate(-50%,-50%);
+      background: radial-gradient(closest-side,
+        rgba(255,120,0,.18),
+        rgba(255,120,0,.10),
+        rgba(0,0,0,0)
+      );
+      filter: blur(8px);
+      pointer-events:none;
+    }
 
-nav a:hover{
-background:rgba(255,255,255,.06);
-border-color:rgba(255,255,255,.1);
-transform:translateY(-1px);
-}
+    .fire-underline::after{
+      content:"";
+      position:absolute;
+      left:50%;
+      top:50%;
+      width: 340px;
+      height: 34px;
+      transform: translate(-50%,-50%);
+      background:
+        radial-gradient(circle at 20% 40%, rgba(255,210,70,.85) 0 1px, transparent 2px),
+        radial-gradient(circle at 32% 55%, rgba(255,120,0,.85) 0 1px, transparent 2px),
+        radial-gradient(circle at 46% 35%, rgba(255,210,70,.70) 0 1px, transparent 2px),
+        radial-gradient(circle at 58% 60%, rgba(255,120,0,.75) 0 1px, transparent 2px),
+        radial-gradient(circle at 74% 42%, rgba(255,210,70,.80) 0 1px, transparent 2px),
+        radial-gradient(circle at 86% 55%, rgba(255,120,0,.70) 0 1px, transparent 2px);
+      opacity:.75;
+      filter: blur(.2px);
+      animation: sparks 1.8s infinite ease-in-out alternate;
+      pointer-events:none;
+    }
 
-.nav-spacer{min-width:240px}
+    @keyframes sparks{
+      0%   { opacity:.35; transform: translate(-50%,-50%) scale(.98); }
+      100% { opacity:.85; transform: translate(-50%,-50%) scale(1.02); }
+    }
 
-main{
-min-height:calc(100vh - 64px);
-display:flex;
-flex-direction:column;
-align-items:stretch;
-}
+    /* ---------- Linked image+text grid ---------- */
+    .grid-section{
+      width:100%;
+      padding: 18px 0 76px;
+      position: relative;
+      z-index: 3;
+    }
 
-.hero{
-width:100%;
-text-align:center;
-padding:34px 0 18px;
-}
+    /* UPDATED: supports 4 cards cleanly */
+    .card-grid{
+      margin: 22px auto 0;
+      max-width: 980px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      position: relative;
+      z-index: 3;
+    }
 
-.banner-card{
-margin:18px auto 0;
-max-width:920px;
-background:#000;
-overflow:hidden;
-}
+    .card-link{
+      display: block;
+      border-radius: 18px;
+      overflow: hidden;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 14px 34px rgba(0,0,0,.55);
+      transition: transform .14s ease, border-color .14s ease, background .14s ease;
+    }
 
-.banner{
-width:100%;
-display:block;
-}
+    .card-link:hover{
+      transform: translateY(-2px);
+      border-color: rgba(201,162,77,.45);
+      background: rgba(255,255,255,.08);
+    }
 
-h1{
-margin:26px auto 10px;
-max-width:28ch;
-font-size:clamp(28px,3.6vw,46px);
-line-height:1.06;
-letter-spacing:-.02em;
-}
+    .card-media{
+      aspect-ratio: 16 / 9;
+      background: linear-gradient(135deg, rgba(255,255,255,.08), rgba(201,162,77,.08));
+    }
 
-.subhead{
-margin:0 auto;
-max-width:64ch;
-color:var(--muted);
-font-size:15.5px;
-line-height:1.65;
-}
+    .card-media img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      object-position: center;
+    }
 
-.fire-underline{
-position:relative;
-width:220px;
-height:2px;
-margin:18px auto 0;
-border-radius:999px;
-background:linear-gradient(90deg,
-rgba(0,0,0,0),
-rgba(255,120,0,.95),
-rgba(255,210,70,1),
-rgba(255,120,0,.95),
-rgba(0,0,0,0));
-}
+    /* Rodin focal point */
+    .card-media img.rodin{
+      object-position: center 22%;
+    }
 
-/* GRID */
+    .card-body{
+      padding: 14px 14px 16px;
+      text-align: left;
+    }
 
-.grid-section{
-width:100%;
-padding:26px 0 76px;
-}
+    .card-title{
+      margin: 0 0 6px;
+      font-size: 15px;
+      letter-spacing: .01em;
+      color: rgba(255,255,255,.93);
+    }
 
-.card-grid{
-margin:0 auto;
-max-width:980px;
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:16px;
-}
+    .card-text{
+      margin: 0;
+      font-size: 13px;
+      line-height: 1.55;
+      color: var(--muted2);
+    }
+    /* ---------- /GRID ---------- */
 
-.card-link{
-display:block;
-border-radius:18px;
-overflow:hidden;
-background:rgba(255,255,255,.08);
-border:1px solid rgba(255,255,255,.18);
-box-shadow:0 14px 34px rgba(0,0,0,.55);
-transition:.14s;
-}
+    @media (max-width: 980px){
+      nav ul{display:none}
+      .brand, .nav-spacer{min-width:auto}
+      .hero{padding-top: 26px;}
+      .banner-card{max-width: 980px;}
+      .fire-underline{width: 180px;}
+      .grid-section{ padding: 14px 0 64px; }
+      .card-body{ text-align: center; }
+    }
 
-.card-link:hover{
-transform:translateY(-2px);
-border-color:rgba(201,162,77,.55);
-}
-
-.card-media{
-aspect-ratio:16/9;
-background:#111;
-}
-
-.card-media img{
-width:100%;
-height:100%;
-object-fit:cover;
-object-position:center;
-}
-
-/* Rodin focal point */
-.card-media img.rodin{
-object-position:center 22%;
-}
-
-.card-body{
-padding:14px 14px 16px;
-text-align:left;
-}
-
-.card-title{
-margin:0 0 6px;
-font-size:15px;
-color:rgba(255,255,255,.93);
-}
-
-.card-text{
-margin:0;
-font-size:13px;
-line-height:1.55;
-color:var(--muted2);
-}
-
-@media (max-width:980px){
-nav ul{display:none}
-.card-grid{grid-template-columns:1fr}
-.card-body{text-align:center}
-}
-
-</style>
+    @media (prefers-reduced-motion: reduce){
+      .bg-canvas{display:none}
+      nav a{transition:none}
+      .fire-underline::after{animation:none}
+    }
+  </style>
 </head>
 
 <body>
+  <canvas class="bg-canvas" id="circuit" aria-hidden="true"></canvas>
 
-<canvas class="bg-canvas" id="circuit"></canvas>
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Home">
+          <span class="dot" aria-hidden="true"></span>
+          <span class="name">CMS Technical Optimization</span>
+        </a>
 
-<header>
-<div class="wrap">
-<div class="nav">
+        <nav aria-label="Primary">
+          <ul>
+            <li><a href="#bootcamp">AI Bootcamp</a></li>
+            <li><a href="#bi">Customized Business Intelligence</a></li>
+            <li><a href="#training">Smart Team Training</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
 
-<a class="brand" href="#top">
-<span class="dot"></span>
-<span class="name">CMS Technical Optimization</span>
-</a>
+        <div class="nav-spacer" aria-hidden="true"></div>
+      </div>
+    </div>
+  </header>
 
-<nav>
-<ul>
-<li><a href="#bootcamp">AI Bootcamp</a></li>
-<li><a href="#bi">Customized Business Intelligence</a></li>
-<li><a href="#training">Smart Team Training</a></li>
-<li><a href="#about">About</a></li>
-<li><a href="#contact">Contact</a></li>
-</ul>
-</nav>
+  <main id="top">
+    <div style="width:100%;">
+      <section class="hero">
+        <div class="wrap">
+          <div class="banner-card">
+            <img class="banner" src="assets/cmslogo3.png" alt="CMS Technical Optimization" loading="eager" />
+          </div>
 
-<div class="nav-spacer"></div>
+          <h1>Engineering practical AI systems for real organizations.</h1>
+          <p class="subhead">AI strategy, infrastructure, and team capability—built for execution.</p>
 
-</div>
-</div>
-</header>
+          <div class="fire-underline" aria-hidden="true"></div>
+        </div>
+      </section>
 
-<main id="top">
+      <section class="grid-section" aria-label="Explore services">
+        <div class="wrap">
+          <div class="card-grid">
 
-<section class="hero">
-<div class="wrap">
+            <a class="card-link" href="strategy.html">
+              <div class="card-media">
+                <img class="rodin" src="assets/newrodin.png" alt="AI Strategy" loading="lazy" />
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">AI Strategy</h3>
+                <p class="card-text">Architecting applied AI strategy for real organizations.</p>
+              </div>
+            </a>
 
-<div class="banner-card">
-<img class="banner" src="assets/cmslogo3.png" alt="CMS Technical Optimization">
-</div>
+            <a class="card-link" href="smartinfrastructure.html">
+              <div class="card-media">
+                <img src="assets/aichicago.png" alt="Smart Infrastructure" loading="lazy" />
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Smart Infrastructure</h3>
+                <p class="card-text">Building the intelligent systems layer inside organizations.</p>
+              </div>
+            </a>
 
-<h1>Engineering practical AI systems for real organizations.</h1>
-<p class="subhead">AI strategy, infrastructure, and team capability—built for execution.</p>
+            <a class="card-link" href="teams.html">
+              <div class="card-media">
+                <img src="assets/smartteams.png" alt="Intelligent Teams" loading="lazy" />
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Intelligent Teams</h3>
+                <p class="card-text">Train teams to operate faster and smarter with AI.</p>
+              </div>
+            </a>
 
-<div class="fire-underline"></div>
+            <!-- NEW: Success Stories card -->
+            <a class="card-link" href="success.html">
+              <div class="card-media">
+                <img src="assets/transformed.png" alt="Success Stories" loading="lazy" />
+              </div>
+              <div class="card-body">
+                <h3 class="card-title">Success Stories</h3>
+                <p class="card-text">From chaos to clarity—measurable outcomes from deployed AI systems.</p>
+              </div>
+            </a>
 
-</div>
-</section>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
 
-<section class="grid-section">
-<div class="wrap">
+  <script>
+    // Sparkling "live" background (NO grid): subtle network + moving pulses.
+    (function(){
+      const canvas = document.getElementById('circuit');
+      const ctx = canvas.getContext('2d', { alpha: true });
 
-<div class="card-grid">
+      let w, h, dpr;
+      const GOLD = 'rgba(201,162,77,0.55)';
 
-<a class="card-link" href="strategy.html">
-<div class="card-media">
-<img class="rodin" src="assets/newrodin.png" alt="AI Strategy">
-</div>
-<div class="card-body">
-<h3 class="card-title">AI Strategy</h3>
-<p class="card-text">Architecting applied AI strategy for real organizations.</p>
-</div>
-</a>
+      const nodes = [];
+      const links = [];
+      const NODE_COUNT = 44;
+      const LINK_COUNT = 80;
 
-<a class="card-link" href="design.html">
-<div class="card-media">
-<img src="assets/aichicago.png" alt="Smart Infrastructure">
-</div>
-<div class="card-body">
-<h3 class="card-title">Smart Infrastructure</h3>
-<p class="card-text">Building the intelligent systems layer inside organizations.</p>
-</div>
-</a>
+      function resize(){
+        dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
+        w = canvas.width  = Math.floor(window.innerWidth  * dpr);
+        h = canvas.height = Math.floor(window.innerHeight * dpr);
+        canvas.style.width  = window.innerWidth + 'px';
+        canvas.style.height = window.innerHeight + 'px';
 
-<a class="card-link" href="teams.html">
-<div class="card-media">
-<img src="assets/smartteams.png" alt="Intelligent Teams">
-</div>
-<div class="card-body">
-<h3 class="card-title">Intelligent Teams</h3>
-<p class="card-text">Train teams to operate faster and smarter with AI.</p>
-</div>
-</a>
+        nodes.length = 0;
+        links.length = 0;
 
-</div>
+        for(let i=0;i<NODE_COUNT;i++){
+          nodes.push({
+            x: Math.random()*w,
+            y: Math.random()*h,
+            r: (Math.random()*1.6 + 0.9)*dpr,
+            vx: (Math.random()*0.20 - 0.10)*dpr,
+            vy: (Math.random()*0.16 - 0.08)*dpr,
+            p: Math.random()*Math.PI*2
+          });
+        }
+        for(let i=0;i<LINK_COUNT;i++){
+          const a = Math.floor(Math.random()*NODE_COUNT);
+          const b = Math.floor(Math.random()*NODE_COUNT);
+          if(a !== b) links.push({ a, b, phase: Math.random()*Math.PI*2 });
+        }
+      }
 
-</div>
-</section>
+      function step(){
+        ctx.clearRect(0,0,w,h);
 
-</main>
+        // Update nodes
+        for(const n of nodes){
+          n.x += n.vx; n.y += n.vy;
+          if(n.x < -60*dpr) n.x = w + 60*dpr;
+          if(n.x > w + 60*dpr) n.x = -60*dpr;
+          if(n.y < -60*dpr) n.y = h + 60*dpr;
+          if(n.y > h + 60*dpr) n.y = -60*dpr;
+          n.p += 0.018;
+        }
 
+        // Links + pulses (kept subtle)
+        const tNow = performance.now();
+        for(const L of links){
+          const A = nodes[L.a], B = nodes[L.b];
+          const dx = B.x - A.x, dy = B.y - A.y;
+          const dist = Math.hypot(dx,dy);
+          if(dist > 420*dpr) continue;
+
+          // base line (very faint)
+          ctx.strokeStyle = 'rgba(255,255,255,0.035)';
+          ctx.lineWidth = 1*dpr;
+          ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.stroke();
+
+          // moving spark
+          const t = (Math.sin(L.phase + tNow/1100) + 1) / 2;
+          const px = A.x + dx*t;
+          const py = A.y + dy*t;
+
+          ctx.fillStyle = GOLD;
+          ctx.beginPath();
+          ctx.arc(px, py, 1.9*dpr, 0, Math.PI*2);
+          ctx.fill();
+        }
+
+        // Nodes (with occasional gold twinkle)
+        for(const n of nodes){
+          ctx.fillStyle = 'rgba(255,255,255,0.08)';
+          ctx.beginPath();
+          ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
+          ctx.fill();
+
+          if(Math.sin(n.p) > 0.93){
+            ctx.fillStyle = 'rgba(201,162,77,0.26)';
+            ctx.beginPath();
+            ctx.arc(n.x, n.y, n.r*2.7, 0, Math.PI*2);
+            ctx.fill();
+          }
+        }
+
+        requestAnimationFrame(step);
+      }
+
+      window.addEventListener('resize', resize, { passive:true });
+      resize();
+      requestAnimationFrame(step);
+    })();
+  </script>
 </body>
 </html>

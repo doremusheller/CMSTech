@@ -11,6 +11,7 @@
     :root{
       --bg:#000000;
       --gold:#c9a24d;
+      --accent:#ff7a1a;
       --text:rgba(255,255,255,.94);
       --muted:rgba(255,255,255,.74);
       --muted2:rgba(255,255,255,.62);
@@ -44,33 +45,40 @@
     }
 
     /* Navigation */
-    header{
+    .site-header{
       position:sticky;
       top:0;
-      z-index:10;
+      z-index:20;
       backdrop-filter: blur(10px);
-      background: rgba(0,0,0,.55);
+      background: rgba(0,0,0,.72);
       border-bottom:1px solid rgba(255,255,255,.06);
     }
+
     .nav{
       display:flex;
       align-items:center;
       justify-content:space-between;
-      gap:16px;
-      padding:14px 0;
+      gap:24px;
+      min-height:76px;
     }
+
     .brand{
-      display:flex;
+      display:inline-flex;
       align-items:center;
       gap:10px;
-      min-width:240px;
+      flex:0 0 auto;
+      min-width:0;
     }
+
     .dot{
-      width:10px; height:10px; border-radius:50%;
-      background:var(--gold);
-      box-shadow:0 0 0 4px rgba(201,162,77,.12);
+      width:10px;
+      height:10px;
+      border-radius:50%;
+      background:var(--accent);
+      box-shadow:0 0 0 4px rgba(255,122,26,.14);
       flex:none;
     }
+
     .name{
       font-weight:760;
       letter-spacing:.08em;
@@ -79,36 +87,53 @@
       color:rgba(255,255,255,.88);
       white-space:nowrap;
     }
-    nav ul{
-      list-style:none;
-      margin:0; padding:0;
+
+    .primary-nav{
+      flex:1 1 auto;
       display:flex;
-      gap:6px;
-      flex-wrap:wrap;
-      justify-content:center;
+      justify-content:flex-end;
+      min-width:0;
     }
-    nav a{
+
+    .primary-nav ul{
+      list-style:none;
+      margin:0;
+      padding:0;
+      display:flex;
+      align-items:center;
+      justify-content:flex-end;
+      gap:6px;
+      flex-wrap:nowrap;
+    }
+
+    .primary-nav a{
       display:inline-flex;
       align-items:center;
+      justify-content:center;
       padding:10px 12px;
       border-radius:12px;
       font-size:13px;
+      line-height:1;
       color:rgba(255,255,255,.82);
       border:1px solid transparent;
-      transition: background .16s ease, border-color .16s ease, transform .12s ease, color .16s ease;
+      transition:
+        background .16s ease,
+        border-color .16s ease,
+        transform .12s ease,
+        color .16s ease;
       white-space:nowrap;
     }
-    nav a:hover{
+
+    .primary-nav a:hover{
       background:rgba(255,255,255,.06);
       border-color:rgba(255,255,255,.10);
       color:rgba(255,255,255,.96);
       transform: translateY(-1px);
     }
-    .nav-spacer{min-width:240px;}
 
     /* Layout */
     main{
-      min-height: calc(100vh - 64px);
+      min-height: calc(100vh - 76px);
       display:flex;
       justify-content:center;
       align-items:flex-start;
@@ -127,6 +152,7 @@
       background:#000;
       overflow:hidden;
     }
+
     img.banner{
       width:100%;
       height:auto;
@@ -222,7 +248,6 @@
       z-index: 3;
     }
 
-    /* UPDATED: supports 4 cards cleanly */
     .card-grid{
       margin: 22px auto 0;
       max-width: 980px;
@@ -262,7 +287,6 @@
       object-position: center;
     }
 
-    /* Rodin focal point */
     .card-media img.rodin{
       object-position: center 22%;
     }
@@ -285,21 +309,51 @@
       line-height: 1.55;
       color: var(--muted2);
     }
-    /* ---------- /GRID ---------- */
+
+    @media (max-width: 1100px){
+      .name{
+        font-size:11px;
+      }
+
+      .primary-nav a{
+        padding:9px 10px;
+        font-size:12.5px;
+      }
+    }
 
     @media (max-width: 980px){
-      nav ul{display:none}
-      .brand, .nav-spacer{min-width:auto}
-      .hero{padding-top: 26px;}
-      .banner-card{max-width: 980px;}
-      .fire-underline{width: 180px;}
-      .grid-section{ padding: 14px 0 64px; }
-      .card-body{ text-align: center; }
+      .nav{
+        min-height:68px;
+      }
+
+      .primary-nav{
+        display:none;
+      }
+
+      .hero{
+        padding-top: 26px;
+      }
+
+      .banner-card{
+        max-width: 980px;
+      }
+
+      .fire-underline{
+        width: 180px;
+      }
+
+      .grid-section{
+        padding: 14px 0 64px;
+      }
+
+      .card-body{
+        text-align: center;
+      }
     }
 
     @media (prefers-reduced-motion: reduce){
       .bg-canvas{display:none}
-      nav a{transition:none}
+      .primary-nav a{transition:none}
       .fire-underline::after{animation:none}
     }
   </style>
@@ -308,7 +362,7 @@
 <body>
   <canvas class="bg-canvas" id="circuit" aria-hidden="true"></canvas>
 
-  <header>
+  <header class="site-header">
     <div class="wrap">
       <div class="nav">
         <a class="brand" href="#top" aria-label="Home">
@@ -316,17 +370,15 @@
           <span class="name">CMS Technical Optimization</span>
         </a>
 
-        <nav aria-label="Primary">
+        <nav class="primary-nav" aria-label="Primary">
           <ul>
             <li><a href="#bootcamp">AI Bootcamp</a></li>
-            <li><a href="#bi">Customized Business Intelligence</a></li>
-            <li><a href="#training">Smart Team Training</a></li>
+            <li><a href="#bi">Business Intelligence</a></li>
+            <li><a href="#training">Team Training</a></li>
             <li><a href="#about">About</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
-
-        <div class="nav-spacer" aria-hidden="true"></div>
       </div>
     </div>
   </header>
@@ -380,7 +432,6 @@
               </div>
             </a>
 
-            <!-- NEW: Success Stories card -->
             <a class="card-link" href="success.html">
               <div class="card-media">
                 <img src="assets/transformed.png" alt="Success Stories" loading="lazy" />
@@ -431,6 +482,7 @@
             p: Math.random()*Math.PI*2
           });
         }
+
         for(let i=0;i<LINK_COUNT;i++){
           const a = Math.floor(Math.random()*NODE_COUNT);
           const b = Math.floor(Math.random()*NODE_COUNT);
@@ -441,7 +493,6 @@
       function step(){
         ctx.clearRect(0,0,w,h);
 
-        // Update nodes
         for(const n of nodes){
           n.x += n.vx; n.y += n.vy;
           if(n.x < -60*dpr) n.x = w + 60*dpr;
@@ -451,7 +502,6 @@
           n.p += 0.018;
         }
 
-        // Links + pulses (kept subtle)
         const tNow = performance.now();
         for(const L of links){
           const A = nodes[L.a], B = nodes[L.b];
@@ -459,12 +509,13 @@
           const dist = Math.hypot(dx,dy);
           if(dist > 420*dpr) continue;
 
-          // base line (very faint)
           ctx.strokeStyle = 'rgba(255,255,255,0.035)';
           ctx.lineWidth = 1*dpr;
-          ctx.beginPath(); ctx.moveTo(A.x,A.y); ctx.lineTo(B.x,B.y); ctx.stroke();
+          ctx.beginPath();
+          ctx.moveTo(A.x,A.y);
+          ctx.lineTo(B.x,B.y);
+          ctx.stroke();
 
-          // moving spark
           const t = (Math.sin(L.phase + tNow/1100) + 1) / 2;
           const px = A.x + dx*t;
           const py = A.y + dy*t;
@@ -475,7 +526,6 @@
           ctx.fill();
         }
 
-        // Nodes (with occasional gold twinkle)
         for(const n of nodes){
           ctx.fillStyle = 'rgba(255,255,255,0.08)';
           ctx.beginPath();

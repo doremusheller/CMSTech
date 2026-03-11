@@ -1,28 +1,26 @@
-
 <!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <meta name="color-scheme" content="dark" />
+
 <title>CMS Technical Optimization</title>
 <meta name="description" content="Engineering practical AI systems for real organizations." />
 
 <style>
+
 :root{
 --bg:#000000;
 --gold:#c9a24d;
 --accent:#ff7a1a;
 --accent-2:#ffb347;
+
 --text:rgba(255,255,255,.94);
 --muted:rgba(255,255,255,.74);
---muted2:rgba(255,255,255,.62);
 --line:rgba(255,255,255,.08);
---line-strong:rgba(255,255,255,.14);
---panel:rgba(255,255,255,.05);
---panel-hover:rgba(255,255,255,.08);
 
---sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+--sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
 
 --shadow-lg:0 18px 48px rgba(0,0,0,.52);
 --shadow-md:0 12px 30px rgba(0,0,0,.38);
@@ -34,48 +32,46 @@ html,body{height:100%}
 body{
 margin:0;
 font-family:var(--sans);
-color:var(--text);
 background:var(--bg);
+color:var(--text);
 overflow-x:hidden;
 }
 
 a{color:inherit;text-decoration:none}
 
-/* wider desktop container */
 .wrap{
 width:min(100%,1400px);
 margin:0 auto;
 padding:0 28px;
 }
 
-/* background network */
+/* background canvas */
+
 .bg-canvas{
 position:fixed;
 inset:0;
 z-index:-1;
-opacity:.80;
+opacity:.8;
 pointer-events:none;
-filter: drop-shadow(0 0 18px rgba(201,162,77,.06));
 }
 
-/* header */
+/* HEADER */
 
 .site-header{
 position:sticky;
 top:0;
-z-index:30;
-background:rgba(0,0,0,.62);
-backdrop-filter: blur(14px) saturate(1.15);
+z-index:20;
+background:rgba(0,0,0,.65);
+backdrop-filter:blur(14px);
 border-bottom:1px solid rgba(255,255,255,.06);
-box-shadow:0 10px 30px rgba(0,0,0,.22);
 }
 
 .nav{
 display:flex;
 align-items:center;
 justify-content:space-between;
-gap:28px;
 min-height:78px;
+gap:24px;
 }
 
 .brand{
@@ -88,134 +84,129 @@ gap:12px;
 width:11px;
 height:11px;
 border-radius:50%;
-background: radial-gradient(circle at 35% 35%, var(--accent-2), var(--accent));
-box-shadow:0 0 16px rgba(255,122,26,.24);
+background: radial-gradient(circle at 35% 35%,var(--accent-2),var(--accent));
+box-shadow:0 0 0 5px rgba(255,122,26,.15),0 0 16px rgba(255,122,26,.24);
 }
 
 .name{
-font-weight:780;
-letter-spacing:.09em;
-text-transform:uppercase;
 font-size:12px;
-color:rgba(255,255,255,.9);
+letter-spacing:.08em;
+text-transform:uppercase;
+font-weight:760;
 }
 
 .primary-nav ul{
+display:flex;
+gap:8px;
 list-style:none;
 margin:0;
 padding:0;
-display:flex;
-gap:8px;
 }
 
 .primary-nav a{
 display:inline-flex;
 align-items:center;
+justify-content:center;
+min-height:42px;
 padding:10px 14px;
 border-radius:999px;
 font-size:13px;
-color:rgba(255,255,255,.82);
+color:rgba(255,255,255,.85);
 border:1px solid transparent;
+transition:.18s;
 }
 
 .primary-nav a:hover{
-color:#fff;
 background:rgba(255,255,255,.05);
-border-color:rgba(255,255,255,.10);
+border-color:rgba(255,255,255,.12);
+transform:translateY(-1px);
 }
 
-.primary-nav a.active{
-background:linear-gradient(180deg, rgba(255,122,26,.14), rgba(255,122,26,.08));
-border-color:rgba(255,122,26,.30);
+.menu-toggle{
+display:none;
+width:44px;
+height:44px;
+border-radius:12px;
+border:1px solid rgba(255,255,255,.10);
+background:rgba(255,255,255,.04);
+cursor:pointer;
 }
 
-/* layout */
-
-main{
-min-height:calc(100vh - 78px);
-display:flex;
-justify-content:center;
-align-items:flex-start;
-}
+/* HERO */
 
 .hero{
-width:100%;
 text-align:center;
-padding:34px 0 28px;
+padding:48px 0 36px;
 }
 
 .banner-card{
-margin:20px auto 0;
-max-width:1040px;
-background:#000;
+margin:20px auto;
+max-width:980px;
+border-radius:22px;
 overflow:hidden;
+border:1px solid rgba(255,255,255,.08);
+box-shadow:var(--shadow-lg);
 }
 
-img.banner{
+.banner{
 width:100%;
 display:block;
 }
 
 h1{
+font-size:clamp(38px,4vw,60px);
 margin:30px auto 12px;
-max-width:24ch;
-font-size:clamp(34px,4vw,60px);
-line-height:1.04;
+max-width:20ch;
+line-height:1.05;
 letter-spacing:-.02em;
 }
 
 .subhead{
-margin:0 auto;
 max-width:64ch;
+margin:0 auto;
 color:var(--muted);
-font-size:15.5px;
-line-height:1.65;
+font-size:16px;
+line-height:1.6;
 }
 
-/* fiery underline */
-
 .fire-underline{
-position:relative;
 width:220px;
 height:2px;
 margin:18px auto 0;
-background:linear-gradient(90deg, transparent, #ff7a1a, #ffb347, #ff7a1a, transparent);
-box-shadow:0 0 10px rgba(255,120,0,.35);
+background:linear-gradient(90deg,transparent,#ff7a1a,#ffd24a,#ff7a1a,transparent);
 }
 
-/* cards */
+/* SERVICES */
 
-.grid-section{
-width:100%;
-padding:28px 0 90px;
+.services{
+padding:40px 0 80px;
 }
 
 .card-grid{
-margin:34px auto 0;
 width:min(100%,1220px);
+margin:0 auto;
 display:grid;
-grid-template-columns:repeat(4,minmax(240px,1fr));
+grid-template-columns:repeat(4,1fr);
 gap:22px;
 }
 
-.card-link{
-display:block;
+.card{
 border-radius:20px;
 overflow:hidden;
-background:rgba(255,255,255,.06);
-border:1px solid rgba(255,255,255,.14);
-box-shadow:0 14px 34px rgba(0,0,0,.55);
-transition:transform .16s ease;
+border:1px solid rgba(255,255,255,.08);
+background:rgba(255,255,255,.05);
+box-shadow:var(--shadow-md);
+transition:.2s;
 }
 
-.card-link:hover{
+.card:hover{
 transform:translateY(-4px);
-border-color:rgba(255,122,26,.28);
+border-color:rgba(255,122,26,.4);
 }
 
 .card-media{
 aspect-ratio:16/10;
-background:linear-gradient(135deg, rgba(255,255,255,.08), rgba(201,162,77,.08));
+overflow:hidden;
 }
 
 .card-media img{
@@ -225,60 +216,42 @@ object-fit:cover;
 display:block;
 }
 
-.card-media img.rodin{
-object-position:center 22%;
-}
-
 .card-body{
-padding:16px 16px 18px;
+padding:18px;
 }
 
 .card-title{
-margin:0 0 8px;
-font-size:17px;
+font-size:18px;
+margin-bottom:6px;
 }
 
-.card-text{
-margin:0;
+.card-desc{
 font-size:14px;
+color:var(--muted);
 line-height:1.6;
-color:var(--muted2);
 }
 
-/* tablet */
+/* MOBILE */
 
-@media (max-width:1200px){
+@media(max-width:1200px){
 
 .card-grid{
-width:min(100%,1080px);
-grid-template-columns:repeat(2,minmax(260px,1fr));
+grid-template-columns:repeat(2,1fr);
 }
 
 }
 
-/* mobile */
-
-@media (max-width:980px){
+@media(max-width:980px){
 
 .primary-nav{display:none}
 
+.menu-toggle{display:block}
+
 .card-grid{
-width:100%;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:16px;
+grid-template-columns:1fr;
 }
 
-.card-body{text-align:center}
-
-}
-
-/* small mobile */
-
-@media (max-width:640px){
-
-.wrap{padding:0 18px}
-
-.card-grid{grid-template-columns:1fr}
+.hero{padding-top:32px}
 
 }
 
@@ -287,11 +260,10 @@ gap:16px;
 
 <body>
 
-<canvas class="bg-canvas" id="circuit"></canvas>
+<canvas class="bg-canvas" id="network"></canvas>
 
 <header class="site-header">
 <div class="wrap">
-
 <div class="nav">
 
 <a class="brand" href="index.html">
@@ -301,12 +273,18 @@ gap:16px;
 
 <nav class="primary-nav">
 <ul>
-<li><a class="active" href="index.html">CMS Home</a></li>
+
+<li><a href="index.html">CMS Home</a></li>
+<li><a href="strategy.html">AI Strategy</a></li>
 <li><a href="design.html">Smart Infrastructure</a></li>
 <li><a href="teams.html">Team Training</a></li>
+<li><a href="success.html">Success Stories</a></li>
 <li><a href="about.html">About</a></li>
+
 </ul>
 </nav>
+
+<button class="menu-toggle"></button>
 
 </div>
 </div>
@@ -314,13 +292,12 @@ gap:16px;
 
 <main>
 
-<div style="width:100%;">
-
 <section class="hero">
+
 <div class="wrap">
 
 <div class="banner-card">
-<img class="banner" src="assets/cmslogo3.png" alt="CMS Technical Optimization" />
+<img class="banner" src="assets/cmslogo3.png" alt="CMS Technical Optimization">
 </div>
 
 <h1>Engineering practical AI systems for real organizations.</h1>
@@ -334,148 +311,79 @@ AI strategy, infrastructure, and team capability—built for execution.
 </div>
 </section>
 
-<section class="grid-section">
+<section class="services">
+
 <div class="wrap">
 
 <div class="card-grid">
 
-<a class="card-link" href="strategy.html">
+<a class="card" href="strategy.html">
+
 <div class="card-media">
-<img class="rodin" src="assets/newrodin.png" alt="AI Strategy">
+<img src="assets/newrodin.png">
 </div>
+
 <div class="card-body">
-<h3 class="card-title">AI Strategy</h3>
-<p class="card-text">Architecting applied AI strategy for real organizations.</p>
+<div class="card-title">AI Strategy</div>
+<div class="card-desc">
+Define how AI creates real operational advantage.
 </div>
+</div>
+
 </a>
 
-<a class="card-link" href="design.html">
+<a class="card" href="design.html">
+
 <div class="card-media">
-<img src="assets/aichicago.png" alt="Smart Infrastructure">
+<img src="assets/aichicago.png">
 </div>
+
 <div class="card-body">
-<h3 class="card-title">Smart Infrastructure</h3>
-<p class="card-text">Building the intelligent systems layer inside organizations.</p>
+<div class="card-title">Smart Infrastructure</div>
+<div class="card-desc">
+Production-ready AI systems, data flows, and governance.
 </div>
+</div>
+
 </a>
 
-<a class="card-link" href="teams.html">
+<a class="card" href="teams.html">
+
 <div class="card-media">
-<img src="assets/smartteams.png" alt="Team Training">
+<img src="assets/smartteams.png">
 </div>
+
 <div class="card-body">
-<h3 class="card-title">Team Training</h3>
-<p class="card-text">Train teams to operate faster and smarter with AI.</p>
+<div class="card-title">Team Training</div>
+<div class="card-desc">
+Train teams to operate confidently with AI.
 </div>
+</div>
+
 </a>
 
-<a class="card-link" href="success.html">
+<a class="card" href="success.html">
+
 <div class="card-media">
-<img src="assets/transformed.png" alt="Success Stories">
+<img src="assets/transformed.png">
 </div>
+
 <div class="card-body">
-<h3 class="card-title">Success Stories</h3>
-<p class="card-text">
-From chaos to clarity—measurable outcomes from deployed AI systems.
-</p>
+<div class="card-title">Success Stories</div>
+<div class="card-desc">
+Examples of organizations transformed by practical AI.
 </div>
+</div>
+
 </a>
 
 </div>
+
 </div>
+
 </section>
-
-</div>
 
 </main>
 
-<script>
-/* animated background */
-
-(function(){
-const canvas=document.getElementById('circuit');
-const ctx=canvas.getContext('2d');
-
-let w,h,dpr;
-const nodes=[];
-const links=[];
-const NODE_COUNT=44;
-const LINK_COUNT=80;
-
-function resize(){
-dpr=Math.max(1,Math.min(2,window.devicePixelRatio||1));
-w=canvas.width=window.innerWidth*dpr;
-h=canvas.height=window.innerHeight*dpr;
-canvas.style.width=window.innerWidth+'px';
-canvas.style.height=window.innerHeight+'px';
-
-nodes.length=0;
-links.length=0;
-
-for(let i=0;i<NODE_COUNT;i++){
-nodes.push({
-x:Math.random()*w,
-y:Math.random()*h,
-vx:(Math.random()-.5)*.2*dpr,
-vy:(Math.random()-.5)*.2*dpr
-});
-}
-
-for(let i=0;i<LINK_COUNT;i++){
-links.push({
-a:Math.floor(Math.random()*NODE_COUNT),
-b:Math.floor(Math.random()*NODE_COUNT),
-phase:Math.random()*Math.PI*2
-});
-}
-}
-
-function step(){
-
-ctx.clearRect(0,0,w,h);
-
-const tNow=performance.now();
-
-for(const L of links){
-
-const A=nodes[L.a];
-const B=nodes[L.b];
-
-const dx=B.x-A.x;
-const dy=B.y-A.y;
-
-const dist=Math.hypot(dx,dy);
-
-if(dist>420*dpr)continue;
-
-ctx.strokeStyle='rgba(255,255,255,0.03)';
-ctx.beginPath();
-ctx.moveTo(A.x,A.y);
-ctx.lineTo(B.x,B.y);
-ctx.stroke();
-
-const t=(Math.sin(L.phase+tNow/1100)+1)/2;
-
-const px=A.x+dx*t;
-const py=A.y+dy*t;
-
-ctx.fillStyle='rgba(201,162,77,.6)';
-ctx.beginPath();
-ctx.arc(px,py,2*dpr,0,Math.PI*2);
-ctx.fill();
-
-}
-
-requestAnimationFrame(step);
-}
-
-window.addEventListener('resize',resize);
-resize();
-requestAnimationFrame(step);
-
-})();
-</script>
-
 </body>
 </html>
-```

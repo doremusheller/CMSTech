@@ -1,343 +1,96 @@
-
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="color-scheme" content="dark" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
 
-<title>AI Strategy • CMS Technical Optimization</title>
-<meta name="description" content="AI strategy that moves organizations from curiosity to execution." />
+  <title>AI Strategy • CMS Technical Optimization</title>
+  <meta name="description" content="AI strategy that moves organizations from curiosity to execution." />
 
-<style>
-
-:root{
---bg:#000000;
---gold:#c9a24d;
---accent:#ff7a1a;
---accent-2:#ffb347;
-
---text:rgba(255,255,255,.94);
---muted:rgba(255,255,255,.74);
---muted2:rgba(255,255,255,.62);
-
---sans:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
-
---shadow-lg:0 18px 48px rgba(0,0,0,.52);
---shadow-md:0 12px 30px rgba(0,0,0,.38);
-}
-
-*{box-sizing:border-box}
-html,body{height:100%}
-
-body{
-margin:0;
-font-family:var(--sans);
-background:var(--bg);
-color:var(--text);
-overflow-x:hidden;
-}
-
-a{color:inherit;text-decoration:none}
-
-.wrap{
-width:min(100%,1400px);
-margin:0 auto;
-padding:0 28px;
-}
-
-/* animated background */
-
-.bg-canvas{
-position:fixed;
-inset:0;
-z-index:-1;
-opacity:.80;
-pointer-events:none;
-}
-
-/* NAV */
-
-.site-header{
-position:sticky;
-top:0;
-z-index:20;
-background:rgba(0,0,0,.65);
-backdrop-filter:blur(14px);
-border-bottom:1px solid rgba(255,255,255,.06);
-}
-
-.nav{
-display:flex;
-align-items:center;
-justify-content:space-between;
-min-height:78px;
-gap:24px;
-}
-
-.brand{
-display:flex;
-align-items:center;
-gap:12px;
-}
-
-.dot{
-width:11px;
-height:11px;
-border-radius:50%;
-background: radial-gradient(circle at 35% 35%,var(--accent-2),var(--accent));
-box-shadow:0 0 0 5px rgba(255,122,26,.15),0 0 16px rgba(255,122,26,.24);
-}
-
-.name{
-font-size:12px;
-letter-spacing:.08em;
-text-transform:uppercase;
-font-weight:760;
-}
-
-.primary-nav ul{
-display:flex;
-gap:8px;
-list-style:none;
-margin:0;
-padding:0;
-}
-
-.primary-nav a{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-min-height:42px;
-padding:10px 14px;
-border-radius:999px;
-font-size:13px;
-color:rgba(255,255,255,.85);
-border:1px solid transparent;
-transition:.18s;
-}
-
-.primary-nav a:hover{
-background:rgba(255,255,255,.05);
-border-color:rgba(255,255,255,.12);
-}
-
-.primary-nav a.active{
-background:linear-gradient(180deg,rgba(255,122,26,.14),rgba(255,122,26,.08));
-border-color:rgba(255,122,26,.35);
-}
-
-/* HERO */
-
-.hero{
-text-align:center;
-padding:44px 0 30px;
-}
-
-.banner-card{
-margin:20px auto;
-max-width:980px;
-border-radius:22px;
-overflow:hidden;
-border:1px solid rgba(255,255,255,.08);
-box-shadow:var(--shadow-lg);
-}
-
-.banner{
-width:100%;
-display:block;
-}
-
-h1{
-font-size:clamp(36px,4vw,58px);
-margin:30px auto 12px;
-max-width:18ch;
-line-height:1.05;
-}
-
-.subhead{
-max-width:64ch;
-margin:0 auto;
-color:var(--muted);
-font-size:16px;
-line-height:1.6;
-}
-
-.fire-underline{
-width:220px;
-height:2px;
-margin:18px auto 0;
-background:linear-gradient(90deg,transparent,#ff7a1a,#ffd24a,#ff7a1a,transparent);
-}
-
-/* CONTENT */
-
-.content{
-padding:40px 0 80px;
-}
-
-.content-grid{
-width:min(100%,1220px);
-margin:0 auto;
-display:grid;
-grid-template-columns:1fr;
-gap:24px;
-}
-
-.panel{
-border-radius:22px;
-background:rgba(255,255,255,.05);
-border:1px solid rgba(255,255,255,.10);
-box-shadow:var(--shadow-md);
-}
-
-.panel-inner{
-padding:26px;
-}
-
-.kicker{
-font-size:12px;
-letter-spacing:.12em;
-text-transform:uppercase;
-margin-bottom:10px;
-color:rgba(255,255,255,.78);
-}
-
-.h2{
-margin:0 0 10px;
-font-size:24px;
-}
-
-.p{
-margin:0 0 16px;
-color:var(--muted);
-line-height:1.7;
-font-size:15px;
-}
-
-/* responsive */
-
-@media(max-width:980px){
-
-.primary-nav{display:none}
-
-.hero{padding-top:30px}
-
-}
-
-</style>
+  <link rel="stylesheet" href="style.css" />
 </head>
+<body class="page-strategy">
 
-<body>
+  <canvas class="bg-canvas" id="network" aria-hidden="true"></canvas>
 
-<canvas class="bg-canvas" id="network"></canvas>
+  <div id="nav-placeholder"></div>
 
-<header class="site-header">
-<div class="wrap">
-<div class="nav">
+  <main>
 
-<a class="brand" href="index.html">
-<span class="dot"></span>
-<span class="name">CMS Technical Optimization</span>
-</a>
+    <section class="hero">
+      <div class="wrap">
 
-<nav class="primary-nav">
-<ul>
+        <div class="banner-card">
+          <img class="banner" src="assets/stratroom.png" alt="AI Strategy">
+        </div>
 
-<li><a href="index.html">CMS Home</a></li>
-<li><a href="strategy.html" class="active">AI Strategy</a></li>
-<li><a href="design.html">Smart Infrastructure</a></li>
-<li><a href="teams.html">Team Training</a></li>
-<li><a href="success.html">Success Stories</a></li>
-<li><a href="about.html">About</a></li>
+        <h1>AI Strategy that becomes execution.</h1>
 
-</ul>
-</nav>
+        <p class="subhead">
+          Turning curiosity about AI into real systems, real workflows,
+          and real organizational advantage.
+        </p>
 
-</div>
-</div>
-</header>
+        <div class="fire-underline" aria-hidden="true"></div>
 
-<main>
+      </div>
+    </section>
 
-<section class="hero">
+    <section class="content">
+      <div class="wrap">
+        <div class="content-grid">
 
-<div class="wrap">
+          <section class="panel">
+            <div class="panel-inner">
 
-<div class="banner-card">
-<img class="banner" src="assets/stratroom.png" alt="AI Strategy">
-</div>
+              <p class="kicker">Strategy blueprint</p>
+              <h2 class="h2">From opportunity to execution</h2>
 
-<h1>AI Strategy that becomes execution.</h1>
+              <p class="p">
+                AI strategy is not about chasing tools. It is about identifying
+                where intelligence can remove friction, improve decisions,
+                and accelerate the work your organization already does.
+              </p>
 
-<p class="subhead">
-Turning curiosity about AI into real systems, real workflows,
-and real organizational advantage.
-</p>
+              <p class="p">
+                The goal is clarity: where AI helps, where it does not,
+                and how systems, training, and infrastructure fit together
+                to support real execution.
+              </p>
 
-<div class="fire-underline"></div>
+            </div>
+          </section>
 
-</div>
-</section>
+          <section class="panel">
+            <div class="panel-inner">
 
-<section class="content">
+              <p class="kicker">What happens first</p>
+              <h2 class="h2">Start with a working session</h2>
 
-<div class="wrap">
+              <p class="p">
+                Every engagement begins with a free introductory strategy
+                session. This conversation focuses on your organization,
+                your people, and the operational opportunities where
+                AI could create immediate advantage.
+              </p>
 
-<div class="content-grid">
+              <p class="p">
+                From that discussion, we design a customized curriculum
+                and implementation schedule tailored to your environment.
+                The result is a practical roadmap for applying AI safely,
+                productively, and quickly across your teams.
+              </p>
 
-<div class="panel">
-<div class="panel-inner">
+            </div>
+          </section>
 
-<p class="kicker">Strategy blueprint</p>
-<h2 class="h2">From opportunity to execution</h2>
+        </div>
+      </div>
+    </section>
 
-<p class="p">
-AI strategy is not about chasing tools. It is about identifying
-where intelligence can remove friction, improve decisions,
-and accelerate the work your organization already does.
-</p>
+  </main>
 
-<p class="p">
-The goal is clarity: where AI helps, where it does not,
-and how systems, training, and infrastructure fit together
-to support real execution.
-</p>
-
-</div>
-</div>
-
-<div class="panel">
-<div class="panel-inner">
-
-<p class="kicker">What happens first</p>
-<h2 class="h2">Start with a working session</h2>
-
-<p class="p">
-Every engagement begins with a free introductory strategy
-session. This conversation focuses on your organization,
-your people, and the operational opportunities where
-AI could create immediate advantage.
-</p>
-
-<p class="p">
-From that discussion, we design a customized curriculum
-and implementation schedule tailored to your environment.
-The result is a practical roadmap for applying AI safely,
-productively, and quickly across your teams.
-</p>
-
-</div>
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-</main>
-
+  <script src="site.js"></script>
 </body>
 </html>
-```

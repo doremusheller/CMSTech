@@ -1,12 +1,11 @@
-```html
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="dark" />
-  <title>About • CMS Technical Optimization</title>
-  <meta name="description" content="About CMS Technical Optimization." />
+  <title>Success Stories • CMS Technical Optimization</title>
+  <meta name="description" content="How CMS Technical Optimization helps leaders and teams apply AI with practical training, clear strategy, and measurable results." />
 
   <style>
     :root{
@@ -263,7 +262,7 @@
     }
 
     .mobile-nav.open{
-      max-height:360px;
+      max-height:420px;
       opacity:1;
       transform:translateY(0);
       padding:0 0 16px;
@@ -330,57 +329,15 @@
       overflow:hidden;
       border:1px solid rgba(255,255,255,.08);
       box-shadow:var(--shadow-lg);
-      background:#0b0b0b;
-      aspect-ratio:16 / 7;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      position:relative;
+      background:#000;
     }
 
-    .banner-card::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(circle at 30% 40%, rgba(255,122,26,.25), transparent 26%),
-        radial-gradient(circle at 70% 55%, rgba(255,179,71,.18), transparent 22%),
-        linear-gradient(135deg, rgba(255,255,255,.03), rgba(255,255,255,0));
-      pointer-events:none;
-    }
-
-    .placeholder-hero{
-      position:relative;
-      z-index:1;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:14px;
-      color:rgba(255,255,255,.78);
-      text-align:center;
-      padding:24px;
-    }
-
-    .placeholder-frame{
-      width:110px;
-      height:110px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.14);
-      background:
-        radial-gradient(circle at 50% 36%, rgba(255,255,255,.12) 0 18px, transparent 19px),
-        radial-gradient(circle at 50% 74%, rgba(255,255,255,.08) 0 34px, transparent 35px),
-        linear-gradient(180deg, rgba(255,122,26,.14), rgba(255,255,255,.03));
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.04),
-        0 0 0 6px rgba(255,122,26,.06);
-    }
-
-    .placeholder-label{
-      font-size:13px;
-      letter-spacing:.12em;
-      text-transform:uppercase;
-      color:rgba(255,255,255,.72);
+    .banner-card img{
+      width:100%;
+      height:auto;
+      display:block;
+      object-fit:contain;
+      background:#000;
     }
 
     h1{
@@ -529,8 +486,8 @@
     .bio-grid{
       margin-top:18px;
       display:grid;
-      grid-template-columns: 280px minmax(0, 1fr);
-      gap:18px;
+      grid-template-columns: 300px minmax(0, 1fr);
+      gap:20px;
       align-items:start;
     }
 
@@ -541,16 +498,14 @@
       padding:16px;
     }
 
-    .portrait-placeholder{
+    .portrait-card img{
       width:100%;
-      aspect-ratio:4 / 5;
+      display:block;
       border-radius:16px;
-      border:1px solid rgba(255,255,255,.10);
-      background:
-        radial-gradient(circle at 50% 28%, rgba(255,255,255,.14) 0 42px, transparent 43px),
-        radial-gradient(circle at 50% 78%, rgba(255,255,255,.08) 0 88px, transparent 89px),
-        linear-gradient(180deg, rgba(255,122,26,.12), rgba(255,255,255,.03));
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.04);
+      border:1px solid rgba(255,255,255,.08);
+      object-fit:cover;
+      aspect-ratio:4 / 5;
+      background:#111;
     }
 
     .portrait-note{
@@ -684,9 +639,11 @@
         <nav class="primary-nav" aria-label="Primary">
           <ul>
             <li><a href="index.html">CMS Home</a></li>
+            <li><a href="strategy.html">AI Strategy</a></li>
             <li><a href="design.html">Smart Infrastructure</a></li>
             <li><a href="teams.html">Team Training</a></li>
-            <li><a class="active" href="about.html">About</a></li>
+            <li><a class="active" href="success.html">Success Stories</a></li>
+            <li><a href="about.html">About</a></li>
           </ul>
         </nav>
 
@@ -703,9 +660,11 @@
         <div class="mobile-nav-panel">
           <ul>
             <li><a href="index.html">CMS Home</a></li>
+            <li><a href="strategy.html">AI Strategy</a></li>
             <li><a href="design.html">Smart Infrastructure</a></li>
             <li><a href="teams.html">Team Training</a></li>
-            <li><a class="active" href="about.html">About</a></li>
+            <li><a class="active" href="success.html">Success Stories</a></li>
+            <li><a href="about.html">About</a></li>
           </ul>
         </div>
       </nav>
@@ -718,46 +677,37 @@
       <div class="wrap">
 
         <div class="banner-card">
-          <div class="placeholder-hero">
-            <div class="placeholder-frame" aria-hidden="true"></div>
-            <div class="placeholder-label">Placeholder Portrait / Hero Image</div>
-          </div>
+          <img src="assets/cmslogo3.png" alt="CMS Technical Optimization" loading="eager">
         </div>
 
-        <h1>About CMS Technical Optimization.</h1>
+        <h1>Success built around people, not hype.</h1>
 
         <p class="subhead">
-          Placeholder introduction copy for company background, perspective, and leadership profile.
+          Practical AI guidance, real-world teaching, and service-centered execution for teams that need results.
         </p>
 
         <div class="fire-underline" aria-hidden="true"></div>
       </div>
     </section>
 
-    <section class="content" aria-label="About CMS Technical Optimization">
+    <section class="content" aria-label="Success Stories and background">
       <div class="wrap">
         <div class="content-grid">
 
           <section class="panel">
             <div class="panel-inner">
-              <p class="kicker">Who we are</p>
-              <h2 class="h2">Placeholder founder and company background</h2>
+              <p class="kicker">Founder and company background</p>
+              <h2 class="h2">Built across education, enterprise, startup, and mission-driven work</h2>
 
               <div class="bio-grid">
                 <div class="portrait-card">
-                  <div class="portrait-placeholder" aria-hidden="true"></div>
-                  <p class="portrait-note">Replace this block with a real portrait image when ready.</p>
+                  <img src="assets/cms.jpg" alt="Craig Schneider" loading="lazy">
+                  <p class="portrait-note">Founder portrait placeholder using current provided asset.</p>
                 </div>
 
                 <div>
                   <p class="p">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                  </p>
-                  <p class="p">
-                    Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                  </p>
-                  <p class="p">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Integer feugiat scelerisque varius morbi enim nunc faucibus a pellentesque.
+                    Craig Schneider is a lifelong educator, technologist, and problem solver who began his career building infrastructure at Washington University in St. Louis. Across large corporate, startup, educational, and non-profit environments, he has focused on helping people use technology to do great things. That work has consistently centered on practical systems, clear teaching, and service to the people doing the work. CMS Technical Optimization brings those strengths together to help leaders and teams understand AI, apply it with confidence, and move from curiosity to measurable outcomes without losing sight of the human side of the work.
                   </p>
                 </div>
               </div>
@@ -766,30 +716,27 @@
 
           <section class="panel">
             <div class="panel-inner">
-              <p class="kicker">What we believe</p>
-              <h2 class="h2">Placeholder principles and operating approach</h2>
+              <p class="kicker">Principles and operating approach</p>
+              <h2 class="h2">Technology is a tool. People create the value.</h2>
 
               <p class="p">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean euismod elementum nisi quis eleifend quam adipiscing vitae. Nibh ipsum consequat nisl vel pretium lectus quam id leo.
-              </p>
-              <p class="p">
-                Tellus rutrum tellus pellentesque eu tincidunt tortor aliquam nulla facilisi. Volutpat ac tincidunt vitae semper quis lectus nulla at volutpat.
+                Technology is a tool, like a chisel or a paintbrush. It is humans who do the interesting stuff with tools. CMS Tech Optimization is a service-focused, educationally centered organization with one aim: empowering teams and leaders with the training, understanding, and ongoing guidance they need to use AI well.
               </p>
 
               <div class="callout-grid">
                 <div class="callout">
-                  <h3>Placeholder Principle</h3>
-                  <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante venenatis dapibus.</p>
+                  <h3>Principle</h3>
+                  <p>Tech exists to serve people. Not the other way around.</p>
                 </div>
 
                 <div class="callout">
-                  <h3>Placeholder Focus</h3>
-                  <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                  <h3>Focus</h3>
+                  <p>Understanding your people and how AI can help them succeed.</p>
                 </div>
 
                 <div class="callout">
-                  <h3>Placeholder Outcome</h3>
-                  <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                  <h3>Outcome</h3>
+                  <p>Smart, targeted instruction with ROI in weeks, not months or years.</p>
                 </div>
               </div>
             </div>
@@ -936,6 +883,3 @@
 
 </body>
 </html>
-```
-
-This gives you a fully on-brand `about.html` shell without forcing real bio copy too early. The structure is right; the content can be swapped later without changing the page system.

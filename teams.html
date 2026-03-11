@@ -1,948 +1,405 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="dark" />
-  <title>Intelligent Teams • CMS Technical Optimization</title>
-  <meta name="description" content="AI-powered teams that automate workflows, accelerate decisions, and operate faster across the organization." />
-
-  <style>
-    :root{
-      --bg:#000000;
-      --gold:#c9a24d;
-      --accent:#ff7a1a;
-      --accent-2:#ffb347;
-      --text:rgba(255,255,255,.94);
-      --muted:rgba(255,255,255,.74);
-      --muted2:rgba(255,255,255,.62);
-      --line:rgba(255,255,255,.08);
-      --line-strong:rgba(255,255,255,.14);
-      --panel:rgba(255,255,255,.05);
-      --panel-hover:rgba(255,255,255,.08);
-      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      --shadow-lg: 0 18px 48px rgba(0,0,0,.52);
-      --shadow-md: 0 12px 30px rgba(0,0,0,.38);
-    }
-
-    *{box-sizing:border-box}
-    html,body{height:100%}
-
-    body{
-      margin:0;
-      font-family:var(--sans);
-      color:var(--text);
-      background:var(--bg);
-      overflow-x:hidden;
-    }
-
-    a{color:inherit;text-decoration:none}
-
-    .wrap{
-      width:min(100%, 1400px);
-      margin:0 auto;
-      padding:0 28px;
-    }
-
-    .bg-canvas{
-      position:fixed;
-      inset:0;
-      z-index:-1;
-      opacity:.80;
-      pointer-events:none;
-      filter: drop-shadow(0 0 18px rgba(201,162,77,.06));
-    }
-
-    .site-header{
-      position:sticky;
-      top:0;
-      z-index:30;
-      background:rgba(0,0,0,.62);
-      backdrop-filter: blur(14px) saturate(1.15);
-      -webkit-backdrop-filter: blur(14px) saturate(1.15);
-      border-bottom:1px solid rgba(255,255,255,.06);
-      box-shadow: 0 10px 30px rgba(0,0,0,.22);
-    }
-
-    .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:28px;
-      min-height:78px;
-      position:relative;
-    }
-
-    .brand{
-      display:inline-flex;
-      align-items:center;
-      gap:12px;
-      flex:0 0 auto;
-      min-width:0;
-      transition: transform .18s ease, opacity .18s ease;
-      z-index:2;
-    }
-
-    .brand:hover{
-      transform: translateY(-1px);
-      opacity:.98;
-    }
-
-    .dot{
-      width:11px;
-      height:11px;
-      border-radius:50%;
-      background: radial-gradient(circle at 35% 35%, var(--accent-2) 0%, var(--accent) 58%, #ff5a00 100%);
-      box-shadow:
-        0 0 0 5px rgba(255,122,26,.12),
-        0 0 16px rgba(255,122,26,.24),
-        0 0 34px rgba(255,122,26,.10);
-      flex:none;
-    }
-
-    .name{
-      font-weight:780;
-      letter-spacing:.09em;
-      text-transform:uppercase;
-      font-size:12px;
-      color:rgba(255,255,255,.9);
-      white-space:nowrap;
-    }
-
-    .primary-nav{
-      flex:1 1 auto;
-      display:flex;
-      justify-content:flex-end;
-      min-width:0;
-    }
-
-    .primary-nav ul{
-      list-style:none;
-      margin:0;
-      padding:0;
-      display:flex;
-      align-items:center;
-      justify-content:flex-end;
-      gap:8px;
-      flex-wrap:nowrap;
-    }
-
-    .primary-nav a{
-      position:relative;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-height:42px;
-      padding:10px 14px;
-      border-radius:999px;
-      font-size:13px;
-      line-height:1;
-      letter-spacing:.01em;
-      color:rgba(255,255,255,.82);
-      border:1px solid transparent;
-      background:transparent;
-      white-space:nowrap;
-      transition:
-        background .18s ease,
-        border-color .18s ease,
-        color .18s ease,
-        transform .14s ease,
-        box-shadow .18s ease;
-    }
-
-    .primary-nav a::after{
-      content:"";
-      position:absolute;
-      left:14px;
-      right:14px;
-      bottom:7px;
-      height:1.5px;
-      border-radius:999px;
-      background: linear-gradient(90deg, rgba(255,122,26,0), rgba(255,122,26,.95), rgba(255,179,71,.9), rgba(255,122,26,0));
-      opacity:0;
-      transform: scaleX(.55);
-      transform-origin:center;
-      transition: opacity .18s ease, transform .18s ease;
-    }
-
-    .primary-nav a:hover{
-      color:#fff;
-      background:rgba(255,255,255,.05);
-      border-color:rgba(255,255,255,.10);
-      transform: translateY(-1px);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.03);
-    }
-
-    .primary-nav a:hover::after{
-      opacity:1;
-      transform: scaleX(1);
-    }
-
-    .primary-nav a.active{
-      color:#fff;
-      background: linear-gradient(180deg, rgba(255,122,26,.14), rgba(255,122,26,.08));
-      border-color: rgba(255,122,26,.30);
-      box-shadow:
-        inset 0 1px 0 rgba(255,255,255,.05),
-        0 0 0 1px rgba(255,122,26,.04);
-    }
-
-    .primary-nav a.active::after{
-      opacity:1;
-      transform: scaleX(1);
-    }
-
-    .menu-toggle{
-      display:none;
-      align-items:center;
-      justify-content:center;
-      width:44px;
-      height:44px;
-      border-radius:12px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      color:#fff;
-      cursor:pointer;
-      transition: background .18s ease, border-color .18s ease, transform .14s ease;
-      z-index:2;
-    }
-
-    .menu-toggle:hover{
-      background:rgba(255,255,255,.07);
-      border-color:rgba(255,122,26,.30);
-      transform:translateY(-1px);
-    }
-
-    .menu-toggle:focus-visible{
-      outline:2px solid rgba(255,122,26,.55);
-      outline-offset:2px;
-    }
-
-    .menu-icon{
-      position:relative;
-      width:18px;
-      height:14px;
-    }
-
-    .menu-icon span{
-      position:absolute;
-      left:0;
-      width:100%;
-      height:2px;
-      border-radius:999px;
-      background:linear-gradient(90deg, #fff, var(--accent-2));
-      transition: transform .2s ease, opacity .2s ease, top .2s ease;
-    }
-
-    .menu-icon span:nth-child(1){ top:0; }
-    .menu-icon span:nth-child(2){ top:6px; }
-    .menu-icon span:nth-child(3){ top:12px; }
-
-    .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(1){
-      top:6px;
-      transform:rotate(45deg);
-    }
-
-    .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(2){
-      opacity:0;
-    }
-
-    .menu-toggle[aria-expanded="true"] .menu-icon span:nth-child(3){
-      top:6px;
-      transform:rotate(-45deg);
-    }
-
-    .mobile-nav{
-      display:none;
-      overflow:hidden;
-      max-height:0;
-      opacity:0;
-      transform:translateY(-6px);
-      transition:max-height .24s ease, opacity .2s ease, transform .2s ease, padding .2s ease;
-    }
-
-    .mobile-nav.open{
-      max-height:360px;
-      opacity:1;
-      transform:translateY(0);
-      padding:0 0 16px;
-    }
-
-    .mobile-nav-panel{
-      margin-top:4px;
-      border:1px solid rgba(255,255,255,.08);
-      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.03));
-      border-radius:18px;
-      padding:10px;
-      box-shadow: var(--shadow-md);
-    }
-
-    .mobile-nav ul{
-      list-style:none;
-      margin:0;
-      padding:0;
-      display:grid;
-      gap:8px;
-    }
-
-    .mobile-nav a{
-      display:flex;
-      align-items:center;
-      min-height:46px;
-      padding:0 14px;
-      border-radius:12px;
-      color:rgba(255,255,255,.88);
-      border:1px solid transparent;
-      background:rgba(255,255,255,.02);
-      transition: background .18s ease, border-color .18s ease, transform .14s ease;
-    }
-
-    .mobile-nav a:hover{
-      background:rgba(255,255,255,.06);
-      border-color:rgba(255,122,26,.22);
-      transform:translateY(-1px);
-    }
-
-    .mobile-nav a.active{
-      color:#fff;
-      background:linear-gradient(180deg, rgba(255,122,26,.14), rgba(255,122,26,.08));
-      border-color:rgba(255,122,26,.30);
-    }
-
-    main{
-      min-height: calc(100vh - 78px);
-      display:flex;
-      flex-direction:column;
-      align-items:stretch;
-      justify-content:flex-start;
-    }
-
-    .hero{
-      text-align:center;
-      padding:34px 0 20px;
-    }
-
-    .banner-card{
-      margin:20px auto 0;
-      max-width:1040px;
-      border-radius:22px;
-      overflow:hidden;
-      border:1px solid rgba(255,255,255,.08);
-      box-shadow:var(--shadow-lg);
-      background:#000;
-    }
-
-    img.banner{
-      width:100%;
-      display:block;
-    }
-
-    h1{
-      margin:30px auto 12px;
-      font-size:clamp(34px,4vw,60px);
-      max-width:20ch;
-      line-height:1.04;
-      letter-spacing:-.02em;
-    }
-
-    .subhead{
-      max-width:64ch;
-      margin:0 auto;
-      color:var(--muted);
-      font-size:15.5px;
-      line-height:1.65;
-    }
-
-    .fire-underline{
-      position:relative;
-      width:220px;
-      height:2px;
-      margin:18px auto 0;
-      border-radius:999px;
-      background: linear-gradient(90deg,
-        rgba(0,0,0,0),
-        rgba(255,120,0,.95),
-        rgba(255,210,70,1),
-        rgba(255,120,0,.95),
-        rgba(0,0,0,0)
-      );
-      box-shadow:
-        0 0 10px rgba(255,120,0,.35),
-        0 0 22px rgba(255,80,0,.22),
-        0 0 40px rgba(255,80,0,.12);
-      filter: saturate(1.15);
-      overflow:visible;
-    }
-
-    .fire-underline::before{
-      content:"";
-      position:absolute;
-      left:50%;
-      top:50%;
-      width:320px;
-      height:40px;
-      transform:translate(-50%,-50%);
-      background: radial-gradient(closest-side,
-        rgba(255,120,0,.18),
-        rgba(255,120,0,.10),
-        rgba(0,0,0,0)
-      );
-      filter: blur(8px);
-      pointer-events:none;
-    }
-
-    .fire-underline::after{
-      content:"";
-      position:absolute;
-      left:50%;
-      top:50%;
-      width:340px;
-      height:34px;
-      transform:translate(-50%,-50%);
-      background:
-        radial-gradient(circle at 20% 40%, rgba(255,210,70,.85) 0 1px, transparent 2px),
-        radial-gradient(circle at 32% 55%, rgba(255,120,0,.85) 0 1px, transparent 2px),
-        radial-gradient(circle at 46% 35%, rgba(255,210,70,.70) 0 1px, transparent 2px),
-        radial-gradient(circle at 58% 60%, rgba(255,120,0,.75) 0 1px, transparent 2px),
-        radial-gradient(circle at 74% 42%, rgba(255,210,70,.80) 0 1px, transparent 2px),
-        radial-gradient(circle at 86% 55%, rgba(255,120,0,.70) 0 1px, transparent 2px);
-      opacity:.75;
-      filter: blur(.2px);
-      animation: sparks 1.8s infinite ease-in-out alternate;
-      pointer-events:none;
-    }
-
-    @keyframes sparks{
-      0%   { opacity:.35; transform: translate(-50%,-50%) scale(.98); }
-      100% { opacity:.85; transform: translate(-50%,-50%) scale(1.02); }
-    }
-
-    .content{
-      padding:34px 0 88px;
-      position:relative;
-      z-index:3;
-    }
-
-    .content-grid{
-      width:min(100%, 1220px);
-      margin:0 auto;
-      display:grid;
-      grid-template-columns:1fr;
-      gap:22px;
-    }
-
-    .panel{
-      border-radius:22px;
-      background:rgba(255,255,255,.06);
-      border:1px solid rgba(255,255,255,.10);
-      box-shadow:0 16px 40px rgba(0,0,0,.45);
-      overflow:hidden;
-      position:relative;
-    }
-
-    .panel::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      background:
-        radial-gradient(circle at 18% 0%, rgba(255,122,26,.12), transparent 34%),
-        radial-gradient(circle at 82% 100%, rgba(255,179,71,.08), transparent 32%);
-      opacity:.85;
-    }
-
-    .panel-inner{
-      position:relative;
-      z-index:1;
-      padding:24px 24px 26px;
-    }
-
-    .kicker{
-      font-size:12px;
-      text-transform:uppercase;
-      letter-spacing:.12em;
-      margin:0 0 10px;
-      color:rgba(255,255,255,.78);
-    }
-
-    .h2{
-      margin:0 0 12px;
-      font-size:clamp(24px,2vw,30px);
-      line-height:1.15;
-      letter-spacing:-.02em;
-    }
-
-    .p{
-      margin:0 0 14px;
-      color:var(--muted);
-      line-height:1.75;
-      font-size:15px;
-      max-width:88ch;
-    }
-
-    .list{
-      list-style:none;
-      padding:0;
-      margin:18px 0 0;
-      display:grid;
-      grid-template-columns:repeat(2, minmax(0, 1fr));
-      gap:14px;
-    }
-
-    .li{
-      display:flex;
-      gap:12px;
-      padding:14px 14px;
-      border-radius:16px;
-      background:rgba(0,0,0,.25);
-      border:1px solid rgba(255,255,255,.08);
-      min-height:100%;
-      align-items:flex-start;
-    }
-
-    .bullet{
-      width:8px;
-      height:8px;
-      border-radius:50%;
-      background:var(--gold);
-      margin-top:6px;
-      box-shadow:0 0 0 4px rgba(201,162,77,.12);
-      flex:none;
-    }
-
-    .li strong{
-      color:rgba(255,255,255,.92);
-      font-weight:700;
-      display:block;
-      margin-bottom:4px;
-      font-size:15px;
-    }
-
-    .li span{
-      color:var(--muted2);
-      font-size:13.5px;
-      line-height:1.6;
-      display:block;
-    }
-
-    .process-grid{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns:repeat(3, minmax(0, 1fr));
-      gap:14px;
-    }
-
-    .step{
-      padding:16px 16px 18px;
-      border-radius:16px;
-      background:rgba(0,0,0,.25);
-      border:1px solid rgba(255,255,255,.08);
-    }
-
-    .step-number{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      width:30px;
-      height:30px;
-      border-radius:999px;
-      margin-bottom:12px;
-      font-size:13px;
-      font-weight:700;
-      color:#fff;
-      background: linear-gradient(180deg, rgba(255,122,26,.9), rgba(255,122,26,.6));
-      box-shadow: 0 0 0 5px rgba(255,122,26,.10);
-    }
-
-    .step h3{
-      margin:0 0 8px;
-      font-size:17px;
-      letter-spacing:-.01em;
-    }
-
-    .step p{
-      margin:0;
-      color:var(--muted2);
-      font-size:14px;
-      line-height:1.65;
-    }
-
-    @media (max-width: 1200px){
-      .content-grid{
-        width:min(100%, 1080px);
-      }
-
-      .process-grid{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width: 1100px){
-      .name{font-size:11px}
-
-      .primary-nav a{
-        padding:9px 11px;
-        font-size:12.5px;
-      }
-
-      .list{
-        grid-template-columns:1fr;
-      }
-    }
-
-    @media (max-width: 980px){
-      .nav{
-        min-height:68px;
-        gap:16px;
-      }
-
-      .primary-nav{
-        display:none;
-      }
-
-      .menu-toggle{
-        display:inline-flex;
-      }
-
-      .mobile-nav{
-        display:block;
-      }
-
-      .hero{padding-top:26px}
-      .banner-card{max-width:980px}
-      .fire-underline{width:180px}
-      .content{padding:28px 0 72px}
-
-      .content-grid{
-        width:100%;
-        gap:16px;
-      }
-
-      .panel-inner{
-        padding:20px 18px 22px;
-      }
-    }
-
-    @media (max-width: 640px){
-      .wrap{
-        padding:0 18px;
-      }
-
-      h1{
-        max-width:15ch;
-      }
-    }
-
-    @media (prefers-reduced-motion: reduce){
-      .bg-canvas{display:none}
-      .brand,
-      .primary-nav a,
-      .primary-nav a::after,
-      .menu-toggle,
-      .mobile-nav,
-      .mobile-nav a{
-        transition:none;
-      }
-      .fire-underline::after{animation:none}
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="color-scheme" content="dark" />
+<title>Team Training • CMS Technical Optimization</title>
+<meta name="description" content="AI-powered teams that automate workflows, accelerate decisions, and operate faster across the organization." />
+
+<style>
+
+:root{
+--bg:#000000;
+--gold:#c9a24d;
+--accent:#ff7a1a;
+--accent-2:#ffb347;
+
+--text:rgba(255,255,255,.94);
+--muted:rgba(255,255,255,.74);
+--muted2:rgba(255,255,255,.62);
+
+--sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+
+--shadow-lg:0 18px 48px rgba(0,0,0,.52);
+--shadow-md:0 12px 30px rgba(0,0,0,.38);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+
+body{
+margin:0;
+font-family:var(--sans);
+color:var(--text);
+background:var(--bg);
+overflow-x:hidden;
+}
+
+a{color:inherit;text-decoration:none}
+
+.wrap{
+width:min(100%,1400px);
+margin:0 auto;
+padding:0 28px;
+}
+
+/* animated background */
+
+.bg-canvas{
+position:fixed;
+inset:0;
+z-index:-1;
+opacity:.80;
+pointer-events:none;
+}
+
+/* NAV */
+
+.site-header{
+position:sticky;
+top:0;
+z-index:20;
+background:rgba(0,0,0,.65);
+backdrop-filter:blur(14px);
+border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.nav{
+display:flex;
+align-items:center;
+justify-content:space-between;
+min-height:78px;
+gap:24px;
+}
+
+.brand{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.dot{
+width:11px;
+height:11px;
+border-radius:50%;
+background: radial-gradient(circle at 35% 35%,var(--accent-2),var(--accent));
+box-shadow:0 0 0 5px rgba(255,122,26,.15),0 0 16px rgba(255,122,26,.24);
+}
+
+.name{
+font-weight:760;
+letter-spacing:.08em;
+text-transform:uppercase;
+font-size:12px;
+}
+
+.primary-nav ul{
+display:flex;
+gap:8px;
+list-style:none;
+margin:0;
+padding:0;
+}
+
+.primary-nav a{
+display:inline-flex;
+align-items:center;
+justify-content:center;
+min-height:42px;
+padding:10px 14px;
+border-radius:999px;
+font-size:13px;
+color:rgba(255,255,255,.85);
+border:1px solid transparent;
+transition:.18s;
+}
+
+.primary-nav a:hover{
+background:rgba(255,255,255,.05);
+border-color:rgba(255,255,255,.12);
+}
+
+.primary-nav a.active{
+background:linear-gradient(180deg,rgba(255,122,26,.14),rgba(255,122,26,.08));
+border-color:rgba(255,122,26,.35);
+}
+
+/* HERO */
+
+.hero{
+text-align:center;
+padding:44px 0 30px;
+}
+
+.banner-card{
+margin:20px auto;
+max-width:980px;
+border-radius:22px;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.08);
+box-shadow:var(--shadow-lg);
+}
+
+.banner{
+width:100%;
+display:block;
+}
+
+h1{
+margin:30px auto 12px;
+font-size:clamp(36px,4vw,58px);
+max-width:20ch;
+line-height:1.05;
+}
+
+.subhead{
+max-width:64ch;
+margin:0 auto;
+color:var(--muted);
+font-size:16px;
+line-height:1.6;
+}
+
+.fire-underline{
+width:220px;
+height:2px;
+margin:18px auto 0;
+background:linear-gradient(90deg,transparent,#ff7a1a,#ffd24a,#ff7a1a,transparent);
+}
+
+/* CONTENT */
+
+.content{
+padding:40px 0 80px;
+}
+
+.content-grid{
+width:min(100%,1220px);
+margin:0 auto;
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:22px;
+}
+
+.panel{
+border-radius:22px;
+background:rgba(255,255,255,.06);
+border:1px solid rgba(255,255,255,.10);
+box-shadow:var(--shadow-md);
+}
+
+.panel-inner{
+padding:26px;
+}
+
+.kicker{
+font-size:12px;
+text-transform:uppercase;
+letter-spacing:.12em;
+margin-bottom:10px;
+color:rgba(255,255,255,.78);
+}
+
+.h2{
+margin:0 0 10px;
+font-size:22px;
+}
+
+.p{
+margin:0 0 16px;
+color:var(--muted);
+line-height:1.7;
+font-size:15px;
+}
+
+.list{
+list-style:none;
+padding:0;
+margin:0;
+display:flex;
+flex-direction:column;
+gap:12px;
+}
+
+.li{
+display:flex;
+gap:12px;
+padding:12px 14px;
+border-radius:16px;
+background:rgba(0,0,0,.25);
+border:1px solid rgba(255,255,255,.08);
+}
+
+.bullet{
+width:8px;
+height:8px;
+border-radius:50%;
+background:var(--gold);
+margin-top:6px;
+}
+
+.li span{
+color:var(--muted2);
+font-size:14px;
+}
+
+/* MOBILE */
+
+@media (max-width:1200px){
+
+.content-grid{
+grid-template-columns:1fr;
+}
+
+}
+
+@media (max-width:980px){
+
+.primary-nav{display:none}
+
+.hero{padding-top:30px}
+
+}
+
+</style>
 </head>
 
 <body>
 
-  <canvas class="bg-canvas" id="circuit" aria-hidden="true"></canvas>
+<canvas class="bg-canvas" id="circuit"></canvas>
 
-  <header class="site-header">
-    <div class="wrap">
-      <div class="nav">
+<header class="site-header">
+<div class="wrap">
+<div class="nav">
 
-        <a class="brand" href="index.html" aria-label="Home">
-          <span class="dot" aria-hidden="true"></span>
-          <span class="name">CMS Technical Optimization</span>
-        </a>
+<a class="brand" href="index.html">
+<span class="dot"></span>
+<span class="name">CMS Technical Optimization</span>
+</a>
 
-        <nav class="primary-nav" aria-label="Primary">
-          <ul>
-            <li><a href="index.html">CMS Home</a></li>
-            <li><a href="design.html">Smart Infrastructure</a></li>
-            <li><a class="active" href="teams.html">Team Training</a></li>
-            <li><a href="about.html">About</a></li>
-          </ul>
-        </nav>
+<nav class="primary-nav">
+<ul>
 
-        <button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-controls="mobileNav" aria-expanded="false" type="button">
-          <span class="menu-icon" aria-hidden="true">
-            <span></span>
-            <span></span>
-            <span></span>
-          </span>
-        </button>
-      </div>
+<li><a href="index.html">CMS Home</a></li>
+<li><a href="strategy.html">AI Strategy</a></li>
+<li><a href="design.html">Smart Infrastructure</a></li>
+<li><a href="teams.html" class="active">Team Training</a></li>
+<li><a href="success.html">Success Stories</a></li>
+<li><a href="about.html">About</a></li>
 
-      <nav class="mobile-nav" id="mobileNav" aria-label="Mobile Primary">
-        <div class="mobile-nav-panel">
-          <ul>
-            <li><a href="index.html">CMS Home</a></li>
-            <li><a href="design.html">Smart Infrastructure</a></li>
-            <li><a class="active" href="teams.html">Team Training</a></li>
-            <li><a href="about.html">About</a></li>
-          </ul>
-        </div>
-      </nav>
-    </div>
-  </header>
+</ul>
+</nav>
 
-  <main>
+</div>
+</div>
+</header>
 
-    <section class="hero">
-      <div class="wrap">
+<main>
 
-        <div class="banner-card">
-          <img class="banner" src="assets/smartflow.png" alt="Intelligent Teams" loading="eager">
-        </div>
+<section class="hero">
 
-        <h1>Teams that move at AI speed.</h1>
+<div class="wrap">
 
-        <p class="subhead">
-          Automated workflows, decision support, and operational intelligence—so teams focus on outcomes instead of busywork.
-        </p>
+<div class="banner-card">
+<img class="banner" src="assets/smartflow.png" alt="Intelligent Teams">
+</div>
 
-        <div class="fire-underline" aria-hidden="true"></div>
-      </div>
-    </section>
+<h1>Teams that move at AI speed.</h1>
 
-    <section class="content" aria-label="Intelligent Teams details">
-      <div class="wrap">
-        <div class="content-grid">
+<p class="subhead">
+Automated workflows, decision support, and operational intelligence—
+so teams focus on outcomes instead of busywork.
+</p>
 
-          <section class="panel">
-            <div class="panel-inner">
-              <p class="kicker">What this delivers</p>
-              <h2 class="h2">Operational intelligence for everyday work</h2>
+<div class="fire-underline"></div>
 
-              <p class="p">
-                AI should amplify teams, not sideline them. Intelligent workflows reduce friction across departments, automate repetitive work, and create a more reliable operating rhythm so people can focus on judgment, communication, and strategy.
-              </p>
+</div>
+</section>
 
-              <p class="p">
-                The aim is not random automation. It is a more capable organization: one where teams get faster access to information, move work more cleanly across functions, and spend less time pushing routine tasks from inbox to inbox.
-              </p>
+<section class="content">
 
-              <ul class="list">
-                <li class="li">
-                  <span class="bullet" aria-hidden="true"></span>
-                  <div>
-                    <strong>Automated workflows</strong>
-                    <span>Routine tasks in audits, procurement, legal, support, and sales are handled with less manual overhead and fewer handoff delays.</span>
-                  </div>
-                </li>
+<div class="wrap">
 
-                <li class="li">
-                  <span class="bullet" aria-hidden="true"></span>
-                  <div>
-                    <strong>Decision support</strong>
-                    <span>AI assists with research, analysis, summaries, prioritization, and recommendations so teams can act faster with better context.</span>
-                  </div>
-                </li>
+<div class="content-grid">
 
-                <li class="li">
-                  <span class="bullet" aria-hidden="true"></span>
-                  <div>
-                    <strong>Cross-team coordination</strong>
-                    <span>Work moves to the right people at the right time, with clearer routing, fewer bottlenecks, and more visible progress.</span>
-                  </div>
-                </li>
+<div class="panel">
+<div class="panel-inner">
 
-                <li class="li">
-                  <span class="bullet" aria-hidden="true"></span>
-                  <div>
-                    <strong>Faster execution</strong>
-                    <span>Teams move from intake to action more quickly, reducing cycle time while improving consistency and operational focus.</span>
-                  </div>
-                </li>
-              </ul>
-            </div>
-          </section>
+<p class="kicker">What this delivers</p>
+<h2 class="h2">Operational intelligence for everyday work</h2>
 
-          <section class="panel">
-            <div class="panel-inner">
-              <p class="kicker">How teams begin</p>
-              <h2 class="h2">Train the organization around real work</h2>
+<p class="p">
+AI should amplify teams, not replace them. Intelligent workflows
+reduce friction across departments and ensure routine tasks
+execute automatically while humans focus on judgment and strategy.
+</p>
 
-              <p class="p">
-                The first step is identifying where team time is being lost today: repetitive coordination, fragmented information, manual reporting, delayed decisions, and workflows that depend too heavily on individual memory or heroic effort.
-              </p>
+<ul class="list">
 
-              <p class="p">
-                From there, the work becomes practical. Teams are trained against their actual operating environment, and AI capabilities are introduced in a sequence that supports adoption, measurable improvement, and long-term confidence.
-              </p>
+<li class="li">
+<span class="bullet"></span>
+<div>
+<strong>Automated workflows</strong>
+<span>Routine tasks in audits, procurement, legal, and sales handled automatically.</span>
+</div>
+</li>
 
-              <div class="process-grid">
-                <div class="step">
-                  <div class="step-number">01</div>
-                  <h3>Identify Team Friction</h3>
-                  <p>
-                    Review how work currently moves, where delays occur, what gets repeated, and which activities are strongest candidates for AI support.
-                  </p>
-                </div>
+<li class="li">
+<span class="bullet"></span>
+<div>
+<strong>Decision support</strong>
+<span>AI assists with research, analysis, summaries, and recommendations.</span>
+</div>
+</li>
 
-                <div class="step">
-                  <div class="step-number">02</div>
-                  <h3>Train Around Use Cases</h3>
-                  <p>
-                    Build team capability using concrete workflows, role-specific examples, and practical exercises tied to the organization’s real priorities.
-                  </p>
-                </div>
+<li class="li">
+<span class="bullet"></span>
+<div>
+<strong>Cross-team coordination</strong>
+<span>Systems route work to the right person at the right time.</span>
+</div>
+</li>
 
-                <div class="step">
-                  <div class="step-number">03</div>
-                  <h3>Operationalize the Gains</h3>
-                  <p>
-                    Turn early wins into repeatable workflows, clearer standards, and sustainable habits so speed and quality improve together.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </section>
+<li class="li">
+<span class="bullet"></span>
+<div>
+<strong>Faster execution</strong>
+<span>Teams move from idea to delivery dramatically faster.</span>
+</div>
+</li>
 
-        </div>
-      </div>
-    </section>
+</ul>
 
-  </main>
+</div>
+</div>
 
-  <script>
-    (function(){
-      const canvas = document.getElementById('circuit');
-      const ctx = canvas.getContext('2d', { alpha: true });
+<div class="panel">
+<div class="panel-inner">
 
-      let w, h, dpr;
-      const GOLD = 'rgba(201,162,77,0.55)';
+<p class="kicker">Training outcome</p>
+<h2 class="h2">Teams that know how to use AI well</h2>
 
-      const nodes = [];
-      const links = [];
-      const NODE_COUNT = 44;
-      const LINK_COUNT = 80;
+<p class="p">
+Technology alone does not transform organizations. People do.
+Training focuses on helping teams understand when to use AI,
+how to apply it safely, and how to integrate it into daily work.
+</p>
 
-      function resize(){
-        dpr = Math.max(1, Math.min(2, window.devicePixelRatio || 1));
-        w = canvas.width  = Math.floor(window.innerWidth  * dpr);
-        h = canvas.height = Math.floor(window.innerHeight * dpr);
-        canvas.style.width  = window.innerWidth + 'px';
-        canvas.style.height = window.innerHeight + 'px';
+<p class="p">
+The result is a workforce that understands AI as a practical
+tool for solving problems, accelerating execution, and
+delivering better results.
+</p>
 
-        nodes.length = 0;
-        links.length = 0;
+</div>
+</div>
 
-        for(let i=0;i<NODE_COUNT;i++){
-          nodes.push({
-            x: Math.random()*w,
-            y: Math.random()*h,
-            r: (Math.random()*1.6 + 0.9)*dpr,
-            vx: (Math.random()*0.20 - 0.10)*dpr,
-            vy: (Math.random()*0.16 - 0.08)*dpr,
-            p: Math.random()*Math.PI*2
-          });
-        }
+</div>
+</div>
+</section>
 
-        for(let i=0;i<LINK_COUNT;i++){
-          const a = Math.floor(Math.random()*NODE_COUNT);
-          const b = Math.floor(Math.random()*NODE_COUNT);
-          if(a !== b) links.push({ a, b, phase: Math.random()*Math.PI*2 });
-        }
-      }
-
-      function step(){
-        ctx.clearRect(0,0,w,h);
-
-        for(const n of nodes){
-          n.x += n.vx; n.y += n.vy;
-          if(n.x < -60*dpr) n.x = w + 60*dpr;
-          if(n.x > w + 60*dpr) n.x = -60*dpr;
-          if(n.y < -60*dpr) n.y = h + 60*dpr;
-          if(n.y > h + 60*dpr) n.y = -60*dpr;
-          n.p += 0.018;
-        }
-
-        const tNow = performance.now();
-        for(const L of links){
-          const A = nodes[L.a], B = nodes[L.b];
-          const dx = B.x - A.x, dy = B.y - A.y;
-          const dist = Math.hypot(dx,dy);
-          if(dist > 420*dpr) continue;
-
-          ctx.strokeStyle = 'rgba(255,255,255,0.035)';
-          ctx.lineWidth = 1*dpr;
-          ctx.beginPath();
-          ctx.moveTo(A.x,A.y);
-          ctx.lineTo(B.x,B.y);
-          ctx.stroke();
-
-          const t = (Math.sin(L.phase + tNow/1100) + 1) / 2;
-          const px = A.x + dx*t;
-          const py = A.y + dy*t;
-
-          ctx.fillStyle = GOLD;
-          ctx.beginPath();
-          ctx.arc(px, py, 1.9*dpr, 0, Math.PI*2);
-          ctx.fill();
-        }
-
-        for(const n of nodes){
-          ctx.fillStyle = 'rgba(255,255,255,0.08)';
-          ctx.beginPath();
-          ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
-          ctx.fill();
-
-          if(Math.sin(n.p) > 0.93){
-            ctx.fillStyle = 'rgba(201,162,77,0.26)';
-            ctx.beginPath();
-            ctx.arc(n.x, n.y, n.r*2.7, 0, Math.PI*2);
-            ctx.fill();
-          }
-        }
-
-        requestAnimationFrame(step);
-      }
-
-      window.addEventListener('resize', resize, { passive:true });
-      resize();
-      requestAnimationFrame(step);
-    })();
-
-    (function(){
-      const toggle = document.getElementById('menuToggle');
-      const mobileNav = document.getElementById('mobileNav');
-      if(!toggle || !mobileNav) return;
-
-      function closeMenu(){
-        toggle.setAttribute('aria-expanded', 'false');
-        toggle.setAttribute('aria-label', 'Open menu');
-        mobileNav.classList.remove('open');
-      }
-
-      function openMenu(){
-        toggle.setAttribute('aria-expanded', 'true');
-        toggle.setAttribute('aria-label', 'Close menu');
-        mobileNav.classList.add('open');
-      }
-
-      toggle.addEventListener('click', function(){
-        const expanded = toggle.getAttribute('aria-expanded') === 'true';
-        expanded ? closeMenu() : openMenu();
-      });
-
-      window.addEventListener('resize', function(){
-        if(window.innerWidth > 980){
-          closeMenu();
-        }
-      });
-
-      mobileNav.querySelectorAll('a').forEach(function(link){
-        link.addEventListener('click', closeMenu);
-      });
-    })();
-  </script>
+</main>
 
 </body>
 </html>

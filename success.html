@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="color-scheme" content="dark" />
   <title>Success Stories • CMS Technical Optimization</title>
-  <meta name="description" content="How CMS Technical Optimization helps leaders and teams apply AI with practical training, clear strategy, and measurable results." />
+  <meta name="description" content="How AI helps organizations work smarter through practical execution, better decisions, and faster teams." />
 
   <style>
     :root{
@@ -16,10 +16,6 @@
       --text:rgba(255,255,255,.94);
       --muted:rgba(255,255,255,.74);
       --muted2:rgba(255,255,255,.62);
-      --line:rgba(255,255,255,.08);
-      --line-strong:rgba(255,255,255,.14);
-      --panel:rgba(255,255,255,.05);
-      --panel-hover:rgba(255,255,255,.08);
       --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
       --shadow-lg: 0 18px 48px rgba(0,0,0,.52);
       --shadow-md: 0 12px 30px rgba(0,0,0,.38);
@@ -483,63 +479,74 @@
       max-width:88ch;
     }
 
-    .bio-grid{
-      margin-top:18px;
-      display:grid;
-      grid-template-columns: 300px minmax(0, 1fr);
-      gap:20px;
-      align-items:start;
-    }
-
-    .portrait-card{
-      border-radius:18px;
-      background:rgba(0,0,0,.25);
-      border:1px solid rgba(255,255,255,.08);
-      padding:16px;
-    }
-
-    .portrait-card img{
-      width:100%;
-      display:block;
-      border-radius:16px;
-      border:1px solid rgba(255,255,255,.08);
-      object-fit:cover;
-      aspect-ratio:4 / 5;
-      background:#111;
-    }
-
-    .portrait-note{
-      margin:12px 0 0;
-      font-size:12px;
-      color:var(--muted2);
-      line-height:1.5;
-    }
-
-    .callout-grid{
+    .results-grid{
       margin-top:18px;
       display:grid;
       grid-template-columns:repeat(3, minmax(0, 1fr));
       gap:14px;
     }
 
-    .callout{
+    .result{
       padding:16px 16px 18px;
       border-radius:16px;
       background:rgba(0,0,0,.25);
       border:1px solid rgba(255,255,255,.08);
     }
 
-    .callout h3{
+    .result h3{
       margin:0 0 8px;
       font-size:17px;
       letter-spacing:-.01em;
     }
 
-    .callout p{
+    .result p{
       margin:0;
       color:var(--muted2);
       font-size:14px;
       line-height:1.65;
+    }
+
+    .workflow-list{
+      list-style:none;
+      margin:18px 0 0;
+      padding:0;
+      display:grid;
+      grid-template-columns:repeat(2, minmax(0, 1fr));
+      gap:14px;
+    }
+
+    .workflow-item{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      padding:14px;
+      border-radius:16px;
+      background:rgba(0,0,0,.25);
+      border:1px solid rgba(255,255,255,.08);
+    }
+
+    .bullet{
+      width:8px;
+      height:8px;
+      border-radius:50%;
+      background:var(--gold);
+      box-shadow:0 0 0 4px rgba(201,162,77,.12);
+      margin-top:6px;
+      flex:none;
+    }
+
+    .workflow-item strong{
+      display:block;
+      margin-bottom:4px;
+      font-size:15px;
+      color:rgba(255,255,255,.92);
+    }
+
+    .workflow-item span{
+      color:var(--muted2);
+      font-size:13.5px;
+      line-height:1.6;
+      display:block;
     }
 
     @media (max-width: 1200px){
@@ -547,7 +554,7 @@
         width:min(100%, 1080px);
       }
 
-      .callout-grid{
+      .results-grid{
         grid-template-columns:1fr;
       }
     }
@@ -560,7 +567,7 @@
         font-size:12.5px;
       }
 
-      .bio-grid{
+      .workflow-list{
         grid-template-columns:1fr;
       }
     }
@@ -675,40 +682,49 @@
 
     <section class="hero">
       <div class="wrap">
-
         <div class="banner-card">
           <img src="assets/cmslogo3.png" alt="CMS Technical Optimization" loading="eager">
         </div>
 
-        <h1>Success built around people, not hype.</h1>
+        <h1>How AI helps organizations work smarter.</h1>
 
         <p class="subhead">
-          Practical AI guidance, real-world teaching, and service-centered execution for teams that need results.
+          Clear use cases, practical systems, and better-trained teams that reduce friction, accelerate decisions, and produce measurable gains.
         </p>
 
         <div class="fire-underline" aria-hidden="true"></div>
       </div>
     </section>
 
-    <section class="content" aria-label="Success Stories and background">
+    <section class="content" aria-label="Success Stories">
       <div class="wrap">
         <div class="content-grid">
 
           <section class="panel">
             <div class="panel-inner">
-              <p class="kicker">Founder and company background</p>
-              <h2 class="h2">Built across education, enterprise, startup, and mission-driven work</h2>
+              <p class="kicker">What success looks like</p>
+              <h2 class="h2">Smarter work, not more complexity</h2>
+              <p class="p">
+                AI should make organizations easier to run. The goal is not novelty. It is cleaner workflows, faster access to insight, less wasted effort, and more consistent execution across teams. When AI is applied well, it removes drag from the system and helps people focus on the work that actually matters.
+              </p>
+              <p class="p">
+                Success usually shows up in a few practical ways: shorter cycle times, better visibility into work, fewer repetitive tasks, stronger decision support, and teams that can operate with more speed and confidence.
+              </p>
 
-              <div class="bio-grid">
-                <div class="portrait-card">
-                  <img src="assets/cms.jpg" alt="Craig Schneider" loading="lazy">
-                  <p class="portrait-note">Founder portrait placeholder using current provided asset.</p>
+              <div class="results-grid">
+                <div class="result">
+                  <h3>Faster decisions</h3>
+                  <p>Teams spend less time searching, summarizing, and assembling context before they can act.</p>
                 </div>
 
-                <div>
-                  <p class="p">
-                    Craig Schneider is a lifelong educator, technologist, and problem solver who began his career building infrastructure at Washington University in St. Louis. Across large corporate, startup, educational, and non-profit environments, he has focused on helping people use technology to do great things. That work has consistently centered on practical systems, clear teaching, and service to the people doing the work. CMS Technical Optimization brings those strengths together to help leaders and teams understand AI, apply it with confidence, and move from curiosity to measurable outcomes without losing sight of the human side of the work.
-                  </p>
+                <div class="result">
+                  <h3>Less manual overhead</h3>
+                  <p>Routine coordination, reporting, and repetitive tasks are automated or streamlined.</p>
+                </div>
+
+                <div class="result">
+                  <h3>More consistent execution</h3>
+                  <p>Work moves through clearer systems with fewer bottlenecks, fewer handoff failures, and better visibility.</p>
                 </div>
               </div>
             </div>
@@ -716,29 +732,45 @@
 
           <section class="panel">
             <div class="panel-inner">
-              <p class="kicker">Principles and operating approach</p>
-              <h2 class="h2">Technology is a tool. People create the value.</h2>
-
+              <p class="kicker">Where AI creates value</p>
+              <h2 class="h2">Target the work that slows the organization down</h2>
               <p class="p">
-                Technology is a tool, like a chisel or a paintbrush. It is humans who do the interesting stuff with tools. CMS Tech Optimization is a service-focused, educationally centered organization with one aim: empowering teams and leaders with the training, understanding, and ongoing guidance they need to use AI well.
+                The highest-value AI opportunities are usually not mysterious. They live where teams lose time, repeat the same effort, struggle to find information, or depend too heavily on manual coordination. That is where practical gains can be found quickly.
               </p>
 
-              <div class="callout-grid">
-                <div class="callout">
-                  <h3>Principle</h3>
-                  <p>Tech exists to serve people. Not the other way around.</p>
-                </div>
+              <ul class="workflow-list">
+                <li class="workflow-item">
+                  <span class="bullet" aria-hidden="true"></span>
+                  <div>
+                    <strong>Workflow automation</strong>
+                    <span>Reduce manual steps in reporting, intake, routing, approvals, documentation, and follow-up work.</span>
+                  </div>
+                </li>
 
-                <div class="callout">
-                  <h3>Focus</h3>
-                  <p>Understanding your people and how AI can help them succeed.</p>
-                </div>
+                <li class="workflow-item">
+                  <span class="bullet" aria-hidden="true"></span>
+                  <div>
+                    <strong>Decision support</strong>
+                    <span>Give leaders and teams faster summaries, stronger analysis, and clearer recommendations.</span>
+                  </div>
+                </li>
 
-                <div class="callout">
-                  <h3>Outcome</h3>
-                  <p>Smart, targeted instruction with ROI in weeks, not months or years.</p>
-                </div>
-              </div>
+                <li class="workflow-item">
+                  <span class="bullet" aria-hidden="true"></span>
+                  <div>
+                    <strong>Knowledge access</strong>
+                    <span>Help people find the right information quickly instead of hunting across documents, tools, and inboxes.</span>
+                  </div>
+                </li>
+
+                <li class="workflow-item">
+                  <span class="bullet" aria-hidden="true"></span>
+                  <div>
+                    <strong>Team productivity</strong>
+                    <span>Equip teams to move faster with better prompts, clearer systems, and role-specific AI practices.</span>
+                  </div>
+                </li>
+              </ul>
             </div>
           </section>
 

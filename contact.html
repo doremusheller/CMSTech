@@ -40,29 +40,51 @@
             <div class="panel-inner">
               <p class="kicker">Contact form</p>
               <h2 class="h2">Tell us a little about your needs</h2>
+
               <p class="p">
-                This form uses your device’s email client to send a message to <strong>craig@cmstech.ai</strong>. It is simple, fast, and easy to swap later for a server-based form if you want direct site submissions.
+                Messages are sent securely through our contact form and delivered to <strong>craig@cmstech.ai</strong>.
               </p>
 
               <form
                 class="form"
-                action="mailto:craig@cmstech.ai"
-                method="post"
-                enctype="text/plain"
+                action="https://formspree.io/f/mwvroypn"
+                method="POST"
               >
+
+                <input type="hidden" name="_subject" value="New CMS Technical Optimization Contact Inquiry">
+
                 <div class="field">
                   <label for="name">Your name</label>
-                  <input class="input" id="name" name="Your name" type="text" placeholder="Jane Smith" required>
+                  <input
+                    class="input"
+                    id="name"
+                    name="name"
+                    type="text"
+                    placeholder="Jane Smith"
+                    required
+                  >
                 </div>
 
                 <div class="field">
                   <label for="company">Company name</label>
-                  <input class="input" id="company" name="Company name" type="text" placeholder="Acme Health Systems" required>
+                  <input
+                    class="input"
+                    id="company"
+                    name="company"
+                    type="text"
+                    placeholder="Acme Health Systems"
+                    required
+                  >
                 </div>
 
                 <div class="field">
                   <label for="ai-use">Do you currently use AI?</label>
-                  <select class="select" id="ai-use" name="Do you currently use AI?" required>
+                  <select
+                    class="select"
+                    id="ai-use"
+                    name="ai_use"
+                    required
+                  >
                     <option value="">Select one</option>
                     <option>Yes, broadly</option>
                     <option>Yes, in a limited way</option>
@@ -73,14 +95,24 @@
 
                 <div class="field">
                   <label for="needs">Tell us a few words about needs</label>
-                  <textarea class="textarea" id="needs" name="Tell us a few words about needs" placeholder="We want help with AI strategy, staff training, and identifying useful first workflows." required></textarea>
+                  <textarea
+                    class="textarea"
+                    id="needs"
+                    name="needs"
+                    placeholder="We want help with AI strategy, staff training, and identifying useful first workflows."
+                    required
+                  ></textarea>
                 </div>
 
                 <div class="actions">
                   <button class="btn" type="submit">Send inquiry</button>
-                  <p class="note">Submitting opens your default email application with the form details prepared in the message.</p>
+                  <p class="note">
+                    Your message will be securely delivered through our contact system.
+                  </p>
                 </div>
+
               </form>
+
             </div>
           </section>
 
@@ -90,6 +122,9 @@
 
   </main>
 
+  <div id="footer-placeholder"></div>
+
   <script src="site.js"></script>
+
 </body>
 </html>

@@ -1,3 +1,4 @@
+```html
 <!doctype html>
 <html lang="en">
 <head>
@@ -9,26 +10,186 @@
 
   <link rel="preload" as="image" href="hidta.jpg" />
   <link rel="stylesheet" href="../style.css" />
+
+  <style>
+    .page-nfhidta {
+      background: #000;
+    }
+
+    .page-nfhidta .hero {
+      padding: 2.5rem 0 1.5rem;
+    }
+
+    .page-nfhidta .wrap {
+      width: min(1100px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .page-nfhidta .banner-card {
+      display: flex;
+      justify-content: center;
+      margin: 0 auto 2rem;
+    }
+
+    .page-nfhidta .banner-card a {
+      display: inline-block;
+      border-radius: 18px;
+    }
+
+    .page-nfhidta .banner-card a:hover .banner {
+      opacity: 0.92;
+      transition: opacity 0.2s ease;
+    }
+
+    .page-nfhidta .banner {
+      display: block;
+      width: 100%;
+      max-width: 580px;
+      height: auto;
+      border-radius: 18px;
+    }
+
+    .page-nfhidta h1 {
+      max-width: 760px;
+      margin: 0 auto 0.75rem;
+      text-align: center;
+      line-height: 0.95;
+    }
+
+    .page-nfhidta .subhead {
+      max-width: 640px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .page-nfhidta .fire-underline {
+      width: 140px;
+      margin: 1rem auto 0;
+    }
+
+    .page-nfhidta .content {
+      padding: 1.25rem 0 2rem;
+    }
+
+    .page-nfhidta .content-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      justify-items: center;
+    }
+
+    .page-nfhidta .panel {
+      width: 100%;
+      max-width: 720px;
+    }
+
+    .page-nfhidta .panel-inner {
+      padding: 1.5rem 1.5rem 1.4rem;
+    }
+
+    .page-nfhidta .kicker,
+    .page-nfhidta .h2,
+    .page-nfhidta .p {
+      text-align: left;
+    }
+
+    .page-nfhidta .memorial-gallery {
+      padding: 0.5rem 0 3rem;
+    }
+
+    .page-nfhidta .gallery-intro {
+      max-width: 720px;
+      margin: 0 auto 1.5rem;
+      text-align: center;
+    }
+
+    .page-nfhidta .officer-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.5rem;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    .page-nfhidta .memorial-tile {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 18px;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .page-nfhidta .photo-placeholder {
+      aspect-ratio: 1 / 1;
+      width: 100%;
+      border-radius: 14px;
+      background: linear-gradient(
+        135deg,
+        rgba(255, 255, 255, 0.08),
+        rgba(255, 255, 255, 0.03)
+      );
+      border: 1px dashed rgba(255, 255, 255, 0.16);
+      margin-bottom: 0.9rem;
+    }
+
+    .page-nfhidta .officer-name {
+      margin: 0 0 0.35rem;
+      font-size: 1.05rem;
+      font-weight: 700;
+    }
+
+    .page-nfhidta .officer-date {
+      margin: 0;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.76);
+    }
+
+    @media (max-width: 900px) {
+      .page-nfhidta .officer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 640px) {
+      .page-nfhidta .hero {
+        padding-top: 1.5rem;
+      }
+
+      .page-nfhidta .banner {
+        max-width: 100%;
+      }
+
+      .page-nfhidta .panel-inner {
+        padding: 1.25rem;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page-nfhidta .officer-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body class="page-nfhidta no-canvas">
-
   <main>
 
     <section class="hero">
       <div class="wrap">
 
         <div class="banner-card">
-          <img
-            class="banner"
-            src="hidta.jpg"
-            alt="North Florida HIDTA"
-            loading="eager"
-            fetchpriority="high"
-          />
+          <a href="https://nfhidta.org/" target="_blank" rel="noopener noreferrer">
+            <img
+              class="banner"
+              src="hidta.jpg"
+              alt="North Florida HIDTA"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </a>
         </div>
 
-        <h1>North Florida HIDTA Remembers</h1>
+        <h1>North Florida HIDTA<br>Remembers</h1>
 
         <p class="subhead">
           Honoring service, commitment, and those who made a lasting impact.
@@ -62,10 +223,74 @@
       </div>
     </section>
 
-  </main>
+    <section class="memorial-gallery" aria-label="Officer memorial gallery">
+      <div class="wrap">
 
-  <script>
-    document.documentElement.classList.add('page-ready');
-  </script>
+        <div class="gallery-intro">
+          <p class="kicker">Honored officers</p>
+        </div>
+
+        <div class="officer-grid">
+
+          <article class="memorial-tile">
+            <div class="photo-placeholder" aria-hidden="true"></div>
+            <h3 class="officer-name">Officer 1</h3>
+            <p class="officer-date">End of Watch: 1/1/2026,</p>
+          </article>
+
+          <article class="memorial-tile">
+            <div class="photo-placeholder" aria-hidden="true"></div>
+            <h3 class="officer-name">Officer 2</h3>
+            <p class="officer-date">End of Watch: 1/1/2026,</p>
+          </article>
+
+          <article class="memorial-tile">
+            <div class="photo-placeholder" aria-hidden="true"></div>
+            <h3 class="officer-name">Officer 3</h3>
+            <p class="officer-date">End of Watch: 1/1/2026,</p>
+          </article>
+
+          <article class="memorial-tile">
+            <div class="photo-placeholder" aria-hidden="true"></div>
+            <h3 class="officer-name">Officer 4</h3>
+            <p class="officer-date">End of Watch: 1/1/2026,</p>
+          </article>
+
+          <article class="memorial-tile">
+            <div class="photo-placeholder" aria-hidden="true"></div>
+            <h3 class="officer-name">Officer 5</h3>
+            <p class="officer-date">End of Watch: 1/1/2026,</p>
+          </article>
+
+          <article class="memorial-tile">
+            <div class="photo-placeholder" aria-hidden="true"></div>
+            <h3 class="officer-name">Officer 6</h3>
+            <p class="officer-date">End of Watch: 1/1/2026,</p>
+          </article>
+
+          <article class="memorial-tile">
+            <div class="photo-placeholder" aria-hidden="true"></div>
+            <h3 class="officer-name">Officer 7</h3>
+            <p class="officer-date">End of Watch: 1/1/2026,</p>
+          </article>
+
+          <article class="memorial-tile">
+            <div class="photo-placeholder" aria-hidden="true"></div>
+            <h3 class="officer-name">Officer 8</h3>
+            <p class="officer-date">End of Watch: 1/1/2026,</p>
+          </article>
+
+          <article class="memorial-tile">
+            <div class="photo-placeholder" aria-hidden="true"></div>
+            <h3 class="officer-name">Officer 9</h3>
+            <p class="officer-date">End of Watch: 1/1/2026,</p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
 </body>
 </html>
+```

@@ -8,6 +8,8 @@
   <meta name="description" content="North Florida HIDTA Remembers." />
 
   <link rel="preload" as="image" href="hidta.jpg" />
+  <link rel="preconnect" href="https://www.youtube-nocookie.com" />
+  <link rel="preconnect" href="https://i.ytimg.com" />
   <link rel="stylesheet" href="../style.css" />
 
   <style>
@@ -91,6 +93,105 @@
       text-align: left;
     }
 
+    .page-nfhidta .video-block {
+      padding: 0 0 2rem;
+    }
+
+    .page-nfhidta .video-shell {
+      width: 100%;
+      max-width: 720px;
+      margin: 0 auto;
+      border-radius: 18px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+    }
+
+    .page-nfhidta .video-trigger {
+      position: relative;
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      padding: 0;
+      border: 0;
+      background: #000;
+      cursor: pointer;
+    }
+
+    .page-nfhidta .video-trigger:focus-visible {
+      outline: 2px solid rgba(255, 255, 255, 0.9);
+      outline-offset: -4px;
+    }
+
+    .page-nfhidta .video-poster,
+    .page-nfhidta .video-frame {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+    .page-nfhidta .video-poster {
+      object-fit: cover;
+      display: block;
+    }
+
+    .page-nfhidta .video-trigger::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.12) 45%, rgba(0, 0, 0, 0.22));
+      pointer-events: none;
+    }
+
+    .page-nfhidta .video-play {
+      position: absolute;
+      inset: 50% auto auto 50%;
+      transform: translate(-50%, -50%);
+      width: 84px;
+      height: 60px;
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.72);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      display: grid;
+      place-items: center;
+      z-index: 1;
+      transition: transform 0.2s ease, background-color 0.2s ease;
+    }
+
+    .page-nfhidta .video-play::before {
+      content: "";
+      margin-left: 4px;
+      border-style: solid;
+      border-width: 12px 0 12px 20px;
+      border-color: transparent transparent transparent #fff;
+    }
+
+    .page-nfhidta .video-trigger:hover .video-play,
+    .page-nfhidta .video-trigger:focus-visible .video-play {
+      transform: translate(-50%, -50%) scale(1.04);
+      background: rgba(180, 0, 0, 0.88);
+    }
+
+    .page-nfhidta .video-meta {
+      padding: 0.95rem 1rem 1rem;
+      text-align: left;
+    }
+
+    .page-nfhidta .video-title {
+      margin: 0;
+      font-size: 1rem;
+      font-weight: 700;
+    }
+
+    .page-nfhidta .video-caption {
+      margin: 0.35rem 0 0;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      color: rgba(255, 255, 255, 0.76);
+    }
+
     .page-nfhidta .memorial-gallery {
       padding: 0.5rem 0 3rem;
     }
@@ -158,6 +259,11 @@
       .page-nfhidta .panel-inner {
         padding: 1.25rem;
       }
+
+      .page-nfhidta .video-play {
+        width: 74px;
+        height: 54px;
+      }
     }
   </style>
 </head>
@@ -205,6 +311,33 @@
               </p>
             </div>
           </section>
+        </div>
+      </div>
+    </section>
+
+    <section class="video-block" aria-label="Memorial video">
+      <div class="wrap">
+        <div class="video-shell" data-youtube-video>
+          <button
+            class="video-trigger"
+            type="button"
+            aria-label="Play memorial video: North Florida HIDTA Remembers"
+            data-video-id="4I_oW9SvFHs"
+            data-video-title="North Florida HIDTA Memorial Video"
+          >
+            <img
+              class="video-poster"
+              src="https://i.ytimg.com/vi/4I_oW9SvFHs/hqdefault.jpg"
+              alt="Video preview for North Florida HIDTA Memorial Video"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="video-play" aria-hidden="true"></span>
+          </button>
+          <div class="video-meta">
+            <p class="video-title">North Florida HIDTA Memorial Video</p>
+            <p class="video-caption">Press play to watch the memorial video honoring those remembered on this page.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -297,5 +430,27 @@
       </div>
     </section>
   </main>
+
+  <script>
+    document.addEventListener('click', function (event) {
+      var trigger = event.target.closest('[data-video-id]');
+      if (!trigger) return;
+
+      var videoId = trigger.getAttribute('data-video-id');
+      var title = trigger.getAttribute('data-video-title') || 'YouTube video player';
+      var iframe = document.createElement('iframe');
+
+      iframe.className = 'video-frame';
+      iframe.src = 'https://www.youtube-nocookie.com/embed/' + encodeURIComponent(videoId) + '?autoplay=1&rel=0';
+      iframe.title = title;
+      iframe.loading = 'eager';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+      iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+      iframe.allowFullscreen = true;
+      iframe.setAttribute('frameborder', '0');
+
+      trigger.replaceWith(iframe);
+    });
+  </script>
 </body>
 </html>

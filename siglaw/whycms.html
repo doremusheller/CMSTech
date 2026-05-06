@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +36,8 @@
     .brand{display:flex;align-items:center;min-width:max-content}
     .brand img{width:214px;height:auto;filter:drop-shadow(0 8px 20px rgba(13,45,85,.12))}
     .nav-links{display:flex;align-items:center;gap:34px;color:rgba(16,22,33,.72);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:850}
-    .nav-links a{transition:color .2s ease}.nav-links a:hover{color:var(--gold)}
+    .nav-links a{transition:color .2s ease}
+    .nav-links a:hover{color:var(--gold)}
     .nav-cta{min-height:46px;padding:0 22px;border:1px solid rgba(185,130,24,.72);display:inline-flex;align-items:center;justify-content:center;color:#7d5510;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:950;background:rgba(185,130,24,.06);transition:.2s ease}
     .nav-cta:hover{background:linear-gradient(135deg,var(--gold-3),var(--gold));color:#090909}
 
@@ -45,62 +47,446 @@
     .button.outline{border-color:rgba(13,45,85,.24);color:var(--navy);background:rgba(255,255,255,.42)}
     .button.outline:hover{border-color:var(--gold);color:#7d5510;background:rgba(255,255,255,.86)}
 
-    .hero{position:relative;overflow:hidden;background:radial-gradient(circle at 50% 8%,rgba(241,207,103,.26),transparent 24rem),radial-gradient(circle at 80% 42%,rgba(23,63,115,.13),transparent 30rem),linear-gradient(180deg,#ffffff 0%,#fbf7ef 58%,#f4ecde 100%)}
-    .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,45,85,.055) 1px,transparent 1px),linear-gradient(rgba(13,45,85,.045) 1px,transparent 1px);background-size:104px 104px;mask-image:radial-gradient(circle at 50% 30%,rgba(0,0,0,.58),transparent 68%);opacity:.7;pointer-events:none}
-    .hero-inner{position:relative;z-index:2;padding:74px 0 94px;text-align:center;display:grid;justify-items:center}
-    .hero-logo{width:min(860px,92vw);margin:0 auto 42px;filter:drop-shadow(0 24px 42px rgba(13,45,85,.13)) drop-shadow(0 0 20px rgba(185,130,24,.13))}
-    .eyebrow{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:22px;color:#8b6115;font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:950}
-    .eyebrow:before,.eyebrow:after{content:"";width:52px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-    h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.3rem,6.8vw,7.3rem);line-height:.88;letter-spacing:-.075em;font-weight:500;margin-bottom:28px;max-width:1040px;text-wrap:balance;color:var(--ink)}
-    .hero-copy{max-width:870px;color:#4e5969;font-size:clamp(1.08rem,1.45vw,1.25rem);line-height:1.78;margin-bottom:38px;text-wrap:balance}
-    .hero-actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:
+      radial-gradient(circle at 50% 8%,rgba(241,207,103,.26),transparent 24rem),
+      radial-gradient(circle at 80% 42%,rgba(23,63,115,.13),transparent 30rem),
+      linear-gradient(180deg,#ffffff 0%,#fbf7ef 58%,#f4ecde 100%);
+    }
 
-    .intro-panel{position:relative;margin-top:-42px;z-index:3}
-    .intro-card{background:rgba(255,255,255,.92);border:1px solid rgba(185,130,24,.18);box-shadow:0 28px 80px rgba(13,45,85,.11);padding:42px 46px;display:grid;grid-template-columns:.58fr 1.42fr;gap:46px;align-items:start}
-    .intro-card h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(2.5rem,4vw,4.35rem);line-height:.88;letter-spacing:-.075em;font-weight:500;margin:0;color:var(--navy)}
-    .intro-card p{color:#4f5968;font-size:1.08rem;line-height:1.85;margin:0}
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+      linear-gradient(90deg,rgba(13,45,85,.055) 1px,transparent 1px),
+      linear-gradient(rgba(13,45,85,.045) 1px,transparent 1px);
+      background-size:104px 104px;
+      mask-image:radial-gradient(circle at 50% 30%,rgba(0,0,0,.58),transparent 68%);
+      opacity:.7;
+      pointer-events:none;
+    }
 
-    .section{padding:104px 0}
-    .light{background:var(--paper)}
-    .white{background:#fff}
-    .section-head{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:end;margin-bottom:52px}
-    .kicker{color:var(--gold);font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:950;margin-bottom:16px}
-    .section-title{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.1rem,5.8vw,6.25rem);line-height:.86;letter-spacing:-.085em;font-weight:500;margin:0;text-wrap:balance;color:var(--ink)}
-    .section-lede{color:#4f5968;font-size:1.08rem;line-height:1.82;max-width:650px;margin:0}
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      padding:74px 0 94px;
+      text-align:center;
+      display:grid;
+      justify-items:center;
+    }
 
-    .capability-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .capability{background:#fff;border:1px solid rgba(16,22,33,.09);min-height:300px;padding:32px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;box-shadow:0 22px 58px rgba(13,45,85,.07)}
-    .capability:after{content:"";position:absolute;right:-72px;bottom:-92px;width:190px;height:190px;border:1px solid rgba(185,130,24,.22);transform:rotate(32deg)}
-    .capability h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(2rem,2.8vw,3.2rem);line-height:.9;letter-spacing:-.065em;font-weight:500;margin:0 0 12px;color:var(--navy)}
-    .capability p{color:#566170;margin:0 0 22px}.capability a{color:var(--gold);font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:950;position:relative;z-index:1}
+    .hero-logo{
+      width:min(860px,92vw);
+      margin:0 auto 42px;
+      filter:
+      drop-shadow(0 24px 42px rgba(13,45,85,.13))
+      drop-shadow(0 0 20px rgba(185,130,24,.13));
+    }
 
-    .compare-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:stretch}
-    .compare-card{background:#fff;border:1px solid rgba(16,22,33,.09);box-shadow:0 28px 74px rgba(13,45,85,.08);padding:40px;position:relative;overflow:hidden}.compare-card.gold-card{background:linear-gradient(180deg,#ffffff,#fbf7ef);border-color:rgba(185,130,24,.24)}
-    .compare-card h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(2.6rem,4.4vw,5rem);line-height:.88;letter-spacing:-.08em;font-weight:500;margin-bottom:22px;color:var(--navy)}
-    .compare-card p{color:#566170;line-height:1.82}.bullet-list{display:grid;gap:14px;margin-top:28px}.bullet{display:grid;grid-template-columns:18px 1fr;gap:14px;color:#4f5968}.bullet:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 14px rgba(185,130,24,.35);margin-top:8px}
+    .eyebrow{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:16px;
+      margin-bottom:22px;
+      color:#8b6115;
+      font-size:12px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      font-weight:950;
+    }
 
-    .statement{position:relative;background:linear-gradient(115deg,#ffffff 0%,#f7f1e7 48%,#eaf0f7 100%);overflow:hidden;border-top:1px solid rgba(16,22,33,.08);border-bottom:1px solid rgba(16,22,33,.08)}
-    .statement-inner{display:grid;grid-template-columns:1fr .78fr;gap:72px;align-items:end}
-    .statement h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.6rem,6.8vw,7.2rem);line-height:.82;letter-spacing:-.09em;font-weight:500;margin:0;color:var(--ink)}
-    .statement p{color:#4f5968;font-size:1.13rem;line-height:1.85;margin:0;max-width:590px}
+    .eyebrow:before,
+    .eyebrow:after{
+      content:"";
+      width:52px;
+      height:1px;
+      background:linear-gradient(90deg,transparent,var(--gold),transparent);
+    }
 
-    .workflow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-    .workflow{background:#fff;border:1px solid rgba(16,22,33,.09);min-height:260px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 22px 58px rgba(13,45,85,.07)}
-    .workflow h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(2rem,2.8vw,3.2rem);line-height:.9;letter-spacing:-.065em;font-weight:500;margin:0 0 14px;color:var(--navy)}
-    .workflow p{color:#566170;margin:0}
+    h1{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(3.3rem,6.8vw,7.3rem);
+      line-height:.88;
+      letter-spacing:-.075em;
+      font-weight:500;
+      margin-bottom:28px;
+      max-width:1040px;
+      text-wrap:balance;
+      color:var(--ink);
+    }
 
-    .closing{position:relative;text-align:center;padding:128px 0;background:radial-gradient(circle at 50% 0%,rgba(215,166,45,.19),transparent 34rem),linear-gradient(#fbf7ef,#ffffff);border-top:1px solid rgba(16,22,33,.08)}
-    .closing h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.5rem,7vw,7.6rem);line-height:.83;letter-spacing:-.09em;font-weight:500;max-width:980px;margin:0 auto 28px;color:var(--ink)}
-    .closing p{color:#4f5968;max-width:650px;margin:0 auto 38px;font-size:1.1rem;line-height:1.8}
+    .hero-copy{
+      max-width:870px;
+      color:#4e5969;
+      font-size:clamp(1.08rem,1.45vw,1.25rem);
+      line-height:1.78;
+      margin-bottom:38px;
+      text-wrap:balance;
+    }
 
-    .footer{background:#fff;color:#6b7483;border-top:1px solid rgba(16,22,33,.08);padding:46px 0 62px;font-size:13px}
-    .footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:28px}.footer img{width:190px;margin-bottom:12px}.footer-links{display:flex;gap:24px;color:var(--ink);font-weight:850;text-transform:uppercase;letter-spacing:.14em;font-size:11px}
+    .hero-actions{
+      display:flex;
+      justify-content:center;
+      gap:16px;
+      flex-wrap:wrap;
+    }
 
-    @media(max-width:1060px){.brand img{width:170px}.nav-links{gap:20px}.intro-card,.section-head,.statement-inner,.compare-grid{grid-template-columns:1fr}.capability-grid,.workflow-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:760px){.topbar{display:none}.container{width:min(100% - 30px,var(--max))}.nav{height:76px}.brand img{width:156px}.nav-links,.nav-cta{display:none}.hero-inner{padding:58px 0 72px}.intro-panel{margin-top:0}.intro-card,.compare-card{padding:30px}.section{padding:78px 0}.capability-grid,.workflow-grid{grid-template-columns:1fr}.footer-inner{flex-direction:column}.footer-links{flex-direction:column;gap:12px}}
+    .intro-panel{
+      position:relative;
+      margin-top:-42px;
+      z-index:3;
+    }
+
+    .intro-card{
+      background:rgba(255,255,255,.92);
+      border:1px solid rgba(185,130,24,.18);
+      box-shadow:0 28px 80px rgba(13,45,85,.11);
+      padding:42px 46px;
+      display:grid;
+      grid-template-columns:.58fr 1.42fr;
+      gap:46px;
+      align-items:start;
+    }
+
+    .intro-card h2{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(2.5rem,4vw,4.35rem);
+      line-height:.88;
+      letter-spacing:-.075em;
+      font-weight:500;
+      margin:0;
+      color:var(--navy);
+    }
+
+    .intro-card p{
+      color:#4f5968;
+      font-size:1.08rem;
+      line-height:1.85;
+      margin:0;
+    }
+
+    .section{
+      padding:104px 0;
+    }
+
+    .light{
+      background:var(--paper);
+    }
+
+    .white{
+      background:#fff;
+    }
+
+    .section-head{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:72px;
+      align-items:end;
+      margin-bottom:52px;
+    }
+
+    .kicker{
+      color:var(--gold);
+      font-size:12px;
+      letter-spacing:.24em;
+      text-transform:uppercase;
+      font-weight:950;
+      margin-bottom:16px;
+    }
+
+    .section-title{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(3.1rem,5.8vw,6.25rem);
+      line-height:.86;
+      letter-spacing:-.085em;
+      font-weight:500;
+      margin:0;
+      text-wrap:balance;
+      color:var(--ink);
+    }
+
+    .section-lede{
+      color:#4f5968;
+      font-size:1.08rem;
+      line-height:1.82;
+      max-width:650px;
+      margin:0;
+    }
+
+    .capability-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .capability{
+      background:#fff;
+      border:1px solid rgba(16,22,33,.09);
+      min-height:300px;
+      padding:32px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 22px 58px rgba(13,45,85,.07);
+    }
+
+    .capability:after{
+      content:"";
+      position:absolute;
+      right:-72px;
+      bottom:-92px;
+      width:190px;
+      height:190px;
+      border:1px solid rgba(185,130,24,.22);
+      transform:rotate(32deg);
+    }
+
+    .capability h2{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(2rem,2.8vw,3.2rem);
+      line-height:.9;
+      letter-spacing:-.065em;
+      font-weight:500;
+      margin:0 0 12px;
+      color:var(--navy);
+    }
+
+    .capability p{
+      color:#566170;
+      margin:0 0 22px;
+    }
+
+    .capability a{
+      color:var(--gold);
+      font-size:11px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-weight:950;
+      position:relative;
+      z-index:1;
+    }
+
+    .compare-grid{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:24px;
+      align-items:stretch;
+    }
+
+    .compare-card{
+      background:#fff;
+      border:1px solid rgba(16,22,33,.09);
+      box-shadow:0 28px 74px rgba(13,45,85,.08);
+      padding:40px;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .compare-card.gold-card{
+      background:linear-gradient(180deg,#ffffff,#fbf7ef);
+      border-color:rgba(185,130,24,.24);
+    }
+
+    .compare-card h2{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(2.6rem,4.4vw,5rem);
+      line-height:.88;
+      letter-spacing:-.08em;
+      font-weight:500;
+      margin-bottom:22px;
+      color:var(--navy);
+    }
+
+    .compare-card p{
+      color:#566170;
+      line-height:1.82;
+    }
+
+    .bullet-list{
+      display:grid;
+      gap:14px;
+      margin-top:28px;
+    }
+
+    .bullet{
+      display:grid;
+      grid-template-columns:18px 1fr;
+      gap:14px;
+      color:#4f5968;
+    }
+
+    .bullet:before{
+      content:"";
+      width:9px;
+      height:9px;
+      border-radius:50%;
+      background:var(--gold);
+      box-shadow:0 0 14px rgba(185,130,24,.35);
+      margin-top:8px;
+    }
+
+    .statement{
+      position:relative;
+      background:linear-gradient(115deg,#ffffff 0%,#f7f1e7 48%,#eaf0f7 100%);
+      overflow:hidden;
+      border-top:1px solid rgba(16,22,33,.08);
+      border-bottom:1px solid rgba(16,22,33,.08);
+    }
+
+    .statement-inner{
+      display:grid;
+      grid-template-columns:1fr .78fr;
+      gap:72px;
+      align-items:end;
+    }
+
+    .statement h2{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(3.6rem,6.8vw,7.2rem);
+      line-height:.82;
+      letter-spacing:-.09em;
+      font-weight:500;
+      margin:0;
+      color:var(--ink);
+    }
+
+    .statement p{
+      color:#4f5968;
+      font-size:1.13rem;
+      line-height:1.85;
+      margin:0;
+      max-width:590px;
+    }
+
+    .workflow-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+    }
+
+    .workflow{
+      background:#fff;
+      border:1px solid rgba(16,22,33,.09);
+      min-height:260px;
+      padding:30px;
+      display:flex;
+      flex-direction:column;
+      justify-content:space-between;
+      box-shadow:0 22px 58px rgba(13,45,85,.07);
+    }
+
+    .workflow h3{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(2rem,2.8vw,3.2rem);
+      line-height:.9;
+      letter-spacing:-.065em;
+      font-weight:500;
+      margin:0 0 14px;
+      color:var(--navy);
+    }
+
+    .workflow p{
+      color:#566170;
+      margin:0;
+    }
+
+    .closing{
+      position:relative;
+      text-align:center;
+      padding:128px 0;
+      background:
+      radial-gradient(circle at 50% 0%,rgba(215,166,45,.19),transparent 34rem),
+      linear-gradient(#fbf7ef,#ffffff);
+      border-top:1px solid rgba(16,22,33,.08);
+    }
+
+    .closing h2{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(3.5rem,7vw,7.6rem);
+      line-height:.83;
+      letter-spacing:-.09em;
+      font-weight:500;
+      max-width:980px;
+      margin:0 auto 28px;
+      color:var(--ink);
+    }
+
+    .closing p{
+      color:#4f5968;
+      max-width:650px;
+      margin:0 auto 38px;
+      font-size:1.1rem;
+      line-height:1.8;
+    }
+
+    .footer{
+      background:#fff;
+      color:#6b7483;
+      border-top:1px solid rgba(16,22,33,.08);
+      padding:46px 0 62px;
+      font-size:13px;
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:28px;
+    }
+
+    .footer img{
+      width:190px;
+      margin-bottom:12px;
+    }
+
+    .footer-links{
+      display:flex;
+      gap:24px;
+      color:var(--ink);
+      font-weight:850;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:11px;
+    }
+
+    @media(max-width:1060px){
+      .brand img{width:170px}
+      .nav-links{gap:20px}
+      .intro-card,.section-head,.statement-inner,.compare-grid{
+        grid-template-columns:1fr
+      }
+      .capability-grid,.workflow-grid{
+        grid-template-columns:repeat(2,1fr)
+      }
+    }
+
+    @media(max-width:760px){
+      .topbar{display:none}
+      .container{width:min(100% - 30px,var(--max))}
+      .nav{height:76px}
+      .brand img{width:156px}
+      .nav-links,.nav-cta{display:none}
+      .hero-inner{padding:58px 0 72px}
+      .intro-panel{margin-top:0}
+      .intro-card,.compare-card{padding:30px}
+      .section{padding:78px 0}
+      .capability-grid,.workflow-grid{
+        grid-template-columns:1fr
+      }
+      .footer-inner{flex-direction:column}
+      .footer-links{flex-direction:column;gap:12px}
+    }
   </style>
 </head>
+
 <body>
+
   <div class="topbar">
     <div class="container topbar-inner">
       <span>CMS Technical Optimization for Signature Law</span>
@@ -110,123 +496,146 @@
 
   <header class="header">
     <div class="container nav">
-      <a class="brand" href="index.html" aria-label="Signature Law home"><img src="siglogo.png" alt="Signature Law" /></a>
+
+      <a class="brand" href="index.html" aria-label="Signature Law home">
+        <img src="siglogo.png" alt="Signature Law" />
+      </a>
+
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="practice-areas.html">Practice Areas</a>
         <a href="attorneys.html">Attorneys</a>
         <a href="contact.html">Contact</a>
         <a href="whycms.html">Why CMS Tech?</a>
       </nav>
+
       <a class="nav-cta" href="contact.html">Request Counsel</a>
+
     </div>
   </header>
 
   <main>
+
     <section class="hero">
+
       <div class="container hero-inner">
+
         <img class="hero-logo" src="cmslogo.png" alt="CMS Technical Optimization" />
+
         <div class="eyebrow">Technical Strategy for Legal Growth</div>
-        <h1>A better website system for a smarter law firm.</h1>
-        <p class="hero-copy">CMS Technical Optimization helps Signature Law turn its website into a durable asset: faster, clearer, easier to index, easier for AI systems to understand, and better aligned with high-value legal search behavior.</p>
+
+        <h1>
+          A better website system for a smarter law firm.
+        </h1>
+
+        <p class="hero-copy">
+          CMS Technical Optimization helps Signature Law turn its website into a durable asset: faster, clearer, easier to index, easier for AI systems to understand, and better aligned with high-value legal search behavior.
+        </p>
+
         <div class="hero-actions">
-          <a class="button gold" href="https://www.829studios.com/results/foley/">Review SEO Model</a>
-          <a class="button outline" href="https://web.dev/articles/ai-agent-site-ux">Read AI Guidance</a>
+          <a class="button gold" href="https://www.829studios.com/results/foley/">
+            Review SEO Model
+          </a>
+
+          <a class="button outline" href="https://web.dev/articles/ai-agent-site-ux">
+            Read AI Guidance
+          </a>
         </div>
+
       </div>
+
     </section>
 
     <section class="intro-panel">
+
       <div class="container">
+
         <div class="intro-card">
-          <h2>Search discipline, built for the AI era.</h2>
-          <p>CMS Tech will apply the same fundamentals behind successful legal SEO programs—technical health, site architecture, content clarity, local relevance, conversion paths, and authority signals—while extending the strategy for AI discovery through semantic structure, accessible interfaces, and clean page hierarchy.</p>
+
+          <h2>
+            Search discipline, built for the AI era.
+          </h2>
+
+          <p>
+            CMS Tech applies the same fundamentals behind successful legal SEO programs—technical health, site architecture, content clarity, conversion paths, and authority signals—while extending the strategy for AI discovery through semantic structure and machine-readable page hierarchy.
+          </p>
+
         </div>
+
       </div>
+
     </section>
 
-    <section class="section light">
+    <section class="section light" style="padding-top:48px;">
+
       <div class="container">
-        <div class="section-head">
+
+        <div class="section-head" style="margin-bottom:34px;">
+
           <div>
-            <div class="kicker">Why It Matters</div>
-            <h2 class="section-title">The site should compound value after launch.</h2>
+            <div class="kicker">The Fractional Advantage</div>
+
+            <h2 class="section-title">
+              Lean leadership is becoming the modern operating model.
+            </h2>
           </div>
-          <p class="section-lede">Traditional web builds often focus on delivery. CMS Technical Optimization focuses on durable performance: search visibility, crawlability, conversion clarity, maintainability, and machine-readable structure.</p>
+
+          <p class="section-lede">
+            Companies are replacing bloated executive structures with specialized fractional leadership built for speed, flexibility, and technical expertise.
+          </p>
+
         </div>
 
         <div class="capability-grid">
-          <article class="capability"><div><h2>Legal SEO</h2></div><p>The Foley case study demonstrates how focused SEO can improve legal visibility through technical cleanup, better content structure, and conversion-aware UX.</p><a href="https://www.829studios.com/results/foley/">View case study →</a></article>
-          <article class="capability"><div><h2>AI Usability</h2></div><p>Web.dev’s AI-agent guidance highlights the importance of semantic HTML, accessible controls, structured content, and user journeys that software agents can understand.</p><a href="https://web.dev/articles/ai-agent-site-ux">View guidance →</a></article>
-          <article class="capability"><div><h2>Technical Control</h2></div><p>CMS Tech aligns performance, architecture, content modeling, metadata, internal links, and CMS maintainability from the start instead of patching them later.</p><a href="contact.html">Start the build →</a></article>
-        </div>
-      </div>
-    </section>
 
-    <section class="section white">
-      <div class="container compare-grid">
-        <article class="compare-card">
-          <h2>Traditional web teams can be slow and fragmented.</h2>
-          <p>Large development houses often divide strategy, design, content, SEO, engineering, QA, and deployment across bloated handoff chains. The site may look polished, but the technical foundation often arrives late or requires expensive rework.</p>
-          <div class="bullet-list">
-            <div class="bullet">SEO, accessibility, and performance are frequently treated as final-stage fixes.</div>
-            <div class="bullet">Large teams can produce unclear ownership and slower iteration.</div>
-            <div class="bullet">Template-heavy builds often create unnecessary bloat and weak semantic structure.</div>
-          </div>
-        </article>
+          <article class="capability">
+            <div>
+              <h2>72%</h2>
+            </div>
 
-        <article class="compare-card gold-card">
-          <h2>CMS Tech builds from the technical foundation up.</h2>
-          <p>The advantage is integration: strategy, CMS architecture, Core Web Vitals, schema, accessibility, internal linking, content models, and AI-readable page structure are designed together.</p>
-          <div class="bullet-list">
-            <div class="bullet">Fewer handoffs, faster decisions, and more direct accountability.</div>
-            <div class="bullet">Cleaner HTML, leaner assets, and stronger long-term maintainability.</div>
-            <div class="bullet">Content, search, conversion, and AI-agent usability planned as one system.</div>
-          </div>
-        </article>
-      </div>
-    </section>
+            <p>
+              Forbes reports that 72% of CEOs plan to increase their use of fractional executives.
+            </p>
 
-    <section class="section statement">
-      <div class="container statement-inner">
-        <h2>Modern legal visibility is no longer just about rankings.</h2>
-        <p>Signature Law needs pages that communicate authority to clients, structure to search engines, and clarity to AI agents that increasingly read and act on behalf of users.</p>
-      </div>
-    </section>
+            <a href="https://www.forbes.com">
+              Forbes →
+            </a>
 
-    <section class="section light">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="kicker">Workflow Advantage</div>
-            <h2 class="section-title">The workflow is the advantage.</h2>
-          </div>
-          <p class="section-lede">The build process is lean, technical, and designed to keep improving after launch.</p>
+          </article>
+
+          <article class="capability">
+            <div>
+              <h2>35%</h2>
+            </div>
+
+            <p>
+              Independent research projects fractional leadership adoption may reach 35% of companies.
+            </p>
+
+            <a href="https://jamesmattison.co.uk/research/the-rise-of-the-fractional-brand-marketing-leader/">
+              Research →
+            </a>
+
+          </article>
+
+          <article class="capability">
+            <div>
+              <h2>Why It Wins</h2>
+            </div>
+
+            <p>
+              Faster execution. Lower overhead. Specialized expertise. Leaner teams built for AI, search, and modern digital operations.
+            </p>
+
+          </article>
+
         </div>
 
-        <div class="workflow-grid">
-          <div class="workflow"><div><h3>Structure</h3><p>Define practice areas, attorney relationships, page hierarchy, schema, metadata, and internal links.</p></div></div>
-          <div class="workflow"><div><h3>Performance</h3><p>Build lightweight pages with stable layouts, clean assets, fast rendering, and measurable Core Web Vitals.</p></div></div>
-          <div class="workflow"><div><h3>Search</h3><p>Apply technical SEO, content pruning, crawlability improvements, keyword alignment, and conversion paths.</p></div></div>
-          <div class="workflow"><div><h3>AI Signals</h3><p>Use semantic HTML, accessible labels, visible actions, and clear page hierarchy so agents understand the site.</p></div></div>
-        </div>
       </div>
+
     </section>
 
-    <section class="closing">
-      <div class="container">
-        <div class="eyebrow">CMS Technical Optimization</div>
-        <h2>Signature Law can launch with authority and keep compounding value.</h2>
-        <p>CMS Tech brings the SEO discipline, infrastructure thinking, and AI-era execution model needed to make the website a strategic asset.</p>
-        <a class="button gold" href="contact.html">Build the Advantage</a>
-      </div>
-    </section>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div><img src="siglogo.png" alt="Signature Law" />CMS Technical Optimization for long-term search, AI visibility, and digital value.</div>
-      <div class="footer-links"><a href="index.html">Home</a><a href="practice-areas.html">Practice Areas</a><a href="attorneys.html">Attorneys</a><a href="contact.html">Contact</a></div>
-    </div>
-  </footer>
 </body>
 </html>
+```

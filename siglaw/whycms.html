@@ -3,190 +3,229 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Why CMS Technical Optimization | Signature Law</title>
-  <meta name="description" content="Why CMS Technical Optimization is ideally suited to help Signature Law build long-term search, AI visibility, performance, and digital value." />
+  <title>Why CMS Tech? | Signature Law</title>
+  <meta name="description" content="Why CMS Technical Optimization is ideally suited to help Signature Law build long-term SEO, AI visibility, performance, and digital value." />
+
   <style>
-    :root{
-      --black:#020202;
-      --obsidian:#070707;
-      --ember:#ff5a00;
-      --ember-2:#ff8a00;
-      --ember-3:#ffbd42;
-      --fire:#ff2d00;
+    :root {
+      --black:#06070a;
+      --ink:#101621;
+      --navy:#0d2d55;
+      --blue:#173f73;
+      --gold:#b98218;
+      --gold-2:#d7a62d;
+      --gold-3:#f1cf67;
+      --paper:#fbf7ef;
       --white:#ffffff;
-      --soft:#f3efe8;
-      --ash:#b8b8b8;
-      --smoke:#1a1a1a;
-      --line:rgba(255,122,0,.24);
       --max:1240px;
     }
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0;background:var(--black);color:var(--white);font-family:Arial,Helvetica,sans-serif;line-height:1.55;overflow-x:hidden}
+    body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;overflow-x:hidden}
     a{color:inherit;text-decoration:none}
     img{display:block;max-width:100%}
     h1,h2,h3,p{margin-top:0}
     .container{width:min(var(--max),calc(100% - 56px));margin:0 auto}
 
-    .header{position:sticky;top:0;z-index:100;background:rgba(0,0,0,.84);border-bottom:1px solid var(--line);backdrop-filter:blur(18px)}
-    .nav{height:82px;display:flex;align-items:center;justify-content:space-between;gap:28px}
-    .brand{display:flex;align-items:center;gap:14px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;font-size:12px;color:#fff}
-    .brand-mark{width:42px;height:42px;border-radius:50%;background:radial-gradient(circle,var(--ember-3),var(--ember) 45%,var(--fire));box-shadow:0 0 24px rgba(255,90,0,.65);position:relative}
-    .brand-mark:before{content:"";position:absolute;inset:10px;border:2px solid #111;border-radius:50%}
-    .nav-links{display:flex;align-items:center;gap:30px;color:rgba(255,255,255,.72);font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:800}
-    .nav-links a:hover{color:var(--ember-3)}
-    .nav-cta{min-height:46px;padding:0 22px;border:1px solid rgba(255,138,0,.72);display:inline-flex;align-items:center;justify-content:center;color:var(--ember-3);font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:950;background:rgba(255,90,0,.08);transition:.2s ease}
-    .nav-cta:hover{background:linear-gradient(135deg,var(--ember-3),var(--ember));color:#070707;box-shadow:0 0 30px rgba(255,90,0,.35)}
+    .topbar{background:var(--white);border-bottom:1px solid rgba(16,22,33,.08);color:rgba(16,22,33,.62);font-size:11px;letter-spacing:.22em;text-transform:uppercase}
+    .topbar-inner{height:38px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.86);border-bottom:1px solid rgba(16,22,33,.08);backdrop-filter:blur(18px)}
+    .nav{height:86px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+    .brand{display:flex;align-items:center;min-width:max-content}
+    .brand img{width:214px;height:auto;filter:drop-shadow(0 8px 20px rgba(13,45,85,.12))}
+    .nav-links{display:flex;align-items:center;gap:34px;color:rgba(16,22,33,.72);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:850}
+    .nav-links a{transition:color .2s ease}.nav-links a:hover{color:var(--gold)}
+    .nav-cta{min-height:46px;padding:0 22px;border:1px solid rgba(185,130,24,.72);display:inline-flex;align-items:center;justify-content:center;color:#7d5510;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:950;background:rgba(185,130,24,.06);transition:.2s ease}
+    .nav-cta:hover{background:linear-gradient(135deg,var(--gold-3),var(--gold));color:#090909}
 
-    .hero{position:relative;min-height:calc(100vh - 82px);display:grid;align-items:center;overflow:hidden;background:radial-gradient(circle at 28% 48%,rgba(255,90,0,.26),transparent 28rem),radial-gradient(circle at 80% 56%,rgba(255,45,0,.18),transparent 24rem),linear-gradient(180deg,#000 0%,#070707 48%,#000 100%)}
-    .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,90,0,.08),transparent),radial-gradient(circle at 50% 55%,rgba(255,138,0,.18),transparent 30rem);pointer-events:none}
-    .hero:after{content:"";position:absolute;left:8%;right:8%;top:54%;height:2px;background:linear-gradient(90deg,transparent,var(--fire),var(--ember-3),var(--fire),transparent);box-shadow:0 0 22px rgba(255,90,0,.9),0 0 60px rgba(255,90,0,.45);pointer-events:none}
-    .hero-inner{position:relative;z-index:2;text-align:center;padding:96px 0 90px;display:grid;justify-items:center}
-    .hero-logo{width:min(1120px,96vw);margin:0 auto 38px;filter:drop-shadow(0 0 36px rgba(255,90,0,.45)) drop-shadow(0 36px 60px rgba(0,0,0,.9))}
-    .eyebrow{color:var(--ember-3);font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:950;margin-bottom:22px;text-shadow:0 0 18px rgba(255,90,0,.6)}
-    h1{font-size:clamp(3.4rem,7vw,7.8rem);line-height:.9;letter-spacing:-.065em;font-weight:900;margin-bottom:24px;max-width:1060px;text-wrap:balance}
-    .hero-copy{max-width:760px;color:rgba(255,255,255,.74);font-size:clamp(1.08rem,1.5vw,1.3rem);line-height:1.76;margin-bottom:36px;text-wrap:balance}
-    .hero-actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
-    .button{min-height:56px;padding:0 26px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:950;border:1px solid transparent;transition:.22s ease}
+    .button{min-height:58px;padding:0 28px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:950;transition:.22s ease;border:1px solid transparent}
     .button:hover{transform:translateY(-2px)}
-    .button.fire{background:linear-gradient(135deg,var(--ember-3),var(--ember),var(--fire));color:#050505;border-color:var(--ember);box-shadow:0 0 34px rgba(255,90,0,.32)}
-    .button.ghost{background:rgba(255,255,255,.04);border-color:rgba(255,255,255,.22);color:#fff}.button.ghost:hover{border-color:var(--ember-3);color:var(--ember-3)}
+    .button.gold{background:linear-gradient(135deg,var(--gold-3),var(--gold-2) 44%,var(--gold));color:#080808;border-color:var(--gold-2);box-shadow:0 18px 38px rgba(185,130,24,.18)}
+    .button.outline{border-color:rgba(13,45,85,.24);color:var(--navy);background:rgba(255,255,255,.42)}
+    .button.outline:hover{border-color:var(--gold);color:#7d5510;background:rgba(255,255,255,.86)}
 
-    .section{padding:104px 0;position:relative}.dark{background:#050505}.ember-band{background:linear-gradient(115deg,#050505,#120600 48%,#000 100%);border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden}.ember-band:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 26% 42%,rgba(255,90,0,.18),transparent 28rem);pointer-events:none}
-    .section-head{position:relative;z-index:1;display:grid;grid-template-columns:.85fr 1.15fr;gap:70px;align-items:end;margin-bottom:52px}.kicker{color:var(--ember-3);font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:950;margin-bottom:16px}.section-title{font-size:clamp(3rem,5.8vw,6.2rem);line-height:.88;letter-spacing:-.065em;font-weight:900;margin:0;text-wrap:balance}.section-lede{color:rgba(255,255,255,.7);font-size:1.1rem;line-height:1.82;max-width:700px;margin:0}
+    .hero{position:relative;overflow:hidden;background:radial-gradient(circle at 50% 8%,rgba(241,207,103,.26),transparent 24rem),radial-gradient(circle at 80% 42%,rgba(23,63,115,.13),transparent 30rem),linear-gradient(180deg,#ffffff 0%,#fbf7ef 58%,#f4ecde 100%)}
+    .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,45,85,.055) 1px,transparent 1px),linear-gradient(rgba(13,45,85,.045) 1px,transparent 1px);background-size:104px 104px;mask-image:radial-gradient(circle at 50% 30%,rgba(0,0,0,.58),transparent 68%);opacity:.7;pointer-events:none}
+    .hero-inner{position:relative;z-index:2;padding:74px 0 94px;text-align:center;display:grid;justify-items:center}
+    .hero-logo{width:min(860px,92vw);margin:0 auto 42px;filter:drop-shadow(0 24px 42px rgba(13,45,85,.13)) drop-shadow(0 0 20px rgba(185,130,24,.13))}
+    .eyebrow{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:22px;color:#8b6115;font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:950}
+    .eyebrow:before,.eyebrow:after{content:"";width:52px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+    h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.3rem,6.8vw,7.3rem);line-height:.88;letter-spacing:-.075em;font-weight:500;margin-bottom:28px;max-width:1040px;text-wrap:balance;color:var(--ink)}
+    .hero-copy{max-width:870px;color:#4e5969;font-size:clamp(1.08rem,1.45vw,1.25rem);line-height:1.78;margin-bottom:38px;text-wrap:balance}
+    .hero-actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
 
-    .proof-grid{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.proof-card{background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.025));border:1px solid rgba(255,122,0,.24);padding:34px;min-height:330px;box-shadow:0 34px 90px rgba(0,0,0,.38);position:relative;overflow:hidden}.proof-card:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 10%,rgba(255,90,0,.15),transparent 14rem);opacity:.9}.proof-card>*{position:relative;z-index:1}.proof-card h2{font-size:2.5rem;line-height:.95;letter-spacing:-.04em;margin:0 0 18px}.proof-card p{color:rgba(255,255,255,.68);margin:0 0 24px}.proof-card a{color:var(--ember-3);font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:950}
+    .intro-panel{position:relative;margin-top:-42px;z-index:3}
+    .intro-card{background:rgba(255,255,255,.92);border:1px solid rgba(185,130,24,.18);box-shadow:0 28px 80px rgba(13,45,85,.11);padding:42px 46px;display:grid;grid-template-columns:.58fr 1.42fr;gap:46px;align-items:start}
+    .intro-card h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(2.5rem,4vw,4.35rem);line-height:.88;letter-spacing:-.075em;font-weight:500;margin:0;color:var(--navy)}
+    .intro-card p{color:#4f5968;font-size:1.08rem;line-height:1.85;margin:0}
 
-    .compare{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:stretch}.compare-card{background:#fff;color:#111;padding:40px;border:1px solid rgba(255,122,0,.18);box-shadow:0 30px 80px rgba(0,0,0,.32)}.compare-card.dark-card{background:linear-gradient(180deg,#151515,#050505);color:#fff}.compare-card h2{font-size:clamp(2.4rem,4vw,4.6rem);line-height:.9;letter-spacing:-.055em;margin-bottom:22px}.compare-card p{color:#616161}.compare-card.dark-card p{color:rgba(255,255,255,.68)}
-    .bullet-list{display:grid;gap:14px;margin-top:28px}.bullet{display:grid;grid-template-columns:18px 1fr;gap:14px;color:#444}.dark-card .bullet{color:rgba(255,255,255,.78)}.bullet:before{content:"";width:10px;height:10px;border-radius:50%;background:var(--ember);box-shadow:0 0 16px rgba(255,90,0,.8);margin-top:8px}
+    .section{padding:104px 0}
+    .light{background:var(--paper)}
+    .white{background:#fff}
+    .section-head{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:end;margin-bottom:52px}
+    .kicker{color:var(--gold);font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:950;margin-bottom:16px}
+    .section-title{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.1rem,5.8vw,6.25rem);line-height:.86;letter-spacing:-.085em;font-weight:500;margin:0;text-wrap:balance;color:var(--ink)}
+    .section-lede{color:#4f5968;font-size:1.08rem;line-height:1.82;max-width:650px;margin:0}
 
-    .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(255,122,0,.25);border:1px solid rgba(255,122,0,.25)}.step{background:#050505;min-height:250px;padding:30px;display:flex;flex-direction:column;justify-content:space-between}.step small{color:var(--ember-3);font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:950}.step h3{font-size:2.1rem;line-height:.95;letter-spacing:-.045em;margin:22px 0 14px}.step p{color:rgba(255,255,255,.66);margin:0}
+    .capability-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .capability{background:#fff;border:1px solid rgba(16,22,33,.09);min-height:300px;padding:32px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;box-shadow:0 22px 58px rgba(13,45,85,.07)}
+    .capability:after{content:"";position:absolute;right:-72px;bottom:-92px;width:190px;height:190px;border:1px solid rgba(185,130,24,.22);transform:rotate(32deg)}
+    .capability h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(2rem,2.8vw,3.2rem);line-height:.9;letter-spacing:-.065em;font-weight:500;margin:0 0 12px;color:var(--navy)}
+    .capability p{color:#566170;margin:0 0 22px}.capability a{color:var(--gold);font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:950;position:relative;z-index:1}
 
-    .closing{text-align:center;padding:118px 0;background:radial-gradient(circle at 50% 0%,rgba(255,90,0,.25),transparent 32rem),#000;border-top:1px solid var(--line)}.closing h2{font-size:clamp(3rem,6vw,6.8rem);line-height:.88;letter-spacing:-.065em;font-weight:900;margin:0 auto 26px;max-width:1000px;text-wrap:balance}.closing p{color:rgba(255,255,255,.72);max-width:700px;margin:0 auto 36px;font-size:1.1rem;line-height:1.8}
+    .compare-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:24px;align-items:stretch}
+    .compare-card{background:#fff;border:1px solid rgba(16,22,33,.09);box-shadow:0 28px 74px rgba(13,45,85,.08);padding:40px;position:relative;overflow:hidden}.compare-card.gold-card{background:linear-gradient(180deg,#ffffff,#fbf7ef);border-color:rgba(185,130,24,.24)}
+    .compare-card h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(2.6rem,4.4vw,5rem);line-height:.88;letter-spacing:-.08em;font-weight:500;margin-bottom:22px;color:var(--navy)}
+    .compare-card p{color:#566170;line-height:1.82}.bullet-list{display:grid;gap:14px;margin-top:28px}.bullet{display:grid;grid-template-columns:18px 1fr;gap:14px;color:#4f5968}.bullet:before{content:"";width:9px;height:9px;border-radius:50%;background:var(--gold);box-shadow:0 0 14px rgba(185,130,24,.35);margin-top:8px}
 
-    .footer{background:#000;color:rgba(255,255,255,.56);border-top:1px solid var(--line);padding:42px 0 58px;font-size:13px}.footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:28px}.footer-links{display:flex;gap:24px;color:#fff;font-weight:850;text-transform:uppercase;letter-spacing:.14em;font-size:11px}
+    .statement{position:relative;background:linear-gradient(115deg,#ffffff 0%,#f7f1e7 48%,#eaf0f7 100%);overflow:hidden;border-top:1px solid rgba(16,22,33,.08);border-bottom:1px solid rgba(16,22,33,.08)}
+    .statement-inner{display:grid;grid-template-columns:1fr .78fr;gap:72px;align-items:end}
+    .statement h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.6rem,6.8vw,7.2rem);line-height:.82;letter-spacing:-.09em;font-weight:500;margin:0;color:var(--ink)}
+    .statement p{color:#4f5968;font-size:1.13rem;line-height:1.85;margin:0;max-width:590px}
 
-    @media(max-width:980px){.nav-links{display:none}.section-head,.compare{grid-template-columns:1fr}.proof-grid{grid-template-columns:1fr}.process-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:680px){.container{width:min(100% - 30px,var(--max))}.nav-cta{display:none}.hero-inner{padding:70px 0}.section{padding:78px 0}.proof-card,.compare-card,.step{padding:28px}.process-grid{grid-template-columns:1fr}.footer-inner{flex-direction:column}.footer-links{flex-direction:column;gap:12px}}
+    .workflow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .workflow{background:#fff;border:1px solid rgba(16,22,33,.09);min-height:260px;padding:30px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 22px 58px rgba(13,45,85,.07)}
+    .workflow h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(2rem,2.8vw,3.2rem);line-height:.9;letter-spacing:-.065em;font-weight:500;margin:0 0 14px;color:var(--navy)}
+    .workflow p{color:#566170;margin:0}
+
+    .closing{position:relative;text-align:center;padding:128px 0;background:radial-gradient(circle at 50% 0%,rgba(215,166,45,.19),transparent 34rem),linear-gradient(#fbf7ef,#ffffff);border-top:1px solid rgba(16,22,33,.08)}
+    .closing h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.5rem,7vw,7.6rem);line-height:.83;letter-spacing:-.09em;font-weight:500;max-width:980px;margin:0 auto 28px;color:var(--ink)}
+    .closing p{color:#4f5968;max-width:650px;margin:0 auto 38px;font-size:1.1rem;line-height:1.8}
+
+    .footer{background:#fff;color:#6b7483;border-top:1px solid rgba(16,22,33,.08);padding:46px 0 62px;font-size:13px}
+    .footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:28px}.footer img{width:190px;margin-bottom:12px}.footer-links{display:flex;gap:24px;color:var(--ink);font-weight:850;text-transform:uppercase;letter-spacing:.14em;font-size:11px}
+
+    @media(max-width:1060px){.brand img{width:170px}.nav-links{gap:20px}.intro-card,.section-head,.statement-inner,.compare-grid{grid-template-columns:1fr}.capability-grid,.workflow-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:760px){.topbar{display:none}.container{width:min(100% - 30px,var(--max))}.nav{height:76px}.brand img{width:156px}.nav-links,.nav-cta{display:none}.hero-inner{padding:58px 0 72px}.intro-panel{margin-top:0}.intro-card,.compare-card{padding:30px}.section{padding:78px 0}.capability-grid,.workflow-grid{grid-template-columns:1fr}.footer-inner{flex-direction:column}.footer-links{flex-direction:column;gap:12px}}
   </style>
 </head>
 <body>
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span>CMS Technical Optimization for Signature Law</span>
+      <span>SEO · AI Readiness · Performance · Infrastructure</span>
+    </div>
+  </div>
+
   <header class="header">
     <div class="container nav">
-      <a class="brand" href="whycms.html" aria-label="CMS Technical Optimization"><span class="brand-mark"></span><span>CMS Technical Optimization</span></a>
+      <a class="brand" href="index.html" aria-label="Signature Law home"><img src="siglogo.png" alt="Signature Law" /></a>
       <nav class="nav-links" aria-label="Primary navigation">
-        <a href="index.html">Signature Law</a>
         <a href="practice-areas.html">Practice Areas</a>
         <a href="attorneys.html">Attorneys</a>
         <a href="contact.html">Contact</a>
+        <a href="whycms.html">Why CMS Tech?</a>
       </nav>
-      <a class="nav-cta" href="contact.html">Start the Build</a>
+      <a class="nav-cta" href="contact.html">Request Counsel</a>
     </div>
   </header>
 
   <main>
     <section class="hero">
       <div class="container hero-inner">
-        <img class="hero-logo" src="cmslogo.png" alt="CMS Technical Optimization presents Workflow Rhythm Blues" />
-        <div class="eyebrow">Infrastructure Design · Intelligent Teams · AI Readiness</div>
-        <h1>Why CMS Technical Optimization is built for Signature Law.</h1>
-        <p class="hero-copy">Signature Law needs more than a good-looking website. It needs a fast, structured, conversion-ready platform that builds search equity today and machine-readable authority for the AI-driven web.</p>
+        <img class="hero-logo" src="cmslogo.png" alt="CMS Technical Optimization" />
+        <div class="eyebrow">Technical Strategy for Legal Growth</div>
+        <h1>A better website system for a smarter law firm.</h1>
+        <p class="hero-copy">CMS Technical Optimization helps Signature Law turn its website into a durable asset: faster, clearer, easier to index, easier for AI systems to understand, and better aligned with high-value legal search behavior.</p>
         <div class="hero-actions">
-          <a class="button fire" href="https://www.829studios.com/results/foley/">Review the SEO Model</a>
-          <a class="button ghost" href="https://web.dev/articles/ai-agent-site-ux">Read the AI Guidelines</a>
+          <a class="button gold" href="https://www.829studios.com/results/foley/">Review SEO Model</a>
+          <a class="button outline" href="https://web.dev/articles/ai-agent-site-ux">Read AI Guidance</a>
         </div>
       </div>
     </section>
 
-    <section class="section ember-band">
+    <section class="intro-panel">
+      <div class="container">
+        <div class="intro-card">
+          <h2>Search discipline, built for the AI era.</h2>
+          <p>CMS Tech will apply the same fundamentals behind successful legal SEO programs—technical health, site architecture, content clarity, local relevance, conversion paths, and authority signals—while extending the strategy for AI discovery through semantic structure, accessible interfaces, and clean page hierarchy.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section light">
       <div class="container">
         <div class="section-head">
           <div>
-            <div class="kicker">The Opportunity</div>
-            <h2 class="section-title">A law-firm website should be an asset, not a brochure.</h2>
+            <div class="kicker">Why It Matters</div>
+            <h2 class="section-title">The site should compound value after launch.</h2>
           </div>
-          <p class="section-lede">CMS Technical Optimization can help Signature Law build a digital platform that is elegant for humans, legible to search engines, and increasingly usable by AI agents that evaluate structured pages, accessible controls, and clean HTML.</p>
+          <p class="section-lede">Traditional web builds often focus on delivery. CMS Technical Optimization focuses on durable performance: search visibility, crawlability, conversion clarity, maintainability, and machine-readable structure.</p>
         </div>
 
-        <div class="proof-grid">
-          <article class="proof-card">
-            <h2>SEO with evidence.</h2>
-            <p>The Foley case study shows the value of technical SEO, content structure, crawlability, schema, UX, and conversion-path work for a law-firm website.</p>
-            <a href="https://www.829studios.com/results/foley/">View Foley case study →</a>
-          </article>
-          <article class="proof-card">
-            <h2>AI-ready structure.</h2>
-            <p>Modern AI agents inspect pages through HTML, screenshots, and accessibility trees. Clean structure is no longer optional; it is part of discoverability.</p>
-            <a href="https://web.dev/articles/ai-agent-site-ux">View web.dev guidance →</a>
-          </article>
-          <article class="proof-card">
-            <h2>Lean execution.</h2>
-            <p>CMS Tech combines strategy, architecture, performance, content modeling, and implementation without the drag of bloated handoff chains.</p>
-            <a href="contact.html">Start with counsel →</a>
-          </article>
+        <div class="capability-grid">
+          <article class="capability"><div><h2>Legal SEO</h2></div><p>The Foley case study demonstrates how focused SEO can improve legal visibility through technical cleanup, better content structure, and conversion-aware UX.</p><a href="https://www.829studios.com/results/foley/">View case study →</a></article>
+          <article class="capability"><div><h2>AI Usability</h2></div><p>Web.dev’s AI-agent guidance highlights the importance of semantic HTML, accessible controls, structured content, and user journeys that software agents can understand.</p><a href="https://web.dev/articles/ai-agent-site-ux">View guidance →</a></article>
+          <article class="capability"><div><h2>Technical Control</h2></div><p>CMS Tech aligns performance, architecture, content modeling, metadata, internal links, and CMS maintainability from the start instead of patching them later.</p><a href="contact.html">Start the build →</a></article>
         </div>
       </div>
     </section>
 
-    <section class="section dark">
-      <div class="container compare">
+    <section class="section white">
+      <div class="container compare-grid">
         <article class="compare-card">
-          <h2>The old agency model is heavy.</h2>
-          <p>Traditional web-development houses often separate discovery, design, content, SEO, engineering, QA, and deployment into slow handoffs. The result is expensive coordination, generic templates, and sites that look finished before they are technically competitive.</p>
+          <h2>Traditional web teams can be slow and fragmented.</h2>
+          <p>Large development houses often divide strategy, design, content, SEO, engineering, QA, and deployment across bloated handoff chains. The site may look polished, but the technical foundation often arrives late or requires expensive rework.</p>
           <div class="bullet-list">
-            <div class="bullet">Large teams can create fragmented ownership.</div>
-            <div class="bullet">Visual polish often outruns semantic structure.</div>
-            <div class="bullet">SEO and accessibility are treated as late-stage fixes.</div>
+            <div class="bullet">SEO, accessibility, and performance are frequently treated as final-stage fixes.</div>
+            <div class="bullet">Large teams can produce unclear ownership and slower iteration.</div>
+            <div class="bullet">Template-heavy builds often create unnecessary bloat and weak semantic structure.</div>
           </div>
         </article>
 
-        <article class="compare-card dark-card">
-          <h2>CMS Tech is built for the new web.</h2>
-          <p>CMS Technical Optimization starts with architecture: fast pages, clean content models, stable layouts, semantic HTML, schema, accessibility, Core Web Vitals, and agent-readable journeys.</p>
+        <article class="compare-card gold-card">
+          <h2>CMS Tech builds from the technical foundation up.</h2>
+          <p>The advantage is integration: strategy, CMS architecture, Core Web Vitals, schema, accessibility, internal linking, content models, and AI-readable page structure are designed together.</p>
           <div class="bullet-list">
-            <div class="bullet">Search strategy informed by the Foley-style law-firm SEO playbook.</div>
-            <div class="bullet">AI-agent usability aligned with current web.dev guidance.</div>
-            <div class="bullet">Lean implementation with fewer handoffs and more technical control.</div>
-            <div class="bullet">Content, crawlability, performance, and conversion designed together.</div>
+            <div class="bullet">Fewer handoffs, faster decisions, and more direct accountability.</div>
+            <div class="bullet">Cleaner HTML, leaner assets, and stronger long-term maintainability.</div>
+            <div class="bullet">Content, search, conversion, and AI-agent usability planned as one system.</div>
           </div>
         </article>
       </div>
     </section>
 
-    <section class="section ember-band">
+    <section class="section statement">
+      <div class="container statement-inner">
+        <h2>Modern legal visibility is no longer just about rankings.</h2>
+        <p>Signature Law needs pages that communicate authority to clients, structure to search engines, and clarity to AI agents that increasingly read and act on behalf of users.</p>
+      </div>
+    </section>
+
+    <section class="section light">
       <div class="container">
         <div class="section-head">
           <div>
-            <div class="kicker">Execution Model</div>
+            <div class="kicker">Workflow Advantage</div>
             <h2 class="section-title">The workflow is the advantage.</h2>
           </div>
-          <p class="section-lede">Signature Law gets a site built for authority, clarity, and ongoing optimization instead of a static launch that immediately begins aging.</p>
+          <p class="section-lede">The build process is lean, technical, and designed to keep improving after launch.</p>
         </div>
 
-        <div class="process-grid">
-          <div class="step"><div><small>01</small><h3>Structure</h3><p>Clarify practice areas, attorney pages, service relationships, metadata, schema, and internal linking.</p></div></div>
-          <div class="step"><div><small>02</small><h3>Performance</h3><p>Build lightweight pages with stable layouts, clean assets, fast rendering, and measurable Core Web Vitals.</p></div></div>
-          <div class="step"><div><small>03</small><h3>Search</h3><p>Apply technical SEO, content pruning, crawlability improvements, keyword alignment, and conversion paths.</p></div></div>
-          <div class="step"><div><small>04</small><h3>AI Signals</h3><p>Use semantic HTML, accessible labels, visible actions, and clear page hierarchy so agents understand the site.</p></div></div>
+        <div class="workflow-grid">
+          <div class="workflow"><div><h3>Structure</h3><p>Define practice areas, attorney relationships, page hierarchy, schema, metadata, and internal links.</p></div></div>
+          <div class="workflow"><div><h3>Performance</h3><p>Build lightweight pages with stable layouts, clean assets, fast rendering, and measurable Core Web Vitals.</p></div></div>
+          <div class="workflow"><div><h3>Search</h3><p>Apply technical SEO, content pruning, crawlability improvements, keyword alignment, and conversion paths.</p></div></div>
+          <div class="workflow"><div><h3>AI Signals</h3><p>Use semantic HTML, accessible labels, visible actions, and clear page hierarchy so agents understand the site.</p></div></div>
         </div>
       </div>
     </section>
 
     <section class="closing">
       <div class="container">
-        <div class="eyebrow">Workflow Rhythm Blues?</div>
+        <div class="eyebrow">CMS Technical Optimization</div>
         <h2>Signature Law can launch with authority and keep compounding value.</h2>
-        <p>CMS Technical Optimization brings the SEO discipline, infrastructure thinking, and AI-era execution model needed to make the website a strategic asset.</p>
-        <a class="button fire" href="contact.html">Build the Advantage</a>
+        <p>CMS Tech brings the SEO discipline, infrastructure thinking, and AI-era execution model needed to make the website a strategic asset.</p>
+        <a class="button gold" href="contact.html">Build the Advantage</a>
       </div>
     </section>
   </main>
 
   <footer class="footer">
     <div class="container footer-inner">
-      <div>CMS Technical Optimization · Artificial Intelligence · Infrastructure Design · Intelligent Teams</div>
-      <div class="footer-links"><a href="index.html">Signature Law</a><a href="practice-areas.html">Practice Areas</a><a href="contact.html">Contact</a></div>
+      <div><img src="siglogo.png" alt="Signature Law" />CMS Technical Optimization for long-term search, AI visibility, and digital value.</div>
+      <div class="footer-links"><a href="index.html">Home</a><a href="practice-areas.html">Practice Areas</a><a href="attorneys.html">Attorneys</a><a href="contact.html">Contact</a></div>
     </div>
   </footer>
 </body>

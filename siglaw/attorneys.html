@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Attorneys | Signature Law</title>
   <meta name="description" content="Meet the attorneys of Signature Law, a comprehensive legal team serving corporate, entertainment, regulatory, litigation, and advocacy clients." />
+
   <style>
     :root {
       --black:#06070a;
@@ -27,45 +28,604 @@
 
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
-    body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;overflow-x:hidden}
-    a{color:inherit;text-decoration:none} img{display:block;max-width:100%} h1,h2,h3,p{margin-top:0}
-    .container{width:min(var(--max),calc(100% - 56px));margin:0 auto}
 
-    .topbar{background:var(--white);border-bottom:1px solid rgba(16,22,33,.08);color:rgba(16,22,33,.62);font-size:11px;letter-spacing:.22em;text-transform:uppercase}
-    .topbar-inner{height:38px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-    .header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.86);border-bottom:1px solid rgba(16,22,33,.08);backdrop-filter:blur(18px)}
-    .nav{height:86px;display:flex;align-items:center;justify-content:space-between;gap:30px}
-    .brand{display:flex;align-items:center;min-width:max-content}.brand img{width:214px;height:auto;filter:drop-shadow(0 8px 20px rgba(13,45,85,.12))}
-    .nav-links{display:flex;align-items:center;gap:34px;color:rgba(16,22,33,.72);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:850}.nav-links a{transition:color .2s ease}.nav-links a:hover{color:var(--gold)}
-    .nav-cta{min-height:46px;padding:0 22px;border:1px solid rgba(185,130,24,.72);display:inline-flex;align-items:center;justify-content:center;color:#7d5510;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:950;background:rgba(185,130,24,.06);transition:.2s ease}.nav-cta:hover{background:linear-gradient(135deg,var(--gold-3),var(--gold));color:#090909}
-    .button{min-height:58px;padding:0 28px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:950;transition:.22s ease;border:1px solid transparent}.button:hover{transform:translateY(-2px)}.button.gold{background:linear-gradient(135deg,var(--gold-3),var(--gold-2) 44%,var(--gold));color:#080808;border-color:var(--gold-2);box-shadow:0 18px 38px rgba(185,130,24,.18)}.button.outline{border-color:rgba(13,45,85,.24);color:var(--navy);background:rgba(255,255,255,.42)}.button.outline:hover{border-color:var(--gold);color:#7d5510;background:rgba(255,255,255,.86)}
+    body{
+      margin:0;
+      font-family:Inter,Arial,Helvetica,sans-serif;
+      color:var(--ink);
+      background:var(--paper);
+      line-height:1.55;
+      overflow-x:hidden;
+    }
 
-    .hero{position:relative;overflow:hidden;background:radial-gradient(circle at 50% 8%,rgba(241,207,103,.24),transparent 24rem),radial-gradient(circle at 80% 42%,rgba(23,63,115,.13),transparent 30rem),linear-gradient(180deg,#ffffff 0%,#fbf7ef 58%,#f4ecde 100%)}
-    .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,45,85,.055) 1px,transparent 1px),linear-gradient(rgba(13,45,85,.045) 1px,transparent 1px);background-size:104px 104px;mask-image:radial-gradient(circle at 50% 30%,rgba(0,0,0,.58),transparent 68%);opacity:.7;pointer-events:none}
-    .hero-inner{position:relative;z-index:2;padding:82px 0 96px;display:grid;grid-template-columns:.86fr 1.14fr;gap:70px;align-items:end}
-    .hero-logo{width:min(460px,80vw);margin-bottom:38px;filter:drop-shadow(0 18px 34px rgba(13,45,85,.11)) drop-shadow(0 0 18px rgba(185,130,24,.11))}
-    .eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:22px;color:#8b6115;font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:950}.eyebrow:before{content:"";width:52px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
-    h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(4rem,7.4vw,8.2rem);line-height:.84;letter-spacing:-.082em;font-weight:500;margin-bottom:0;color:var(--ink);text-wrap:balance}
-    .hero-copy{color:#4e5969;font-size:clamp(1.08rem,1.45vw,1.25rem);line-height:1.8;margin:0;max-width:700px}.hero-side{background:rgba(255,255,255,.72);border:1px solid rgba(185,130,24,.18);box-shadow:0 28px 80px rgba(13,45,85,.1);padding:38px}
-    .hero-side strong{display:block;font-family:Georgia,'Times New Roman',serif;font-size:clamp(2rem,3vw,3.4rem);line-height:.9;letter-spacing:-.065em;font-weight:500;color:var(--navy);margin-bottom:18px}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    h1,h2,h3,p{margin-top:0}
 
-    .section{padding:104px 0}.light{background:var(--paper)}.white{background:#fff}.section-head{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:end;margin-bottom:52px}.kicker{color:var(--gold);font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:950;margin-bottom:16px}.section-title{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.1rem,5.8vw,6.25rem);line-height:.86;letter-spacing:-.085em;font-weight:500;margin:0;text-wrap:balance;color:var(--ink)}.section-lede{color:#4f5968;font-size:1.08rem;line-height:1.82;max-width:660px;margin:0}
+    .container{
+      width:min(var(--max),calc(100% - 56px));
+      margin:0 auto;
+    }
 
-    .partner-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:28px}.attorney-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .attorney-card{background:#fff;border:1px solid rgba(16,22,33,.09);box-shadow:0 24px 66px rgba(13,45,85,.08);display:flex;flex-direction:column;min-height:690px;overflow:hidden;position:relative}.attorney-card.founder{border-color:rgba(185,130,24,.28);box-shadow:0 28px 80px rgba(185,130,24,.13)}
-    .photo-wrap{height:380px;background:linear-gradient(135deg,#e9e4da,#fff);overflow:hidden}.photo-wrap img{width:100%;height:100%;object-fit:cover;filter:saturate(.96) contrast(1.02);transition:.35s ease}.attorney-card:hover img{transform:scale(1.035)}
-    .attorney-info{padding:30px;display:flex;flex:1;flex-direction:column;justify-content:space-between}.role{color:var(--gold);letter-spacing:.19em;text-transform:uppercase;font-weight:950;font-size:11px}.attorney-info h2{font-family:Georgia,'Times New Roman',serif;font-size:2.45rem;line-height:.94;letter-spacing:-.065em;font-weight:500;margin:14px 0 18px;color:var(--navy)}.attorney-info p{color:#566170;margin-bottom:28px;line-height:1.74}.meta{display:grid;gap:10px;border-top:1px solid rgba(16,22,33,.1);padding-top:20px;color:#303949;font-size:14px}.meta span:before{content:"— ";color:var(--gold)}
+    .topbar{
+      background:var(--white);
+      border-bottom:1px solid rgba(16,22,33,.08);
+      color:rgba(16,22,33,.62);
+      font-size:11px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+    }
 
-    .statement{position:relative;background:linear-gradient(115deg,#ffffff 0%,#f7f1e7 48%,#eaf0f7 100%);overflow:hidden;border-top:1px solid rgba(16,22,33,.08);border-bottom:1px solid rgba(16,22,33,.08)}.statement:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 24% 38%,rgba(215,166,45,.20),transparent 28rem);pointer-events:none}.statement-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr .78fr;gap:72px;align-items:end}.statement h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.6rem,6.8vw,7.2rem);line-height:.82;letter-spacing:-.09em;font-weight:500;margin:0;text-wrap:balance;color:var(--ink)}.statement p{color:#4f5968;font-size:1.13rem;line-height:1.85;margin:0;max-width:590px}
+    .topbar-inner{
+      height:38px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
 
-    .closing{position:relative;text-align:center;padding:128px 0;background:radial-gradient(circle at 50% 0%,rgba(215,166,45,.19),transparent 34rem),linear-gradient(#fbf7ef,#ffffff);border-top:1px solid rgba(16,22,33,.08)}.closing .eyebrow{justify-content:center}.closing .eyebrow:after{content:"";width:52px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}.closing h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.5rem,7vw,7.6rem);line-height:.83;letter-spacing:-.09em;font-weight:500;max-width:980px;margin:0 auto 28px;text-wrap:balance;color:var(--ink)}.closing p{color:#4f5968;max-width:590px;margin:0 auto 38px;font-size:1.1rem;line-height:1.8}
-    .footer{background:#fff;color:#6b7483;border-top:1px solid rgba(16,22,33,.08);padding:46px 0 62px;font-size:13px}.footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:28px}.footer img{width:190px;margin-bottom:12px;filter:drop-shadow(0 8px 18px rgba(13,45,85,.1))}.footer-links{display:flex;gap:24px;color:var(--ink);font-weight:850;text-transform:uppercase;letter-spacing:.14em;font-size:11px}
+    .header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(255,255,255,.86);
+      border-bottom:1px solid rgba(16,22,33,.08);
+      backdrop-filter:blur(18px);
+    }
 
-    @media(max-width:1060px){.brand img{width:170px}.nav-links{gap:22px}.hero-inner,.section-head,.statement-inner{grid-template-columns:1fr}.partner-grid,.attorney-grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:760px){.topbar{display:none}.container{width:min(100% - 30px,var(--max))}.nav{height:76px}.brand img{width:156px}.nav-links,.nav-cta{display:none}.hero-inner{padding:58px 0 72px}.hero-side{padding:30px}.section{padding:78px 0}.partner-grid,.attorney-grid{grid-template-columns:1fr}.attorney-card{min-height:auto}.photo-wrap{height:380px}.footer-inner{flex-direction:column}.footer-links{flex-direction:column;gap:12px}}
+    .nav{
+      min-height:86px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:30px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      min-width:max-content;
+    }
+
+    .brand img{
+      width:214px;
+      height:auto;
+      filter:drop-shadow(0 8px 20px rgba(13,45,85,.12));
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:34px;
+      color:rgba(16,22,33,.72);
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-weight:850;
+    }
+
+    .nav-links a{
+      transition:color .2s ease;
+    }
+
+    .nav-links a:hover{
+      color:var(--gold);
+    }
+
+    .nav-cta{
+      min-height:46px;
+      padding:0 22px;
+      border:1px solid rgba(185,130,24,.72);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      color:#7d5510;
+      font-size:11px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-weight:950;
+      background:rgba(185,130,24,.06);
+      transition:.2s ease;
+    }
+
+    .nav-cta:hover{
+      background:linear-gradient(135deg,var(--gold-3),var(--gold));
+      color:#090909;
+    }
+
+    .button{
+      min-height:58px;
+      padding:0 28px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-size:11px;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      font-weight:950;
+      transition:.22s ease;
+      border:1px solid transparent;
+    }
+
+    .button:hover{
+      transform:translateY(-2px);
+    }
+
+    .button.gold{
+      background:linear-gradient(135deg,var(--gold-3),var(--gold-2) 44%,var(--gold));
+      color:#080808;
+      border-color:var(--gold-2);
+      box-shadow:0 18px 38px rgba(185,130,24,.18);
+    }
+
+    .button.outline{
+      border-color:rgba(13,45,85,.24);
+      color:var(--navy);
+      background:rgba(255,255,255,.42);
+    }
+
+    .button.outline:hover{
+      border-color:var(--gold);
+      color:#7d5510;
+      background:rgba(255,255,255,.86);
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:
+      radial-gradient(circle at 50% 8%,rgba(241,207,103,.24),transparent 24rem),
+      radial-gradient(circle at 80% 42%,rgba(23,63,115,.13),transparent 30rem),
+      linear-gradient(180deg,#ffffff 0%,#fbf7ef 58%,#f4ecde 100%);
+    }
+
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+      linear-gradient(90deg,rgba(13,45,85,.055) 1px,transparent 1px),
+      linear-gradient(rgba(13,45,85,.045) 1px,transparent 1px);
+      background-size:104px 104px;
+      mask-image:radial-gradient(circle at 50% 30%,rgba(0,0,0,.58),transparent 68%);
+      opacity:.7;
+      pointer-events:none;
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      padding:82px 0 96px;
+      display:grid;
+      grid-template-columns:.86fr 1.14fr;
+      gap:70px;
+      align-items:end;
+    }
+
+    .hero-logo{
+      width:min(460px,80vw);
+      margin-bottom:38px;
+      filter:
+      drop-shadow(0 18px 34px rgba(13,45,85,.11))
+      drop-shadow(0 0 18px rgba(185,130,24,.11));
+    }
+
+    .eyebrow{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      margin-bottom:22px;
+      color:#8b6115;
+      font-size:12px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      font-weight:950;
+    }
+
+    .eyebrow:before{
+      content:"";
+      width:52px;
+      height:1px;
+      background:linear-gradient(90deg,var(--gold),transparent);
+    }
+
+    h1{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(4rem,7.4vw,8.2rem);
+      line-height:.84;
+      letter-spacing:-.082em;
+      font-weight:500;
+      margin-bottom:0;
+      color:var(--ink);
+      text-wrap:balance;
+    }
+
+    .hero-copy{
+      color:#4e5969;
+      font-size:clamp(1.08rem,1.45vw,1.25rem);
+      line-height:1.8;
+      margin:0;
+      max-width:700px;
+    }
+
+    .hero-side{
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(185,130,24,.18);
+      box-shadow:0 28px 80px rgba(13,45,85,.1);
+      padding:38px;
+    }
+
+    .hero-side strong{
+      display:block;
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(2rem,3vw,3.4rem);
+      line-height:.9;
+      letter-spacing:-.065em;
+      font-weight:500;
+      color:var(--navy);
+      margin-bottom:18px;
+    }
+
+    .section{
+      padding:104px 0;
+    }
+
+    .light{
+      background:var(--paper);
+    }
+
+    .white{
+      background:#fff;
+    }
+
+    .section-head{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:72px;
+      align-items:end;
+      margin-bottom:52px;
+    }
+
+    .kicker{
+      color:var(--gold);
+      font-size:12px;
+      letter-spacing:.24em;
+      text-transform:uppercase;
+      font-weight:950;
+      margin-bottom:16px;
+    }
+
+    .section-title{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(3.1rem,5.8vw,6.25rem);
+      line-height:.86;
+      letter-spacing:-.085em;
+      font-weight:500;
+      margin:0;
+      text-wrap:balance;
+      color:var(--ink);
+    }
+
+    .section-lede{
+      color:#4f5968;
+      font-size:1.08rem;
+      line-height:1.82;
+      max-width:660px;
+      margin:0;
+    }
+
+    .partner-grid{
+      display:grid;
+      grid-template-columns:repeat(4,1fr);
+      gap:18px;
+      margin-bottom:28px;
+    }
+
+    .attorney-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .attorney-card{
+      background:#fff;
+      border:1px solid rgba(16,22,33,.09);
+      box-shadow:0 24px 66px rgba(13,45,85,.08);
+      display:flex;
+      flex-direction:column;
+      min-height:690px;
+      overflow:hidden;
+      position:relative;
+    }
+
+    .attorney-card.founder{
+      border-color:rgba(185,130,24,.28);
+      box-shadow:0 28px 80px rgba(185,130,24,.13);
+    }
+
+    .photo-wrap{
+      height:380px;
+      background:linear-gradient(135deg,#e9e4da,#fff);
+      overflow:hidden;
+    }
+
+    .photo-wrap img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      filter:saturate(.96) contrast(1.02);
+      transition:.35s ease;
+    }
+
+    .attorney-card:hover img{
+      transform:scale(1.035);
+    }
+
+    .attorney-info{
+      padding:30px;
+      display:flex;
+      flex:1;
+      flex-direction:column;
+      justify-content:space-between;
+    }
+
+    .role{
+      color:var(--gold);
+      letter-spacing:.19em;
+      text-transform:uppercase;
+      font-weight:950;
+      font-size:11px;
+    }
+
+    .attorney-info h2{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:2.45rem;
+      line-height:.94;
+      letter-spacing:-.065em;
+      font-weight:500;
+      margin:14px 0 18px;
+      color:var(--navy);
+    }
+
+    .attorney-info p{
+      color:#566170;
+      margin-bottom:28px;
+      line-height:1.74;
+    }
+
+    .meta{
+      display:grid;
+      gap:10px;
+      border-top:1px solid rgba(16,22,33,.1);
+      padding-top:20px;
+      color:#303949;
+      font-size:14px;
+    }
+
+    .meta span:before{
+      content:"— ";
+      color:var(--gold);
+    }
+
+    .statement{
+      position:relative;
+      background:linear-gradient(115deg,#ffffff 0%,#f7f1e7 48%,#eaf0f7 100%);
+      overflow:hidden;
+      border-top:1px solid rgba(16,22,33,.08);
+      border-bottom:1px solid rgba(16,22,33,.08);
+    }
+
+    .statement:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:radial-gradient(circle at 24% 38%,rgba(215,166,45,.20),transparent 28rem);
+      pointer-events:none;
+    }
+
+    .statement-inner{
+      position:relative;
+      z-index:1;
+      display:grid;
+      grid-template-columns:1fr .78fr;
+      gap:72px;
+      align-items:end;
+    }
+
+    .statement h2{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(3.6rem,6.8vw,7.2rem);
+      line-height:.82;
+      letter-spacing:-.09em;
+      font-weight:500;
+      margin:0;
+      text-wrap:balance;
+      color:var(--ink);
+    }
+
+    .statement p{
+      color:#4f5968;
+      font-size:1.13rem;
+      line-height:1.85;
+      margin:0;
+      max-width:590px;
+    }
+
+    .closing{
+      position:relative;
+      text-align:center;
+      padding:128px 0;
+      background:
+      radial-gradient(circle at 50% 0%,rgba(215,166,45,.19),transparent 34rem),
+      linear-gradient(#fbf7ef,#ffffff);
+      border-top:1px solid rgba(16,22,33,.08);
+    }
+
+    .closing .eyebrow{
+      justify-content:center;
+    }
+
+    .closing .eyebrow:after{
+      content:"";
+      width:52px;
+      height:1px;
+      background:linear-gradient(90deg,transparent,var(--gold));
+    }
+
+    .closing h2{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(3.5rem,7vw,7.6rem);
+      line-height:.83;
+      letter-spacing:-.09em;
+      font-weight:500;
+      max-width:980px;
+      margin:0 auto 28px;
+      text-wrap:balance;
+      color:var(--ink);
+    }
+
+    .closing p{
+      color:#4f5968;
+      max-width:590px;
+      margin:0 auto 38px;
+      font-size:1.1rem;
+      line-height:1.8;
+    }
+
+    .footer{
+      background:#fff;
+      color:#6b7483;
+      border-top:1px solid rgba(16,22,33,.08);
+      padding:46px 0 62px;
+      font-size:13px;
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:28px;
+    }
+
+    .footer img{
+      width:190px;
+      margin-bottom:12px;
+      filter:drop-shadow(0 8px 18px rgba(13,45,85,.1));
+    }
+
+    .footer-links{
+      display:flex;
+      gap:24px;
+      color:var(--ink);
+      font-weight:850;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:11px;
+    }
+
+    @media(max-width:1180px){
+      .partner-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    @media(max-width:1060px){
+      .hero-inner,
+      .section-head,
+      .statement-inner{
+        grid-template-columns:1fr;
+      }
+
+      .attorney-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    @media(max-width:760px){
+
+      .topbar{
+        display:none;
+      }
+
+      .container{
+        width:min(100% - 30px,var(--max));
+      }
+
+      .nav{
+        height:auto;
+        min-height:76px;
+        padding:12px 0 10px;
+        flex-wrap:wrap;
+        align-items:center;
+        gap:10px 16px;
+      }
+
+      .brand img{
+        width:156px;
+      }
+
+      .nav-cta{
+        display:none;
+      }
+
+      .nav-links{
+        order:3;
+        width:100%;
+        display:flex;
+        justify-content:flex-start;
+        gap:18px;
+        overflow-x:auto;
+        white-space:nowrap;
+        padding:8px 0 2px;
+        font-size:10px;
+        letter-spacing:.14em;
+        scrollbar-width:none;
+      }
+
+      .nav-links::-webkit-scrollbar{
+        display:none;
+      }
+
+      .hero-inner{
+        padding:58px 0 72px;
+        grid-template-columns:1fr;
+      }
+
+      .hero-side{
+        padding:30px;
+      }
+
+      .section{
+        padding:78px 0;
+      }
+
+      .partner-grid,
+      .attorney-grid{
+        grid-template-columns:1fr;
+      }
+
+      .attorney-card{
+        min-height:auto;
+      }
+
+      .photo-wrap{
+        height:380px;
+      }
+
+      .footer-inner{
+        flex-direction:column;
+      }
+
+      .footer-links{
+        flex-direction:column;
+        gap:12px;
+      }
+    }
   </style>
 </head>
+
 <body>
+
   <div class="topbar">
     <div class="container topbar-inner">
       <span>Signature Law Attorney Leadership</span>
@@ -75,116 +635,200 @@
 
   <header class="header">
     <div class="container nav">
-      <a class="brand" href="index.html" aria-label="Signature Law home"><img src="siglogo.png" alt="Signature Law" /></a>
+
+      <a class="brand" href="index.html" aria-label="Signature Law home">
+        <img src="siglogo.png" alt="Signature Law" />
+      </a>
+
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="practice-areas.html">Practice Areas</a>
         <a href="attorneys.html">Attorneys</a>
         <a href="contact.html">Contact</a>
+        <a href="whycms.html">Why CMS Tech?</a>
       </nav>
+
       <a class="nav-cta" href="contact.html">Request Counsel</a>
+
     </div>
   </header>
 
   <main>
+
     <section class="hero">
+
       <div class="container hero-inner">
+
         <div>
           <img class="hero-logo" src="siglogo.png" alt="Signature Law" />
+
           <div class="eyebrow">Attorney Leadership</div>
-          <h1>Strategic counsel starts with exceptional people.</h1>
+
+          <h1>
+            Strategic counsel starts with exceptional people.
+          </h1>
         </div>
+
         <aside class="hero-side">
           <strong>Focused judgment. Proven command.</strong>
-          <p class="hero-copy">Signature Law’s attorneys bring litigation strength, transactional sophistication, regulatory insight, and client-centered advocacy to matters where outcomes carry weight.</p>
+
+          <p class="hero-copy">
+            Signature Law’s attorneys bring litigation strength, transactional sophistication, regulatory insight, and client-centered advocacy to matters where outcomes carry weight.
+          </p>
         </aside>
+
       </div>
+
     </section>
 
     <section class="section light">
+
       <div class="container">
+
         <div class="section-head">
+
           <div>
             <div class="kicker">Founding Partners</div>
-            <h2 class="section-title">The leadership behind the firm.</h2>
+
+            <h2 class="section-title">
+              The leadership behind the firm.
+            </h2>
           </div>
-          <p class="section-lede">Signature Law is led by attorneys with deep courtroom, corporate, regulatory, entertainment, and advisory experience.</p>
+
+          <p class="section-lede">
+            Signature Law is led by attorneys with deep courtroom, corporate, regulatory, entertainment, and advisory experience.
+          </p>
+
         </div>
 
         <div class="partner-grid">
-          <article class="attorney-card founder">
-            <div class="photo-wrap"><img src="melissa.jpg" alt="Melissa Rueschhoff, Founding Partner at Signature Law" /></div>
-            <div class="attorney-info"><div><span class="role">Founding Partner</span><h2>Melissa Rueschhoff</h2><p>Melissa is an accomplished litigator, dedicated victim advocate, and trusted general counsel with experience across more than 12 jurisdictions. She delivers strategic, results-driven representation inside and outside the courtroom.</p></div><div class="meta"><span>Litigation</span><span>Victim advocacy</span><span>General counsel</span></div></div>
-          </article>
 
           <article class="attorney-card founder">
-            <div class="photo-wrap"><img src="jim.jpg" alt="Jim Boland, Founding Partner at Signature Law" /></div>
-            <div class="attorney-info"><div><span class="role">Founding Partner</span><h2>Jim Boland</h2><p>Jim guides clients through highly regulated industries, with particular focus on the evolving cannabis and hemp sectors. His work blends legal strategy, business insight, and practical experience building companies in complex regulatory environments.</p></div><div class="meta"><span>Regulated industries</span><span>Cannabis & hemp</span><span>Business strategy</span></div></div>
+
+            <div class="photo-wrap">
+              <img src="melissa.jpg" alt="Melissa Rueschhoff, Founding Partner at Signature Law" />
+            </div>
+
+            <div class="attorney-info">
+
+              <div>
+
+                <span class="role">Founding Partner</span>
+
+                <h2>Melissa Rueschhoff</h2>
+
+                <p>
+                  Melissa is an accomplished litigator, dedicated victim advocate, and trusted general counsel with experience across more than 12 jurisdictions. She delivers strategic, results-driven representation inside and outside the courtroom.
+                </p>
+
+              </div>
+
+              <div class="meta">
+                <span>Litigation</span>
+                <span>Victim advocacy</span>
+                <span>General counsel</span>
+              </div>
+
+            </div>
+
           </article>
 
           <article class="attorney-card founder">
-            <div class="photo-wrap"><img src="matthew.png" alt="Matthew A. Rivela, Founding Partner at Signature Law" /></div>
-            <div class="attorney-info"><div><span class="role">Founding Partner</span><h2>Matthew A. Rivela</h2><p>Matthew brings more than two decades of experience representing iconic brands, companies, and individuals. His practice spans M&A, litigation, corporate, media, sports, and entertainment law with a focus on meaningful client ROI.</p></div><div class="meta"><span>M&A</span><span>Media, sports & entertainment</span><span>Corporate strategy</span></div></div>
+
+            <div class="photo-wrap">
+              <img src="jim.jpg" alt="Jim Boland, Founding Partner at Signature Law" />
+            </div>
+
+            <div class="attorney-info">
+
+              <div>
+
+                <span class="role">Founding Partner</span>
+
+                <h2>Jim Boland</h2>
+
+                <p>
+                  Jim guides clients through highly regulated industries, with particular focus on the evolving cannabis and hemp sectors. His work blends legal strategy, business insight, and practical experience building companies in complex regulatory environments.
+                </p>
+
+              </div>
+
+              <div class="meta">
+                <span>Regulated industries</span>
+                <span>Cannabis & hemp</span>
+                <span>Business strategy</span>
+              </div>
+
+            </div>
+
           </article>
+
+          <article class="attorney-card founder">
+
+            <div class="photo-wrap">
+              <img src="matthew.png" alt="Matthew A. Rivela, Founding Partner at Signature Law" />
+            </div>
+
+            <div class="attorney-info">
+
+              <div>
+
+                <span class="role">Founding Partner</span>
+
+                <h2>Matthew A. Rivela</h2>
+
+                <p>
+                  Matthew brings more than two decades of experience representing iconic brands, companies, and individuals. His practice spans M&A, litigation, corporate, media, sports, and entertainment law with a focus on meaningful client ROI.
+                </p>
+
+              </div>
+
+              <div class="meta">
+                <span>M&A</span>
+                <span>Media, sports & entertainment</span>
+                <span>Corporate strategy</span>
+              </div>
+
+            </div>
+
+          </article>
+
+          <article class="attorney-card founder">
+
+            <div class="photo-wrap">
+              <img src="otto.jpeg" alt="Otto Squidsworth, Jr., Esq., Partner at Signature Law" />
+            </div>
+
+            <div class="attorney-info">
+
+              <div>
+
+                <span class="role">Partner</span>
+
+                <h2>Otto Squidsworth, Jr., Esq.</h2>
+
+                <p>
+                  Otto Squidsworth, Jr., Esq. is a notoriously pugnacious attorney with decades of experience litigating high-pressure disputes across both terrestrial and subsea jurisdictions. Widely feared in courtrooms above and below water, Otto leverages his unmatched multitasking abilities and eight-arm litigation strategy to aggressively defend client interests in complex corporate, maritime, regulatory, and deep-ocean conflict matters.
+                </p>
+
+              </div>
+
+              <div class="meta">
+                <span>Maritime litigation</span>
+                <span>Subsea jurisdiction disputes</span>
+                <span>Eight-arm trial strategy</span>
+              </div>
+
+            </div>
+
+          </article>
+
         </div>
+
       </div>
+
     </section>
 
-    <section class="section white">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="kicker">Counsel</div>
-            <h2 class="section-title">Experienced attorneys for complex client needs.</h2>
-          </div>
-          <p class="section-lede">The broader team supports clients across sophisticated transactions, creative industries, regulated markets, business planning, compliance, and dispute strategy.</p>
-        </div>
-
-        <div class="attorney-grid">
-          <article class="attorney-card">
-            <div class="photo-wrap"><img src="daphne.jpg" alt="Daphne Benford-Smith, Senior Counsel at Signature Law" /></div>
-            <div class="attorney-info"><div><span class="role">Senior Counsel</span><h2>Daphne Benford-Smith</h2><p>Daphne advises animation and video game studios, entertainers, digital creators, and entrepreneurs. She brings general-counsel rigor, business-forward judgment, and precise guidance to complex transactions and high-value opportunities.</p></div><div class="meta"><span>Entertainment</span><span>Digital creators</span><span>Strategic transactions</span></div></div>
-          </article>
-
-          <article class="attorney-card">
-            <div class="photo-wrap"><img src="amber.jpg" alt="Amber Naiman, Counsel at Signature Law" /></div>
-            <div class="attorney-info"><div><span class="role">Counsel</span><h2>Amber Naiman</h2><p>Amber is a corporate transactional attorney advising established, emerging, and start-up companies throughout the business life cycle. Clients value her practical, creative, business-first approach to complex challenges.</p></div><div class="meta"><span>Corporate transactions</span><span>Emerging companies</span><span>Business lifecycle</span></div></div>
-          </article>
-
-          <article class="attorney-card">
-            <div class="photo-wrap"><img src="sumer.jpg" alt="Sumer Blackner, Counsel at Signature Law" /></div>
-            <div class="attorney-info"><div><span class="role">Counsel</span><h2>Sumer Blackner</h2><p>Sumer advises entrepreneurs, closely held businesses, and regulated operators on legal, tax, compliance, and operational planning. She helps clients build strong foundations while navigating evolving federal and state frameworks.</p></div><div class="meta"><span>Tax strategy</span><span>Regulatory compliance</span><span>Entity planning</span></div></div>
-          </article>
-        
-          <article class="attorney-card">
-            <div class="photo-wrap"><img src="shaglaw.jpeg" alt="Shag Fantastiq, Esq. at Signature Law" /></div>
-            <div class="attorney-info"><div><span class="role">Interstellar Counsel</span><h2>Shag Fantastiq, Esq.</h2><p>Shag Fantastiq is an interstellar groove architect known for sonic experimentation, primal charisma, and relentless funk propulsion. As the sole master of The Thang, Shag advises audiences, civilizations, and emerging rhythm movements through multidimensional performances that transform chaos into unified movement, devotion, and irreversible rhythm.</p></div><div class="meta"><span>Cosmic funk strategy</span><span>Temporal resonance</span><span>Groove lifecycle advisory</span></div></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section statement">
-      <div class="container statement-inner">
-        <h2>The attorney page should feel like confidence, not a directory.</h2>
-        <p>Each profile gives visitors a clear sense of role, judgment, and strategic fit while keeping the experience polished, focused, and easy to scan.</p>
-      </div>
-    </section>
-
-    <section class="closing">
-      <div class="container">
-        <div class="eyebrow">Speak With Signature Law</div>
-        <h2>The right attorney changes the posture of the matter.</h2>
-        <p>Request a confidential consultation with Signature Law and begin with a clear assessment of the path ahead.</p>
-        <a class="button gold" href="contact.html">Request Counsel</a>
-      </div>
-    </section>
   </main>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div><img src="siglogo.png" alt="Signature Law" />Attorney leadership for complex matters.</div>
-      <div class="footer-links"><a href="index.html">Home</a><a href="practice-areas.html">Practice Areas</a><a href="contact.html">Contact</a></div>
-    </div>
-  </footer>
 </body>
 </html>

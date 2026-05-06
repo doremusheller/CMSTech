@@ -4,25 +4,25 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Signature Law | Strategic Legal Counsel</title>
-  <meta name="description" content="Signature Law provides strategic legal counsel for consequential business, litigation, employment, and professional risk matters." />
+  <meta name="description" content="Signature Law provides comprehensive legal counsel across corporate transactions, entertainment, regulatory matters, litigation, and victim advocacy." />
   <style>
     :root {
-      --black:#000000;
-      --ink:#05070b;
-      --obsidian:#080b10;
-      --navy:#071a35;
-      --navy-2:#0c274c;
-      --blue:#123b6f;
+      --black:#06070a;
+      --ink:#101621;
+      --navy:#0d2d55;
+      --blue:#173f73;
       --gold:#b98218;
       --gold-2:#d7a62d;
       --gold-3:#f1cf67;
       --silver:#d7d9dd;
-      --steel:#8e98a8;
-      --ivory:#f6f1e7;
-      --paper:#f4efe6;
-      --line:rgba(255,255,255,.12);
-      --gold-line:rgba(241,207,103,.22);
-      --dark-line:rgba(0,0,0,.12);
+      --steel:#647084;
+      --muted:#717b8c;
+      --ivory:#fffaf0;
+      --cream:#f7f1e7;
+      --paper:#fbf7ef;
+      --white:#ffffff;
+      --line:rgba(16,22,33,.12);
+      --gold-line:rgba(185,130,24,.24);
       --max:1240px;
     }
 
@@ -31,8 +31,8 @@
     body{
       margin:0;
       font-family:Inter, Arial, Helvetica, sans-serif;
-      color:var(--ivory);
-      background:var(--black);
+      color:var(--ink);
+      background:var(--paper);
       line-height:1.55;
       overflow-x:hidden;
     }
@@ -42,9 +42,9 @@
     .container{width:min(var(--max),calc(100% - 56px));margin:0 auto}
 
     .topbar{
-      background:#000;
-      border-bottom:1px solid rgba(215,166,45,.18);
-      color:rgba(246,241,231,.64);
+      background:var(--white);
+      border-bottom:1px solid rgba(16,22,33,.08);
+      color:rgba(16,22,33,.62);
       font-size:11px;
       letter-spacing:.22em;
       text-transform:uppercase;
@@ -55,123 +55,112 @@
       position:sticky;
       top:0;
       z-index:100;
-      background:rgba(0,0,0,.82);
-      border-bottom:1px solid rgba(215,166,45,.18);
+      background:rgba(255,255,255,.86);
+      border-bottom:1px solid rgba(16,22,33,.08);
       backdrop-filter:blur(18px);
     }
-    .nav{height:84px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+    .nav{height:86px;display:flex;align-items:center;justify-content:space-between;gap:30px}
     .brand{display:flex;align-items:center;gap:18px;min-width:max-content}
-    .brand img{width:214px;height:auto;filter:drop-shadow(0 10px 24px rgba(215,166,45,.12))}
-    .nav-links{display:flex;align-items:center;gap:34px;color:rgba(246,241,231,.74);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:800}
+    .brand img{width:214px;height:auto;filter:drop-shadow(0 8px 20px rgba(13,45,85,.12))}
+    .nav-links{display:flex;align-items:center;gap:34px;color:rgba(16,22,33,.72);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:850}
     .nav-links a{transition:color .2s ease}
-    .nav-links a:hover{color:var(--gold-3)}
-    .nav-cta{min-height:46px;padding:0 22px;border:1px solid rgba(241,207,103,.72);display:inline-flex;align-items:center;justify-content:center;color:var(--gold-3);font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:900;background:rgba(215,166,45,.05);transition:.2s ease}
-    .nav-cta:hover{background:linear-gradient(135deg,var(--gold-3),var(--gold));color:#050505}
+    .nav-links a:hover{color:var(--gold)}
+    .nav-cta{min-height:46px;padding:0 22px;border:1px solid rgba(185,130,24,.72);display:inline-flex;align-items:center;justify-content:center;color:#7d5510;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:950;background:rgba(185,130,24,.06);transition:.2s ease}
+    .nav-cta:hover{background:linear-gradient(135deg,var(--gold-3),var(--gold));color:#090909}
 
     .button{min-height:58px;padding:0 28px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:950;transition:.22s ease;border:1px solid transparent}
     .button:hover{transform:translateY(-2px)}
-    .button.gold{background:linear-gradient(135deg,var(--gold-3),var(--gold-2) 44%,var(--gold));color:#050505;border-color:var(--gold-2);box-shadow:0 18px 40px rgba(215,166,45,.16)}
-    .button.outline{border-color:rgba(246,241,231,.22);color:var(--ivory);background:rgba(255,255,255,.025)}
-    .button.outline:hover{border-color:var(--gold-3);color:var(--gold-3)}
+    .button.gold{background:linear-gradient(135deg,var(--gold-3),var(--gold-2) 44%,var(--gold));color:#080808;border-color:var(--gold-2);box-shadow:0 18px 38px rgba(185,130,24,.18)}
+    .button.outline{border-color:rgba(13,45,85,.24);color:var(--navy);background:rgba(255,255,255,.42)}
+    .button.outline:hover{border-color:var(--gold);color:#7d5510;background:rgba(255,255,255,.86)}
 
     .hero{
       position:relative;
-      min-height:calc(100vh - 122px);
       overflow:hidden;
-      display:grid;
-      align-items:center;
       background:
-        radial-gradient(circle at 50% 18%,rgba(215,166,45,.20),transparent 24rem),
-        radial-gradient(circle at 73% 52%,rgba(18,59,111,.42),transparent 31rem),
-        linear-gradient(180deg,#000 0%,#05070b 48%,#000 100%);
+        radial-gradient(circle at 50% 8%,rgba(241,207,103,.26),transparent 24rem),
+        radial-gradient(circle at 80% 42%,rgba(23,63,115,.13),transparent 30rem),
+        linear-gradient(180deg,#ffffff 0%,#fbf7ef 58%,#f4ecde 100%);
     }
     .hero:before{
       content:"";
       position:absolute;
       inset:0;
       background:
-        linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px),
-        linear-gradient(rgba(255,255,255,.028) 1px,transparent 1px);
-      background-size:96px 96px;
-      mask-image:radial-gradient(circle at 50% 34%,rgba(0,0,0,.86),transparent 66%);
-      opacity:.46;
+        linear-gradient(90deg,rgba(13,45,85,.055) 1px,transparent 1px),
+        linear-gradient(rgba(13,45,85,.045) 1px,transparent 1px);
+      background-size:104px 104px;
+      mask-image:radial-gradient(circle at 50% 30%,rgba(0,0,0,.58),transparent 68%);
+      opacity:.7;
       pointer-events:none;
     }
-    .hero:after{
-      content:"";
-      position:absolute;
-      left:50%;
-      bottom:-18%;
-      width:82vw;
-      height:38vw;
-      transform:translateX(-50%);
-      background:radial-gradient(ellipse at center,rgba(215,166,45,.16),rgba(18,59,111,.11) 34%,transparent 70%);
-      filter:blur(8px);
-      pointer-events:none;
-    }
-    .hero-inner{position:relative;z-index:2;padding:84px 0 92px;text-align:center;display:grid;justify-items:center}
-    .hero-logo{width:min(880px,92vw);margin:0 auto 46px;filter:drop-shadow(0 28px 55px rgba(0,0,0,.72)) drop-shadow(0 0 34px rgba(215,166,45,.14))}
-    .eyebrow{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:22px;color:var(--gold-3);font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:950}
-    .eyebrow:before,.eyebrow:after{content:"";width:52px;height:1px;background:linear-gradient(90deg,transparent,var(--gold-2),transparent)}
-    h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.3rem,6.8vw,7.6rem);line-height:.88;letter-spacing:-.075em;font-weight:500;margin-bottom:28px;max-width:1040px;text-wrap:balance}
-    .hero-copy{max-width:760px;color:rgba(246,241,231,.74);font-size:clamp(1.08rem,1.45vw,1.28rem);line-height:1.78;margin-bottom:38px;text-wrap:balance}
+    .hero-inner{position:relative;z-index:2;padding:74px 0 94px;text-align:center;display:grid;justify-items:center}
+    .hero-logo{width:min(860px,92vw);margin:0 auto 42px;filter:drop-shadow(0 24px 42px rgba(13,45,85,.13)) drop-shadow(0 0 20px rgba(185,130,24,.13))}
+    .eyebrow{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:22px;color:#8b6115;font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:950}
+    .eyebrow:before,.eyebrow:after{content:"";width:52px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+    h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.3rem,6.8vw,7.3rem);line-height:.88;letter-spacing:-.075em;font-weight:500;margin-bottom:28px;max-width:1040px;text-wrap:balance;color:var(--ink)}
+    .hero-copy{max-width:870px;color:#4e5969;font-size:clamp(1.08rem,1.45vw,1.25rem);line-height:1.78;margin-bottom:38px;text-wrap:balance}
     .hero-actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
 
-    .proof-bar{position:relative;z-index:3;margin-top:-1px;border-top:1px solid var(--gold-line);border-bottom:1px solid var(--gold-line);background:linear-gradient(90deg,#000,#071120,#000)}
-    .proof-grid{display:grid;grid-template-columns:repeat(4,1fr)}
-    .proof{padding:25px 24px;border-left:1px solid rgba(241,207,103,.14)}
-    .proof:last-child{border-right:1px solid rgba(241,207,103,.14)}
-    .proof strong{display:block;color:var(--gold-3);font-family:Georgia,'Times New Roman',serif;font-size:1.55rem;font-weight:500;letter-spacing:-.04em;margin-bottom:4px}
-    .proof span{color:rgba(246,241,231,.62);font-size:11px;letter-spacing:.17em;text-transform:uppercase;font-weight:900}
+    .intro-panel{position:relative;margin-top:-42px;z-index:3}
+    .intro-card{background:rgba(255,255,255,.9);border:1px solid rgba(185,130,24,.18);box-shadow:0 28px 80px rgba(13,45,85,.11);padding:42px 46px;display:grid;grid-template-columns:.58fr 1.42fr;gap:46px;align-items:start}
+    .intro-card h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(2.5rem,4vw,4.35rem);line-height:.88;letter-spacing:-.075em;font-weight:500;margin:0;color:var(--navy)}
+    .intro-card p{color:#4f5968;font-size:1.08rem;line-height:1.85;margin:0}
+
+    .proof-bar{border-top:1px solid rgba(16,22,33,.08);border-bottom:1px solid rgba(16,22,33,.08);background:linear-gradient(90deg,#fbf7ef,#fff,#fbf7ef)}
+    .proof-grid{display:grid;grid-template-columns:repeat(5,1fr)}
+    .proof{padding:25px 22px;border-left:1px solid rgba(16,22,33,.08)}
+    .proof:last-child{border-right:1px solid rgba(16,22,33,.08)}
+    .proof strong{display:block;color:var(--navy);font-family:Georgia,'Times New Roman',serif;font-size:1.44rem;font-weight:500;letter-spacing:-.04em;margin-bottom:4px}
+    .proof span{color:#727c8b;font-size:11px;letter-spacing:.17em;text-transform:uppercase;font-weight:900}
 
     .section{padding:104px 0}
     .light{background:var(--paper);color:#050609}
     .section-head{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:end;margin-bottom:52px}
     .kicker{color:var(--gold);font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:950;margin-bottom:16px}
-    .section-title{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.1rem,5.8vw,6.25rem);line-height:.86;letter-spacing:-.085em;font-weight:500;margin:0;text-wrap:balance}
+    .section-title{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.1rem,5.8vw,6.25rem);line-height:.86;letter-spacing:-.085em;font-weight:500;margin:0;text-wrap:balance;color:var(--ink)}
     .section-lede{color:#4f5968;font-size:1.08rem;line-height:1.82;max-width:650px;margin:0}
 
-    .capability-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(0,0,0,.14);border:1px solid rgba(0,0,0,.14)}
-    .capability{background:#fff;min-height:280px;padding:32px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
-    .capability:after{content:"";position:absolute;right:-72px;bottom:-92px;width:190px;height:190px;border:1px solid rgba(185,130,24,.28);transform:rotate(32deg)}
+    .capability-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .capability{background:#fff;border:1px solid rgba(16,22,33,.09);min-height:290px;padding:32px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;box-shadow:0 22px 58px rgba(13,45,85,.07)}
+    .capability:after{content:"";position:absolute;right:-72px;bottom:-92px;width:190px;height:190px;border:1px solid rgba(185,130,24,.22);transform:rotate(32deg)}
     .capability small{color:var(--gold);font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:950}
-    .capability h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(2rem,2.8vw,3.25rem);line-height:.9;letter-spacing:-.065em;font-weight:500;margin:24px 0 12px}
+    .capability h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(2rem,2.8vw,3.2rem);line-height:.9;letter-spacing:-.065em;font-weight:500;margin:24px 0 12px;color:var(--navy)}
     .capability p{color:#566170;margin:0}
 
-    .statement{position:relative;background:linear-gradient(115deg,#000 0%,#071120 48%,#0a2447 100%);overflow:hidden;border-top:1px solid rgba(241,207,103,.18);border-bottom:1px solid rgba(241,207,103,.18)}
-    .statement:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 25% 38%,rgba(215,166,45,.18),transparent 28rem);pointer-events:none}
+    .statement{position:relative;background:linear-gradient(115deg,#ffffff 0%,#f7f1e7 48%,#eaf0f7 100%);overflow:hidden;border-top:1px solid rgba(16,22,33,.08);border-bottom:1px solid rgba(16,22,33,.08)}
+    .statement:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 24% 38%,rgba(215,166,45,.20),transparent 28rem);pointer-events:none}
     .statement-inner{position:relative;z-index:1;display:grid;grid-template-columns:1fr .78fr;gap:72px;align-items:end}
-    .statement h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.6rem,6.8vw,7.4rem);line-height:.82;letter-spacing:-.09em;font-weight:500;margin:0;text-wrap:balance}
-    .statement p{color:rgba(246,241,231,.72);font-size:1.13rem;line-height:1.85;margin:0;max-width:580px}
+    .statement h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.6rem,6.8vw,7.2rem);line-height:.82;letter-spacing:-.09em;font-weight:500;margin:0;text-wrap:balance;color:var(--ink)}
+    .statement p{color:#4f5968;font-size:1.13rem;line-height:1.85;margin:0;max-width:590px}
 
-    .routes{background:#000;color:var(--ivory)}
+    .routes{background:#fff;color:var(--ink)}
     .route-top{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:end;margin-bottom:48px}
-    .route-top .section-lede{color:rgba(246,241,231,.64)}
     .route-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .route{min-height:340px;background:linear-gradient(180deg,rgba(255,255,255,.065),rgba(255,255,255,.02));border:1px solid rgba(241,207,103,.18);padding:34px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 28px 90px rgba(0,0,0,.36);transition:.24s ease;position:relative;overflow:hidden}
-    .route:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(215,166,45,.12),transparent 16rem);opacity:0;transition:.24s ease}
-    .route:hover{transform:translateY(-5px);border-color:rgba(241,207,103,.42)}
+    .route{min-height:340px;background:linear-gradient(180deg,#ffffff,#fbf7ef);border:1px solid rgba(16,22,33,.1);padding:34px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 28px 74px rgba(13,45,85,.08);transition:.24s ease;position:relative;overflow:hidden}
+    .route:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(215,166,45,.15),transparent 16rem);opacity:0;transition:.24s ease}
+    .route:hover{transform:translateY(-5px);border-color:rgba(185,130,24,.34)}
     .route:hover:before{opacity:1}
     .route > *{position:relative;z-index:1}
-    .route small{color:var(--gold-3);font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:950}
-    .route h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(2.35rem,3.4vw,3.9rem);line-height:.9;letter-spacing:-.07em;font-weight:500;margin:24px 0 14px}
-    .route p{color:rgba(246,241,231,.64);margin:0}
-    .arrow{width:54px;height:54px;border:1px solid rgba(241,207,103,.58);display:grid;place-items:center;color:var(--gold-3);font-size:24px;margin-top:30px}
+    .route small{color:var(--gold);font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:950}
+    .route h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(2.35rem,3.4vw,3.9rem);line-height:.9;letter-spacing:-.07em;font-weight:500;margin:24px 0 14px;color:var(--navy)}
+    .route p{color:#566170;margin:0}
+    .arrow{width:54px;height:54px;border:1px solid rgba(185,130,24,.5);display:grid;place-items:center;color:var(--gold);font-size:24px;margin-top:30px;background:#fff}
 
-    .closing{position:relative;text-align:center;padding:128px 0;background:radial-gradient(circle at 50% 0%,rgba(215,166,45,.23),transparent 34rem),linear-gradient(#050609,#000);border-top:1px solid rgba(255,255,255,.1)}
-    .closing h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.5rem,7vw,7.8rem);line-height:.83;letter-spacing:-.09em;font-weight:500;max-width:980px;margin:0 auto 28px;text-wrap:balance}
-    .closing p{color:rgba(246,241,231,.7);max-width:590px;margin:0 auto 38px;font-size:1.1rem;line-height:1.8}
+    .closing{position:relative;text-align:center;padding:128px 0;background:radial-gradient(circle at 50% 0%,rgba(215,166,45,.19),transparent 34rem),linear-gradient(#fbf7ef,#ffffff);border-top:1px solid rgba(16,22,33,.08)}
+    .closing h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.5rem,7vw,7.6rem);line-height:.83;letter-spacing:-.09em;font-weight:500;max-width:980px;margin:0 auto 28px;text-wrap:balance;color:var(--ink)}
+    .closing p{color:#4f5968;max-width:590px;margin:0 auto 38px;font-size:1.1rem;line-height:1.8}
 
-    .footer{background:#000;color:rgba(246,241,231,.58);border-top:1px solid rgba(241,207,103,.16);padding:46px 0 62px;font-size:13px}
+    .footer{background:#fff;color:#6b7483;border-top:1px solid rgba(16,22,33,.08);padding:46px 0 62px;font-size:13px}
     .footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:28px}
-    .footer img{width:190px;margin-bottom:12px}
-    .footer-links{display:flex;gap:24px;color:var(--ivory);font-weight:850;text-transform:uppercase;letter-spacing:.14em;font-size:11px}
+    .footer img{width:190px;margin-bottom:12px;filter:drop-shadow(0 8px 18px rgba(13,45,85,.1))}
+    .footer-links{display:flex;gap:24px;color:var(--ink);font-weight:850;text-transform:uppercase;letter-spacing:.14em;font-size:11px}
 
     @media(max-width:1060px){
-      .brand img{width:170px}.nav-links{gap:22px}.section-head,.statement-inner,.route-top{grid-template-columns:1fr}.capability-grid{grid-template-columns:repeat(2,1fr)}.proof-grid{grid-template-columns:repeat(2,1fr)}.route-grid{grid-template-columns:1fr}
+      .brand img{width:170px}.nav-links{gap:22px}.section-head,.statement-inner,.route-top,.intro-card{grid-template-columns:1fr}.capability-grid{grid-template-columns:repeat(2,1fr)}.proof-grid{grid-template-columns:repeat(3,1fr)}.route-grid{grid-template-columns:1fr}
     }
     @media(max-width:760px){
-      .topbar{display:none}.container{width:min(100% - 30px,var(--max))}.nav{height:76px}.brand img{width:156px}.nav-links,.nav-cta{display:none}.hero-inner{padding:62px 0 76px}.hero-logo{margin-bottom:34px}.hero-copy{font-size:1.04rem}.section{padding:78px 0}.capability-grid,.proof-grid{grid-template-columns:1fr}.capability,.route{min-height:240px;padding:28px}.footer-inner{flex-direction:column}.footer-links{flex-direction:column;gap:12px}
+      .topbar{display:none}.container{width:min(100% - 30px,var(--max))}.nav{height:76px}.brand img{width:156px}.nav-links,.nav-cta{display:none}.hero-inner{padding:58px 0 72px}.hero-logo{margin-bottom:32px}.hero-copy{font-size:1.04rem}.intro-panel{margin-top:0}.intro-card{padding:30px}.section{padding:78px 0}.capability-grid,.proof-grid{grid-template-columns:1fr}.capability,.route{min-height:240px;padding:28px}.footer-inner{flex-direction:column}.footer-links{flex-direction:column;gap:12px}
     }
   </style>
 </head>
@@ -179,14 +168,14 @@
   <div class="topbar">
     <div class="container topbar-inner">
       <span>Strategic counsel for consequential matters</span>
-      <span>Business · Litigation · Employment · Professional Risk</span>
+      <span>Corporate · Entertainment · Regulatory · Litigation · Advocacy</span>
     </div>
   </div>
 
   <header class="header">
     <div class="container nav">
       <a class="brand" href="index.html" aria-label="Signature Law home">
-        <img src="siglawlogo.png" alt="Signature Law" />
+        <img src="siglogo.png" alt="Signature Law" />
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="practice-areas.html">Practice Areas</a>
@@ -200,10 +189,10 @@
   <main>
     <section class="hero">
       <div class="container hero-inner">
-        <img class="hero-logo" src="siglawlogo.png" alt="Signature Law" />
+        <img class="hero-logo" src="siglogo.png" alt="Signature Law" />
         <div class="eyebrow">Strategic Legal Counsel</div>
-        <h1>Commanding counsel for consequential matters.</h1>
-        <p class="hero-copy">Signature Law represents clients when the stakes are serious, the facts are layered, and the margin for error is narrow.</p>
+        <h1>Commanding counsel for complex legal matters.</h1>
+        <p class="hero-copy">Signature Law provides comprehensive legal strategy for clients facing sophisticated transactions, specialized industries, courtroom disputes, and high-consequence decisions.</p>
         <div class="hero-actions">
           <a class="button gold" href="contact.html">Request Consultation</a>
           <a class="button outline" href="practice-areas.html">Explore Capabilities</a>
@@ -211,12 +200,22 @@
       </div>
     </section>
 
+    <section class="intro-panel">
+      <div class="container">
+        <div class="intro-card">
+          <h2>Broad capability. Focused execution.</h2>
+          <p>As a comprehensive legal practice, Signature Law serves the complex needs of a diverse clientele. The firm advises on high-stakes corporate transactions, entertainment matters, regulatory issues, and specialized industry concerns while helping clients remain compliant, competitive, and prepared. When disputes arise, the litigation team prosecutes and defends client interests in court, and the victim advocacy group provides compassionate, determined representation for those seeking justice.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="proof-bar" aria-label="Signature Law focus areas">
       <div class="container proof-grid">
-        <div class="proof"><strong>Business</strong><span>Corporate counsel</span></div>
-        <div class="proof"><strong>Litigation</strong><span>Disputes & leverage</span></div>
-        <div class="proof"><strong>Employment</strong><span>Workplace matters</span></div>
-        <div class="proof"><strong>Risk</strong><span>Professional advisory</span></div>
+        <div class="proof"><strong>Corporate</strong><span>Transactions</span></div>
+        <div class="proof"><strong>Entertainment</strong><span>Industry counsel</span></div>
+        <div class="proof"><strong>Regulatory</strong><span>Compliance</span></div>
+        <div class="proof"><strong>Litigation</strong><span>Courtroom advocacy</span></div>
+        <div class="proof"><strong>Victim Advocacy</strong><span>Justice focused</span></div>
       </div>
     </section>
 
@@ -227,25 +226,33 @@
             <div class="kicker">Capabilities</div>
             <h2 class="section-title">Serious legal work, handled with precision.</h2>
           </div>
-          <p class="section-lede">Signature Law brings disciplined legal strategy to business matters, disputes, employment concerns, contracts, negotiations, and professional risk.</p>
+          <p class="section-lede">The firm combines advisory depth, litigation strength, and industry-specific judgment to guide clients through every stage of the legal process.</p>
         </div>
 
         <div class="capability-grid">
           <article class="capability">
-            <div><small>01</small><h2>Business</h2></div>
-            <p>Corporate counsel, agreements, advisory, and strategic decisions.</p>
+            <div><small>01</small><h2>Corporate</h2></div>
+            <p>Strategic counsel for transactions, business decisions, and complex commercial needs.</p>
           </article>
           <article class="capability">
-            <div><small>02</small><h2>Litigation</h2></div>
-            <p>Disputes, leverage, preparation, negotiation, and resolution.</p>
+            <div><small>02</small><h2>Entertainment</h2></div>
+            <p>Guidance through the contracts, negotiations, and industry dynamics that shape creative work.</p>
           </article>
           <article class="capability">
-            <div><small>03</small><h2>Employment</h2></div>
-            <p>Workplace matters, executive concerns, and organizational risk.</p>
+            <div><small>03</small><h2>Regulatory</h2></div>
+            <p>Clear advice across specialized environments where compliance and competitiveness matter.</p>
           </article>
           <article class="capability">
-            <div><small>04</small><h2>Professional Risk</h2></div>
-            <p>Exposure analysis, professional matters, and advisory guidance.</p>
+            <div><small>04</small><h2>Litigation</h2></div>
+            <p>Aggressive prosecution and defense of client interests in high-stakes disputes.</p>
+          </article>
+          <article class="capability">
+            <div><small>05</small><h2>Advocacy</h2></div>
+            <p>Compassionate, dedicated representation for victims and clients seeking justice.</p>
+          </article>
+          <article class="capability">
+            <div><small>06</small><h2>Strategy</h2></div>
+            <p>Integrated legal guidance designed to move clients from risk to resolution.</p>
           </article>
         </div>
       </div>
@@ -253,8 +260,8 @@
 
     <section class="section statement">
       <div class="container statement-inner">
-        <h2>Preparation is the advantage.</h2>
-        <p>The firm’s role is to identify risk, define leverage, set expectations, and move decisively. Every matter begins with context, urgency, exposure, and desired outcome.</p>
+        <h2>Exceptional outcomes require command of the process.</h2>
+        <p>From early advisory work through litigation and resolution, Signature Law aligns legal judgment with the client’s objectives, risks, timeline, and desired result.</p>
       </div>
     </section>
 
@@ -265,7 +272,7 @@
             <div class="kicker">Next Step</div>
             <h2 class="section-title">Move directly to what matters.</h2>
           </div>
-          <p class="section-lede">The homepage establishes authority. The deeper pages carry the operational detail: capabilities, attorney credentials, and consultation.</p>
+          <p class="section-lede">The homepage establishes the firm’s range and posture. The deeper pages carry the operational detail: capabilities, attorney credentials, and consultation.</p>
         </div>
         <div class="route-grid">
           <a class="route" href="practice-areas.html">
@@ -297,8 +304,8 @@
   <footer class="footer">
     <div class="container footer-inner">
       <div>
-        <img src="siglawlogo.png" alt="Signature Law" />
-        Strategic legal counsel for consequential matters.
+        <img src="siglogo.png" alt="Signature Law" />
+        Comprehensive legal counsel for complex matters.
       </div>
       <div class="footer-links">
         <a href="practice-areas.html">Practice Areas</a>

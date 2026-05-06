@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,14 +16,8 @@
       --gold:#b98218;
       --gold-2:#d7a62d;
       --gold-3:#f1cf67;
-      --steel:#647084;
-      --muted:#717b8c;
-      --ivory:#fffaf0;
-      --cream:#f7f1e7;
       --paper:#fbf7ef;
       --white:#ffffff;
-      --line:rgba(16,22,33,.12);
-      --gold-line:rgba(185,130,24,.24);
       --max:1240px;
     }
 
@@ -81,16 +76,9 @@
       gap:30px;
     }
 
-    .brand{
-      display:flex;
-      align-items:center;
-      min-width:max-content;
-    }
-
     .brand img{
       width:214px;
       height:auto;
-      filter:drop-shadow(0 8px 20px rgba(13,45,85,.12));
     }
 
     .nav-links{
@@ -102,10 +90,6 @@
       letter-spacing:.18em;
       text-transform:uppercase;
       font-weight:850;
-    }
-
-    .nav-links a{
-      transition:color .2s ease;
     }
 
     .nav-links a:hover{
@@ -125,49 +109,6 @@
       text-transform:uppercase;
       font-weight:950;
       background:rgba(185,130,24,.06);
-      transition:.2s ease;
-    }
-
-    .nav-cta:hover{
-      background:linear-gradient(135deg,var(--gold-3),var(--gold));
-      color:#090909;
-    }
-
-    .button{
-      min-height:58px;
-      padding:0 28px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      font-size:11px;
-      letter-spacing:.2em;
-      text-transform:uppercase;
-      font-weight:950;
-      transition:.22s ease;
-      border:1px solid transparent;
-    }
-
-    .button:hover{
-      transform:translateY(-2px);
-    }
-
-    .button.gold{
-      background:linear-gradient(135deg,var(--gold-3),var(--gold-2) 44%,var(--gold));
-      color:#080808;
-      border-color:var(--gold-2);
-      box-shadow:0 18px 38px rgba(185,130,24,.18);
-    }
-
-    .button.outline{
-      border-color:rgba(13,45,85,.24);
-      color:var(--navy);
-      background:rgba(255,255,255,.42);
-    }
-
-    .button.outline:hover{
-      border-color:var(--gold);
-      color:#7d5510;
-      background:rgba(255,255,255,.86);
     }
 
     .hero{
@@ -177,19 +118,6 @@
       radial-gradient(circle at 50% 8%,rgba(241,207,103,.24),transparent 24rem),
       radial-gradient(circle at 80% 42%,rgba(23,63,115,.13),transparent 30rem),
       linear-gradient(180deg,#ffffff 0%,#fbf7ef 58%,#f4ecde 100%);
-    }
-
-    .hero:before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-      linear-gradient(90deg,rgba(13,45,85,.055) 1px,transparent 1px),
-      linear-gradient(rgba(13,45,85,.045) 1px,transparent 1px);
-      background-size:104px 104px;
-      mask-image:radial-gradient(circle at 50% 30%,rgba(0,0,0,.58),transparent 68%);
-      opacity:.7;
-      pointer-events:none;
     }
 
     .hero-inner{
@@ -205,9 +133,6 @@
     .hero-logo{
       width:min(460px,80vw);
       margin-bottom:38px;
-      filter:
-      drop-shadow(0 18px 34px rgba(13,45,85,.11))
-      drop-shadow(0 0 18px rgba(185,130,24,.11));
     }
 
     .eyebrow{
@@ -237,7 +162,6 @@
       font-weight:500;
       margin-bottom:0;
       color:var(--ink);
-      text-wrap:balance;
     }
 
     .hero-copy{
@@ -266,16 +190,31 @@
       margin-bottom:18px;
     }
 
-    .section{
-      padding:104px 0;
-    }
-
-    .light{
+    .video-section{
+      padding:54px 0 40px;
       background:var(--paper);
     }
 
-    .white{
+    .video-frame{
+      width:min(980px,100%);
+      margin:0 auto;
       background:#fff;
+      border:1px solid rgba(16,22,33,.09);
+      box-shadow:0 28px 74px rgba(13,45,85,.08);
+      padding:18px;
+    }
+
+    .video-frame video{
+      width:100%;
+      aspect-ratio:16 / 9;
+      height:auto;
+      display:block;
+      object-fit:contain;
+      background:#000;
+    }
+
+    .section{
+      padding:104px 0;
     }
 
     .section-head{
@@ -302,7 +241,6 @@
       letter-spacing:-.085em;
       font-weight:500;
       margin:0;
-      text-wrap:balance;
       color:var(--ink);
     }
 
@@ -318,13 +256,6 @@
       display:grid;
       grid-template-columns:repeat(4,1fr);
       gap:18px;
-      margin-bottom:28px;
-    }
-
-    .attorney-grid{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:18px;
     }
 
     .attorney-card{
@@ -333,40 +264,31 @@
       box-shadow:0 24px 66px rgba(13,45,85,.08);
       display:flex;
       flex-direction:column;
-      min-height:690px;
       overflow:hidden;
-      position:relative;
     }
 
     .attorney-card.founder{
       border-color:rgba(185,130,24,.28);
-      box-shadow:0 28px 80px rgba(185,130,24,.13);
     }
 
     .photo-wrap{
       height:380px;
-      background:linear-gradient(135deg,#e9e4da,#fff);
       overflow:hidden;
+      background:#f3ede3;
     }
 
     .photo-wrap img{
       width:100%;
       height:100%;
       object-fit:cover;
-      filter:saturate(.96) contrast(1.02);
-      transition:.35s ease;
-    }
-
-    .attorney-card:hover img{
-      transform:scale(1.035);
     }
 
     .attorney-info{
       padding:30px;
       display:flex;
-      flex:1;
       flex-direction:column;
       justify-content:space-between;
+      flex:1;
     }
 
     .role{
@@ -407,122 +329,6 @@
       color:var(--gold);
     }
 
-    .statement{
-      position:relative;
-      background:linear-gradient(115deg,#ffffff 0%,#f7f1e7 48%,#eaf0f7 100%);
-      overflow:hidden;
-      border-top:1px solid rgba(16,22,33,.08);
-      border-bottom:1px solid rgba(16,22,33,.08);
-    }
-
-    .statement:before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:radial-gradient(circle at 24% 38%,rgba(215,166,45,.20),transparent 28rem);
-      pointer-events:none;
-    }
-
-    .statement-inner{
-      position:relative;
-      z-index:1;
-      display:grid;
-      grid-template-columns:1fr .78fr;
-      gap:72px;
-      align-items:end;
-    }
-
-    .statement h2{
-      font-family:Georgia,'Times New Roman',serif;
-      font-size:clamp(3.6rem,6.8vw,7.2rem);
-      line-height:.82;
-      letter-spacing:-.09em;
-      font-weight:500;
-      margin:0;
-      text-wrap:balance;
-      color:var(--ink);
-    }
-
-    .statement p{
-      color:#4f5968;
-      font-size:1.13rem;
-      line-height:1.85;
-      margin:0;
-      max-width:590px;
-    }
-
-    .closing{
-      position:relative;
-      text-align:center;
-      padding:128px 0;
-      background:
-      radial-gradient(circle at 50% 0%,rgba(215,166,45,.19),transparent 34rem),
-      linear-gradient(#fbf7ef,#ffffff);
-      border-top:1px solid rgba(16,22,33,.08);
-    }
-
-    .closing .eyebrow{
-      justify-content:center;
-    }
-
-    .closing .eyebrow:after{
-      content:"";
-      width:52px;
-      height:1px;
-      background:linear-gradient(90deg,transparent,var(--gold));
-    }
-
-    .closing h2{
-      font-family:Georgia,'Times New Roman',serif;
-      font-size:clamp(3.5rem,7vw,7.6rem);
-      line-height:.83;
-      letter-spacing:-.09em;
-      font-weight:500;
-      max-width:980px;
-      margin:0 auto 28px;
-      text-wrap:balance;
-      color:var(--ink);
-    }
-
-    .closing p{
-      color:#4f5968;
-      max-width:590px;
-      margin:0 auto 38px;
-      font-size:1.1rem;
-      line-height:1.8;
-    }
-
-    .footer{
-      background:#fff;
-      color:#6b7483;
-      border-top:1px solid rgba(16,22,33,.08);
-      padding:46px 0 62px;
-      font-size:13px;
-    }
-
-    .footer-inner{
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-start;
-      gap:28px;
-    }
-
-    .footer img{
-      width:190px;
-      margin-bottom:12px;
-      filter:drop-shadow(0 8px 18px rgba(13,45,85,.1));
-    }
-
-    .footer-links{
-      display:flex;
-      gap:24px;
-      color:var(--ink);
-      font-weight:850;
-      text-transform:uppercase;
-      letter-spacing:.14em;
-      font-size:11px;
-    }
-
     @media(max-width:1180px){
       .partner-grid{
         grid-template-columns:repeat(2,1fr);
@@ -531,13 +337,8 @@
 
     @media(max-width:1060px){
       .hero-inner,
-      .section-head,
-      .statement-inner{
+      .section-head{
         grid-template-columns:1fr;
-      }
-
-      .attorney-grid{
-        grid-template-columns:repeat(2,1fr);
       }
     }
 
@@ -556,7 +357,6 @@
         min-height:76px;
         padding:12px 0 10px;
         flex-wrap:wrap;
-        align-items:center;
         gap:10px 16px;
       }
 
@@ -595,30 +395,20 @@
         padding:30px;
       }
 
+      .video-section{
+        padding:28px 0 24px;
+      }
+
+      .video-frame{
+        padding:10px;
+      }
+
       .section{
         padding:78px 0;
       }
 
-      .partner-grid,
-      .attorney-grid{
+      .partner-grid{
         grid-template-columns:1fr;
-      }
-
-      .attorney-card{
-        min-height:auto;
-      }
-
-      .photo-wrap{
-        height:380px;
-      }
-
-      .footer-inner{
-        flex-direction:column;
-      }
-
-      .footer-links{
-        flex-direction:column;
-        gap:12px;
       }
     }
   </style>
@@ -634,13 +424,14 @@
   </div>
 
   <header class="header">
+
     <div class="container nav">
 
-      <a class="brand" href="index.html" aria-label="Signature Law home">
+      <a class="brand" href="index.html">
         <img src="siglogo.png" alt="Signature Law" />
       </a>
 
-      <nav class="nav-links" aria-label="Primary navigation">
+      <nav class="nav-links">
         <a href="practice-areas.html">Practice Areas</a>
         <a href="attorneys.html">Attorneys</a>
         <a href="contact.html">Contact</a>
@@ -650,6 +441,7 @@
       <a class="nav-cta" href="contact.html">Request Counsel</a>
 
     </div>
+
   </header>
 
   <main>
@@ -659,6 +451,7 @@
       <div class="container hero-inner">
 
         <div>
+
           <img class="hero-logo" src="siglogo.png" alt="Signature Law" />
 
           <div class="eyebrow">Attorney Leadership</div>
@@ -666,21 +459,43 @@
           <h1>
             Strategic counsel starts with exceptional people.
           </h1>
+
         </div>
 
         <aside class="hero-side">
-          <strong>Focused judgment. Proven command.</strong>
+
+          <strong>
+            Focused judgment. Proven command.
+          </strong>
 
           <p class="hero-copy">
             Signature Law’s attorneys bring litigation strength, transactional sophistication, regulatory insight, and client-centered advocacy to matters where outcomes carry weight.
           </p>
+
         </aside>
 
       </div>
 
     </section>
 
-    <section class="section light">
+    <section class="video-section">
+
+      <div class="container">
+
+        <div class="video-frame">
+
+          <video controls autoplay muted loop playsinline preload="metadata">
+            <source src="spokestopus.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="section">
 
       <div class="container">
 
@@ -703,23 +518,20 @@
         <div class="partner-grid">
 
           <article class="attorney-card founder">
-
             <div class="photo-wrap">
-              <img src="melissa.jpg" alt="Melissa Rueschhoff, Founding Partner at Signature Law" />
+              <img src="melissa.jpg" alt="Melissa Rueschhoff" />
             </div>
 
             <div class="attorney-info">
 
               <div>
-
                 <span class="role">Founding Partner</span>
 
                 <h2>Melissa Rueschhoff</h2>
 
                 <p>
-                  Melissa is an accomplished litigator, dedicated victim advocate, and trusted general counsel with experience across more than 12 jurisdictions. She delivers strategic, results-driven representation inside and outside the courtroom.
+                  Melissa is an accomplished litigator, dedicated victim advocate, and trusted general counsel with experience across more than 12 jurisdictions.
                 </p>
-
               </div>
 
               <div class="meta">
@@ -729,27 +541,23 @@
               </div>
 
             </div>
-
           </article>
 
           <article class="attorney-card founder">
-
             <div class="photo-wrap">
-              <img src="jim.jpg" alt="Jim Boland, Founding Partner at Signature Law" />
+              <img src="jim.jpg" alt="Jim Boland" />
             </div>
 
             <div class="attorney-info">
 
               <div>
-
                 <span class="role">Founding Partner</span>
 
                 <h2>Jim Boland</h2>
 
                 <p>
-                  Jim guides clients through highly regulated industries, with particular focus on the evolving cannabis and hemp sectors. His work blends legal strategy, business insight, and practical experience building companies in complex regulatory environments.
+                  Jim guides clients through highly regulated industries, with particular focus on the evolving cannabis and hemp sectors.
                 </p>
-
               </div>
 
               <div class="meta">
@@ -759,43 +567,37 @@
               </div>
 
             </div>
-
           </article>
 
           <article class="attorney-card founder">
-
             <div class="photo-wrap">
-              <img src="matthew.png" alt="Matthew A. Rivela, Founding Partner at Signature Law" />
+              <img src="matthew.png" alt="Matthew A. Rivela" />
             </div>
 
             <div class="attorney-info">
 
               <div>
-
                 <span class="role">Founding Partner</span>
 
                 <h2>Matthew A. Rivela</h2>
 
                 <p>
-                  Matthew brings more than two decades of experience representing iconic brands, companies, and individuals. His practice spans M&A, litigation, corporate, media, sports, and entertainment law with a focus on meaningful client ROI.
+                  Matthew brings more than two decades of experience representing iconic brands, companies, and individuals.
                 </p>
-
               </div>
 
               <div class="meta">
                 <span>M&A</span>
-                <span>Media, sports & entertainment</span>
+                <span>Media & entertainment</span>
                 <span>Corporate strategy</span>
               </div>
 
             </div>
-
           </article>
 
           <article class="attorney-card founder">
-
             <div class="photo-wrap">
-              <img src="otto.jpeg" alt="Otto Squidsworth, Jr., Esq., Partner at Signature Law" />
+              <img src="otto.jpeg" alt="Otto Squidsworth, Jr., Esq." />
             </div>
 
             <div class="attorney-info">
@@ -807,7 +609,7 @@
                 <h2>Otto Squidsworth, Jr., Esq.</h2>
 
                 <p>
-                  Otto Squidsworth, Jr., Esq. is a notoriously pugnacious attorney with decades of experience litigating high-pressure disputes across both terrestrial and subsea jurisdictions. Widely feared in courtrooms above and below water, Otto leverages his unmatched multitasking abilities and eight-arm litigation strategy to aggressively defend client interests in complex corporate, maritime, regulatory, and deep-ocean conflict matters.
+                  Otto Squidsworth, Jr., Esq. is a notoriously pugnacious attorney feared in courtrooms above and below water for his devastating eight-arm litigation strategy.
                 </p>
 
               </div>
@@ -832,3 +634,4 @@
 
 </body>
 </html>
+```

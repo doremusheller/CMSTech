@@ -1,251 +1,455 @@
-
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Signature Law | Strategic Legal Counsel</title>
-  <meta name="description" content="Signature Law provides comprehensive legal counsel across corporate transactions, entertainment, regulatory matters, litigation, and victim advocacy." />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>One True Infotainment</title>
 
   <style>
     :root {
-      --black:#06070a;
-      --ink:#101621;
-      --navy:#0d2d55;
-      --blue:#173f73;
-      --gold:#b98218;
-      --gold-2:#d7a62d;
-      --gold-3:#f1cf67;
-      --paper:#fbf7ef;
-      --white:#ffffff;
-      --max:1240px;
+      --oti-blue: #061f3f;
+      --oti-red: #b80016;
+      --oti-muted: #5d6875;
+      --oti-line: #d7dce3;
+      --oti-bg: #f4f6f9;
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;overflow-x:hidden}
-    a{color:inherit;text-decoration:none}
-    img{display:block;max-width:100%}
-    h1,h2,h3,p{margin-top:0}
-    .container{width:min(var(--max),calc(100% - 56px));margin:0 auto}
+    * { box-sizing: border-box; }
 
-    .topbar{background:var(--white);border-bottom:1px solid rgba(16,22,33,.08);color:rgba(16,22,33,.62);font-size:11px;letter-spacing:.22em;text-transform:uppercase}
-    .topbar-inner{height:38px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-
-    .header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.86);border-bottom:1px solid rgba(16,22,33,.08);backdrop-filter:blur(18px)}
-    .nav{height:86px;display:flex;align-items:center;justify-content:space-between;gap:30px}
-    .brand{display:flex;align-items:center;min-width:max-content}
-    .brand img{width:214px;height:auto;filter:drop-shadow(0 8px 20px rgba(13,45,85,.12))}
-    .nav-links{display:flex;align-items:center;gap:34px;color:rgba(16,22,33,.72);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:850}
-    .nav-links a{transition:color .2s ease}
-    .nav-links a:hover{color:var(--gold)}
-    .nav-cta{min-height:46px;padding:0 22px;border:1px solid rgba(185,130,24,.72);display:inline-flex;align-items:center;justify-content:center;color:#7d5510;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:950;background:rgba(185,130,24,.06);transition:.2s ease}
-    .nav-cta:hover{background:linear-gradient(135deg,var(--gold-3),var(--gold));color:#090909}
-
-    .button{min-height:58px;padding:0 28px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:950;transition:.22s ease;border:1px solid transparent}
-    .button:hover{transform:translateY(-2px)}
-    .button.gold{background:linear-gradient(135deg,var(--gold-3),var(--gold-2) 44%,var(--gold));color:#080808;border-color:var(--gold-2);box-shadow:0 18px 38px rgba(185,130,24,.18)}
-    .button.outline{border-color:rgba(13,45,85,.24);color:var(--navy);background:rgba(255,255,255,.42)}
-    .button.outline:hover{border-color:var(--gold);color:#7d5510;background:rgba(255,255,255,.86)}
-
-    .hero{position:relative;overflow:hidden;background:radial-gradient(circle at 50% 8%,rgba(241,207,103,.26),transparent 24rem),radial-gradient(circle at 80% 42%,rgba(23,63,115,.13),transparent 30rem),linear-gradient(180deg,#ffffff 0%,#fbf7ef 58%,#f4ecde 100%)}
-    .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,45,85,.055) 1px,transparent 1px),linear-gradient(rgba(13,45,85,.045) 1px,transparent 1px);background-size:104px 104px;mask-image:radial-gradient(circle at 50% 30%,rgba(0,0,0,.58),transparent 68%);opacity:.7;pointer-events:none}
-    .hero-inner{position:relative;z-index:2;padding:74px 0 94px;text-align:center;display:grid;justify-items:center}
-    .hero-logo{width:min(860px,92vw);margin:0 auto 42px;filter:drop-shadow(0 24px 42px rgba(13,45,85,.13)) drop-shadow(0 0 20px rgba(185,130,24,.13))}
-    .eyebrow{display:flex;align-items:center;justify-content:center;gap:16px;margin-bottom:22px;color:#8b6115;font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:950}
-    .eyebrow:before,.eyebrow:after{content:"";width:52px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-    h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.3rem,6.8vw,7.3rem);line-height:.88;letter-spacing:-.075em;font-weight:500;margin-bottom:28px;max-width:1040px;text-wrap:balance;color:var(--ink)}
-    .hero-copy{max-width:870px;color:#4e5969;font-size:clamp(1.08rem,1.45vw,1.25rem);line-height:1.78;margin-bottom:38px;text-wrap:balance}
-    .hero-actions{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
-
-    .intro-panel{position:relative;margin-top:-42px;z-index:3}
-    .intro-card{background:rgba(255,255,255,.92);border:1px solid rgba(185,130,24,.18);box-shadow:0 28px 80px rgba(13,45,85,.11);padding:42px 46px;display:grid;grid-template-columns:.58fr 1.42fr;gap:46px;align-items:start}
-    .intro-card h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(2.5rem,4vw,4.35rem);line-height:.88;letter-spacing:-.075em;font-weight:500;margin:0;color:var(--navy)}
-    .intro-card p{color:#4f5968;font-size:1.08rem;line-height:1.85;margin:0}
-
-    .section{padding:104px 0}
-    .light{background:var(--paper)}
-    .section-head{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:end;margin-bottom:52px}
-    .kicker{color:var(--gold);font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:950;margin-bottom:16px}
-    .section-title{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.1rem,5.8vw,6.25rem);line-height:.86;letter-spacing:-.085em;font-weight:500;margin:0;text-wrap:balance;color:var(--ink)}
-    .section-lede{color:#4f5968;font-size:1.08rem;line-height:1.82;max-width:650px;margin:0}
-
-    .capability-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-    .capability{background:#fff;border:1px solid rgba(16,22,33,.09);min-height:290px;padding:32px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden;box-shadow:0 22px 58px rgba(13,45,85,.07)}
-    .capability:after{content:"";position:absolute;right:-72px;bottom:-92px;width:190px;height:190px;border:1px solid rgba(185,130,24,.22);transform:rotate(32deg)}
-    .capability h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(2rem,2.8vw,3.2rem);line-height:.9;letter-spacing:-.065em;font-weight:500;margin:0 0 12px;color:var(--navy)}
-    .capability p{color:#566170;margin:0}
-
-    .statement{position:relative;background:linear-gradient(115deg,#ffffff 0%,#f7f1e7 48%,#eaf0f7 100%);overflow:hidden;border-top:1px solid rgba(16,22,33,.08);border-bottom:1px solid rgba(16,22,33,.08)}
-    .statement-inner{display:grid;grid-template-columns:1fr .78fr;gap:72px;align-items:end}
-    .statement h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.6rem,6.8vw,7.2rem);line-height:.82;letter-spacing:-.09em;font-weight:500;margin:0;color:var(--ink)}
-    .statement p{color:#4f5968;font-size:1.13rem;line-height:1.85;margin:0;max-width:590px}
-
-    .routes{background:#fff}
-    .route-top{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:end;margin-bottom:48px}
-    .route-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
-    .route{min-height:340px;background:linear-gradient(180deg,#ffffff,#fbf7ef);border:1px solid rgba(16,22,33,.1);padding:34px;display:flex;flex-direction:column;justify-content:space-between;box-shadow:0 28px 74px rgba(13,45,85,.08);transition:.24s ease}
-    .route:hover{transform:translateY(-5px);border-color:rgba(185,130,24,.34)}
-    .route small{color:var(--gold);font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:950}
-    .route h3{font-family:Georgia,'Times New Roman',serif;font-size:clamp(2.1rem,3vw,3.5rem);line-height:.9;letter-spacing:-.07em;font-weight:500;margin:24px 0 14px;color:var(--navy)}
-    .route p{color:#566170;margin:0}
-    .arrow{width:54px;height:54px;border:1px solid rgba(185,130,24,.5);display:grid;place-items:center;color:var(--gold);font-size:24px;margin-top:30px;background:#fff}
-
-    .closing{position:relative;text-align:center;padding:128px 0;background:radial-gradient(circle at 50% 0%,rgba(215,166,45,.19),transparent 34rem),linear-gradient(#fbf7ef,#ffffff);border-top:1px solid rgba(16,22,33,.08)}
-    .closing h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.5rem,7vw,7.6rem);line-height:.83;letter-spacing:-.09em;font-weight:500;max-width:980px;margin:0 auto 28px;color:var(--ink)}
-    .closing p{color:#4f5968;max-width:590px;margin:0 auto 38px;font-size:1.1rem;line-height:1.8}
-
-    .footer{background:#fff;color:#6b7483;border-top:1px solid rgba(16,22,33,.08);padding:46px 0 62px;font-size:13px}
-    .footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:28px}
-    .footer img{width:190px;margin-bottom:12px}
-    .footer-links{display:flex;gap:24px;color:var(--ink);font-weight:850;text-transform:uppercase;letter-spacing:.14em;font-size:11px}
-
-    @media(max-width:1060px){
-      .nav-links{gap:20px}
-      .intro-card,.section-head,.statement-inner,.route-top{grid-template-columns:1fr}
-      .capability-grid,.route-grid{grid-template-columns:repeat(2,1fr)}
+    html, body {
+      width: 100%;
+      max-width: 100%;
+      overflow-x: hidden;
     }
 
-    @media(max-width:760px){
-      .topbar{display:none}
-      .container{width:min(100% - 30px,var(--max))}
-      .header{top:0}
-      .nav{height:auto;min-height:76px;padding:12px 0 10px;flex-wrap:wrap;align-items:center;gap:10px 16px}
-      .brand img{width:156px}
-      .nav-cta{display:none}
-      .nav-links{order:3;width:100%;display:flex;justify-content:flex-start;gap:18px;overflow-x:auto;white-space:nowrap;padding:8px 0 2px;font-size:10px;letter-spacing:.14em;scrollbar-width:none}
-      .nav-links::-webkit-scrollbar{display:none}
-      .hero-inner{padding:58px 0 72px}
-      .intro-panel{margin-top:0}
-      .intro-card{padding:30px}
-      .section{padding:78px 0}
-      .capability-grid,.route-grid{grid-template-columns:1fr}
-      .footer-inner{flex-direction:column}
-      .footer-links{flex-direction:column;gap:12px}
+    body {
+      margin: 0;
+      background: var(--oti-bg);
+      font-family: Arial, Helvetica, sans-serif;
+      color: #071629;
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .site-header {
+      background: #000;
+      border-bottom: 4px solid var(--oti-red);
+    }
+
+    .banner img {
+      width: 100%;
+      height: clamp(150px, 24vw, 360px);
+      object-fit: cover;
+    }
+
+    .page-shell {
+      width: min(1180px, calc(100% - 32px));
+      margin: 28px auto 56px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 300px;
+      gap: 28px;
+    }
+
+    .lead-story {
+      padding-bottom: 24px;
+      border-bottom: 1px solid var(--oti-line);
+    }
+
+    .lead-link {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 20px;
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .lead-image-wrap,
+    .story-image-wrap {
+      position: relative;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .lead-image-wrap { aspect-ratio: 16 / 9; }
+    .story-image-wrap { aspect-ratio: 16 / 10; }
+
+    .lead-image-wrap img,
+    .story-image-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .label {
+      position: absolute;
+      left: 10px;
+      bottom: 10px;
+      background: rgba(6,31,63,0.9);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 900;
+      padding: 6px 8px;
+      text-transform: uppercase;
+    }
+
+    .lead-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-width: 0;
+    }
+
+    .lead-copy h1 {
+      margin: 0;
+      color: var(--oti-blue);
+      font-size: clamp(1.45rem, 2.1vw, 2.15rem);
+      line-height: 1.02;
+      letter-spacing: -0.025em;
+      font-weight: 900;
+      overflow-wrap: anywhere;
+      text-wrap: balance;
+    }
+
+    .lead-copy p {
+      margin-top: 12px;
+      color: var(--oti-muted);
+      font-size: 1rem;
+      line-height: 1.35;
+      font-weight: 700;
+    }
+
+    .story-grid {
+      margin-top: 22px;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .story-card a {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .story-card h2 {
+      margin: 8px 0 4px;
+      font-size: 1.1rem;
+      font-weight: 900;
+      color: var(--oti-blue);
+    }
+
+    .story-card p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: var(--oti-muted);
+    }
+
+    .ad-rail,
+    .mobile-ad-rail {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .ad-unit {
+      background: #fff;
+      border: 1px solid var(--oti-line);
+      padding: 10px;
+    }
+
+    .ad-unit img {
+      width: 100%;
+      max-width: 300px;
+      margin: 0 auto;
+    }
+
+    .mobile-ads {
+      display: none;
+      max-width: 360px;
+      margin: 28px auto 0;
+      padding-top: 18px;
+      border-top: 2px solid var(--oti-line);
+    }
+
+    .ad-label {
+      font-size: 0.75rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+      color: var(--oti-muted);
+    }
+
+    @media (max-width: 980px) {
+      .page-shell { grid-template-columns: 1fr; }
+      .desktop-ad-rail { display: none; }
+      .mobile-ads { display: block; }
+      .lead-link { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 760px) {
+      .story-grid { grid-template-columns: 1fr; }
+
+      .lead-copy h1 {
+        font-size: clamp(1.55rem, 7vw, 2.35rem);
+        line-height: 1.04;
+      }
+    }
+
+    .disclaimer-bar {
+      text-align: center;
+      padding: 10px;
+      font-size: 0.75rem;
+      color: var(--oti-muted);
+      border-top: 1px solid var(--oti-line);
     }
   </style>
 </head>
 
 <body>
-  <div class="topbar">
-    <div class="container topbar-inner">
-      <span>Strategic counsel for consequential matters</span>
-      <span>Corporate · Entertainment · Regulatory · Litigation · Advocacy</span>
-    </div>
+
+<header class="site-header">
+  <div class="banner">
+    <img src="assets/otinewbanner.png" alt="One True Infotainment Banner" />
   </div>
+</header>
 
-  <header class="header">
-    <div class="container nav">
-      <a class="brand" href="index.html" aria-label="Signature Law home">
-        <img src="siglogo.png" alt="Signature Law" />
+<main class="page-shell">
+
+  <section>
+
+    <article class="lead-story">
+      <a href="popemobile.html" class="lead-link">
+        <div class="lead-image-wrap">
+          <img src="assets/popemobile.jpg" alt="Masked ICE agents vandalizing the Popemobile in downtown Chicago" />
+          <span class="label">Featured</span>
+        </div>
+        <div class="lead-copy">
+          <h1>Trump Escalates War on Pope: ICE Agents Destroy Popemobile as Warning</h1>
+          <p>Federal officials defended the destruction of the Pope’s ceremonial vehicle as a necessary demonstration of border seriousness after papal criticism of deportation raids.</p>
+        </div>
       </a>
+    </article>
 
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="practice-areas.html">Practice Areas</a>
-        <a href="attorneys.html">Attorneys</a>
-        <a href="contact.html">Contact</a>
-        <a href="whycms.html">Why CMS Tech?</a>
-      </nav>
+    <section class="story-grid">
 
-      <a class="nav-cta" href="contact.html">Request Counsel</a>
-    </div>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div class="container hero-inner">
-        <img class="hero-logo" src="siglogo.png" alt="Signature Law" />
-        <div class="eyebrow">Strategic Legal Counsel</div>
-        <h1>Commanding counsel for complex legal matters.</h1>
-        <p class="hero-copy">Signature Law provides comprehensive legal strategy for clients facing sophisticated transactions, specialized industries, courtroom disputes, and high-consequence decisions.</p>
-        <div class="hero-actions">
-          <a class="button gold" href="contact.html">Request Consultation</a>
-          <a class="button outline" href="practice-areas.html">Explore Capabilities</a>
-        </div>
-      </div>
-    </section>
-
-    <section class="intro-panel">
-      <div class="container">
-        <div class="intro-card">
-          <h2>Broad capability. Focused execution.</h2>
-          <p>As a comprehensive legal practice, Signature Law serves the complex needs of a diverse clientele. The firm advises on high-stakes corporate transactions, entertainment matters, regulatory issues, and specialized industry concerns while helping clients remain compliant, competitive, and prepared. When disputes arise, the litigation team prosecutes and defends client interests in court, and the victim advocacy group provides compassionate, determined representation for those seeking justice.</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section light">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <div class="kicker">Capabilities</div>
-            <h2 class="section-title">Serious legal work, handled with precision.</h2>
+      <article class="story-card">
+        <a href="warmodel2.html">
+          <div class="story-image-wrap">
+            <img src="assets/warmodel2.jpg" alt="Pentagon briefing with missile launch screen and quantum war confusion" />
+            <span class="label">National Security Science</span>
           </div>
-          <p class="section-lede">The firm combines advisory depth, litigation strength, and industry-specific judgment to guide clients through every stage of the legal process.</p>
-        </div>
+          <h2>Schrödinger’s War Model Working Perfectly, Officials Confirm While Ducking Missiles</h2>
+          <p>Analysts say the Iran conflict now exists in a flawless quantum state: simultaneously peaceful, escalatory, defensive, offensive, contained, expanding, and extremely good for cable graphics.</p>
+        </a>
+      </article>
 
-        <div class="capability-grid">
-          <article class="capability"><div><h2>Corporate</h2></div><p>Strategic counsel for transactions, business decisions, and complex commercial needs.</p></article>
-          <article class="capability"><div><h2>Entertainment</h2></div><p>Guidance through the contracts, negotiations, and industry dynamics that shape creative work.</p></article>
-          <article class="capability"><div><h2>Regulatory</h2></div><p>Clear advice across specialized environments where compliance and competitiveness matter.</p></article>
-          <article class="capability"><div><h2>Litigation</h2></div><p>Aggressive prosecution and defense of client interests in high-stakes disputes.</p></article>
-          <article class="capability"><div><h2>Advocacy</h2></div><p>Compassionate, dedicated representation for victims and clients seeking justice.</p></article>
-          <article class="capability"><div><h2>Strategy</h2></div><p>Integrated legal guidance designed to move clients from risk to resolution.</p></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section statement">
-      <div class="container statement-inner">
-        <h2>Exceptional outcomes require command of the process.</h2>
-        <p>From early advisory work through litigation and resolution, Signature Law aligns legal judgment with the client’s objectives, risks, timeline, and desired result.</p>
-      </div>
-    </section>
-
-    <section class="section routes">
-      <div class="container">
-        <div class="route-top">
-          <div>
-            <div class="kicker">Next Step</div>
-            <h2 class="section-title">Move directly to what matters.</h2>
+      <article class="story-card">
+        <a href="trumpdoctrine.html">
+          <div class="story-image-wrap">
+            <img src="assets/trumpdoctrine.jpg" alt="Pentagon briefing introducing the 3 Hotels or Invasion doctrine with Kushner and a general" />
+            <span class="label">National Security</span>
           </div>
-          <p class="section-lede">The homepage establishes the firm’s range and posture. The deeper pages carry the operational detail: capabilities, attorney credentials, consultation, and CMS strategy.</p>
-        </div>
+          <h2>Pentagon Unveils “3 Hotels or Invasion” Trump Doctrine at Fort Bragg</h2>
+        </a>
+      </article>
 
-        <div class="route-grid">
-          <a class="route" href="practice-areas.html"><div><small>Capabilities</small><h3>Practice Areas</h3><p>Review the firm’s legal service architecture.</p></div><span class="arrow">→</span></a>
-          <a class="route" href="attorneys.html"><div><small>Counsel</small><h3>Attorneys</h3><p>Meet the attorneys behind the strategy.</p></div><span class="arrow">→</span></a>
-          <a class="route" href="contact.html"><div><small>Consultation</small><h3>Contact</h3><p>Begin a confidential conversation.</p></div><span class="arrow">→</span></a>
-          <a class="route" href="whycms.html"><div><small>Technology</small><h3>Why CMS Tech?</h3><p>See how modern technical optimization builds long-term value.</p></div><span class="arrow">→</span></a>
-        </div>
-      </div>
+      <article class="story-card">
+        <a href="freegas.html">
+          <div class="story-image-wrap">
+            <img src="assets/freegas.jpg" alt="Confused Trump supporters shouting at a gas pump advertising free gas while charging full price" />
+            <span class="label">Energy</span>
+          </div>
+          <h2>White House Declares Gasoline Free As Prices Near $5 Nationwide</h2>
+          <p>DOJ targets ‘math conspiracies’ as Americans continue paying full price at the pump.</p>
+        </a>
+      </article>
+
+      <article class="story-card">
+        <a href="paidchaos.html">
+          <div class="story-image-wrap">
+            <img src="assets/paidchaos.jpg" alt="Freelance chaos agents clocking in for paid protest shifts" />
+            <span class="label">Economy</span>
+          </div>
+          <h2>Nation’s Largest Employer Now “Freelance Chaos Agent,” Overtakes Healthcare</h2>
+          <p>Flexibility, amorality cited.</p>
+        </a>
+      </article>
+
+      <article class="story-card">
+        <a href="hoodpope.html">
+          <div class="story-image-wrap">
+            <img src="assets/hoodpopetweet.jpg" alt="Trump Truth Social post about Pope Leo" />
+            <span class="label">Religion</span>
+          </div>
+          <h2>Trump Blasts Pope Leo In Late-Night Truth Social Post</h2>
+          <p>Leader unleashes on suspicious competing religious figure.</p>
+        </a>
+      </article>
+
+      <article class="story-card">
+        <a href="tommytone.html">
+          <div class="story-image-wrap">
+            <img src="assets/tommytone.jpg" alt="Tommy Two-Tone performing live" />
+            <span class="label">National Security</span>
+          </div>
+          <h2>Tommy Two-Tone Renditioned to GitMo After “Numeric Threat Campaign”</h2>
+          <p>Officials say '867-5309' song represents decades-long assassination attempt.</p>
+        </a>
+      </article>
+
+      <article class="story-card">
+        <a href="courtsale.html">
+          <div class="story-image-wrap">
+            <img src="assets/courtsale.jpg" alt="Supreme Court decision sale" />
+            <span class="label">Judiciary</span>
+          </div>
+          <h2>SOCUS Announces 2-for-1 Decision Sale</h2>
+          <p>Americans can now bundle rulings for maximum value.</p>
+        </a>
+      </article>
+
+      <article class="story-card">
+        <a href="nanogun.html">
+          <div class="story-image-wrap">
+            <img src="assets/nanogun.jpg" alt="Fetus holding a nano-scale firearm in utero defense demonstration" />
+            <span class="label">Defense</span>
+          </div>
+          <h2>NanoGun Declared “Historic Leap in Preemptive Safety”</h2>
+          <p>Americans now protected before birth.</p>
+        </a>
+      </article>
+
+      <article class="story-card">
+        <a href="jokethreat.html">
+          <div class="story-image-wrap">
+            <img src="assets/jokebrief.jpg" alt="Government briefing on joke threat analysis" />
+            <span class="label">National Security</span>
+          </div>
+          <h2>Nation’s Jokes Officially Upgraded to Ballistic Weapons</h2>
+          <p>Humor reclassified as a national threat.</p>
+        </a>
+      </article>
+
+      <article class="story-card">
+        <a href="kingcharles.html">
+          <div class="story-image-wrap">
+            <img src="assets/kingcharles.jpg" alt="King Charles seated behind the Resolute Desk" />
+            <span class="label">World</span>
+          </div>
+          <h2>King Charles Offers U.S. Return to British Monarchy</h2>
+          <p>Outsourcing authority gains quiet support.</p>
+        </a>
+      </article>
+
+      <article class="story-card">
+        <a href="ballroom1.html">
+          <div class="story-image-wrap">
+            <img src="assets/ballroomrank.jpg" alt="Guests arranged by importance inside a ballroom" />
+            <span class="label">Politics</span>
+          </div>
+          <h2>White House Ballroom Separation Plan</h2>
+          <p>Guests arranged by importance tiers.</p>
+        </a>
+      </article>
+
+      <article class="story-card">
+        <a href="warmodel.html">
+          <div class="story-image-wrap">
+            <img src="assets/warmodel.jpg" alt="General explaining Schrödinger’s War Model" />
+            <span class="label">National Security</span>
+          </div>
+          <h2>Schrödinger’s War Model Adopted</h2>
+          <p>War now both over and escalating.</p>
+        </a>
+      </article>
+
+      <article class="story-card">
+        <a href="oiltruth.html">
+          <div class="story-image-wrap">
+            <img src="assets/oiltruth.jpg" alt="Trump explaining oil prices" />
+            <span class="label">Energy</span>
+          </div>
+          <h2>$100 Oil Declared “Effectively Free”</h2>
+          <p>Numbers now a matter of perspective.</p>
+        </a>
+      </article>
+
+      <article class="story-card">
+        <a href="goatyoga.html">
+          <div class="story-image-wrap">
+            <img src="assets/goatyoga.jpg" alt="Trump participating in goat yoga" />
+            <span class="label">Wellness</span>
+          </div>
+          <h2>Trump Turns to Goat Yoga</h2>
+          <p>Goats seen as strategic advisors.</p>
+        </a>
+      </article>
+
+      <article class="story-card">
+        <a href="kidstrait.html">
+          <div class="story-image-wrap">
+            <img src="assets/kidstrait.jpg" alt="Kid Rock in the War Room" />
+            <span class="label">National Security</span>
+          </div>
+          <h2>Kid Rock to Open Strait of Hormuz</h2>
+          <p>Geography responds to vibe authority.</p>
+        </a>
+      </article>
+
+      <article class="story-card">
+        <a href="harambe1.html">
+          <div class="story-image-wrap">
+            <img src="assets/haramberaid.jpg" alt="Bananas arranged to read 86 47 at sabotage site" />
+            <span class="label">Domestic Security</span>
+          </div>
+          <h2>Project Harambe Hoax Somehow Sabotages Supply Depot</h2>
+          <p>Officials urge citizens not to assign meaning to bananas arranged in precise numerical formations.</p>
+        </a>
+      </article>
+
     </section>
 
-    <section class="closing">
-      <div class="container">
-        <div class="eyebrow">Private Consultation</div>
-        <h2>When the matter carries weight, choose counsel that does too.</h2>
-        <p>Speak with Signature Law about the facts, the risks, and the most strategic next move.</p>
-        <a class="button gold" href="contact.html">Request Counsel</a>
-      </div>
+    <section class="mobile-ads">
+      <div class="ad-label">Patriotic Sponsors</div>
+      <div class="mobile-ad-rail" data-random-ads></div>
     </section>
-  </main>
 
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div>
-        <img src="siglogo.png" alt="Signature Law" />
-        Comprehensive legal counsel for complex matters.
-      </div>
+  </section>
 
-      <div class="footer-links">
-        <a href="practice-areas.html">Practice Areas</a>
-        <a href="attorneys.html">Attorneys</a>
-        <a href="contact.html">Contact</a>
-        <a href="whycms.html">Why CMS Tech?</a>
-      </div>
-    </div>
-  </footer>
+  <aside class="ad-rail desktop-ad-rail" data-random-ads></aside>
+
+</main>
+
+<footer class="disclaimer-bar">
+  <p><em>It's likely or at least possible this is (still) satire. We strive to out-satire reality. We're losing.</em></p>
+</footer>
+
+<script src="ads.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const grid = document.querySelector(".story-grid");
+  if (!grid) return;
+
+  const maxStories = 18;
+
+  const cards = Array.from(grid.children).filter((card) =>
+    card.classList.contains("story-card")
+  );
+
+  for (let i = cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
+
+  grid.replaceChildren(...cards.slice(0, maxStories));
+});
+</script>
+
 </body>
 </html>
-```

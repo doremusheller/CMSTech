@@ -436,8 +436,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const grid = document.querySelector(".story-grid");
   if (!grid) return;
 
-  const maxStories = 18;
-
   const cards = Array.from(grid.children).filter((card) =>
     card.classList.contains("story-card")
   );
@@ -447,7 +445,7 @@ document.addEventListener("DOMContentLoaded", () => {
     [cards[i], cards[j]] = [cards[j], cards[i]];
   }
 
-  grid.replaceChildren(...cards.slice(0, maxStories));
+  grid.replaceChildren(...cards);
 });
 </script>
 

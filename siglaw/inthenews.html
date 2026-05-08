@@ -1,22 +1,191 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>In the News | Signature Law</title>
-  <meta name="description" content="Read the latest news, media highlights, and public commentary featuring Signature Law partners Melissa Rueschhoff, Jim Boland, Matthew A. Rivela, and Ottavio Del Mare." />
+  <meta name="description" content="Read the latest news, media highlights, and public commentary featuring Signature Law partners Melissa Rueschhoff, Jim Boland, Matthew A. Rivela, Ottavio Del Mare, and Shag Fantastiq." />
   <style>
     :root{--ink:#101621;--navy:#0d2d55;--gold:#b98218;--gold-2:#d7a62d;--gold-3:#f1cf67;--paper:#fbf7ef;--white:#fff;--max:1240px}
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;overflow-x:hidden}a{color:inherit;text-decoration:none}img{display:block;max-width:100%}h1,h2,h3,p{margin-top:0}.container{width:min(var(--max),calc(100% - 56px));margin:0 auto}
-    .topbar{background:#fff;border-bottom:1px solid rgba(16,22,33,.08);color:rgba(16,22,33,.62);font-size:11px;letter-spacing:.22em;text-transform:uppercase}.topbar-inner{height:38px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-    .header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.86);border-bottom:1px solid rgba(16,22,33,.08);backdrop-filter:blur(18px)}.nav{min-height:86px;display:flex;align-items:center;justify-content:space-between;gap:30px}.brand img{width:214px}.nav-links{display:flex;align-items:center;gap:34px;color:rgba(16,22,33,.72);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:850}.nav-links a:hover{color:var(--gold)}.nav-cta{min-height:46px;padding:0 22px;border:1px solid rgba(185,130,24,.72);display:inline-flex;align-items:center;justify-content:center;color:#7d5510;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:950;background:rgba(185,130,24,.06)}
-    .button{min-height:58px;padding:0 28px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:950;transition:.22s ease;border:1px solid transparent}.button:hover{transform:translateY(-2px)}.button.gold{background:linear-gradient(135deg,var(--gold-3),var(--gold-2) 44%,var(--gold));color:#080808;border-color:var(--gold-2);box-shadow:0 18px 38px rgba(185,130,24,.18)}
-    .hero{position:relative;overflow:hidden;background:radial-gradient(circle at 50% 8%,rgba(241,207,103,.24),transparent 24rem),radial-gradient(circle at 80% 42%,rgba(23,63,115,.13),transparent 30rem),linear-gradient(180deg,#fff 0%,#fbf7ef 58%,#f4ecde 100%)}.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,45,85,.055) 1px,transparent 1px),linear-gradient(rgba(13,45,85,.045) 1px,transparent 1px);background-size:104px 104px;mask-image:radial-gradient(circle at 50% 30%,rgba(0,0,0,.58),transparent 68%);opacity:.7;pointer-events:none}.hero-inner{position:relative;z-index:2;padding:82px 0 96px;display:grid;grid-template-columns:.86fr 1.14fr;gap:70px;align-items:end}.hero-logo{width:min(460px,80vw);margin-bottom:38px}.eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:22px;color:#8b6115;font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:950}.eyebrow:before{content:"";width:52px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(4rem,7.4vw,8.2rem);line-height:.84;letter-spacing:-.082em;font-weight:500;margin-bottom:0;color:var(--ink)}.hero-copy{color:#4e5969;font-size:clamp(1.08rem,1.45vw,1.25rem);line-height:1.8;margin:0;max-width:700px}.hero-side{background:rgba(255,255,255,.72);border:1px solid rgba(185,130,24,.18);box-shadow:0 28px 80px rgba(13,45,85,.1);padding:38px}.hero-side strong{display:block;font-family:Georgia,'Times New Roman',serif;font-size:clamp(2rem,3vw,3.4rem);line-height:.9;letter-spacing:-.065em;font-weight:500;color:var(--navy);margin-bottom:18px}
-    .section{padding:104px 0}.light{background:var(--paper)}.white{background:#fff}.section-head{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:end;margin-bottom:52px}.kicker{color:var(--gold);font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:950;margin-bottom:16px}.section-title{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.1rem,5.8vw,6.25rem);line-height:.86;letter-spacing:-.085em;font-weight:500;margin:0;color:var(--ink)}.section-lede{color:#4f5968;font-size:1.08rem;line-height:1.82;max-width:660px;margin:0}
-    .news-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}.news-card{background:#fff;border:1px solid rgba(16,22,33,.09);box-shadow:0 24px 66px rgba(13,45,85,.08);display:grid;grid-template-columns:.82fr 1.18fr;min-height:520px;overflow:hidden}.news-card.featured{border-color:rgba(185,130,24,.28);box-shadow:0 28px 80px rgba(185,130,24,.13)}.photo-wrap{background:#f3ede3;overflow:hidden;min-height:520px}.photo-wrap img{width:100%;height:100%;object-fit:cover;filter:saturate(.96) contrast(1.02);transition:.35s ease}.news-card:hover img{transform:scale(1.035)}.news-info{padding:36px;display:flex;flex-direction:column;justify-content:space-between;gap:28px}.role{color:var(--gold);letter-spacing:.19em;text-transform:uppercase;font-weight:950;font-size:11px}.news-info h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(2.4rem,3.9vw,4.4rem);line-height:.88;letter-spacing:-.075em;font-weight:500;margin:14px 0 20px;color:var(--navy)}.news-info p{color:#566170;margin-bottom:22px;line-height:1.78}.news-tags{display:grid;gap:10px;border-top:1px solid rgba(16,22,33,.1);padding-top:20px;color:#303949;font-size:14px}.news-tags span:before{content:"— ";color:var(--gold)}.news-link{display:inline-flex;align-items:center;color:#7d5510;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:950;margin-top:6px}.news-link:after{content:"→";margin-left:10px;color:var(--gold)}
-    .statement{position:relative;background:linear-gradient(115deg,#fff 0%,#f7f1e7 48%,#eaf0f7 100%);overflow:hidden;border-top:1px solid rgba(16,22,33,.08);border-bottom:1px solid rgba(16,22,33,.08)}.statement-inner{display:grid;grid-template-columns:1fr .78fr;gap:72px;align-items:end}.statement h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.6rem,6.8vw,7.2rem);line-height:.82;letter-spacing:-.09em;font-weight:500;margin:0;color:var(--ink)}.statement p{color:#4f5968;font-size:1.13rem;line-height:1.85;margin:0;max-width:590px}
-    .closing{position:relative;text-align:center;padding:128px 0;background:radial-gradient(circle at 50% 0%,rgba(215,166,45,.19),transparent 34rem),linear-gradient(#fbf7ef,#fff);border-top:1px solid rgba(16,22,33,.08)}.closing .eyebrow{justify-content:center}.closing .eyebrow:after{content:"";width:52px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}.closing h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.5rem,7vw,7.6rem);line-height:.83;letter-spacing:-.09em;font-weight:500;max-width:980px;margin:0 auto 28px;color:var(--ink)}.closing p{color:#4f5968;max-width:590px;margin:0 auto 38px;font-size:1.1rem;line-height:1.8}.footer{background:#fff;color:#6b7483;border-top:1px solid rgba(16,22,33,.08);padding:46px 0 62px;font-size:13px}.footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:28px}.footer img{width:190px;margin-bottom:12px}.footer-links{display:flex;gap:24px;color:var(--ink);font-weight:850;text-transform:uppercase;letter-spacing:.14em;font-size:11px}
-    @media(max-width:1180px){.news-grid{grid-template-columns:1fr}.news-card{grid-template-columns:.72fr 1.28fr}}@media(max-width:1060px){.hero-inner,.section-head,.statement-inner{grid-template-columns:1fr}}@media(max-width:760px){.topbar{display:none}.container{width:min(100% - 30px,var(--max))}.nav{height:auto;min-height:76px;padding:12px 0 10px;flex-wrap:wrap;gap:10px 16px}.brand img{width:156px}.nav-cta{display:none}.nav-links{order:3;width:100%;display:flex;gap:18px;overflow-x:auto;white-space:nowrap;padding:8px 0 2px;font-size:10px;letter-spacing:.14em;scrollbar-width:none}.nav-links::-webkit-scrollbar{display:none}.hero-inner{padding:58px 0 72px}.hero-side{padding:30px}.section{padding:78px 0}.news-card{grid-template-columns:1fr;min-height:auto}.photo-wrap{min-height:380px}.news-info{padding:30px}.footer-inner{flex-direction:column}.footer-links{flex-direction:column;gap:12px}}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    h1,h2,h3,p{margin-top:0}
+    .container{width:min(var(--max),calc(100% - 56px));margin:0 auto}
+
+    .topbar{background:#fff;border-bottom:1px solid rgba(16,22,33,.08);color:rgba(16,22,33,.62);font-size:11px;letter-spacing:.22em;text-transform:uppercase}
+    .topbar-inner{height:38px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+
+    .header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.86);border-bottom:1px solid rgba(16,22,33,.08);backdrop-filter:blur(18px)}
+    .nav{min-height:86px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+    .brand img{width:214px}
+
+    .nav-links{display:flex;align-items:center;gap:34px;color:rgba(16,22,33,.72);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:850}
+    .nav-links a:hover{color:var(--gold)}
+
+    .nav-cta{min-height:46px;padding:0 22px;border:1px solid rgba(185,130,24,.72);display:inline-flex;align-items:center;justify-content:center;color:#7d5510;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:950;background:rgba(185,130,24,.06)}
+
+    .button{min-height:58px;padding:0 28px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:950;transition:.22s ease;border:1px solid transparent}
+    .button:hover{transform:translateY(-2px)}
+
+    .button.gold{background:linear-gradient(135deg,var(--gold-3),var(--gold-2) 44%,var(--gold));color:#080808;border-color:var(--gold-2);box-shadow:0 18px 38px rgba(185,130,24,.18)}
+
+    .hero{position:relative;overflow:hidden;background:radial-gradient(circle at 50% 8%,rgba(241,207,103,.24),transparent 24rem),radial-gradient(circle at 80% 42%,rgba(23,63,115,.13),transparent 30rem),linear-gradient(180deg,#fff 0%,#fbf7ef 58%,#f4ecde 100%)}
+
+    .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,45,85,.055) 1px,transparent 1px),linear-gradient(rgba(13,45,85,.045) 1px,transparent 1px);background-size:104px 104px;mask-image:radial-gradient(circle at 50% 30%,rgba(0,0,0,.58),transparent 68%);opacity:.7;pointer-events:none}
+
+    .hero-inner{position:relative;z-index:2;padding:82px 0 96px;display:grid;grid-template-columns:.86fr 1.14fr;gap:70px;align-items:end}
+
+    .hero-logo{width:min(460px,80vw);margin-bottom:38px}
+
+    .eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:22px;color:#8b6115;font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:950}
+
+    .eyebrow:before{content:"";width:52px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+
+    h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(4rem,7.4vw,8.2rem);line-height:.84;letter-spacing:-.082em;font-weight:500;margin-bottom:0;color:var(--ink)}
+
+    .hero-copy{color:#4e5969;font-size:clamp(1.08rem,1.45vw,1.25rem);line-height:1.8;margin:0;max-width:700px}
+
+    .hero-side{background:rgba(255,255,255,.72);border:1px solid rgba(185,130,24,.18);box-shadow:0 28px 80px rgba(13,45,85,.1);padding:38px}
+
+    .hero-side strong{display:block;font-family:Georgia,'Times New Roman',serif;font-size:clamp(2rem,3vw,3.4rem);line-height:.9;letter-spacing:-.065em;font-weight:500;color:var(--navy);margin-bottom:18px}
+
+    .section{padding:104px 0}
+    .light{background:var(--paper)}
+
+    .section-head{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:end;margin-bottom:52px}
+
+    .kicker{color:var(--gold);font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:950;margin-bottom:16px}
+
+    .section-title{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.1rem,5.8vw,6.25rem);line-height:.86;letter-spacing:-.085em;font-weight:500;margin:0;color:var(--ink)}
+
+    .section-lede{color:#4f5968;font-size:1.08rem;line-height:1.82;max-width:660px;margin:0}
+
+    .news-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
+
+    .news-card{background:#fff;border:1px solid rgba(16,22,33,.09);box-shadow:0 24px 66px rgba(13,45,85,.08);display:grid;grid-template-columns:.82fr 1.18fr;min-height:520px;overflow:hidden}
+
+    .news-card.featured{border-color:rgba(185,130,24,.28);box-shadow:0 28px 80px rgba(185,130,24,.13)}
+
+    .photo-wrap{
+      background:#f3ede3;
+      overflow:hidden;
+      min-height:520px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      position:relative;
+    }
+
+    .photo-wrap img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      object-position:center center;
+      display:block;
+      filter:saturate(.96) contrast(1.02);
+      transition:.35s ease;
+    }
+
+    .news-card:hover img{transform:scale(1.035)}
+
+    .news-info{padding:36px;display:flex;flex-direction:column;justify-content:space-between;gap:28px}
+
+    .role{color:var(--gold);letter-spacing:.19em;text-transform:uppercase;font-weight:950;font-size:11px}
+
+    .news-info h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(2.4rem,3.9vw,4.4rem);line-height:.88;letter-spacing:-.075em;font-weight:500;margin:14px 0 20px;color:var(--navy)}
+
+    .news-info p{color:#566170;margin-bottom:22px;line-height:1.78}
+
+    .news-tags{display:grid;gap:10px;border-top:1px solid rgba(16,22,33,.1);padding-top:20px;color:#303949;font-size:14px}
+
+    .news-tags span:before{content:"— ";color:var(--gold)}
+
+    .news-link{display:inline-flex;align-items:center;color:#7d5510;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:950;margin-top:6px}
+
+    .news-link:after{content:"→";margin-left:10px;color:var(--gold)}
+
+    /* Balanced image positioning */
+    img[src="melteach.png"]{
+      object-position:center top;
+      transform:scale(1.02);
+    }
+
+    img[src="jimsniff.png"]{
+      object-position:center center;
+      transform:scale(1.06);
+    }
+
+    img[src="mattfight.png"]{
+      object-position:center 18%;
+      transform:scale(1.04);
+    }
+
+    img[src="ottogoes.png"]{
+      object-position:center center;
+      transform:scale(1.03);
+    }
+
+    img[src="dualshag.jpg"]{
+      object-position:center top;
+      transform:scale(1.02);
+    }
+
+    .statement{position:relative;background:linear-gradient(115deg,#fff 0%,#f7f1e7 48%,#eaf0f7 100%);overflow:hidden;border-top:1px solid rgba(16,22,33,.08);border-bottom:1px solid rgba(16,22,33,.08)}
+
+    .statement-inner{display:grid;grid-template-columns:1fr .78fr;gap:72px;align-items:end}
+
+    .statement h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.6rem,6.8vw,7.2rem);line-height:.82;letter-spacing:-.09em;font-weight:500;margin:0;color:var(--ink)}
+
+    .statement p{color:#4f5968;font-size:1.13rem;line-height:1.85;margin:0;max-width:590px}
+
+    .closing{position:relative;text-align:center;padding:128px 0;background:radial-gradient(circle at 50% 0%,rgba(215,166,45,.19),transparent 34rem),linear-gradient(#fbf7ef,#fff);border-top:1px solid rgba(16,22,33,.08)}
+
+    .closing .eyebrow{justify-content:center}
+
+    .closing .eyebrow:after{content:"";width:52px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+
+    .closing h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.5rem,7vw,7.6rem);line-height:.83;letter-spacing:-.09em;font-weight:500;max-width:980px;margin:0 auto 28px;color:var(--ink)}
+
+    .closing p{color:#4f5968;max-width:590px;margin:0 auto 38px;font-size:1.1rem;line-height:1.8}
+
+    .footer{background:#fff;color:#6b7483;border-top:1px solid rgba(16,22,33,.08);padding:46px 0 62px;font-size:13px}
+
+    .footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:28px}
+
+    .footer img{width:190px;margin-bottom:12px}
+
+    .footer-links{display:flex;gap:24px;color:var(--ink);font-weight:850;text-transform:uppercase;letter-spacing:.14em;font-size:11px}
+
+    @media(max-width:1180px){
+      .news-grid{grid-template-columns:1fr}
+      .news-card{grid-template-columns:.72fr 1.28fr}
+    }
+
+    @media(max-width:1060px){
+      .hero-inner,.section-head,.statement-inner{grid-template-columns:1fr}
+    }
+
+    @media(max-width:760px){
+      .topbar{display:none}
+      .container{width:min(100% - 30px,var(--max))}
+      .nav{height:auto;min-height:76px;padding:12px 0 10px;flex-wrap:wrap;gap:10px 16px}
+      .brand img{width:156px}
+      .nav-cta{display:none}
+      .nav-links{order:3;width:100%;display:flex;gap:18px;overflow-x:auto;white-space:nowrap;padding:8px 0 2px;font-size:10px;letter-spacing:.14em;scrollbar-width:none}
+      .nav-links::-webkit-scrollbar{display:none}
+      .hero-inner{padding:58px 0 72px}
+      .hero-side{padding:30px}
+      .section{padding:78px 0}
+      .news-card{grid-template-columns:1fr;min-height:auto}
+      .photo-wrap{min-height:380px}
+      .news-info{padding:30px}
+      .footer-inner{flex-direction:column}
+      .footer-links{flex-direction:column;gap:12px}
+    }
   </style>
 </head>
 
@@ -31,6 +200,7 @@
   <header class="header">
     <div class="container nav">
       <a class="brand" href="index.html" aria-label="Signature Law home"><img src="siglogo.png" alt="Signature Law" /></a>
+
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="practice-areas.html">Practice Areas</a>
         <a href="attorneys.html">Attorneys</a>
@@ -38,6 +208,7 @@
         <a href="contact.html">Contact</a>
         <a href="whycms.html">Why CMS Tech?</a>
       </nav>
+
       <a class="nav-cta" href="contact.html">Request Counsel</a>
     </div>
   </header>
@@ -50,6 +221,7 @@
           <div class="eyebrow">In the News</div>
           <h1>When the matter has weight, the work gets noticed.</h1>
         </div>
+
         <aside class="hero-side">
           <strong>Public attention. Private judgment.</strong>
           <p class="hero-copy">Signature Law partners are regularly positioned at the center of high-stakes business, regulatory, entertainment, litigation, and advocacy conversations.</p>
@@ -64,78 +236,135 @@
             <div class="kicker">Partner Highlights</div>
             <h2 class="section-title">The partners making news.</h2>
           </div>
+
           <p class="section-lede">From courtroom advocacy to regulated industries, brand-defining transactions, and unconventional legal strategy, Signature Law’s partners continue to shape conversations that matter.</p>
         </div>
 
         <div class="news-grid">
+
           <article class="news-card featured">
-            <div class="photo-wrap"><img src="melteach.png" alt="Melissa Rueschhoff leading a client counsel seminar at Signature Law" /></div>
+            <div class="photo-wrap">
+              <img src="melteach.png" alt="Melissa Rueschhoff leading a client counsel seminar at Signature Law" />
+            </div>
+
             <div class="news-info">
               <div>
                 <span class="role">Founding Partner</span>
                 <h2>Melissa Rueschhoff</h2>
-                <p>Melissa is making news for leading a high-profile seminar focused on obtaining proper client counsel, strategic legal positioning, and early risk assessment in complex matters. Her presentations combine litigation insight with practical frameworks clients and businesses can immediately apply.</p>
+
+                <p>Melissa has recently drawn national attention for leading a high-profile seminar focused on obtaining proper client counsel, strategic legal positioning, and early risk assessment in complex matters. Her presentations combine litigation insight with practical frameworks clients and businesses can immediately apply.</p>
+
                 <p>The seminar series highlights how experienced counsel changes outcomes long before a dispute reaches a courtroom, reinforcing Signature Law’s emphasis on preparation, clarity, and decisive legal strategy.</p>
+
                 <a class="news-link" href="#">Read Feature</a>
               </div>
-              <div class="news-tags"><span>Litigation leadership</span><span>Victim advocacy</span><span>High-stakes counsel</span></div>
+
+              <div class="news-tags">
+                <span>Litigation leadership</span>
+                <span>Victim advocacy</span>
+                <span>High-stakes counsel</span>
+              </div>
             </div>
           </article>
 
           <article class="news-card featured">
-            <div class="photo-wrap"><img src="jimsniff.png" alt="Jim Boland at the center of a highly publicized sock-sniffing incident" /></div>
+            <div class="photo-wrap">
+              <img src="jimsniff.png" alt="Jim Boland at the center of a highly publicized sock-sniffing incident" />
+            </div>
+
             <div class="news-info">
               <div>
                 <span class="role">Founding Partner</span>
                 <h2>Jim Boland</h2>
-                <p>Jim is making news following yet another highly publicized detention on suspected sock-sniffing charges inside a regional retail establishment. Witnesses reportedly described the incident as “focused,” “committed,” and “deeply confusing.”</p>
+
+                <p>Jim returned to the public spotlight following yet another highly publicized detention on suspected sock-sniffing charges inside a regional retail establishment. Witnesses reportedly described the incident as “focused,” “committed,” and “deeply confusing.”</p>
+
                 <p>Signature Law has confirmed that bail was promptly posted and that Jim remains fully available to advise clients on regulated industries, strategic growth, and complex compliance matters while the investigation proceeds with what sources describe as “surprising intensity.”</p>
+
                 <a class="news-link" href="#">Read Feature</a>
               </div>
-              <div class="news-tags"><span>Regulated industries</span><span>Cannabis & hemp</span><span>Business strategy</span></div>
+
+              <div class="news-tags">
+                <span>Regulated industries</span>
+                <span>Cannabis & hemp</span>
+                <span>Business strategy</span>
+              </div>
             </div>
           </article>
 
           <article class="news-card featured">
-            <div class="photo-wrap"><img src="mattfight.png" alt="Matthew A. Rivela preparing for a highly anticipated rematch" /></div>
+            <div class="photo-wrap">
+              <img src="mattfight.png" alt="Matthew A. Rivela preparing for a highly anticipated rematch" />
+            </div>
+
             <div class="news-info">
               <div>
                 <span class="role">Founding Partner</span>
                 <h2>Matthew A. Rivela</h2>
-                <p>Matthew is making headlines after announcing that all proceeds from his upcoming rematch against his longtime arch nemesis will be donated to charity. The event has already drawn substantial public attention, sponsorship interest, and widespread speculation about whether folding chairs will again become legally relevant.</p>
+
+                <p>Matthew stunned both fans and sponsors after announcing that all proceeds from his upcoming rematch against his longtime arch nemesis will be donated to charity. The event has already drawn substantial public attention, sponsorship interest, and widespread speculation about whether folding chairs will again become legally relevant.</p>
+
                 <p>Signature Law confirmed the charity initiative reflects Matthew’s continued commitment to community impact, strategic competition, and resolving disputes with what insiders describe as “extremely theatrical professionalism.”</p>
+
                 <a class="news-link" href="#">Read Feature</a>
               </div>
-              <div class="news-tags"><span>M&A activity</span><span>Media & entertainment</span><span>Brand strategy</span></div>
+
+              <div class="news-tags">
+                <span>M&A activity</span>
+                <span>Media & entertainment</span>
+                <span>Brand strategy</span>
+              </div>
             </div>
           </article>
 
           <article class="news-card featured">
-            <div class="photo-wrap"><img src="ottogoes.png" alt="Ottavio Del Mare boarding a presidential aircraft for an emergency maritime mission" /></div>
+            <div class="photo-wrap">
+              <img src="ottogoes.png" alt="Ottavio Del Mare boarding a presidential aircraft for an emergency maritime mission" />
+            </div>
+
             <div class="news-info">
               <div>
                 <span class="role">Partner</span>
                 <h2>Ottavio Del Mare, Esq.</h2>
-                <p>Ottavio Del Mare is making international headlines after being personally tapped by President Trump to resolve escalating legal and maritime tensions surrounding the Strait of Hormuz. Sources inside Signature Law describe the mission as “extremely delicate” and “probably involving at least one cigar.”</p>
+
+                <p>Ottavio Del Mare has now entered the international spotlight after being personally tapped by President Trump to resolve escalating legal and maritime tensions surrounding the Strait of Hormuz. Sources inside Signature Law describe the mission as “extremely delicate” and “probably involving at least one cigar.”</p>
+
                 <p>Signature Law has announced that settlement negotiations and full reopening of the Strait are expected by 10:00 PM CST, with Ottavio reportedly handling diplomatic outreach, maritime enforcement strategy, and several undisclosed undersea complications simultaneously.</p>
+
                 <a class="news-link" href="#">Read Feature</a>
               </div>
-              <div class="news-tags"><span>Maritime litigation</span><span>Subsea disputes</span><span>Eight-arm strategy</span></div>
+
+              <div class="news-tags">
+                <span>Maritime litigation</span>
+                <span>Subsea disputes</span>
+                <span>Eight-arm strategy</span>
+              </div>
             </div>
           </article>
-        </div>
-                <article class="news-card featured">
-            <div class="photo-wrap"><img src="dualshag.jpg" alt="Shag Fantastiq and Ghetto Wookie announcing a major legal victory" /></div>
+
+          <article class="news-card featured">
+            <div class="photo-wrap">
+              <img src="dualshag.jpg" alt="Shag Fantastiq and Ghetto Wookie announcing a major legal victory" />
+            </div>
+
             <div class="news-info">
               <div>
                 <span class="role">Interstellar Counsel</span>
                 <h2>Legal Juggernaut by Day, Cosmic Funk God by Night.</h2>
-                <p>Shag Fantastiq is making headlines after George Lucas officially dropped his legal action against Ghetto Wookie, ending what insiders described as one of the most spiritually confusing entertainment disputes in modern history.</p>
+
+                <p>Shag Fantastiq re-emerged at the center of entertainment media after George Lucas officially dropped his legal action against Ghetto Wookie, ending what insiders described as one of the most spiritually confusing entertainment disputes in modern history.</p>
+
                 <p>Signature Law confirmed the resolution followed extensive negotiations, several late-night funk summits, and what one source only described as “an overwhelming quantity of velvet.” Public reaction intensified following the release of <a class="news-link" href="https://youtu.be/P0kks_8SB5U?si=rpZ_34EQILA_axCX" target="_blank">the now-infamous announcement video</a>.</p>
               </div>
-              <div class="news-tags"><span>Entertainment litigation</span><span>Cosmic funk diplomacy</span><span>Intellectual property resolution</span></div>
+
+              <div class="news-tags">
+                <span>Entertainment litigation</span>
+                <span>Cosmic funk diplomacy</span>
+                <span>Intellectual property resolution</span>
+              </div>
             </div>
           </article>
+
         </div>
       </div>
     </section>
@@ -143,6 +372,7 @@
     <section class="section statement">
       <div class="container statement-inner">
         <h2>News should build authority, not simply archive mentions.</h2>
+
         <p>This page gives each partner a polished editorial feature, connecting public visibility to the judgment, experience, and strategic value clients expect from Signature Law.</p>
       </div>
     </section>
@@ -150,8 +380,11 @@
     <section class="closing">
       <div class="container">
         <div class="eyebrow">Speak With Signature Law</div>
+
         <h2>For matters that attract attention, start with counsel that can handle it.</h2>
+
         <p>Request a confidential consultation with Signature Law and begin with a clear assessment of the path ahead.</p>
+
         <a class="button gold" href="contact.html">Request Counsel</a>
       </div>
     </section>
@@ -159,9 +392,21 @@
 
   <footer class="footer">
     <div class="container footer-inner">
-      <div><img src="siglogo.png" alt="Signature Law" />Attorney leadership for complex matters.</div>
-      <div class="footer-links"><a href="index.html">Home</a><a href="practice-areas.html">Practice Areas</a><a href="attorneys.html">Attorneys</a><a href="inthenews.html">In the News</a><a href="contact.html">Contact</a><a href="whycms.html">Why CMS Tech?</a></div>
+      <div>
+        <img src="siglogo.png" alt="Signature Law" />
+        Attorney leadership for complex matters.
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="practice-areas.html">Practice Areas</a>
+        <a href="attorneys.html">Attorneys</a>
+        <a href="inthenews.html">In the News</a>
+        <a href="contact.html">Contact</a>
+        <a href="whycms.html">Why CMS Tech?</a>
+      </div>
     </div>
   </footer>
 </body>
 </html>
+```

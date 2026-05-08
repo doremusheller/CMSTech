@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -5,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" href="data:,">
+
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
-    <meta name="keywords" content="Signature Law Partners, General Counsel, Corporate Transactions, Civil Litigation, Media, IP">
-    <meta name="description" content="Welcome to Signature Law Partners, PLLC. Experienced counsel for business, litigation, media, intellectual property, and regulated industries.">
+    <meta name="description" content="Signature Law Partners, PLLC provides strategic, sophisticated legal counsel for businesses, executives, creators, and individuals facing complex matters.">
     <title>Signature Law Partners, PLLC</title>
 
     <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@100;300;400;700;900&display=swap" rel="stylesheet">
@@ -17,18 +18,61 @@
         .site-nav {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 1.25rem;
             flex-wrap: wrap;
             justify-content: flex-end;
         }
 
         .site-nav a {
             text-decoration: underline;
-            transition: all 0.2s ease;
+            transition: all .2s ease;
         }
 
         .site-nav a:hover {
-            color: var(--btnHover, #EF974B);
+            color: #EF974B;
+        }
+
+        .hero-logo-wrap {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 72px 20px 52px;
+        }
+
+        .hero-logo {
+            width: 100%;
+            max-width: 620px;
+            height: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 12px 30px rgba(0,0,0,.22));
+        }
+
+        .landing-card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 28px;
+        }
+
+        .landing-card {
+            background: #F6F6F6;
+            padding: 32px 28px;
+            border-radius: 2px;
+        }
+
+        .landing-card h4 {
+            font-weight: 700;
+            margin-bottom: 14px;
+            font-size: 22px;
+        }
+
+        .landing-card p {
+            line-height: 1.75;
+        }
+
+        @media (max-width: 900px) {
+            .landing-card-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 767px) {
@@ -38,8 +82,8 @@
             }
 
             .site-nav {
-                justify-content: flex-start;
                 width: 100%;
+                justify-content: flex-start;
                 font-size: 13px;
                 line-height: 1.6;
                 padding-top: 1rem;
@@ -48,248 +92,238 @@
             .logo {
                 max-width: 145px;
             }
+
+            .hero-logo-wrap {
+                padding: 42px 20px 34px;
+            }
         }
     </style>
 </head>
 
 <body class="font-baskerville cs-gray-gold">
-    <header class="bg-white z-50 md:text-xs lg:text-fs15 font-baskerville tracking-widest">
-        <a class="skip-link" href="#main">Skip to content</a>
+<header class="bg-white z-50 md:text-xs lg:text-fs15 font-baskerville tracking-widest">
+    <a class="skip-link" href="#main">Skip to content</a>
 
-        <div class="top-header hidden md:block bg-custom">
-            <div class="container flex justify-between items-center text-white">
-                <div class="text-left">
-                    <ul class="flex gap-x-6 xl:gap-x-8 py-4 items-center before_item">
-                        <li class="relative truncate">
-                            Serving: AZ CO CT IL MA NY TX +Fed
-                        </li>
-
-                        <li class="relative before:content-[''] before:bg-white before:w-[1px] before:h-4 before:absolute before:left-[-12px] xl:before:left-[-15px] before:-mt-2 before:top-[50%]">
-                            Phone:
-                            <a href="tel:(855) SIGLAW1" class="contact-link transition-all text-white underline">(855) SIGLAW1</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="text-right loginSec">
-                    <ul class="flex items-center md:gap-x-4 lg:gap-x-8 xl:gap-x-16">
-                        <li>
-                            <a class="client-link flex items-center gap-x-3 transition-all" href="https://clients.clio.com/">Client Login</a>
-                        </li>
-                    </ul>
+    <div class="main-header py-4 relative">
+        <div class="container flex justify-between items-center flex-wrap px-[10px] xl:px-[1.5rem]">
+            <div class="text-left flex items-center gap-x-8">
+                <div class="logo max-w-[170px] relative z-30">
+                    <a href="index.html">
+                        <img src="siglogo.png" alt="Signature Law Partners Logo">
+                    </a>
                 </div>
             </div>
+
+            <nav class="site-nav relative z-50">
+                <a href="attorneys.html" class="hover:text-btnHover transition-all underline nav-link">Attorneys</a>
+                <a href="practice-areas.html" class="hover:text-btnHover transition-all underline nav-link">Practice Areas</a>
+                <a href="contact.html" class="hover:text-btnHover transition-all underline nav-link">Contact</a>
+                <a href="whycms.html" class="hover:text-btnHover transition-all underline nav-link">Why CMS</a>
+            </nav>
         </div>
+    </div>
+</header>
 
-        <div class="main-header py-4 relative">
-            <div class="container flex justify-between items-center flex-wrap px-[10px] xl:px-[1.5rem]">
-                <div class="text-left flex items-center gap-x-8">
-                    <div class="logo max-w-[170px] relative z-30">
-                        <a href="index.html">
-                            <img src="siglogo.png" alt="Logo for Signature Law Partners, PLLC">
-                        </a>
+<main class="main-content" id="main">
+    <section class="hero-sec font-baskerville">
+        <div class="container relative p-0 xl:px-[1.5rem]">
+            <div class="relative bg-img bg-cover bg-repeat bg-center overflow-hidden">
+                <div class="hero-logo-wrap">
+                    <img src="siglogo.png" alt="Signature Law Partners, PLLC" class="hero-logo">
+                </div>
+
+                <div class="text-white text-center mx-auto px-5 pb-16">
+                    <span class="mx-auto mb-7 inline-block h-[6px]">
+                        <div class="linebar"></div>
+                    </span>
+
+                    <h1 class="mb-8 text-4xl md:text-3xl xl:text-4xl 2xl:text-4.4xl font-bold font-baskerville">
+                        Sophisticated counsel for complex legal moments.
+                    </h1>
+
+                    <div class="mb-8 text-lg lg:text-base font-baskerville">
+                        <p>Signature Law Partners, PLLC serves clients who need strategic judgment, clear communication, and decisive legal execution.</p>
                     </div>
-                </div>
 
-                <nav class="site-nav relative z-50">
-                    <a href="attorneys.html" class="hover:text-btnHover transition-all underline nav-link">Attorneys</a>
-                    <a href="practice-areas.html" class="hover:text-btnHover transition-all underline nav-link">Practice Areas</a>
-                    <a href="contact.html" class="hover:text-btnHover transition-all underline nav-link">Contact</a>
-                    <a href="whycms.html" class="hover:text-btnHover transition-all underline nav-link">Why CMS</a>
-                </nav>
-            </div>
-        </div>
-    </header>
-
-    <main class="main-content" id="main">
-        <section class="hero-sec font-baskerville">
-            <div class="container relative p-0 xl:px-[1.5rem]">
-                <div class="relative bg-img bg-cover bg-repeat bg-center px-5 pt-7 pb-14 md:py-14 md:px-4 lg:py-20 xl:py-30 2xl:py-38 overflow-hidden">
-                    <div class="items-center md:gap-x-6 lg:gap-x-10 xl:gap-x-20 hero-txt flex flex-wrap md:flex-nowrap w-full lg:px-8 xl:px-15 text-white text-center mx-auto">
-                        <div class="pb-23 md:pb-0 w-full">
-                            <h1 class="mb-7 font-baskerville sm:text-base lg:text-base tracking-[0.12em] font-semibold">Signature Law Partners, PLLC</h1>
-
-                            <span class="mx-auto mb-7 inline-block h-[6px]">
-                                <div class="linebar"></div>
-                            </span>
-
-                            <h2 class="mb-8 text-4xl md:text-3xl xl:text-4xl 2xl:text-4.4xl font-bold font-baskerville">Welcome to Signature Law Partners</h2>
-
-                            <div class="mb-7 text-lg lg:text-base font-baskerville">
-                                <p>Strategic counsel for businesses, creators, executives, and individuals navigating complex legal challenges.</p>
-                                <p>We partner with clients through thoughtful guidance, decisive advocacy, and practical solutions.</p>
-                            </div>
-
-                            <div class="mx-auto flex flex-wrap md:flex-nowrap gap-x-8 justify-center">
-                                <a href="contact.html" class="btn w-full md:w-auto order-2 md:order-1 dark:focus:bg-transparent dark:hover:bg-[rgba(255,255,255,0.3)] dark:bg-transparent dark:text-[#eee]">Connect With Us</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="relative bg-white py-[60px] md:py-[90px]">
-            <div class="mx-auto max-w-[1030px] px-[15px] text-left">
-                <span class="mx-auto mb-7 inline-block h-[6px]">
-                    <div class="linebar"></div>
-                </span>
-
-                <h2 class="mb-7 font-baskerville sm:text-base lg:text-base tracking-[0.12em] font-semibold text-cust mb-4 md:mb-7">A Modern Legal Partner</h2>
-
-                <h3 class="mb-8 text-4xl md:text-3xl xl:text-4xl 2xl:text-4.4xl font-bold font-baskerville text-4xl md:text-4.4xl">Built for complex work and meaningful outcomes.</h3>
-
-                <div class="default_para font-baskerville mb-8">
-                    <p>Signature Law Partners, PLLC provides sophisticated legal guidance across corporate, litigation, regulatory, media, entertainment, intellectual property, and general counsel matters. Our firm is designed for clients who need clear strategy, practical judgment, and responsive legal support.</p>
-                    <p>Whether you are building a company, resolving a dispute, protecting intellectual property, managing regulatory risk, or seeking trusted outside counsel, our team brings experience, discretion, and focus to every engagement.</p>
-                </div>
-
-                <div class="text-right flex flex-wrap md:flex-nowrap gap-x-4 items-center">
-                    <a href="practice-areas.html" class="btn w-full md:w-auto order-2 md:order-1">Explore Practice Areas</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="relative bg-img bg-auto bg-center pt-15 pb-20">
-            <div class="container text-center">
-                <h3 class="mb-8 text-4xl text-on-bg md:text-3xl xl:text-4xl 2xl:text-4.4xl font-bold font-baskerville">
-                    Experienced counsel.<br>
-                    Practical strategy.<br>
-                    Trusted partnership.
-                </h3>
-
-                <div class="text-right flex flex-wrap md:flex-nowrap gap-x-4 items-center justify-center">
-                    <a href="attorneys.html" class="btn w-full md:w-auto order-2 md:order-1">Meet Our Attorneys</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="relative py-[60px] bg-white md:py-[90px]">
-            <div class="mx-auto max-w-[1030px] px-[15px]">
-                <span class="mx-auto mb-7 block md:inline-block h-[6px]">
-                    <div class="linebar"></div>
-                </span>
-
-                <h3 class="mb-7 font-baskerville sm:text-base lg:text-base tracking-[0.12em] font-semibold text-cust mb-4 md:mb-7 md:text-left">How We Work</h3>
-
-                <h2 class="mb-8 text-4xl md:text-3xl xl:text-4xl 2xl:text-4.4xl font-bold font-baskerville font-bold text-4xl md:text-4.4xl md:text-left">Clear direction from first conversation to final resolution.</h2>
-
-                <div class="default_para font-baskerville mb-8">
-                    <p>Our approach is collaborative, strategic, and business-minded. We focus on understanding each client’s goals, identifying the legal and practical risks, and building a path forward that supports both immediate needs and long-term objectives.</p>
-                    <p>We combine high-level legal experience with direct communication and a commitment to helping clients make informed decisions with confidence.</p>
-                </div>
-
-                <div class="text-right flex flex-wrap md:flex-nowrap gap-x-4 items-center">
-                    <a href="whycms.html" class="btn w-full md:w-auto order-2 md:order-1">Why CMS</a>
-                </div>
-            </div>
-        </section>
-
-        <section class="relative bg-custom pt-12 md:py-15" id="contact-preview">
-            <div class="container p-0">
-                <div class="mx-auto max-w-[1203px] items-center flex justify-center flex-wrap md:flex-nowrap">
-                    <div class="relative text-center px-5 mb-8">
-                        <h3 class="mb-11 text-4xl md:text-3xl xl:text-4xl 2xl:text-4.4xl font-bold font-baskerville text-white">
-                            Ready to connect with<br>
-                            Signature Law Partners, PLLC?
-                        </h3>
-
-                        <span class="mx-auto mb-11 inline-block h-[6px]">
-                            <div class="linebar"></div>
-                        </span>
-
-                        <h6 class="text-lg text-on-dark-bg font-bold">Call us</h6>
-
-                        <h4 class="contact-link text-[34px] mb-11">
-                            <a href="tel:(855) SIGLAW1" class="hover:text-orgcolor transition-all">(855) SIGLAW1</a>
-                        </h4>
-
-                        <h6 class="text-lg text-on-dark-bg font-bold">Location</h6>
-
-                        <p class="mb-[8px] default_para font-baskerville text-white">
-                            Nationwide - Headquartered in<br>
-                            Colorado Springs, CO 80916
-                        </p>
-
-                        <div class="mt-8">
-                            <a href="contact.html" class="ghost-btn w-full md:w-auto text-xs1 md:text-fs15 order-1 md:order-3 mb-11 md:max-w-[180px] md:mx-auto">Contact Us</a>
-                        </div>
-
-                        <a href="mailto:admin@siglawpartners.com" class="hover:text-orgcolor contact-link transition-all">admin@siglawpartners.com</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="footer text-white">
-        <div class="relative bg-img-footer bg-cover bg-auto bg-center overflow-hidden pb-23 pt-23 md:py-12">
-            <div class="container text-center z-40 relative">
-                <div class="font-baskerville">
-                    <h2 class="heading">Signature Law Partners, PLLC</h2>
-
-                    <ul class="mb-8 md:flex md:items-center text-center text-lg md:justify-center md:gap-x-8 md:flex-nowrap font-bold">
-                        <li class="mb-3 md:mb-0">
-                            <a href="attorneys.html" class="transition-all contact-link">Attorneys</a>
-                        </li>
-                        <li class="mb-3 md:mb-0">
-                            <a href="practice-areas.html" class="transition-all contact-link">Practice Areas</a>
-                        </li>
-                        <li class="mb-3 md:mb-0">
-                            <a href="contact.html" class="transition-all contact-link">Contact</a>
-                        </li>
-                        <li class="mb-3 md:mb-0">
-                            <a href="whycms.html" class="transition-all contact-link">Why CMS</a>
-                        </li>
-                        <li class="mb-3 md:mb-0">
-                            <a href="https://clients.clio.com/" target="_blank" class="transition-all contact-link">Client Login</a>
-                        </li>
-                    </ul>
-
-                    <ul class="flex items-center gap-x-6 font-bold justify-center">
-                        <li>
-                            <a href="https://www.linkedin.com/company/signature-law-partners-pllc/" target="_blank">
-                                <img class="fill-red-700 transition-all" width="28" src="https://dxe354spyd3ek.cloudfront.net/assets/traditional/li.37151770-37151770972ee453defbc70e3f93e82f4b02992b4baf14e8cb792705ad0770eb.svg" alt="LinkedIn">
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="https://www.instagram.com/signaturelawpllc" target="_blank">
-                                <img class="imgTosvg fill-red-700 transition-all" width="28" src="https://dxe354spyd3ek.cloudfront.net/assets/traditional/in-73497e68dae867913451eda9dc1d316d252b972a36f839c4bf4084705a89ef5e.svg" alt="Instagram">
-                            </a>
-                        </li>
-
-                        <li>
-                            <a href="https://www.facebook.com/people/Signature-Law-Partners-PLLC" target="_blank">
-                                <img class="fill-red-700 transition-all" width="28" src="https://dxe354spyd3ek.cloudfront.net/assets/traditional/fb.32f4da8b-32f4da8b8419569a7e78f817e458404037024b0715013de3258836bc71913067.svg" alt="Facebook">
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-
-        <div class="bottom-footer text-fs15 font-baskerville bg-f_bg py-8">
-            <div class="container flex items-left lg:gap-x-10 xl:gap-x-20 flex-wrap lg:flex-nowrap text-left lg:text-left">
-                <div class="w-full lg:w-9/12 2xl:w-10/12 mb-8 lg:mb-0">
-                    <ul class="flex items-left gap-x-6 policy-list">
-                        <li>©2026 Signature Law Partners, PLLC</li>
-                        <li>
-                            <a class="client-link flex gap-x-3" href="/privacy-policy">Privacy Policy</a>
-                        </li>
-                        <li>
-                            <a class="client-link flex gap-x-3" href="/terms-and-conditions">Terms and Conditions</a>
-                        </li>
-                    </ul>
-                </div>
-
-                <div class="w-full lg:w-3/12 2xl:w-2/12">
-                    <a href="https://www.clio.com/grow/" target="_blank">
-                        <img src="https://dxe354spyd3ek.cloudfront.net/assets/traditional/clio-logo-d8829cd2ca2ba6b99ed1a1b912609004c52dabd606feb144758559fceeac2c8d.png" alt="Powered by Clio" width="216" height="29">
+                    <a href="contact.html" class="btn w-full md:w-auto dark:focus:bg-transparent dark:hover:bg-[rgba(255,255,255,0.3)] dark:bg-transparent dark:text-[#eee]">
+                        Start a Conversation
                     </a>
                 </div>
             </div>
         </div>
-    </footer>
+    </section>
+
+    <section class="relative bg-white py-[60px] md:py-[90px]">
+        <div class="mx-auto max-w-[1030px] px-[15px] text-left">
+            <span class="mx-auto mb-7 inline-block h-[6px]">
+                <div class="linebar"></div>
+            </span>
+
+            <h2 class="mb-7 font-baskerville sm:text-base lg:text-base tracking-[0.12em] font-semibold text-cust">
+                Welcome to Signature Law Partners
+            </h2>
+
+            <h3 class="mb-8 text-4xl md:text-3xl xl:text-4xl 2xl:text-4.4xl font-bold font-baskerville">
+                A modern legal partner for business, litigation, media, IP, and regulated industries.
+            </h3>
+
+            <div class="default_para font-baskerville mb-8">
+                <p>We provide clients with focused legal strategy, practical risk assessment, and disciplined advocacy. Our work is designed for matters where business realities, reputational concerns, regulatory pressure, and legal complexity intersect.</p>
+
+                <p>From the first conversation, we work to understand what is at stake, define the objective, and build a clear path forward.</p>
+            </div>
+
+            <div class="text-right flex flex-wrap md:flex-nowrap gap-x-4 items-center">
+                <a href="whycms.html" class="btn w-full md:w-auto order-2 md:order-1">Why CMS</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative bg-[#F6F6F6] py-[60px] md:py-[90px]">
+        <div class="mx-auto max-w-[1030px] px-[15px]">
+            <span class="mx-auto mb-7 block md:inline-block h-[6px]">
+                <div class="linebar"></div>
+            </span>
+
+            <h3 class="mb-8 font-baskerville font-bold text-4xl md:text-4.4xl md:text-left">
+                Built around clarity, discretion, and results.
+            </h3>
+
+            <div class="landing-card-grid font-baskerville">
+                <div class="landing-card">
+                    <h4>Strategic Perspective</h4>
+                    <p>We look beyond the immediate issue to help clients make decisions that support long-term business, personal, and legal goals.</p>
+                </div>
+
+                <div class="landing-card">
+                    <h4>Practical Execution</h4>
+                    <p>Our guidance is direct, actionable, and grounded in the real-world pressures clients face when outcomes matter.</p>
+                </div>
+
+                <div class="landing-card">
+                    <h4>Trusted Partnership</h4>
+                    <p>We build relationships with clients who value responsiveness, judgment, preparation, and clear communication.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative bg-img bg-auto bg-center pt-15 pb-20">
+        <div class="container text-center">
+            <h3 class="mb-8 text-4xl text-on-bg md:text-3xl xl:text-4xl 2xl:text-4.4xl font-bold font-baskerville">
+                Complex issues require more than answers.<br>
+                They require judgment.
+            </h3>
+
+            <div class="text-right flex flex-wrap md:flex-nowrap gap-x-4 items-center justify-center">
+                <a href="practice-areas.html" class="btn w-full md:w-auto order-2 md:order-1">Explore Our Work</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative py-[60px] bg-white md:py-[90px]">
+        <div class="mx-auto max-w-[1030px] px-[15px]">
+            <span class="mx-auto mb-7 block md:inline-block h-[6px]">
+                <div class="linebar"></div>
+            </span>
+
+            <h3 class="mb-7 font-baskerville sm:text-base lg:text-base tracking-[0.12em] font-semibold text-cust md:text-left">
+                The Signature Approach
+            </h3>
+
+            <h2 class="mb-8 text-4xl md:text-3xl xl:text-4xl 2xl:text-4.4xl font-bold font-baskerville md:text-left">
+                We bring structure to uncertainty.
+            </h2>
+
+            <div class="default_para font-baskerville mb-8">
+                <p>Legal challenges often arrive with urgency, ambiguity, and competing priorities. Our role is to help clients slow the noise, identify the essential risks, and act with confidence.</p>
+
+                <p>We approach each engagement with preparation, discretion, and a commitment to delivering counsel that is not only legally sound, but commercially and personally useful.</p>
+            </div>
+
+            <div class="text-right flex flex-wrap md:flex-nowrap gap-x-4 items-center">
+                <a href="attorneys.html" class="btn w-full md:w-auto order-2 md:order-1">Meet the Firm</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="relative bg-custom pt-12 md:py-15">
+        <div class="container p-0">
+            <div class="mx-auto max-w-[1203px] items-center flex justify-center flex-wrap md:flex-nowrap">
+                <div class="relative text-center px-5 mb-8">
+                    <h3 class="mb-11 text-4xl md:text-3xl xl:text-4xl 2xl:text-4.4xl font-bold font-baskerville text-white">
+                        Ready to discuss your matter?
+                    </h3>
+
+                    <span class="mx-auto mb-11 inline-block h-[6px]">
+                        <div class="linebar"></div>
+                    </span>
+
+                    <h6 class="text-lg text-on-dark-bg font-bold">Call us</h6>
+
+                    <h4 class="contact-link text-[34px] mb-11">
+                        <a href="tel:(855) SIGLAW1" class="hover:text-orgcolor transition-all">(855) SIGLAW1</a>
+                    </h4>
+
+                    <p class="mb-[8px] default_para font-baskerville text-white">
+                        Nationwide - Headquartered in<br>
+                        Colorado Springs, CO 80916
+                    </p>
+
+                    <div class="mt-8">
+                        <a href="contact.html" class="ghost-btn w-full md:w-auto text-xs1 md:text-fs15 order-1 md:order-3 mb-11 md:max-w-[180px] md:mx-auto">
+                            Contact Us
+                        </a>
+                    </div>
+
+                    <a href="mailto:admin@siglawpartners.com" class="hover:text-orgcolor contact-link transition-all">
+                        admin@siglawpartners.com
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="footer text-white">
+    <div class="relative bg-img-footer bg-cover bg-auto bg-center overflow-hidden pb-23 pt-23 md:py-12">
+        <div class="container text-center z-40 relative">
+            <div class="font-baskerville">
+                <h2 class="heading">Signature Law Partners, PLLC</h2>
+
+                <ul class="mb-8 md:flex md:items-center text-center text-lg md:justify-center md:gap-x-8 md:flex-nowrap font-bold">
+                    <li class="mb-3 md:mb-0">
+                        <a href="attorneys.html" class="transition-all contact-link">Attorneys</a>
+                    </li>
+                    <li class="mb-3 md:mb-0">
+                        <a href="practice-areas.html" class="transition-all contact-link">Practice Areas</a>
+                    </li>
+                    <li class="mb-3 md:mb-0">
+                        <a href="contact.html" class="transition-all contact-link">Contact</a>
+                    </li>
+                    <li class="mb-3 md:mb-0">
+                        <a href="whycms.html" class="transition-all contact-link">Why CMS</a>
+                    </li>
+                    <li class="mb-3 md:mb-0">
+                        <a href="https://clients.clio.com/" target="_blank" class="transition-all contact-link">Client Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="bottom-footer text-fs15 font-baskerville bg-f_bg py-8">
+        <div class="container flex items-left lg:gap-x-10 xl:gap-x-20 flex-wrap lg:flex-nowrap text-left lg:text-left">
+            <div class="w-full lg:w-9/12 2xl:w-10/12 mb-8 lg:mb-0">
+                <ul class="flex items-left gap-x-6 policy-list">
+                    <li>©2026 Signature Law Partners, PLLC</li>
+                    <li><a class="client-link flex gap-x-3" href="/privacy-policy">Privacy Policy</a></li>
+                    <li><a class="client-link flex gap-x-3" href="/terms-and-conditions">Terms and Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
 </body>
 </html>
+```

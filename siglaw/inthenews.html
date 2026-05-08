@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -66,14 +66,16 @@
 
     .news-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px}
 
-    .news-card{background:#fff;border:1px solid rgba(16,22,33,.09);box-shadow:0 24px 66px rgba(13,45,85,.08);display:grid;grid-template-columns:.82fr 1.18fr;min-height:520px;overflow:hidden}
+    .news-card{background:#fff;border:1px solid rgba(16,22,33,.09);box-shadow:0 24px 66px rgba(13,45,85,.08);display:flex;flex-direction:column;min-height:0;overflow:hidden}
 
     .news-card.featured{border-color:rgba(185,130,24,.28);box-shadow:0 28px 80px rgba(185,130,24,.13)}
 
     .photo-wrap{
       background:#f3ede3;
       overflow:hidden;
-      min-height:520px;
+      height:360px;
+      min-height:0;
+      width:100%;
       display:flex;
       align-items:center;
       justify-content:center;
@@ -110,28 +112,23 @@
 
     /* Balanced image positioning */
     img[src="melteach.png"]{
-      object-position:center top;
-      transform:scale(1.02);
+      object-position:center 28%;
     }
 
     img[src="jimsniff.png"]{
-      object-position:center center;
-      transform:scale(1.06);
+      object-position:center 30%;
     }
 
     img[src="mattfight.png"]{
-      object-position:center 18%;
-      transform:scale(1.04);
+      object-position:center 22%;
     }
 
     img[src="ottogoes.png"]{
-      object-position:center center;
-      transform:scale(1.03);
+      object-position:center 34%;
     }
 
     img[src="dualshag.jpg"]{
-      object-position:center top;
-      transform:scale(1.02);
+      object-position:center 24%;
     }
 
     .statement{position:relative;background:linear-gradient(115deg,#fff 0%,#f7f1e7 48%,#eaf0f7 100%);overflow:hidden;border-top:1px solid rgba(16,22,33,.08);border-bottom:1px solid rgba(16,22,33,.08)}
@@ -162,7 +159,7 @@
 
     @media(max-width:1180px){
       .news-grid{grid-template-columns:1fr}
-      .news-card{grid-template-columns:.72fr 1.28fr}
+      .photo-wrap{height:380px}
     }
 
     @media(max-width:1060px){
@@ -180,8 +177,8 @@
       .hero-inner{padding:58px 0 72px}
       .hero-side{padding:30px}
       .section{padding:78px 0}
-      .news-card{grid-template-columns:1fr;min-height:auto}
-      .photo-wrap{min-height:380px}
+      .news-card{min-height:auto}
+      .photo-wrap{height:380px;min-height:0}
       .news-info{padding:30px}
       .footer-inner{flex-direction:column}
       .footer-links{flex-direction:column;gap:12px}
@@ -409,3 +406,4 @@
   </footer>
 </body>
 </html>
+```

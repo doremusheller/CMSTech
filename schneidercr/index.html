@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Schneider Construction and Realty, LLC provides high-end construction, renovation, property improvement, and real estate services." />
-  <title>Schneider Construction and Realty, LLC</title>
+  <meta name="description" content="Explore Schneider Construction and Realty, LLC services including construction, renovation, property improvements, buying, selling, and investment property guidance." />
+  <title>Services | Schneider Construction and Realty, LLC</title>
 
   <style>
     :root {
@@ -17,15 +17,8 @@
       --line: rgba(255, 255, 255, 0.12);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
       font-family: Georgia, "Times New Roman", serif;
@@ -34,15 +27,8 @@
       line-height: 1.6;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
 
     .site-header {
       position: fixed;
@@ -54,7 +40,7 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      background: linear-gradient(to bottom, rgba(17,16,15,0.92), rgba(17,16,15,0));
+      background: linear-gradient(to bottom, rgba(17,16,15,0.94), rgba(17,16,15,0));
     }
 
     .brand {
@@ -74,53 +60,26 @@
       color: var(--muted);
     }
 
-    .nav a:hover {
-      color: var(--copper-light);
-    }
+    .nav a:hover, .nav a.active { color: var(--copper-light); }
 
     .hero {
-      min-height: 100vh;
+      min-height: 76vh;
       display: grid;
       place-items: center;
-      position: relative;
-      overflow: hidden;
-      padding: 120px 6vw 80px;
+      padding: 130px 6vw 90px;
       background:
-        radial-gradient(circle at center, rgba(184,115,51,0.18), transparent 42%),
-        linear-gradient(135deg, #171512 0%, #090909 100%);
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(17,16,15,0.05), rgba(17,16,15,0.7));
-      pointer-events: none;
+        linear-gradient(90deg, rgba(17,16,15,0.96) 0%, rgba(17,16,15,0.78) 42%, rgba(17,16,15,0.44) 100%),
+        url("scrlogo.png") center right/contain no-repeat,
+        radial-gradient(circle at 80% 50%, rgba(184,115,51,0.25), transparent 34%),
+        #11100f;
+      border-bottom: 1px solid var(--line);
     }
 
     .hero-inner {
       width: min(1180px, 100%);
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 70px;
-      align-items: center;
-      position: relative;
-      z-index: 2;
     }
 
-    .hero-logo-wrap {
-      padding: 24px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,0.035);
-      box-shadow: 0 40px 100px rgba(0,0,0,0.55);
-    }
-
-    .hero-logo-wrap img {
-      width: 100%;
-      height: auto;
-    }
-
-    .eyebrow {
+    .eyebrow, .section-label {
       font-family: Arial, sans-serif;
       color: var(--copper-light);
       text-transform: uppercase;
@@ -130,7 +89,8 @@
     }
 
     h1 {
-      font-size: clamp(3rem, 7vw, 7.5rem);
+      max-width: 900px;
+      font-size: clamp(3rem, 7vw, 7.2rem);
       line-height: 0.95;
       letter-spacing: -0.045em;
       font-weight: 500;
@@ -138,18 +98,14 @@
     }
 
     .hero-copy {
-      max-width: 560px;
+      max-width: 650px;
       color: var(--muted);
       font-family: Arial, sans-serif;
-      font-size: 1.05rem;
+      font-size: 1.08rem;
       margin-bottom: 36px;
     }
 
-    .actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
-    }
+    .actions { display: flex; flex-wrap: wrap; gap: 14px; }
 
     .button {
       font-family: Arial, sans-serif;
@@ -166,24 +122,15 @@
       color: #130f0b;
     }
 
-    .button.secondary {
-      color: var(--cream);
-      background: transparent;
-    }
+    .button.secondary { color: var(--cream); background: transparent; }
 
     .button:hover {
       transform: translateY(-2px);
       box-shadow: 0 18px 35px rgba(184,115,51,0.25);
     }
 
-    section {
-      padding: 100px 6vw;
-    }
-
-    .section-inner {
-      width: min(1180px, 100%);
-      margin: 0 auto;
-    }
+    section { padding: 96px 6vw; }
+    .section-inner { width: min(1180px, 100%); margin: 0 auto; }
 
     .intro {
       background: var(--cream);
@@ -197,17 +144,8 @@
       align-items: start;
     }
 
-    .section-label {
-      font-family: Arial, sans-serif;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--copper);
-      font-size: 0.78rem;
-      margin-bottom: 16px;
-    }
-
     h2 {
-      font-size: clamp(2.2rem, 4vw, 4.6rem);
+      font-size: clamp(2.15rem, 4vw, 4.5rem);
       line-height: 1;
       font-weight: 500;
       letter-spacing: -0.04em;
@@ -217,77 +155,102 @@
       font-family: Arial, sans-serif;
       color: #5e554d;
       font-size: 1.08rem;
-      max-width: 680px;
+      max-width: 700px;
     }
 
-    .service-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-      margin-top: 55px;
-    }
-
-    .card {
-      border: 1px solid rgba(17,16,15,0.12);
-      padding: 34px;
-      min-height: 260px;
-      background: #fffaf1;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .card h3 {
-      font-size: 1.7rem;
-      font-weight: 500;
-      margin-bottom: 18px;
-    }
-
-    .card p {
-      font-family: Arial, sans-serif;
-      color: #6a625a;
-    }
-
-    .dark-section {
+    .service-section {
       background: #11100f;
-    }
-
-    .split {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
-    }
-
-    .photo-panel {
-      min-height: 520px;
-      background:
-        linear-gradient(rgba(0,0,0,0.18), rgba(0,0,0,0.5)),
-        url("scrlogo.png") center/cover no-repeat;
-      border: 1px solid var(--line);
-      box-shadow: 0 35px 80px rgba(0,0,0,0.45);
-    }
-
-    .feature-list {
-      margin-top: 34px;
-      border-top: 1px solid var(--line);
-    }
-
-    .feature-list div {
-      display: flex;
-      justify-content: space-between;
-      gap: 24px;
-      padding: 22px 0;
       border-bottom: 1px solid var(--line);
+    }
+
+    .service-section.light {
+      background: #181613;
+    }
+
+    .service-layout {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 70px;
+      align-items: start;
+    }
+
+    .service-title {
+      position: sticky;
+      top: 110px;
+    }
+
+    .service-title h2 {
+      margin-bottom: 24px;
+    }
+
+    .service-title p {
+      color: var(--muted);
+      font-family: Arial, sans-serif;
+      font-size: 1.02rem;
+    }
+
+    .service-list {
+      display: grid;
+      gap: 16px;
+    }
+
+    .service-card {
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.035);
+      padding: 32px;
+    }
+
+    .service-card h3 {
+      font-size: 1.55rem;
+      line-height: 1.1;
+      font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .service-card p {
       font-family: Arial, sans-serif;
       color: var(--muted);
+      font-size: 0.98rem;
     }
 
-    .feature-list strong {
-      color: var(--cream);
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: 1.25rem;
+    .difference {
+      background: var(--cream);
+      color: #191714;
+    }
+
+    .difference-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: rgba(17,16,15,0.14);
+      margin-top: 55px;
+      border: 1px solid rgba(17,16,15,0.14);
+    }
+
+    .difference-card {
+      background: #fffaf1;
+      padding: 34px;
+      min-height: 260px;
+    }
+
+    .difference-card span {
+      display: block;
+      color: var(--copper);
+      font-family: Arial, sans-serif;
+      letter-spacing: 0.16em;
+      margin-bottom: 30px;
+    }
+
+    .difference-card h3 {
+      font-size: 1.45rem;
       font-weight: 500;
+      margin-bottom: 12px;
+    }
+
+    .difference-card p {
+      font-family: Arial, sans-serif;
+      color: #6a625a;
+      font-size: 0.96rem;
     }
 
     .process {
@@ -296,7 +259,7 @@
 
     .process-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(5, 1fr);
       gap: 1px;
       background: var(--line);
       margin-top: 55px;
@@ -305,7 +268,7 @@
 
     .step {
       background: #181613;
-      padding: 34px;
+      padding: 30px;
       min-height: 230px;
     }
 
@@ -314,11 +277,11 @@
       color: var(--copper-light);
       font-family: Arial, sans-serif;
       letter-spacing: 0.16em;
-      margin-bottom: 34px;
+      margin-bottom: 32px;
     }
 
     .step h3 {
-      font-size: 1.45rem;
+      font-size: 1.35rem;
       font-weight: 500;
       margin-bottom: 12px;
     }
@@ -326,7 +289,7 @@
     .step p {
       font-family: Arial, sans-serif;
       color: var(--muted);
-      font-size: 0.95rem;
+      font-size: 0.93rem;
     }
 
     .cta {
@@ -336,9 +299,7 @@
         #0d0c0b;
     }
 
-    .cta h2 {
-      margin-bottom: 24px;
-    }
+    .cta h2 { margin-bottom: 24px; }
 
     .cta p {
       max-width: 620px;
@@ -359,164 +320,209 @@
       font-size: 0.85rem;
     }
 
+    @media (max-width: 1000px) {
+      .process-grid { grid-template-columns: 1fr; }
+    }
+
     @media (max-width: 900px) {
-      .site-header {
-        position: absolute;
-      }
-
-      .nav {
-        display: none;
-      }
-
-      .hero-inner,
-      .intro-grid,
-      .split {
-        grid-template-columns: 1fr;
-      }
-
-      .service-grid,
-      .process-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero {
-        padding-top: 110px;
-      }
-
-      .hero-logo-wrap {
-        order: -1;
-      }
-
-      section {
-        padding: 72px 6vw;
-      }
-
-      footer {
-        flex-direction: column;
-      }
+      .site-header { position: absolute; }
+      .nav { display: none; }
+      .hero { min-height: auto; background-size: 85%; background-position: center bottom; }
+      .intro-grid, .service-layout, .difference-grid { grid-template-columns: 1fr; }
+      .service-title { position: static; }
+      section { padding: 72px 6vw; }
+      footer { flex-direction: column; }
     }
   </style>
 </head>
 
 <body>
   <header class="site-header">
-    <a class="brand" href="#top">Schneider</a>
+    <a class="brand" href="index.html">Schneider</a>
     <nav class="nav" aria-label="Primary navigation">
-      <a href="#services">Services</a>
-      <a href="#work">Work</a>
-      <a href="#process">Process</a>
-      <a href="#contact">Contact</a>
+      <a class="active" href="services.html">Services</a>
+      <a href="projects.html">Projects</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
     </nav>
   </header>
 
-  <main id="top">
-    <section class="hero" aria-label="Schneider Construction and Realty introduction">
+  <main>
+    <section class="hero">
       <div class="hero-inner">
+        <p class="eyebrow">Services</p>
+        <h1>Construction, renovation, improvement, and real estate guidance.</h1>
+        <p class="hero-copy">
+          Schneider Construction and Realty, LLC helps clients make stronger property decisions by combining hands-on construction knowledge with practical real estate perspective.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="contact.html">Request Consultation</a>
+          <a class="button secondary" href="#construction">Explore Services</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="intro">
+      <div class="section-inner intro-grid">
         <div>
-          <p class="eyebrow">Construction • Realty • Property Improvement</p>
-          <h1>Built with purpose. Positioned for value.</h1>
-          <p class="hero-copy">
-            Schneider Construction and Realty, LLC helps clients build, renovate, improve, buy, and sell property with a refined, practical approach from first conversation to final result.
-          </p>
-          <div class="actions">
-            <a class="button primary" href="#contact">Request Consultation</a>
-            <a class="button secondary" href="#work">View Our Approach</a>
-          </div>
+          <p class="section-label">What Makes It Different</p>
+          <h2>Property decisions are better when cost, condition, and value are considered together.</h2>
         </div>
+        <p class="lead">
+          A property is never just a structure or just a transaction. It is a blend of condition, design, budget, timing, market position, and future value. Schneider helps connect those pieces before major decisions are made.
+        </p>
+      </div>
+    </section>
 
-        <div class="hero-logo-wrap" aria-label="Schneider Construction and Realty logo">
-          <img src="scrlogo.png" alt="Schneider Construction and Realty, LLC" />
+    <section class="service-section" id="construction">
+      <div class="section-inner service-layout">
+        <div class="service-title">
+          <p class="section-label">Build</p>
+          <h2>Construction & Renovation</h2>
+          <p>Focused construction support for owners who want clear planning, refined execution, and improvements that strengthen the property long term.</p>
+        </div>
+        <div class="service-list">
+          <article class="service-card">
+            <h3>Residential Construction</h3>
+            <p>Project planning and construction support for homes, additions, structural improvements, and major property upgrades.</p>
+          </article>
+          <article class="service-card">
+            <h3>Renovations & Remodels</h3>
+            <p>Interior and exterior renovations designed to improve function, presentation, comfort, and value.</p>
+          </article>
+          <article class="service-card">
+            <h3>Additions & Expansions</h3>
+            <p>Thoughtful expansion planning for clients who need more space without compromising the character or usability of the property.</p>
+          </article>
+          <article class="service-card">
+            <h3>Project Coordination</h3>
+            <p>Practical oversight and communication to help keep scope, expectations, and execution aligned.</p>
+          </article>
         </div>
       </div>
     </section>
 
-    <section class="intro" id="services">
+    <section class="service-section light" id="improvements">
+      <div class="section-inner service-layout">
+        <div class="service-title">
+          <p class="section-label">Improve</p>
+          <h2>Property Improvements</h2>
+          <p>Strategic updates that prepare properties for use, sale, rental, investment, or long-term ownership.</p>
+        </div>
+        <div class="service-list">
+          <article class="service-card">
+            <h3>Value-Add Upgrades</h3>
+            <p>Improvements selected for their ability to increase appeal, usability, and market strength.</p>
+          </article>
+          <article class="service-card">
+            <h3>Market-Ready Preparation</h3>
+            <p>Repair and improvement planning for owners preparing a property to list, lease, or reposition.</p>
+          </article>
+          <article class="service-card">
+            <h3>Condition Review</h3>
+            <p>A practical look at property issues, improvement priorities, and potential cost considerations.</p>
+          </article>
+          <article class="service-card">
+            <h3>Investment Property Support</h3>
+            <p>Guidance for owners evaluating improvement scope, resale potential, rental readiness, and renovation priorities.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="service-section" id="realty">
+      <div class="section-inner service-layout">
+        <div class="service-title">
+          <p class="section-label">Buy & Sell</p>
+          <h2>Realty Services</h2>
+          <p>Real estate support informed by construction realities, helping clients understand not only what a property is, but what it could become.</p>
+        </div>
+        <div class="service-list">
+          <article class="service-card">
+            <h3>Buying Guidance</h3>
+            <p>Evaluate potential purchases with a clearer understanding of condition, improvement possibilities, and hidden project considerations.</p>
+          </article>
+          <article class="service-card">
+            <h3>Selling Strategy</h3>
+            <p>Prepare, position, and present properties with an eye toward buyer expectations and value-driving improvements.</p>
+          </article>
+          <article class="service-card">
+            <h3>Investment Evaluation</h3>
+            <p>Support for buyers and owners considering renovation, resale, rental, or long-term property strategy.</p>
+          </article>
+          <article class="service-card">
+            <h3>Property Potential Review</h3>
+            <p>Insight into what improvements may be realistic, valuable, or unnecessary before making a major property decision.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="difference">
       <div class="section-inner">
-        <div class="intro-grid">
-          <div>
-            <p class="section-label">What We Do</p>
-            <h2>One firm for the full life of a property.</h2>
-          </div>
-          <p class="lead">
-            From new construction and renovation to real estate strategy and property improvements, Schneider brings construction knowledge and market perspective together under one roof.
-          </p>
-        </div>
-
-        <div class="service-grid">
-          <article class="card">
-            <div>
-              <h3>Build</h3>
-              <p>Residential construction, renovation, additions, and project coordination with attention to detail and long-term value.</p>
-            </div>
+        <p class="section-label">The Schneider Advantage</p>
+        <h2>Practical knowledge before expensive decisions.</h2>
+        <div class="difference-grid">
+          <article class="difference-card">
+            <span>01</span>
+            <h3>Understand Condition</h3>
+            <p>Know what you are working with before committing to a purchase, sale strategy, or construction scope.</p>
           </article>
-          <article class="card">
-            <div>
-              <h3>Improve</h3>
-              <p>Strategic upgrades, repairs, and property enhancements designed to make spaces stronger, sharper, and more market-ready.</p>
-            </div>
+          <article class="difference-card">
+            <span>02</span>
+            <h3>Prioritize Wisely</h3>
+            <p>Separate meaningful improvements from cosmetic distractions and unnecessary expense.</p>
           </article>
-          <article class="card">
-            <div>
-              <h3>Buy & Sell</h3>
-              <p>Real estate guidance supported by practical construction insight, helping clients understand potential, cost, and opportunity.</p>
-            </div>
+          <article class="difference-card">
+            <span>03</span>
+            <h3>Protect Value</h3>
+            <p>Make choices that support function, presentation, resale potential, and long-term ownership goals.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="dark-section" id="work">
-      <div class="section-inner split">
-        <div class="photo-panel" role="img" aria-label="Schneider Construction and Realty brand mark"></div>
-        <div>
-          <p class="section-label">Built Around Trust</p>
-          <h2>Clean execution. Clear communication. Better property decisions.</h2>
-          <div class="feature-list">
-            <div><strong>Construction Insight</strong><span>Practical expertise before money is spent.</span></div>
-            <div><strong>Real Estate Perspective</strong><span>Decisions shaped by market value.</span></div>
-            <div><strong>Project Clarity</strong><span>A direct process with fewer surprises.</span></div>
-            <div><strong>Local Focus</strong><span>Service rooted in the communities we know.</span></div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="process" id="process">
+    <section class="process">
       <div class="section-inner">
-        <p class="section-label">Our Process</p>
-        <h2>A measured approach from first look to final handoff.</h2>
+        <p class="section-label">Process</p>
+        <h2>Simple, deliberate, and built around clarity.</h2>
         <div class="process-grid">
           <article class="step">
             <span>01</span>
-            <h3>Consult</h3>
-            <p>We listen, assess the property, and define the real objective.</p>
+            <h3>Discuss</h3>
+            <p>We begin with the property, the goal, and the decision you need to make.</p>
           </article>
           <article class="step">
             <span>02</span>
-            <h3>Plan</h3>
-            <p>We shape scope, priorities, timeline, and budget expectations.</p>
+            <h3>Assess</h3>
+            <p>We review condition, scope, priorities, and constraints.</p>
           </article>
           <article class="step">
             <span>03</span>
-            <h3>Execute</h3>
-            <p>Construction, improvement, or real estate work moves with clear communication.</p>
+            <h3>Plan</h3>
+            <p>We clarify next steps, expected work, and practical budget considerations.</p>
           </article>
           <article class="step">
             <span>04</span>
+            <h3>Execute</h3>
+            <p>The work moves forward with organization, communication, and purpose.</p>
+          </article>
+          <article class="step">
+            <span>05</span>
             <h3>Deliver</h3>
-            <p>The result is a stronger property and a smarter investment.</p>
+            <p>The final result supports the property’s use, presentation, and value.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section class="cta" id="contact">
+    <section class="cta">
       <div class="section-inner">
-        <p class="section-label">Start the Conversation</p>
-        <h2>Ready to transform your property?</h2>
-        <p>Tell us what you are building, improving, buying, or selling. We will help you determine the best next step.</p>
+        <p class="section-label">Next Step</p>
+        <h2>Let’s look at the property.</h2>
+        <p>Whether you are planning construction, preparing to sell, evaluating a purchase, or improving an investment, Schneider can help clarify the path forward.</p>
         <div class="actions" style="justify-content:center;">
-          <a class="button primary" href="mailto:info@schneiderconstructionrealty.com">Email Us</a>
+          <a class="button primary" href="contact.html">Request Consultation</a>
           <a class="button secondary" href="tel:+10000000000">Call Today</a>
         </div>
       </div>

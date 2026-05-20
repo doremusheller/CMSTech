@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,18 +12,37 @@
 </head>
 
 <body>
-  <header>
-    <nav class="nav">
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
       <a class="logo" href="index.html" aria-label="S’up home">
         <img src="suplogo.avif" alt="S’up Hemp Mocktail Beverages logo" />
       </a>
 
+      <input class="nav-toggle" type="checkbox" id="nav-toggle" aria-label="Toggle navigation menu" />
+
+      <label class="nav-toggle-label" for="nav-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
       <div class="nav-links">
+        <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="flavors.html">Flavors</a>
         <a href="find-us.html">Find S’up</a>
         <a href="faq.html">FAQ</a>
-        <a class="button" href="shop.html">Shop</a>
+        <a href="wholesale.html">Wholesale</a>
+        <a href="contact.html" aria-current="page">Contact</a>
+
+        <a
+          class="button nav-button"
+          href="https://ghettowookie.shop/collections/try-a-sup-1"
+          target="_blank"
+          rel="noopener"
+        >
+          Shop
+        </a>
       </div>
     </nav>
   </header>
@@ -39,14 +59,21 @@
         </p>
 
         <div class="hero-actions">
-          <a class="button" href="#contact-form">Contact Us</a>
-          <a class="button secondary" href="faq.html">View FAQ</a>
+          <a class="button" href="#contact-form">
+            Contact Us
+          </a>
+
+          <a class="button secondary" href="faq.html">
+            View FAQ
+          </a>
         </div>
       </div>
 
       <div class="hero-art">
         <img src="supofhero.avif" alt="S’up hemp mocktail beverage can" />
-        <div class="burst">We usually answer faster than your group chat.</div>
+        <div class="burst">
+          We usually answer faster than your group chat.
+        </div>
       </div>
     </section>
 
@@ -60,23 +87,34 @@
       <div class="benefits">
         <div class="benefit">
           <h3>Customer Support</h3>
-          <p>Questions about orders, products, shipping, or your S’up experience.</p>
+
+          <p>
+            Questions about orders, products, shipping, or your S’up experience.
+          </p>
         </div>
 
         <div class="benefit">
           <h3>Wholesale & Retail</h3>
-          <p>Interested in carrying S’up in stores, bars, restaurants, or hospitality spaces.</p>
+
+          <p>
+            Interested in carrying S’up in stores, bars, restaurants, or hospitality spaces.
+          </p>
         </div>
 
         <div class="benefit">
           <h3>Events & Partnerships</h3>
-          <p>Collaborations, activations, sponsorships, media, and creative partnerships.</p>
+
+          <p>
+            Collaborations, activations, sponsorships, media, and creative partnerships.
+          </p>
         </div>
       </div>
     </section>
 
     <section class="statement">
-      <h2>Good drinks start conversations. So do good brands.</h2>
+      <h2>
+        Good drinks start conversations. So do good brands.
+      </h2>
     </section>
 
     <section class="section" id="contact-form">
@@ -86,23 +124,53 @@
         Fill out the form below and someone from the S’up team will get back to you soon.
       </p>
 
-      <form class="contact-form">
+      <form class="contact-form" action="#" method="post">
         <div class="form-grid">
-          <input type="text" placeholder="Your Name" required />
-          <input type="email" placeholder="Email Address" required />
+          <label>
+            <span class="sr-only">Your Name</span>
+            <input
+              type="text"
+              name="name"
+              placeholder="Your Name"
+              required
+            />
+          </label>
+
+          <label>
+            <span class="sr-only">Email Address</span>
+            <input
+              type="email"
+              name="email"
+              placeholder="Email Address"
+              required
+            />
+          </label>
         </div>
 
-        <select required>
-          <option value="">Reason for Contact</option>
-          <option>Customer Support</option>
-          <option>Wholesale Inquiry</option>
-          <option>Retail Partnership</option>
-          <option>Event Collaboration</option>
-          <option>Press / Media</option>
-          <option>General Question</option>
-        </select>
+        <label>
+          <span class="sr-only">Reason for Contact</span>
 
-        <textarea rows="7" placeholder="Tell us what’s up." required></textarea>
+          <select name="reason" required>
+            <option value="">Reason for Contact</option>
+            <option>Customer Support</option>
+            <option>Wholesale Inquiry</option>
+            <option>Retail Partnership</option>
+            <option>Event Collaboration</option>
+            <option>Press / Media</option>
+            <option>General Question</option>
+          </select>
+        </label>
+
+        <label>
+          <span class="sr-only">Message</span>
+
+          <textarea
+            name="message"
+            rows="7"
+            placeholder="Tell us what’s up."
+            required
+          ></textarea>
+        </label>
 
         <button type="submit" class="button">
           Send Message
@@ -124,7 +192,14 @@
           S’up exists for people who still want the fun, the ritual, and the social energy — just without the usual consequences attached.
         </p>
 
-        <a class="button" href="shop.html">Shop S’up</a>
+        <a
+          class="button"
+          href="https://ghettowookie.shop/collections/try-a-sup-1"
+          target="_blank"
+          rel="noopener"
+        >
+          Shop S’up
+        </a>
       </div>
     </section>
 
@@ -135,7 +210,14 @@
         Explore the lineup and find your new favorite social drink.
       </p>
 
-      <a class="button" href="shop.html">Shop Now</a>
+      <a
+        class="button"
+        href="https://ghettowookie.shop/collections/try-a-sup-1"
+        target="_blank"
+        rel="noopener"
+      >
+        Shop Now
+      </a>
     </section>
   </main>
 
@@ -152,3 +234,4 @@
   </footer>
 </body>
 </html>
+

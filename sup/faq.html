@@ -1,6 +1,4 @@
-Next: **`faq.html`**.
 
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,18 +12,37 @@ Next: **`faq.html`**.
 </head>
 
 <body>
-  <header>
-    <nav class="nav">
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
       <a class="logo" href="index.html" aria-label="S’up home">
         <img src="suplogo.avif" alt="S’up Hemp Mocktail Beverages logo" />
       </a>
 
+      <input class="nav-toggle" type="checkbox" id="nav-toggle" aria-label="Toggle navigation menu" />
+
+      <label class="nav-toggle-label" for="nav-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
       <div class="nav-links">
+        <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="flavors.html">Flavors</a>
         <a href="find-us.html">Find S’up</a>
-        <a href="faq.html">FAQ</a>
-        <a class="button" href="shop.html">Shop</a>
+        <a href="faq.html" aria-current="page">FAQ</a>
+        <a href="wholesale.html">Wholesale</a>
+        <a href="contact.html">Contact</a>
+
+        <a
+          class="button nav-button"
+          href="https://ghettowookie.shop/collections/try-a-sup-1"
+          target="_blank"
+          rel="noopener"
+        >
+          Shop
+        </a>
       </div>
     </nav>
   </header>
@@ -34,14 +51,26 @@ Next: **`faq.html`**.
     <section class="hero">
       <div>
         <span class="eyebrow">Questions, Answered</span>
+
         <h1>Everything to know before you sip.</h1>
+
         <p>
           Hemp beverages are still new for a lot of people. Fair. Here are the basics on what S’up is, how to enjoy it, and why it belongs in your fridge.
         </p>
 
         <div class="hero-actions">
-          <a class="button" href="shop.html">Shop S’up</a>
-          <a class="button secondary" href="contact.html">Contact Us</a>
+          <a
+            class="button"
+            href="https://ghettowookie.shop/collections/try-a-sup-1"
+            target="_blank"
+            rel="noopener"
+          >
+            Shop S’up
+          </a>
+
+          <a class="button secondary" href="contact.html">
+            Contact Us
+          </a>
         </div>
       </div>
 
@@ -57,22 +86,30 @@ Next: **`faq.html`**.
       <div class="faq-list">
         <details>
           <summary>What is S’up?</summary>
-          <p>S’up is a hemp mocktail beverage made for alcohol-free social sipping. It is designed to offer cocktail-style flavor and a relaxed beverage experience without alcohol.</p>
+          <p>
+            S’up is a hemp mocktail beverage made for alcohol-free social sipping. It is designed to offer cocktail-style flavor and a relaxed beverage experience without alcohol.
+          </p>
         </details>
 
         <details>
           <summary>Does S’up contain alcohol?</summary>
-          <p>No. S’up is an alcohol-free beverage.</p>
+          <p>
+            No. S’up is an alcohol-free beverage.
+          </p>
         </details>
 
         <details>
           <summary>What does “hemp mocktail” mean?</summary>
-          <p>It means S’up is inspired by mocktail flavors and made with hemp-derived ingredients. It is intended for adults looking for a modern alternative to alcoholic drinks.</p>
+          <p>
+            It means S’up is inspired by mocktail flavors and made with hemp-derived ingredients. It is intended for adults looking for a modern alternative to alcoholic drinks.
+          </p>
         </details>
 
         <details>
           <summary>How should I drink S’up?</summary>
-          <p>Serve chilled, pour over ice, or dress it up with citrus, herbs, fruit, or a cocktail garnish. It works straight from the can or as a base for alcohol-free mixed drinks.</p>
+          <p>
+            Serve chilled, pour over ice, or dress it up with citrus, herbs, fruit, or a cocktail garnish. It works straight from the can or as a base for alcohol-free mixed drinks.
+          </p>
         </details>
       </div>
     </section>
@@ -83,22 +120,30 @@ Next: **`faq.html`**.
       <div class="faq-list">
         <details>
           <summary>How will S’up make me feel?</summary>
-          <p>Everyone’s experience may vary. S’up is made for relaxed, social moments, but individual effects depend on your body, tolerance, serving size, and other factors.</p>
+          <p>
+            Everyone’s experience may vary. S’up is made for relaxed, social moments, but individual effects depend on your body, tolerance, serving size, and other factors.
+          </p>
         </details>
 
         <details>
           <summary>How long does it take to feel anything?</summary>
-          <p>Timing can vary by person. Start with one serving, give yourself time, and avoid consuming more until you understand how it feels for you.</p>
+          <p>
+            Timing can vary by person. Start with one serving, give yourself time, and avoid consuming more until you understand how it feels for you.
+          </p>
         </details>
 
         <details>
           <summary>Can I drive after drinking S’up?</summary>
-          <p>Do not drive or operate machinery if you feel impaired. Use responsibly and follow all applicable laws.</p>
+          <p>
+            Do not drive or operate machinery if you feel impaired. Use responsibly and follow all applicable laws.
+          </p>
         </details>
 
         <details>
           <summary>Who should not drink S’up?</summary>
-          <p>S’up is intended for adults. Do not consume if you are pregnant, nursing, underage, or have been advised by a medical professional to avoid hemp-derived products.</p>
+          <p>
+            S’up is intended for adults. Do not consume if you are pregnant, nursing, underage, or have been advised by a medical professional to avoid hemp-derived products.
+          </p>
         </details>
       </div>
     </section>
@@ -113,38 +158,56 @@ Next: **`faq.html`**.
       <div class="faq-list">
         <details>
           <summary>Where can I buy S’up?</summary>
-          <p>You can shop online or check our Find S’up page for retail availability.</p>
+          <p>
+            You can shop online or check our Find S’up page for retail availability.
+          </p>
         </details>
 
         <details>
           <summary>Do you sell wholesale?</summary>
-          <p>Yes. Retailers, restaurants, bars, event venues, and hospitality buyers can visit our Wholesale page to get in touch.</p>
+          <p>
+            Yes. Retailers, restaurants, bars, event venues, and hospitality buyers can visit our Wholesale page to get in touch.
+          </p>
         </details>
 
         <details>
           <summary>Can I serve S’up at events?</summary>
-          <p>Yes. S’up is a strong fit for weddings, private events, brand activations, corporate gatherings, sober-curious menus, and alcohol-free beverage programs.</p>
+          <p>
+            Yes. S’up is a strong fit for weddings, private events, brand activations, corporate gatherings, sober-curious menus, and alcohol-free beverage programs.
+          </p>
         </details>
 
         <details>
           <summary>How should I store it?</summary>
-          <p>Store S’up in a cool, dry place and chill before serving for the best taste.</p>
+          <p>
+            Store S’up in a cool, dry place and chill before serving for the best taste.
+          </p>
         </details>
       </div>
     </section>
 
     <section class="cta">
       <h2>Still curious?</h2>
+
       <p>
         Try the lineup and find your favorite way to S’up.
       </p>
-      <a class="button" href="shop.html">Shop S’up</a>
+
+      <a
+        class="button"
+        href="https://ghettowookie.shop/collections/try-a-sup-1"
+        target="_blank"
+        rel="noopener"
+      >
+        Shop S’up
+      </a>
     </section>
   </main>
 
   <footer>
     <div class="footer-inner">
       <div>© 2026 S’up Hemp Mocktail Beverages</div>
+
       <div>
         <a href="contact.html">Contact</a> ·
         <a href="wholesale.html">Wholesale</a> ·
@@ -154,4 +217,4 @@ Next: **`faq.html`**.
   </footer>
 </body>
 </html>
-```
+

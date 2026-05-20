@@ -1,5 +1,6 @@
 :root {
   --green: #153f2e;
+  --green-hover: #1c5a41;
   --lime: #d8ff5f;
   --cream: #fff8e7;
   --orange: #ff7a1a;
@@ -12,11 +13,17 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   margin: 0;
   font-family: Arial, Helvetica, sans-serif;
   background: var(--cream);
   color: var(--dark);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
 a {
@@ -24,11 +31,16 @@ a {
   text-decoration: none;
 }
 
+img {
+  max-width: 100%;
+  display: block;
+}
+
 .site-header,
 header {
   position: sticky;
   top: 0;
-  z-index: 10;
+  z-index: 1000;
   background: rgba(255, 248, 231, 0.94);
   backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(0,0,0,0.08);
@@ -42,19 +54,27 @@ header {
   align-items: center;
   justify-content: space-between;
   gap: 24px;
+  position: relative;
 }
 
 .logo img {
   height: 54px;
-  display: block;
 }
 
 .nav-links {
   display: flex;
-  gap: 24px;
   align-items: center;
+  gap: 24px;
   font-weight: 700;
   font-size: 0.95rem;
+}
+
+.nav-links a {
+  transition: opacity 0.2s ease;
+}
+
+.nav-links a:hover {
+  opacity: 0.7;
 }
 
 .nav-links a[aria-current="page"] {
@@ -92,19 +112,22 @@ header {
   border: 0;
   cursor: pointer;
   box-shadow: 0 10px 24px rgba(21,63,46,0.28);
-  transition: background 0.25s ease, transform 0.2s ease, box-shadow 0.25s ease;
+  transition:
+    background 0.25s ease,
+    transform 0.2s ease,
+    box-shadow 0.25s ease;
 }
 
 .button:hover {
-  background: #1c5a41;
+  background: var(--green-hover);
   transform: translateY(-2px);
   box-shadow: 0 14px 28px rgba(21,63,46,0.34);
 }
 
 .secondary {
+  background: transparent;
   border: 2px solid var(--green);
   color: var(--green);
-  background: transparent;
   box-shadow: none;
 }
 
@@ -138,7 +161,7 @@ header {
 
 h1 {
   margin: 0;
-  font-size: clamp(3.2rem, 8vw, 7.2rem);
+  font-size: clamp(3.2rem, 8vw, 7rem);
   line-height: 0.9;
   letter-spacing: -0.07em;
   color: var(--green);
@@ -154,29 +177,26 @@ h1 {
 
 .hero-actions {
   display: flex;
-  gap: 14px;
   flex-wrap: wrap;
+  gap: 14px;
   align-items: center;
 }
 
-.hero-art {
+.hero-video {
   position: relative;
-  background: radial-gradient(circle at center, #ffcf3f 0%, #ff8e2b 48%, #153f2e 49%, #153f2e 100%);
   border-radius: 42px;
-  min-height: 560px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
+  min-height: 560px;
+  background: #000;
   box-shadow: 0 30px 80px rgba(21,63,46,0.22);
 }
 
-.hero-art img {
-  width: min(82%, 520px);
-  height: auto;
-  position: relative;
-  z-index: 2;
-  filter: drop-shadow(0 28px 35px rgba(0,0,0,0.28));
+.hero-video iframe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 
 .burst {
@@ -190,7 +210,8 @@ h1 {
   font-weight: 900;
   max-width: 220px;
   transform: rotate(-4deg);
-  z-index: 3;
+  z-index: 5;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
 .section {
@@ -200,27 +221,34 @@ h1 {
 }
 
 .section-title {
+  margin: 0 0 18px;
   font-size: clamp(2.1rem, 4vw, 4rem);
   line-height: 1;
   letter-spacing: -0.05em;
   color: var(--green);
-  margin: 0 0 18px;
 }
 
 .section-copy {
   max-width: 720px;
+  margin: 0 0 24px;
   font-size: 1.15rem;
   line-height: 1.6;
   color: var(--muted);
-  margin: 0 0 24px;
 }
 
 .flavor-grid,
 .location-grid,
 .benefits {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+}
+
+.flavor-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.location-grid {
+  grid-template-columns: repeat(4, 1fr);
 }
 
 .benefits {
@@ -228,8 +256,8 @@ h1 {
 }
 
 .flavor-card,
-.benefit,
-.location-card {
+.location-card,
+.benefit {
   background: #fff;
   border-radius: 28px;
   padding: 24px;
@@ -252,25 +280,25 @@ h1 {
 }
 
 .flavor-card h3,
-.benefit h3,
-.location-card h3 {
+.location-card h3,
+.benefit h3 {
   margin: 18px 0 8px;
   font-size: 1.35rem;
   color: var(--green);
 }
 
 .flavor-card p,
-.benefit p,
-.location-card li {
+.location-card li,
+.benefit p {
   margin: 0;
-  color: var(--muted);
   line-height: 1.5;
+  color: var(--muted);
 }
 
 .location-card ul {
+  list-style: none;
   padding: 0;
   margin: 12px 0 0;
-  list-style: none;
 }
 
 .statement {
@@ -332,9 +360,9 @@ summary {
 }
 
 details p {
+  margin: 16px 0 0;
   color: var(--muted);
   line-height: 1.55;
-  margin: 16px 0 0;
 }
 
 .contact-form {
@@ -353,11 +381,11 @@ input,
 select,
 textarea {
   width: 100%;
-  border: 2px solid rgba(21,63,46,0.18);
-  border-radius: 18px;
   padding: 16px 18px;
-  font: inherit;
+  border-radius: 18px;
+  border: 2px solid rgba(21,63,46,0.18);
   background: #fff;
+  font: inherit;
   color: var(--dark);
 }
 
@@ -376,8 +404,8 @@ textarea:focus {
   position: absolute;
   width: 1px;
   height: 1px;
-  padding: 0;
   margin: -1px;
+  padding: 0;
   overflow: hidden;
   clip-path: inset(50%);
   white-space: nowrap;
@@ -386,24 +414,24 @@ textarea:focus {
 
 .cta {
   margin: 72px 24px;
-  background: linear-gradient(135deg, var(--orange), var(--pink));
-  border-radius: 42px;
   padding: 72px 24px;
+  border-radius: 42px;
+  background: linear-gradient(135deg, var(--orange), var(--pink));
   color: #fff;
   text-align: center;
 }
 
 .cta h2 {
-  margin: 0 auto 18px;
   max-width: 860px;
+  margin: 0 auto 18px;
   font-size: clamp(2.4rem, 5vw, 5rem);
   line-height: 0.95;
   letter-spacing: -0.06em;
 }
 
 .cta p {
-  margin: 0 auto 30px;
   max-width: 620px;
+  margin: 0 auto 30px;
   font-size: 1.2rem;
   line-height: 1.55;
 }
@@ -416,7 +444,6 @@ textarea:focus {
 
 .cta .button:hover {
   background: var(--cream);
-  color: var(--green);
 }
 
 footer {
@@ -430,8 +457,8 @@ footer {
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
-  gap: 24px;
   flex-wrap: wrap;
+  gap: 24px;
   color: rgba(255,255,255,0.72);
 }
 
@@ -479,7 +506,7 @@ footer {
     padding-top: 48px;
   }
 
-  .hero-art {
+  .hero-video {
     min-height: 420px;
   }
 
@@ -491,10 +518,6 @@ footer {
 }
 
 @media (max-width: 640px) {
-  .nav {
-    align-items: center;
-  }
-
   .logo img {
     height: 46px;
   }
@@ -510,7 +533,7 @@ footer {
     font-size: clamp(3rem, 17vw, 5rem);
   }
 
-  .hero-art {
+  .hero-video {
     min-height: 360px;
     border-radius: 28px;
   }
@@ -518,5 +541,10 @@ footer {
   .burst {
     font-size: 0.9rem;
     max-width: 180px;
+  }
+
+  .cta {
+    margin: 48px 16px;
+    padding: 56px 20px;
   }
 }

@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +19,6 @@
       --panel-border: rgba(255,140,0,0.22);
       --orange: #ff7a00;
       --gold: #ffb347;
-      --red: #ff3c00;
       --white: #ffffff;
       --text: #e8e8e8;
       --muted: #a9a9a9;
@@ -39,11 +39,11 @@
 
     .page {
       min-height: 100vh;
+      padding: 48px;
       background:
         radial-gradient(circle at 18% 20%, rgba(255,122,0,0.28), transparent 28%),
         radial-gradient(circle at 72% 12%, rgba(255,60,0,0.20), transparent 30%),
         linear-gradient(135deg, #050505 0%, #130600 46%, #050505 100%);
-      padding: 48px;
     }
 
     .brochure {
@@ -54,7 +54,6 @@
       overflow: hidden;
       background: rgba(0,0,0,0.72);
       box-shadow: 0 0 70px rgba(255,122,0,0.16);
-      backdrop-filter: blur(10px);
     }
 
     .header {
@@ -67,9 +66,10 @@
 
     .logo-banner {
       width: 100%;
-      max-width: 760px;
+      max-width: 900px;
       height: auto;
       display: block;
+      margin-bottom: 32px;
       filter:
         drop-shadow(0 0 22px rgba(255,122,0,0.35))
         drop-shadow(0 0 80px rgba(255,122,0,0.12));
@@ -77,7 +77,6 @@
 
     .video-wrap {
       width: 100%;
-      margin: 34px 0 0;
       border-radius: 28px;
       overflow: hidden;
       background: #000;
@@ -99,12 +98,7 @@
     .energy-line {
       height: 3px;
       margin: 34px 0 18px;
-      background: linear-gradient(
-        90deg,
-        var(--orange),
-        var(--gold),
-        transparent
-      );
+      background: linear-gradient(90deg, var(--orange), var(--gold), transparent);
       box-shadow: 0 0 22px rgba(255,122,0,0.75);
     }
 
@@ -148,7 +142,6 @@
       border-radius: 26px;
       background: var(--panel);
       box-shadow: 0 0 42px rgba(255,122,0,0.08);
-      backdrop-filter: blur(6px);
     }
 
     .card h2 {
@@ -238,12 +231,11 @@
       }
 
       .video-wrap {
-        margin-top: 24px;
         border-radius: 22px;
       }
 
       .video-wrap video {
-        aspect-ratio: 9 / 16;
+        aspect-ratio: 16 / 9;
       }
 
       h1 {
@@ -266,6 +258,7 @@
 
       .logo-banner {
         max-width: 100%;
+        margin-bottom: 24px;
       }
 
       .week-of {
@@ -291,29 +284,28 @@
 </head>
 
 <body>
-
   <main class="page">
-
     <article class="brochure">
-
       <header class="header">
-
         <img
-          src="csmlogo3.png"
+          src="cmslogo3.png"
           alt="CMS Technical Optimization Logo"
           class="logo-banner"
         />
 
         <div class="video-wrap">
           <video
-            src="dinnermeet.mp4"
             autoplay
             muted
             loop
             playsinline
             controls
-            preload="metadata"
-          ></video>
+            preload="auto"
+            poster="cmslogo3.png"
+          >
+            <source src="dinnermeet.mp4" type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
         </div>
 
         <div class="energy-line"></div>
@@ -321,11 +313,9 @@
         <div class="tagline">
           Artificial Intelligence • Infrastructure Design • Intelligent Teams
         </div>
-
       </header>
 
       <section class="content">
-
         <div class="week-of">
           For the Week of May 17, 2026
         </div>
@@ -335,104 +325,83 @@
         </h1>
 
         <div class="grid">
-
           <section class="card">
-
             <h2>Security & Infrastructure</h2>
 
             <ul>
               <li>
                 Researched current cybersecurity threats impacting modern businesses and legal web infrastructure.
               </li>
-
               <li>
                 Identified major risk areas including
                 <strong>Ransomware-as-a-Service (RaaS)</strong>
                 and
                 <strong>AI-assisted phishing & credential attacks</strong>.
               </li>
-
               <li>
                 Recommended upgraded Microsoft licensing/security protections for improved endpoint security, identity monitoring, and threat response.
               </li>
             </ul>
-
           </section>
 
           <section class="card">
-
             <h2>Website Deployment Preparation</h2>
 
             <ul>
               <li>
                 Prepared GitHub infrastructure strategy for live website deployment.
               </li>
-
               <li>
                 Organized production-ready static site architecture for streamlined hosting, maintenance, and future scalability.
               </li>
-
               <li>
                 Ready to build out the necessary GitHub web infrastructure to host the live site when approved.
               </li>
             </ul>
-
           </section>
 
           <section class="card">
-
             <h2>Analytics Preparation</h2>
 
             <ul>
               <li>
                 Prepped Google Analytics for inclusion on each page.
               </li>
-
               <li>
                 Tracking will support traffic analysis, user behavior monitoring, engagement patterns, and conversion reporting.
               </li>
-
               <li>
                 Analytics will help chart live traffic patterns once the site is launched.
               </li>
             </ul>
-
           </section>
 
           <section class="card">
-
             <h2>Next-Step Readiness</h2>
 
             <ul>
               <li>
                 Web infrastructure plan is ready for deployment execution.
               </li>
-
               <li>
                 Security recommendations are ready for review and licensing discussion.
               </li>
-
               <li>
                 Prepared to coordinate web, legal, compliance, analytics, and launch planning.
               </li>
             </ul>
-
           </section>
-
         </div>
 
         <section class="wide-card">
-
           <h2>Coordination & Availability</h2>
 
           <p>
             Available Friday or early next week for a coordination meeting with the attorney web input team regarding legal/compliance review and final implementation planning.
           </p>
-
         </section>
 
         <footer class="footer">
-
           <div>
             <strong>CMS Technical Optimization</strong><br />
             Performance • Security • Infrastructure • Deployment
@@ -441,14 +410,9 @@
           <div class="footer-label">
             Strategic Weekly Brief
           </div>
-
         </footer>
-
       </section>
-
     </article>
-
   </main>
-
 </body>
 </html>

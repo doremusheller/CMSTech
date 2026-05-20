@@ -1,3 +1,4 @@
+
 :root {
   --green: #153f2e;
   --green-hover: #1c5a41;
@@ -141,9 +142,9 @@ header {
   margin: 0 auto;
   padding: 72px 24px 56px;
   display: grid;
-  grid-template-columns: 1.05fr 0.95fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: 48px;
+  gap: 56px;
 }
 
 .eyebrow {
@@ -184,9 +185,12 @@ h1 {
 
 .hero-video {
   position: relative;
-  border-radius: 42px;
+  width: 100%;
+  aspect-ratio: 9 / 16;
+  min-height: 640px;
+  max-height: 760px;
   overflow: hidden;
-  min-height: 560px;
+  border-radius: 42px;
   background: #000;
   box-shadow: 0 30px 80px rgba(21,63,46,0.22);
 }
@@ -197,21 +201,6 @@ h1 {
   width: 100%;
   height: 100%;
   border: 0;
-}
-
-.burst {
-  position: absolute;
-  left: 28px;
-  bottom: 28px;
-  background: var(--lime);
-  color: var(--green);
-  border-radius: 24px;
-  padding: 18px 20px;
-  font-weight: 900;
-  max-width: 220px;
-  transform: rotate(-4deg);
-  z-index: 5;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
 }
 
 .section {
@@ -466,6 +455,10 @@ footer {
   .nav-links {
     gap: 18px;
   }
+
+  .hero {
+    gap: 40px;
+  }
 }
 
 @media (max-width: 900px) {
@@ -507,7 +500,9 @@ footer {
   }
 
   .hero-video {
-    min-height: 420px;
+    aspect-ratio: 9 / 16;
+    min-height: auto;
+    max-height: none;
   }
 
   .flavor-grid,
@@ -534,13 +529,10 @@ footer {
   }
 
   .hero-video {
-    min-height: 360px;
+    width: 100%;
+    aspect-ratio: 9 / 16;
+    min-height: auto;
     border-radius: 28px;
-  }
-
-  .burst {
-    font-size: 0.9rem;
-    max-width: 180px;
   }
 
   .cta {
@@ -548,3 +540,4 @@ footer {
     padding: 56px 20px;
   }
 }
+

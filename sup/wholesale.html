@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,18 +12,37 @@
 </head>
 
 <body>
-  <header>
-    <nav class="nav">
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
       <a class="logo" href="index.html" aria-label="S’up home">
         <img src="suplogo.avif" alt="S’up Hemp Mocktail Beverages logo" />
       </a>
 
+      <input class="nav-toggle" type="checkbox" id="nav-toggle" aria-label="Toggle navigation menu" />
+
+      <label class="nav-toggle-label" for="nav-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
       <div class="nav-links">
+        <a href="index.html">Home</a>
         <a href="about.html">About</a>
         <a href="flavors.html">Flavors</a>
         <a href="find-us.html">Find S’up</a>
         <a href="faq.html">FAQ</a>
-        <a class="button" href="shop.html">Shop</a>
+        <a href="wholesale.html" aria-current="page">Wholesale</a>
+        <a href="contact.html">Contact</a>
+
+        <a
+          class="button nav-button"
+          href="https://ghettowookie.shop/collections/try-a-sup-1"
+          target="_blank"
+          rel="noopener"
+        >
+          Shop
+        </a>
       </div>
     </nav>
   </header>
@@ -122,29 +142,49 @@
         Interested in carrying S’up? Tell us about your business and we’ll get in touch.
       </p>
 
-      <form class="contact-form">
+      <form class="contact-form" action="#" method="post">
         <div class="form-grid">
-          <input type="text" placeholder="Business Name" required />
-          <input type="text" placeholder="Contact Name" required />
+          <label>
+            <span class="sr-only">Business Name</span>
+            <input type="text" name="business-name" placeholder="Business Name" required />
+          </label>
+
+          <label>
+            <span class="sr-only">Contact Name</span>
+            <input type="text" name="contact-name" placeholder="Contact Name" required />
+          </label>
         </div>
 
         <div class="form-grid">
-          <input type="email" placeholder="Email Address" required />
-          <input type="text" placeholder="Location / City" />
+          <label>
+            <span class="sr-only">Email Address</span>
+            <input type="email" name="email" placeholder="Email Address" required />
+          </label>
+
+          <label>
+            <span class="sr-only">Location or City</span>
+            <input type="text" name="location" placeholder="Location / City" />
+          </label>
         </div>
 
-        <select required>
-          <option value="">Business Type</option>
-          <option>Retail Store</option>
-          <option>Restaurant</option>
-          <option>Bar / Lounge</option>
-          <option>Hotel / Hospitality</option>
-          <option>Distributor</option>
-          <option>Event / Venue</option>
-          <option>Other</option>
-        </select>
+        <label>
+          <span class="sr-only">Business Type</span>
+          <select name="business-type" required>
+            <option value="">Business Type</option>
+            <option>Retail Store</option>
+            <option>Restaurant</option>
+            <option>Bar / Lounge</option>
+            <option>Hotel / Hospitality</option>
+            <option>Distributor</option>
+            <option>Event / Venue</option>
+            <option>Other</option>
+          </select>
+        </label>
 
-        <textarea rows="6" placeholder="Tell us about your business, audience, or what you're looking for."></textarea>
+        <label>
+          <span class="sr-only">Message</span>
+          <textarea name="message" rows="6" placeholder="Tell us about your business, audience, or what you're looking for."></textarea>
+        </label>
 
         <button type="submit" class="button">
           Submit Inquiry
@@ -176,3 +216,4 @@
   </footer>
 </body>
 </html>
+```

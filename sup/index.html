@@ -1,372 +1,46 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <title>S’up Hemp Mocktail Beverages | Social Sips Without the Alcohol</title>
   <meta name="description" content="S’up is a hemp mocktail beverage made for social sipping without alcohol. Bright flavors, good vibes, and a better way to unwind." />
 
-  <style>
-    :root {
-      --green: #153f2e;
-      --lime: #d8ff5f;
-      --cream: #fff8e7;
-      --orange: #ff7a1a;
-      --pink: #ff5e9c;
-      --dark: #111111;
-      --muted: #5f5f5f;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background: var(--cream);
-      color: var(--dark);
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 10;
-      background: rgba(255, 248, 231, 0.92);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0,0,0,0.08);
-    }
-
-    .nav {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 18px 24px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 24px;
-    }
-
-    .logo img {
-      height: 54px;
-      display: block;
-    }
-
-    .nav-links {
-      display: flex;
-      gap: 24px;
-      align-items: center;
-      font-weight: 700;
-      font-size: 0.95rem;
-    }
-
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--orange);
-      color: #fff;
-      padding: 14px 22px;
-      border-radius: 999px;
-      font-weight: 800;
-      box-shadow: 0 8px 20px rgba(255,122,26,0.28);
-    }
-
-    .hero {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 72px 24px 56px;
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      align-items: center;
-      gap: 48px;
-    }
-
-    .eyebrow {
-      display: inline-block;
-      margin-bottom: 18px;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: var(--lime);
-      color: var(--green);
-      font-weight: 900;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      font-size: 0.8rem;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(3.2rem, 8vw, 7.2rem);
-      line-height: 0.9;
-      letter-spacing: -0.07em;
-      color: var(--green);
-    }
-
-    .hero p {
-      max-width: 560px;
-      margin: 24px 0 30px;
-      font-size: 1.25rem;
-      line-height: 1.55;
-      color: #2f2f2f;
-    }
-
-    .hero-actions {
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-      align-items: center;
-    }
-
-    .secondary {
-      border: 2px solid var(--green);
-      color: var(--green);
-      background: transparent;
-      box-shadow: none;
-    }
-
-    .hero-art {
-      position: relative;
-      background: radial-gradient(circle at center, #ffcf3f 0%, #ff8e2b 48%, #153f2e 49%, #153f2e 100%);
-      border-radius: 42px;
-      min-height: 560px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      box-shadow: 0 30px 80px rgba(21,63,46,0.22);
-    }
-
-    .hero-art img {
-      width: min(82%, 520px);
-      height: auto;
-      position: relative;
-      z-index: 2;
-      filter: drop-shadow(0 28px 35px rgba(0,0,0,0.28));
-    }
-
-    .burst {
-      position: absolute;
-      inset: auto auto 28px 28px;
-      background: var(--lime);
-      color: var(--green);
-      border-radius: 24px;
-      padding: 18px 20px;
-      font-weight: 900;
-      max-width: 220px;
-      transform: rotate(-4deg);
-      z-index: 3;
-    }
-
-    .section {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 72px 24px;
-    }
-
-    .section-title {
-      font-size: clamp(2.1rem, 4vw, 4rem);
-      line-height: 1;
-      letter-spacing: -0.05em;
-      color: var(--green);
-      margin: 0 0 18px;
-    }
-
-    .section-copy {
-      max-width: 720px;
-      font-size: 1.15rem;
-      line-height: 1.6;
-      color: var(--muted);
-      margin: 0 0 36px;
-    }
-
-    .flavor-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 20px;
-    }
-
-    .flavor-card {
-      background: #fff;
-      border-radius: 28px;
-      padding: 24px;
-      min-height: 360px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      box-shadow: 0 18px 40px rgba(0,0,0,0.08);
-      overflow: hidden;
-    }
-
-    .flavor-card img {
-      width: 100%;
-      max-height: 230px;
-      object-fit: contain;
-      filter: drop-shadow(0 18px 18px rgba(0,0,0,0.16));
-    }
-
-    .flavor-card h3 {
-      margin: 18px 0 6px;
-      font-size: 1.35rem;
-      color: var(--green);
-    }
-
-    .flavor-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.45;
-    }
-
-    .statement {
-      background: var(--green);
-      color: var(--cream);
-      text-align: center;
-      padding: 88px 24px;
-    }
-
-    .statement h2 {
-      max-width: 980px;
-      margin: 0 auto;
-      font-size: clamp(2.6rem, 6vw, 6rem);
-      line-height: 0.95;
-      letter-spacing: -0.06em;
-    }
-
-    .benefits {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 20px;
-    }
-
-    .benefit {
-      background: #fff;
-      border-radius: 28px;
-      padding: 30px;
-      box-shadow: 0 18px 40px rgba(0,0,0,0.07);
-    }
-
-    .benefit h3 {
-      color: var(--green);
-      font-size: 1.45rem;
-      margin: 0 0 10px;
-    }
-
-    .benefit p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.55;
-    }
-
-    .cta {
-      margin: 72px 24px;
-      background: linear-gradient(135deg, var(--orange), var(--pink));
-      border-radius: 42px;
-      padding: 72px 24px;
-      color: #fff;
-      text-align: center;
-    }
-
-    .cta h2 {
-      margin: 0 auto 18px;
-      max-width: 860px;
-      font-size: clamp(2.4rem, 5vw, 5rem);
-      line-height: 0.95;
-      letter-spacing: -0.06em;
-    }
-
-    .cta p {
-      margin: 0 auto 30px;
-      max-width: 620px;
-      font-size: 1.2rem;
-      line-height: 1.55;
-    }
-
-    .cta .button {
-      background: #fff;
-      color: var(--green);
-      box-shadow: none;
-    }
-
-    footer {
-      background: var(--dark);
-      color: #fff;
-      padding: 36px 24px;
-    }
-
-    .footer-inner {
-      max-width: 1180px;
-      margin: 0 auto;
-      display: flex;
-      justify-content: space-between;
-      gap: 24px;
-      flex-wrap: wrap;
-      color: rgba(255,255,255,0.72);
-    }
-
-    @media (max-width: 900px) {
-      .hero {
-        grid-template-columns: 1fr;
-        padding-top: 48px;
-      }
-
-      .hero-art {
-        min-height: 420px;
-      }
-
-      .flavor-grid,
-      .benefits {
-        grid-template-columns: 1fr 1fr;
-      }
-    }
-
-    @media (max-width: 640px) {
-      .nav {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .nav-links {
-        flex-wrap: wrap;
-        gap: 14px;
-      }
-
-      .flavor-grid,
-      .benefits {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-art {
-        min-height: 360px;
-        border-radius: 28px;
-      }
-
-      .burst {
-        font-size: 0.9rem;
-        max-width: 180px;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-  <header>
-    <nav class="nav">
+  <header class="site-header">
+    <nav class="nav" aria-label="Main navigation">
       <a class="logo" href="index.html" aria-label="S’up home">
         <img src="suplogo.avif" alt="S’up Hemp Mocktail Beverages logo" />
       </a>
 
+      <input class="nav-toggle" type="checkbox" id="nav-toggle" aria-label="Toggle navigation menu" />
+
+      <label class="nav-toggle-label" for="nav-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
       <div class="nav-links">
+        <a href="index.html" aria-current="page">Home</a>
         <a href="about.html">About</a>
         <a href="flavors.html">Flavors</a>
         <a href="find-us.html">Find S’up</a>
         <a href="faq.html">FAQ</a>
-        <a class="button" href="shop.html">Shop</a>
+        <a href="wholesale.html">Wholesale</a>
+        <a href="contact.html">Contact</a>
+        <a
+          class="button nav-button"
+          href="https://ghettowookie.shop/collections/try-a-sup-1"
+          target="_blank"
+          rel="noopener"
+        >
+          Shop
+        </a>
       </div>
     </nav>
   </header>
@@ -376,12 +50,20 @@
       <div>
         <span class="eyebrow">Hemp Mocktail Beverages</span>
         <h1>Social sips without the alcohol.</h1>
+
         <p>
           S’up brings bright mocktail flavor and a laid-back hemp experience to the moments where you want to unwind, connect, and still feel like yourself tomorrow.
         </p>
 
         <div class="hero-actions">
-          <a class="button" href="shop.html">Shop S’up</a>
+          <a
+            class="button"
+            href="https://ghettowookie.shop/collections/try-a-sup-1"
+            target="_blank"
+            rel="noopener"
+          >
+            Shop S’up
+          </a>
           <a class="button secondary" href="flavors.html">Explore Flavors</a>
         </div>
       </div>
@@ -394,6 +76,7 @@
 
     <section class="section">
       <h2 class="section-title">Pick your kind of unwind.</h2>
+
       <p class="section-copy">
         Fruity, fizzy, and made for grown-up social drinking without the hangover routine.
       </p>
@@ -439,6 +122,7 @@
 
     <section class="section">
       <h2 class="section-title">Why people reach for S’up.</h2>
+
       <p class="section-copy">
         Built for the sober-curious, the socially selective, and anyone tired of pretending sparkling water is a personality.
       </p>
@@ -463,16 +147,26 @@
 
     <section class="cta">
       <h2>Bring better drinks to the next hang.</h2>
+
       <p>
         Stock the fridge, skip the hangover, and give your guests something more interesting than “we have water.”
       </p>
-      <a class="button" href="shop.html">Shop S’up</a>
+
+      <a
+        class="button"
+        href="https://ghettowookie.shop/collections/try-a-sup-1"
+        target="_blank"
+        rel="noopener"
+      >
+        Shop S’up
+      </a>
     </section>
   </main>
 
   <footer>
     <div class="footer-inner">
       <div>© 2026 S’up Hemp Mocktail Beverages</div>
+
       <div>
         <a href="contact.html">Contact</a> ·
         <a href="wholesale.html">Wholesale</a> ·

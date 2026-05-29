@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -189,6 +189,30 @@
       font-size: 1.08rem;
     }
 
+    .image-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      align-items: start;
+      margin-top: 22px;
+      margin-bottom: 24px;
+    }
+
+    .report-image {
+      width: 100%;
+      display: block;
+      border-radius: 18px;
+      border: 1px solid rgba(255,140,0,0.22);
+      box-shadow: 0 0 34px rgba(255,122,0,0.10);
+    }
+
+    .report-divider {
+      margin: 54px 0;
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      box-shadow: 0 0 18px rgba(255,122,0,0.18);
+    }
+
     .footer {
       margin-top: 44px;
       padding-top: 24px;
@@ -222,7 +246,8 @@
         padding: 32px 24px;
       }
 
-      .grid {
+      .grid,
+      .image-grid {
         grid-template-columns: 1fr;
       }
 
@@ -317,6 +342,119 @@
 
       <section class="content">
         <div class="week-of">
+          For the Week of May 25, 2026
+        </div>
+
+        <h1>
+          Weekly Update for Signature Law
+        </h1>
+
+        <section class="wide-card">
+          <h2>Team Moment</h2>
+
+          <div class="video-wrap" style="margin-top:20px;">
+            <video
+              autoplay
+              muted
+              loop
+              playsinline
+              controls
+              preload="auto"
+              poster="cmslogo3.png"
+            >
+              <source src="swimaway.mov" type="video/quicktime" />
+              <source src="swimaway.mov" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+
+          <p style="margin-top:18px;">
+            Setting aside differences for a needed summer break.
+          </p>
+        </section>
+
+        <section class="wide-card">
+          <h2>Attorney Technology Recommendation</h2>
+
+          <div class="image-grid">
+            <img
+              src="laptop1score.png"
+              alt="Attorney laptop scoring summary"
+              class="report-image"
+            />
+
+            <a
+              href="https://www.dell.com/en-us/shop/dell-laptops/dell-14-plus-laptop/spd/dell-db14250-laptop/usedb14250pbtshksq?_gl=1*17s92ou*_up*MQ..*_gs*MQ..&gclid=CjwKCAjw8uTQBhAdEiwAVvtJyjdVOqDH2yUj6lZm0yoA6nOpPDAeLN1Q5RYsUe8QwmWVVzSJseGvwxoC4QEQAvD_BwE&gclsrc=aw.ds&gbraid=0AAAAADlWIIyi-P-oqV4A7PbJRP0znDs5F"
+              target="_blank"
+              rel="noopener"
+            >
+              <img
+                src="siglawlaptop1.png"
+                alt="Dell 14 Plus laptop recommendation"
+                class="report-image"
+              />
+            </a>
+          </div>
+
+          <p>
+            The Dell 14 Plus is a strong fit for attorneys who need real performance without carrying something that feels like courtroom evidence. With a Core Ultra 7, 32 GB RAM, and a 1 TB SSD, it has enough power for research, drafting, video calls, AI tools, document chaos, and whatever “just one more tab” becomes by 2029.
+          </p>
+
+          <p style="margin-top:16px;">
+            Windows 11 Pro also gives the firm better security and remote management options, which means fewer support headaches and fewer laptops operating purely on vibes.
+          </p>
+
+          <p style="margin-top:16px;">
+            <strong>Attorney Score: 9.2 / 10.</strong>
+            Fast, portable, future-ready, and priced low enough that finance may only sigh quietly.
+          </p>
+        </section>
+
+        <div class="grid" style="margin-top:24px;">
+          <section class="card">
+            <h2>Weekly Highlights</h2>
+
+            <ul>
+              <li>
+                Added the summer-break video update as the lead item for this week's report.
+              </li>
+              <li>
+                Reviewed attorney laptop needs around performance, portability, security, and budget.
+              </li>
+              <li>
+                Selected the Dell 14 Plus as a strong workstation recommendation for legal productivity.
+              </li>
+            </ul>
+          </section>
+
+          <section class="card">
+            <h2>Technology Planning</h2>
+
+            <ul>
+              <li>
+                Evaluated hardware longevity for the next 3–4 years of legal software and AI-assisted workflows.
+              </li>
+              <li>
+                Considered remote manageability and business security requirements for firm-owned devices.
+              </li>
+              <li>
+                Balanced speed, storage, memory, portability, and price for attorney use.
+              </li>
+            </ul>
+          </section>
+        </div>
+
+        <section class="wide-card">
+          <h2>Strategic Brief</h2>
+
+          <p>
+            This week's focus combined a lighter internal team moment with practical technology planning. The laptop recommendation supports better daily productivity, improved remote support, and a cleaner long-term device strategy for attorneys who need dependable performance without overspending.
+          </p>
+        </section>
+
+        <hr class="report-divider" />
+
+        <div class="week-of">
           For the Week of May 17, 2026
         </div>
 
@@ -401,6 +539,14 @@
           </p>
         </section>
 
+        <section class="wide-card">
+          <h2>Strategic Brief</h2>
+
+          <p>
+            This week's focus centered on security readiness, deployment preparation, analytics setup, and coordination planning for Signature Law's web infrastructure. The priority remains building a stable, secure, measurable launch path that supports both technical performance and legal/compliance review.
+          </p>
+        </section>
+
         <footer class="footer">
           <div>
             <strong>CMS Technical Optimization</strong><br />
@@ -416,3 +562,4 @@
   </main>
 </body>
 </html>
+```

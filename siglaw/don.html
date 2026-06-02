@@ -1,14 +1,111 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Don Del Mare | Signature Law</title>
-  <meta name="description" content="Meet Ottavio 'Don' Del Mare, Esq., Signature Law partner and feared eight-arm litigator for maritime, corporate, regulatory, and deep-ocean conflict matters." />
-  <link rel="stylesheet" href="attorneys.css" />
+  <title>Ottavio Del Mare, Esq. | Signature Law</title>
+  <meta name="description" content="Meet Ottavio 'Don' Del Mare, Esq., Partner at Signature Law and eight-arm litigation strategist for corporate, maritime, regulatory, and deep-ocean conflict matters." />
+  <style>
+    :root{--ink:#101621;--navy:#0d2d55;--gold:#b98218;--gold-2:#d7a62d;--gold-3:#f1cf67;--paper:#fbf7ef;--white:#fff;--max:1240px}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:Inter,Arial,Helvetica,sans-serif;color:var(--ink);background:var(--paper);line-height:1.55;overflow-x:hidden}
+    a{color:inherit;text-decoration:none}
+    img{display:block;max-width:100%}
+    h1,h2,h3,p{margin-top:0}
+    .container{width:min(var(--max),calc(100% - 56px));margin:0 auto}
+
+    .topbar{background:#fff;border-bottom:1px solid rgba(16,22,33,.08);color:rgba(16,22,33,.62);font-size:11px;letter-spacing:.22em;text-transform:uppercase}
+    .topbar-inner{height:38px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+    .header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.86);border-bottom:1px solid rgba(16,22,33,.08);backdrop-filter:blur(18px)}
+    .nav{min-height:86px;display:flex;align-items:center;justify-content:space-between;gap:30px}
+    .brand img{width:214px}
+    .nav-links{display:flex;align-items:center;gap:34px;color:rgba(16,22,33,.72);font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:850}
+    .nav-links a:hover{color:var(--gold)}
+    .nav-cta{min-height:46px;padding:0 22px;border:1px solid rgba(185,130,24,.72);display:inline-flex;align-items:center;justify-content:center;color:#7d5510;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:950;background:rgba(185,130,24,.06)}
+
+    .button{min-height:58px;padding:0 28px;display:inline-flex;align-items:center;justify-content:center;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:950;transition:.22s ease;border:1px solid transparent}
+    .button:hover{transform:translateY(-2px)}
+    .button.gold{background:linear-gradient(135deg,var(--gold-3),var(--gold-2) 44%,var(--gold));color:#080808;border-color:var(--gold-2);box-shadow:0 18px 38px rgba(185,130,24,.18)}
+
+    .hero{position:relative;overflow:hidden;background:radial-gradient(circle at 50% 8%,rgba(241,207,103,.24),transparent 24rem),radial-gradient(circle at 80% 42%,rgba(23,63,115,.13),transparent 30rem),linear-gradient(180deg,#fff 0%,#fbf7ef 58%,#f4ecde 100%)}
+    .hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(13,45,85,.055) 1px,transparent 1px),linear-gradient(rgba(13,45,85,.045) 1px,transparent 1px);background-size:104px 104px;mask-image:radial-gradient(circle at 50% 30%,rgba(0,0,0,.58),transparent 68%);opacity:.7;pointer-events:none}
+    .hero-inner{position:relative;z-index:2;padding:82px 0 96px;display:grid;grid-template-columns:.86fr 1.14fr;gap:70px;align-items:end}
+    .hero-logo{width:min(460px,80vw);margin-bottom:38px}
+    .eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:22px;color:#8b6115;font-size:12px;letter-spacing:.28em;text-transform:uppercase;font-weight:950}
+    .eyebrow:before{content:"";width:52px;height:1px;background:linear-gradient(90deg,var(--gold),transparent)}
+    h1{font-family:Georgia,'Times New Roman',serif;font-size:clamp(4rem,7.4vw,8.2rem);line-height:.84;letter-spacing:-.082em;font-weight:500;margin-bottom:0;color:var(--ink)}
+    .hero-copy{color:#4e5969;font-size:clamp(1.08rem,1.45vw,1.25rem);line-height:1.8;margin:0;max-width:700px}
+    .hero-side{background:rgba(255,255,255,.72);border:1px solid rgba(185,130,24,.18);box-shadow:0 28px 80px rgba(13,45,85,.1);padding:38px}
+    .hero-side strong{display:block;font-family:Georgia,'Times New Roman',serif;font-size:clamp(2rem,3vw,3.4rem);line-height:.9;letter-spacing:-.065em;font-weight:500;color:var(--navy);margin-bottom:18px}
+
+    .section{padding:104px 0}
+    .light{background:var(--paper)}
+    .white{background:#fff}
+    .section-head{display:grid;grid-template-columns:.9fr 1.1fr;gap:72px;align-items:end;margin-bottom:52px}
+    .kicker{color:var(--gold);font-size:12px;letter-spacing:.24em;text-transform:uppercase;font-weight:950;margin-bottom:16px}
+    .section-title{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.1rem,5.8vw,6.25rem);line-height:.86;letter-spacing:-.085em;font-weight:500;margin:0;color:var(--ink)}
+    .section-lede{color:#4f5968;font-size:1.08rem;line-height:1.82;max-width:660px;margin:0}
+
+    .profile-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:18px}
+    .attorney-card{background:#fff;border:1px solid rgba(16,22,33,.09);box-shadow:0 24px 66px rgba(13,45,85,.08);display:flex;flex-direction:column;overflow:hidden}
+    .attorney-card.founder{border-color:rgba(185,130,24,.28);box-shadow:0 28px 80px rgba(185,130,24,.13)}
+    .photo-wrap{height:520px;background:#f3ede3;overflow:hidden}
+    .photo-wrap img{width:100%;height:100%;object-fit:cover;filter:saturate(.96) contrast(1.02)}
+    .attorney-info{padding:30px;display:flex;flex:1;flex-direction:column;justify-content:space-between}
+    .role{color:var(--gold);letter-spacing:.19em;text-transform:uppercase;font-weight:950;font-size:11px}
+    .attorney-info h2{font-family:Georgia,'Times New Roman',serif;font-size:2.45rem;line-height:.94;letter-spacing:-.065em;font-weight:500;margin:14px 0 18px;color:var(--navy)}
+    .attorney-info p{color:#566170;margin-bottom:22px;line-height:1.74}
+    .meta{display:grid;gap:10px;border-top:1px solid rgba(16,22,33,.1);padding-top:20px;color:#303949;font-size:14px}
+    .meta span:before{content:"— ";color:var(--gold)}
+
+    .case-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .case-card{background:#fff;border:1px solid rgba(16,22,33,.09);box-shadow:0 24px 66px rgba(13,45,85,.08);padding:34px}
+    .case-card h3{font-family:Georgia,'Times New Roman',serif;font-size:2.05rem;line-height:.95;letter-spacing:-.06em;font-weight:500;color:var(--navy);margin:12px 0 18px}
+    .case-card p{color:#566170;line-height:1.74;margin-bottom:0}
+
+    .statement{position:relative;background:linear-gradient(115deg,#fff 0%,#f7f1e7 48%,#eaf0f7 100%);overflow:hidden;border-top:1px solid rgba(16,22,33,.08);border-bottom:1px solid rgba(16,22,33,.08)}
+    .statement-inner{display:grid;grid-template-columns:1fr .78fr;gap:72px;align-items:end}
+    .statement h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.6rem,6.8vw,7.2rem);line-height:.82;letter-spacing:-.09em;font-weight:500;margin:0;color:var(--ink)}
+    .statement p{color:#4f5968;font-size:1.13rem;line-height:1.85;margin:0;max-width:590px}
+
+    .closing{position:relative;text-align:center;padding:128px 0;background:radial-gradient(circle at 50% 0%,rgba(215,166,45,.19),transparent 34rem),linear-gradient(#fbf7ef,#fff);border-top:1px solid rgba(16,22,33,.08)}
+    .closing .eyebrow{justify-content:center}
+    .closing .eyebrow:after{content:"";width:52px;height:1px;background:linear-gradient(90deg,transparent,var(--gold))}
+    .closing h2{font-family:Georgia,'Times New Roman',serif;font-size:clamp(3.5rem,7vw,7.6rem);line-height:.83;letter-spacing:-.09em;font-weight:500;max-width:980px;margin:0 auto 28px;color:var(--ink)}
+    .closing p{color:#4f5968;max-width:590px;margin:0 auto 38px;font-size:1.1rem;line-height:1.8}
+
+    .footer{background:#fff;color:#6b7483;border-top:1px solid rgba(16,22,33,.08);padding:46px 0 62px;font-size:13px}
+    .footer-inner{display:flex;justify-content:space-between;align-items:flex-start;gap:28px}
+    .footer img{width:190px;margin-bottom:12px}
+    .footer-links{display:flex;gap:24px;color:var(--ink);font-weight:850;text-transform:uppercase;letter-spacing:.14em;font-size:11px}
+
+    @media(max-width:1060px){
+      .hero-inner,.section-head,.statement-inner,.profile-grid{grid-template-columns:1fr}
+      .case-grid{grid-template-columns:1fr}
+    }
+
+    @media(max-width:760px){
+      .topbar{display:none}
+      .container{width:min(100% - 30px,var(--max))}
+      .nav{height:auto;min-height:76px;padding:12px 0 10px;flex-wrap:wrap;gap:10px 16px}
+      .brand img{width:156px}
+      .nav-cta{display:none}
+      .nav-links{order:3;width:100%;display:flex;gap:18px;overflow-x:auto;white-space:nowrap;padding:8px 0 2px;font-size:10px;letter-spacing:.14em;scrollbar-width:none}
+      .nav-links::-webkit-scrollbar{display:none}
+      .hero-inner{padding:58px 0 72px}
+      .hero-side{padding:30px}
+      .section{padding:78px 0}
+      .photo-wrap{height:390px}
+      .footer-inner{flex-direction:column}
+      .footer-links{flex-direction:column;gap:12px}
+    }
+  </style>
 </head>
 
 <body>
+
   <div class="topbar">
     <div class="container topbar-inner">
       <span>Signature Law Attorney Leadership</span>
@@ -18,6 +115,7 @@
 
   <header class="header">
     <div class="container nav">
+
       <a class="brand" href="index.html" aria-label="Signature Law home">
         <img src="siglogo.png" alt="Signature Law" />
       </a>
@@ -32,12 +130,15 @@
       </nav>
 
       <a class="nav-cta" href="contact.html">Request Counsel</a>
+
     </div>
   </header>
 
   <main>
+
     <section class="hero">
       <div class="container hero-inner">
+
         <div>
           <img class="hero-logo" src="siglogo.png" alt="Signature Law" />
           <div class="eyebrow">Partner Profile</div>
@@ -45,125 +146,167 @@
         </div>
 
         <aside class="hero-side">
-          <strong>Eight arms. One closing argument.</strong>
+          <strong>Eight arms. Zero patience.</strong>
           <p class="hero-copy">
-            A notoriously pugnacious courtroom force, Don Del Mare represents clients in complex corporate,
-            maritime, regulatory, and deep-ocean conflict matters where ordinary counsel would simply run out of limbs.
+            Known professionally as “Don” Del Mare, Ottavio is a notoriously pugnacious attorney feared in courtrooms
+            above and below water.
           </p>
         </aside>
+
       </div>
     </section>
 
     <section class="section light">
-      <div class="container section-head">
-        <div>
-          <div class="kicker">Profile</div>
-          <h2 class="section-title">A trial presence below sea level.</h2>
+      <div class="container">
+
+        <div class="section-head">
+          <div>
+            <div class="kicker">Biography</div>
+            <h2 class="section-title">Litigation counsel from the deep end.</h2>
+          </div>
+
+          <p class="section-lede">
+            Don leverages crushing cross-examinations, unmatched multitasking, and an eight-arm litigation strategy
+            to defend client interests in complex corporate, maritime, regulatory, and deep-ocean conflict matters.
+          </p>
         </div>
 
-        <p class="section-lede">
-          Don combines crushing cross-examination, ink-cloud procedural tactics,
-          and unmatched multitasking to keep opposing counsel guessing,
-          gasping, and occasionally checking admiralty jurisdiction.
-        </p>
+        <div class="profile-grid">
+
+          <article class="attorney-card founder">
+            <div class="photo-wrap">
+              <img src="doncalimari.PNG" alt="Ottavio Del Mare, Esq., Partner at Signature Law" />
+            </div>
+
+            <div class="attorney-info">
+              <div>
+                <span class="role">Partner</span>
+                <h2>Ottavio Del Mare, Esq.</h2>
+                <p>
+                  A courtroom tactician with exceptional reach, Don brings pressure, precision, and theatrical menace
+                  to matters where ordinary legal strategies lack sufficient tentacles.
+                </p>
+              </div>
+
+              <div class="meta">
+                <span>Maritime litigation</span>
+                <span>Subsea jurisdiction disputes</span>
+                <span>Eight-arm trial strategy</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="attorney-card">
+            <div class="attorney-info">
+              <div>
+                <span class="role">Expanded Bio</span>
+                <h2>A reputation that travels by current.</h2>
+
+                <p>
+                  Don began his career in harbor disputes, salvage claims, and aggressively worded cease-and-desist
+                  letters printed on waterproof stationery. He quickly became known for identifying weak arguments,
+                  wrapping them tightly, and not releasing them until opposing counsel reconsidered their entire career.
+                </p>
+
+                <p>
+                  His litigation style is direct, dramatic, and legally suffocating in precisely the way malpractice
+                  carriers prefer not to discuss. Clients rely on Don when the matter involves corporate conflict,
+                  regulatory turbulence, maritime exposure, or an opponent foolish enough to underestimate mollusks.
+                </p>
+
+                <p>
+                  At any given moment, Don may be drafting a motion, reviewing exhibits, marking deposition transcripts,
+                  intimidating expert witnesses, and opening a jar of olives without assistance.
+                </p>
+              </div>
+            </div>
+          </article>
+
+        </div>
       </div>
+    </section>
 
-      <div class="container attorney-grid">
-        <article class="attorney-card founder">
-          <div class="photo-wrap">
-            <img src="doncalimari.PNG" alt="Ottavio Del Mare, Esq., Partner at Signature Law" />
+    <section class="section white">
+      <div class="container">
+
+        <div class="section-head">
+          <div>
+            <div class="kicker">Selected Matters</div>
+            <h2 class="section-title">A case history with suction.</h2>
           </div>
 
-          <div class="attorney-info">
-            <div>
-              <span class="role">Partner</span>
-              <h2>Ottavio Del Mare, Esq.</h2>
-              <p>
-                Known professionally as “Don” Del Mare, he is feared in courtrooms above and below water.
-                His litigation style is direct, dramatic, and legally suffocating in precisely the way
-                opposing counsel’s malpractice carrier prefers not to discuss.
-              </p>
-            </div>
+          <p class="section-lede">
+            Representative engagements include disputed waters, hostile boardrooms, missing binders,
+            and one deposition that allegedly lasted through three tide cycles.
+          </p>
+        </div>
 
-            <div class="meta">
-              <span>Maritime litigation</span>
-              <span>Subsea jurisdiction disputes</span>
-              <span>Eight-arm trial strategy</span>
-            </div>
-          </div>
-        </article>
+        <div class="case-grid">
 
-        <article class="attorney-card">
-          <div class="attorney-info">
-            <div>
-              <span class="role">Expanded Biography</span>
-              <h2>Depth-tested counsel.</h2>
-              <p>
-                Don began his legal career in the high-pressure world of harbor disputes, salvage claims,
-                and aggressively worded cease-and-desist letters written on waterproof stationery.
-                He quickly earned a reputation for spotting weak arguments, grabbing them firmly,
-                and not releasing them until the court reporter needed a break.
-              </p>
-              <p>
-                Clients value Don’s ability to manage multiple litigation fronts at once:
-                drafting motions, reviewing contracts, marking exhibits, intimidating expert witnesses,
-                and opening a jar of olives without assistance.
-              </p>
-            </div>
-          </div>
-        </article>
+          <article class="case-card">
+            <span class="role">Maritime Dispute</span>
+            <h3>The People v. The Concept of Dry Land</h3>
+            <p>
+              Successfully argued that “reasonable access to water” includes fountains, office aquariums,
+              reflective lobby pools, and one suspiciously damp conference room.
+            </p>
+          </article>
 
-        <article class="attorney-card">
-          <div class="attorney-info">
-            <div>
-              <span class="role">Notable Matters</span>
-              <h2>Selected case history.</h2>
-              <p>
-                <strong>The People v. The Concept of Dry Land:</strong>
-                Successfully argued that “reasonable access to water” includes fountains, office aquariums,
-                and one unusually damp conference room.
-              </p>
-              <p>
-                <strong>Squidmore Holdings v. Everybody:</strong>
-                Defended a multinational cephalopod conglomerate in a dispute involving trade secrets,
-                shell companies, and actual shells.
-              </p>
-              <p>
-                <strong>In re: The Missing Exhibit Binder:</strong>
-                Located the binder, impeached three witnesses, and made partner before lunch.
-              </p>
-            </div>
-          </div>
-        </article>
+          <article class="case-card">
+            <span class="role">Corporate Defense</span>
+            <h3>Squidmore Holdings v. Everybody</h3>
+            <p>
+              Defended a multinational cephalopod conglomerate in a dispute involving trade secrets,
+              shell companies, actual shells, and a board member who kept changing color under questioning.
+            </p>
+          </article>
+
+          <article class="case-card">
+            <span class="role">Trial Strategy</span>
+            <h3>In re: The Missing Exhibit Binder</h3>
+            <p>
+              Located the binder, impeached three witnesses, objected in four directions,
+              and made partner before lunch.
+            </p>
+          </article>
+
+        </div>
       </div>
     </section>
 
     <section class="section statement">
       <div class="container statement-inner">
         <h2>Some attorneys prepare for trial. Don prepares the tide.</h2>
+
         <p>
-          Whether the matter involves corporate conflict, maritime exposure,
-          regulatory turbulence, or an opponent foolish enough to underestimate mollusks,
-          Don brings pressure, precision, and an alarming number of objections.
+          Whether the matter is corporate, maritime, regulatory, or deeply weird,
+          Don brings command, pressure, and an alarming number of objections.
         </p>
       </div>
     </section>
 
     <section class="closing">
       <div class="container">
+
         <div class="eyebrow">Speak With Signature Law</div>
+
         <h2>Bring in counsel with reach.</h2>
+
         <p>
-          Request a confidential consultation with Signature Law and find out whether your matter requires
-          strategy, leverage, or someone who can depose eight witnesses simultaneously.
+          Request a confidential consultation with Signature Law and find out whether your matter requires strategy,
+          leverage, or someone who can depose eight witnesses simultaneously.
         </p>
+
         <a class="button gold" href="contact.html">Request Counsel</a>
+
       </div>
     </section>
+
   </main>
 
   <footer class="footer">
     <div class="container footer-inner">
+
       <div>
         <img src="siglogo.png" alt="Signature Law" />
         Attorney leadership for complex matters.
@@ -177,7 +320,9 @@
         <a href="contact.html">Contact</a>
         <a href="whycms.html">Why CMS Tech?</a>
       </div>
+
     </div>
   </footer>
+
 </body>
 </html>

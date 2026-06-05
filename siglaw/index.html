@@ -69,6 +69,105 @@
             line-height: 1.75;
         }
 
+        .testimonial-section {
+            background: #fff;
+            padding: 80px 0;
+        }
+
+        .testimonial-heading {
+            margin-bottom: 34px;
+            font-family: "Libre Baskerville", serif;
+            font-weight: 700;
+            font-size: clamp(2rem, 4vw, 3.4rem);
+            line-height: 1.08;
+            text-align: center;
+        }
+
+        .testimonial-carousel {
+            position: relative;
+            max-width: 840px;
+            min-height: 250px;
+            margin: 0 auto;
+            padding: 34px 30px;
+            background: #F6F6F6;
+            border-radius: 2px;
+            box-shadow: 0 18px 48px rgba(0,0,0,.06);
+        }
+
+        .testimonial-slide {
+            display: none;
+            text-align: center;
+        }
+
+        .testimonial-slide.active {
+            display: block;
+            animation: testimonialFade .45s ease;
+        }
+
+        .testimonial-stars {
+            margin-bottom: 18px;
+            color: #EF974B;
+            font-size: 22px;
+            letter-spacing: .14em;
+        }
+
+        .testimonial-quote {
+            max-width: 720px;
+            margin: 0 auto 24px;
+            font-size: 1.25rem;
+            line-height: 1.8;
+        }
+
+        .testimonial-author {
+            margin-bottom: 4px;
+            font-weight: 700;
+            letter-spacing: .09em;
+            text-transform: uppercase;
+        }
+
+        .testimonial-title {
+            margin: 0;
+            color: #6b6b6b;
+            font-size: .95rem;
+            line-height: 1.5;
+        }
+
+        .testimonial-dots {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 28px;
+        }
+
+        .testimonial-dot {
+            width: 11px;
+            height: 11px;
+            padding: 0;
+            border: 0;
+            border-radius: 50%;
+            background: #cfcfcf;
+            cursor: pointer;
+            transition: all .2s ease;
+        }
+
+        .testimonial-dot.active,
+        .testimonial-dot:hover {
+            background: #EF974B;
+            transform: scale(1.12);
+        }
+
+        @keyframes testimonialFade {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         @media (max-width: 900px) {
             .landing-card-grid {
                 grid-template-columns: 1fr;
@@ -95,6 +194,19 @@
 
             .hero-logo-wrap {
                 padding: 42px 20px 34px;
+            }
+
+            .testimonial-section {
+                padding: 60px 0;
+            }
+
+            .testimonial-carousel {
+                min-height: 300px;
+                padding: 30px 22px;
+            }
+
+            .testimonial-quote {
+                font-size: 1.08rem;
             }
         }
     </style>
@@ -204,6 +316,83 @@
                     <h4>Trusted Partnership</h4>
                     <p>We build relationships with clients who value responsiveness, judgment, preparation, and clear communication.</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonial-section font-baskerville" aria-label="Client testimonials">
+        <div class="mx-auto max-w-[1030px] px-[15px]">
+            <span class="mx-auto mb-7 block h-[6px]">
+                <div class="linebar"></div>
+            </span>
+
+            <h3 class="testimonial-heading">
+                What clients are saying
+            </h3>
+
+            <div class="testimonial-carousel" aria-live="polite">
+                <div class="testimonial-slide active">
+                    <div class="testimonial-stars" aria-label="Five star testimonial">★★★★★</div>
+                    <p class="testimonial-quote">
+                        “Signature Law got us through a hostile acquisition, three regulatory audits, and an alpaca licensing dispute. Remarkably calm people.”
+                    </p>
+                    <div class="testimonial-author">Bartholomew P. Snodgrass</div>
+                    <p class="testimonial-title">CEO, Snodgrass Tactical Alpacas</p>
+                </div>
+
+                <div class="testimonial-slide">
+                    <div class="testimonial-stars" aria-label="Five star testimonial">★★★★★</div>
+                    <p class="testimonial-quote">
+                        “They explained everything so clearly that even our CFO understood it. Frankly unsettling.”
+                    </p>
+                    <div class="testimonial-author">Cynthia W. Crankshaft</div>
+                    <p class="testimonial-title">President, Crankshaft Dynamics</p>
+                </div>
+
+                <div class="testimonial-slide">
+                    <div class="testimonial-stars" aria-label="Five star testimonial">★★★★★</div>
+                    <p class="testimonial-quote">
+                        “We called with a crisis. They answered with a plan. Also somehow improved our parking situation.”
+                    </p>
+                    <div class="testimonial-author">Reginald Throckmorton IV</div>
+                    <p class="testimonial-title">Founder, Throckmorton Ventures</p>
+                </div>
+
+                <div class="testimonial-slide">
+                    <div class="testimonial-stars" aria-label="Five star testimonial">★★★★★</div>
+                    <p class="testimonial-quote">
+                        “Our previous counsel used 47 pages to answer a question. Signature used two paragraphs and was correct.”
+                    </p>
+                    <div class="testimonial-author">Dolores M. Wafflethorpe</div>
+                    <p class="testimonial-title">Managing Director, Wafflethorpe Holdings</p>
+                </div>
+
+                <div class="testimonial-slide">
+                    <div class="testimonial-stars" aria-label="Five star testimonial">★★★★★</div>
+                    <p class="testimonial-quote">
+                        “The matter was complicated, emotional, and expensive. They successfully reduced all three.”
+                    </p>
+                    <div class="testimonial-author">Horace B. Pickleforth</div>
+                    <p class="testimonial-title">Chairman, Pickleforth Maritime</p>
+                </div>
+
+                <div class="testimonial-slide">
+                    <div class="testimonial-stars" aria-label="Five star testimonial">★★★★★</div>
+                    <p class="testimonial-quote">
+                        “I still don't understand what happened, but apparently we won.”
+                    </p>
+                    <div class="testimonial-author">Geraldine von Tatertot</div>
+                    <p class="testimonial-title">Chief Strategy Officer, Tatertot Industries</p>
+                </div>
+            </div>
+
+            <div class="testimonial-dots" aria-label="Testimonial carousel controls">
+                <button class="testimonial-dot active" type="button" aria-label="Show testimonial 1"></button>
+                <button class="testimonial-dot" type="button" aria-label="Show testimonial 2"></button>
+                <button class="testimonial-dot" type="button" aria-label="Show testimonial 3"></button>
+                <button class="testimonial-dot" type="button" aria-label="Show testimonial 4"></button>
+                <button class="testimonial-dot" type="button" aria-label="Show testimonial 5"></button>
+                <button class="testimonial-dot" type="button" aria-label="Show testimonial 6"></button>
             </div>
         </div>
     </section>
@@ -324,5 +513,63 @@
         </div>
     </div>
 </footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const slides = document.querySelectorAll('.testimonial-slide');
+    const dots = document.querySelectorAll('.testimonial-dot');
+    const carousel = document.querySelector('.testimonial-carousel');
+
+    if (!slides.length || !dots.length || slides.length !== dots.length) {
+        return;
+    }
+
+    let current = 0;
+    let timer;
+
+    function showSlide(index) {
+        slides.forEach(function (slide) {
+            slide.classList.remove('active');
+        });
+
+        dots.forEach(function (dot) {
+            dot.classList.remove('active');
+        });
+
+        slides[index].classList.add('active');
+        dots[index].classList.add('active');
+        current = index;
+    }
+
+    function nextSlide() {
+        const next = current + 1 >= slides.length ? 0 : current + 1;
+        showSlide(next);
+    }
+
+    function startRotation() {
+        timer = window.setInterval(nextSlide, 5000);
+    }
+
+    function stopRotation() {
+        window.clearInterval(timer);
+    }
+
+    dots.forEach(function (dot, index) {
+        dot.addEventListener('click', function () {
+            stopRotation();
+            showSlide(index);
+            startRotation();
+        });
+    });
+
+    if (carousel) {
+        carousel.addEventListener('mouseenter', stopRotation);
+        carousel.addEventListener('mouseleave', startRotation);
+    }
+
+    startRotation();
+});
+</script>
+
 </body>
 </html>

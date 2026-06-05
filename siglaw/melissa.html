@@ -1,0 +1,777 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Melissa Rueschhoff | Signature Law</title>
+  <meta name="description" content="Meet Melissa Rueschhoff, Founding Partner at Signature Law Partners. Trial attorney, prosecutor, professor, and advocate for justice." />
+
+  <style>
+    :root{
+      --ink:#101621;
+      --navy:#0d2d55;
+      --gold:#b98218;
+      --gold-2:#d7a62d;
+      --gold-3:#f1cf67;
+      --paper:#fbf7ef;
+      --white:#fff;
+      --max:1240px
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      font-family:Inter,Arial,Helvetica,sans-serif;
+      color:var(--ink);
+      background:var(--paper);
+      line-height:1.55;
+      overflow-x:hidden
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none
+    }
+
+    img{
+      display:block;
+      max-width:100%
+    }
+
+    h1,h2,h3,p{
+      margin-top:0
+    }
+
+    .container{
+      width:min(var(--max),calc(100% - 56px));
+      margin:0 auto
+    }
+
+    .topbar{
+      background:#fff;
+      border-bottom:1px solid rgba(16,22,33,.08);
+      color:rgba(16,22,33,.62);
+      font-size:11px;
+      letter-spacing:.22em;
+      text-transform:uppercase
+    }
+
+    .topbar-inner{
+      height:38px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px
+    }
+
+    .header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(255,255,255,.86);
+      border-bottom:1px solid rgba(16,22,33,.08);
+      backdrop-filter:blur(18px)
+    }
+
+    .nav{
+      min-height:86px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:30px
+    }
+
+    .brand img{
+      width:214px
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:34px;
+      color:rgba(16,22,33,.72);
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-weight:850
+    }
+
+    .nav-links a:hover{
+      color:var(--gold)
+    }
+
+    .nav-cta{
+      min-height:46px;
+      padding:0 22px;
+      border:1px solid rgba(185,130,24,.72);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      color:#7d5510;
+      font-size:11px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-weight:950;
+      background:rgba(185,130,24,.06)
+    }
+
+    .button{
+      min-height:58px;
+      padding:0 28px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-size:11px;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      font-weight:950;
+      transition:.22s ease;
+      border:1px solid transparent
+    }
+
+    .button:hover{
+      transform:translateY(-2px)
+    }
+
+    .button.gold{
+      background:linear-gradient(135deg,var(--gold-3),var(--gold-2) 44%,var(--gold));
+      color:#080808;
+      border-color:var(--gold-2);
+      box-shadow:0 18px 38px rgba(185,130,24,.18)
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 50% 8%,rgba(241,207,103,.24),transparent 24rem),
+        radial-gradient(circle at 80% 42%,rgba(23,63,115,.13),transparent 30rem),
+        linear-gradient(180deg,#fff 0%,#fbf7ef 58%,#f4ecde 100%)
+    }
+
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg,rgba(13,45,85,.055) 1px,transparent 1px),
+        linear-gradient(rgba(13,45,85,.045) 1px,transparent 1px);
+      background-size:104px 104px;
+      mask-image:radial-gradient(circle at 50% 30%,rgba(0,0,0,.58),transparent 68%);
+      opacity:.7;
+      pointer-events:none
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      padding:82px 0 96px;
+      display:grid;
+      grid-template-columns:.86fr 1.14fr;
+      gap:70px;
+      align-items:end
+    }
+
+    .hero-logo{
+      width:min(460px,80vw);
+      margin-bottom:38px
+    }
+
+    .eyebrow{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      margin-bottom:22px;
+      color:#8b6115;
+      font-size:12px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      font-weight:950
+    }
+
+    .eyebrow:before{
+      content:"";
+      width:52px;
+      height:1px;
+      background:linear-gradient(90deg,var(--gold),transparent)
+    }
+
+    h1{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(4rem,7.4vw,8.2rem);
+      line-height:.84;
+      letter-spacing:-.082em;
+      font-weight:500;
+      margin-bottom:0;
+      color:var(--ink)
+    }
+
+    .hero-copy{
+      color:#4e5969;
+      font-size:clamp(1.08rem,1.45vw,1.25rem);
+      line-height:1.8;
+      margin:0
+    }
+
+    .hero-side{
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(185,130,24,.18);
+      box-shadow:0 28px 80px rgba(13,45,85,.1);
+      padding:38px
+    }
+
+    .hero-side strong{
+      display:block;
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(2rem,3vw,3.4rem);
+      line-height:.9;
+      letter-spacing:-.065em;
+      font-weight:500;
+      color:var(--navy);
+      margin-bottom:18px
+    }
+
+    .section{
+      padding:104px 0
+    }
+
+    .light{
+      background:var(--paper)
+    }
+
+    .white{
+      background:#fff
+    }
+
+    .section-head{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:72px;
+      align-items:end;
+      margin-bottom:52px
+    }
+
+    .kicker{
+      color:var(--gold);
+      font-size:12px;
+      letter-spacing:.24em;
+      text-transform:uppercase;
+      font-weight:950;
+      margin-bottom:16px
+    }
+
+    .section-title{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(3.1rem,5.8vw,6.25rem);
+      line-height:.86;
+      letter-spacing:-.085em;
+      font-weight:500;
+      margin:0;
+      color:var(--ink)
+    }
+
+    .section-lede{
+      color:#4f5968;
+      font-size:1.08rem;
+      line-height:1.82;
+      max-width:660px;
+      margin:0
+    }
+
+    .profile-grid{
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:18px
+    }
+
+    .attorney-card{
+      background:#fff;
+      border:1px solid rgba(16,22,33,.09);
+      box-shadow:0 24px 66px rgba(13,45,85,.08);
+      display:flex;
+      flex-direction:column;
+      overflow:hidden
+    }
+
+    .attorney-card.founder{
+      border-color:rgba(185,130,24,.28);
+      box-shadow:0 28px 80px rgba(185,130,24,.13)
+    }
+
+    .photo-wrap{
+      height:520px;
+      background:#f3ede3;
+      overflow:hidden
+    }
+
+    .photo-wrap img{
+      width:100%;
+      height:100%;
+      object-fit:cover
+    }
+
+    .attorney-info{
+      padding:30px;
+      display:flex;
+      flex:1;
+      flex-direction:column;
+      justify-content:space-between
+    }
+
+    .role{
+      color:var(--gold);
+      letter-spacing:.19em;
+      text-transform:uppercase;
+      font-weight:950;
+      font-size:11px
+    }
+
+    .attorney-info h2{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:2.45rem;
+      line-height:.94;
+      letter-spacing:-.065em;
+      font-weight:500;
+      margin:14px 0 18px;
+      color:var(--navy)
+    }
+
+    .attorney-info p{
+      color:#566170;
+      margin-bottom:22px;
+      line-height:1.74
+    }
+
+    .meta{
+      display:grid;
+      gap:10px;
+      border-top:1px solid rgba(16,22,33,.1);
+      padding-top:20px;
+      color:#303949;
+      font-size:14px
+    }
+
+    .meta span:before{
+      content:"— ";
+      color:var(--gold)
+    }
+
+    .case-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px
+    }
+
+    .case-card{
+      background:#fff;
+      border:1px solid rgba(16,22,33,.09);
+      box-shadow:0 24px 66px rgba(13,45,85,.08);
+      padding:34px
+    }
+
+    .case-card h3{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:2.05rem;
+      line-height:.95;
+      letter-spacing:-.06em;
+      font-weight:500;
+      color:var(--navy);
+      margin:12px 0 18px
+    }
+
+    .case-card p{
+      color:#566170;
+      line-height:1.74;
+      margin-bottom:0
+    }
+
+    .statement{
+      background:linear-gradient(115deg,#fff 0%,#f7f1e7 48%,#eaf0f7 100%);
+      border-top:1px solid rgba(16,22,33,.08);
+      border-bottom:1px solid rgba(16,22,33,.08)
+    }
+
+    .statement-inner{
+      display:grid;
+      grid-template-columns:1fr .78fr;
+      gap:72px;
+      align-items:end
+    }
+
+    .statement h2{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(3.6rem,6.8vw,7.2rem);
+      line-height:.82;
+      letter-spacing:-.09em;
+      font-weight:500;
+      margin:0
+    }
+
+    .statement p{
+      color:#4f5968;
+      font-size:1.13rem;
+      line-height:1.85;
+      margin:0
+    }
+
+    .closing{
+      text-align:center;
+      padding:128px 0;
+      background:radial-gradient(circle at 50% 0%,rgba(215,166,45,.19),transparent 34rem),
+      linear-gradient(#fbf7ef,#fff)
+    }
+
+    .closing .eyebrow{
+      justify-content:center
+    }
+
+    .closing .eyebrow:after{
+      content:"";
+      width:52px;
+      height:1px;
+      background:linear-gradient(90deg,transparent,var(--gold))
+    }
+
+    .closing h2{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(3.5rem,7vw,7.6rem);
+      line-height:.83;
+      letter-spacing:-.09em;
+      font-weight:500;
+      max-width:980px;
+      margin:0 auto 28px
+    }
+
+    .closing p{
+      color:#4f5968;
+      max-width:590px;
+      margin:0 auto 38px;
+      font-size:1.1rem;
+      line-height:1.8
+    }
+
+    .footer{
+      background:#fff;
+      color:#6b7483;
+      border-top:1px solid rgba(16,22,33,.08);
+      padding:46px 0 62px;
+      font-size:13px
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:28px
+    }
+
+    .footer img{
+      width:190px;
+      margin-bottom:12px
+    }
+
+    .footer-links{
+      display:flex;
+      gap:24px;
+      color:var(--ink);
+      font-weight:850;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:11px
+    }
+
+    @media(max-width:1060px){
+      .hero-inner,.section-head,.statement-inner,.profile-grid{
+        grid-template-columns:1fr
+      }
+      .case-grid{
+        grid-template-columns:1fr
+      }
+    }
+
+    @media(max-width:760px){
+      .topbar{display:none}
+      .container{width:min(100% - 30px,var(--max))}
+      .photo-wrap{height:390px}
+      .footer-inner{flex-direction:column}
+      .footer-links{flex-direction:column}
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div class="container topbar-inner">
+    <span>Signature Law Attorney Leadership</span>
+    <span>Litigation · Advocacy · Education · Public Service</span>
+  </div>
+</div>
+
+<header class="header">
+  <div class="container nav">
+
+    <a class="brand" href="index.html">
+      <img src="siglogo.png" alt="Signature Law" />
+    </a>
+
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="practice-areas.html">Practice Areas</a>
+      <a href="attorneys.html">Attorneys</a>
+      <a href="inthenews.html">In the News</a>
+      <a href="contact.html">Contact</a>
+      <a href="whycms.html">Why CMS Tech?</a>
+    </nav>
+
+    <a class="nav-cta" href="contact.html">Request Counsel</a>
+
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="container hero-inner">
+
+    <div>
+      <img class="hero-logo" src="siglogo.png" alt="Signature Law" />
+      <div class="eyebrow">Founding Partner</div>
+      <h1>Melissa Rueschhoff</h1>
+    </div>
+
+    <aside class="hero-side">
+      <strong>Advocacy. Justice. Leadership.</strong>
+      <p class="hero-copy">
+        Trial attorney, prosecutor, professor, and nationally recognized advocate dedicated to
+        protecting vulnerable populations, empowering entrepreneurs, and pursuing justice in every forum.
+      </p>
+    </aside>
+
+  </div>
+</section>
+
+<section class="section light">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <div class="kicker">Biography</div>
+        <h2 class="section-title">A career built on advocacy.</h2>
+      </div>
+
+      <p class="section-lede">
+        Licensed in Colorado, Texas, Arizona, Alabama, and Hawaii, Melissa Rueschhoff has spent her
+        legal career serving clients, communities, and causes through litigation, prosecution,
+        education, and public policy leadership.
+      </p>
+    </div>
+
+    <div class="profile-grid">
+
+      <article class="attorney-card founder">
+
+        <div class="photo-wrap">
+          <img src="melissa.jpg" alt="Melissa Rueschhoff, Founding Partner" />
+        </div>
+
+        <div class="attorney-info">
+          <div>
+            <span class="role">Founding Partner</span>
+            <h2>Melissa Rueschhoff</h2>
+
+            <p>
+              Melissa has been licensed to practice law in Colorado, Texas, Arizona, Alabama,
+              and Hawaii, as well as six federal courts. Her experience spans civil and criminal
+              litigation, prosecution, legislative advocacy, higher education, and complex legal counseling.
+            </p>
+          </div>
+
+          <div class="meta">
+            <span>Licensed in five states</span>
+            <span>Licensed in six federal courts</span>
+            <span>Trial attorney and prosecutor</span>
+            <span>Law professor and public policy advocate</span>
+          </div>
+        </div>
+
+      </article>
+
+      <article class="attorney-card">
+
+        <div class="attorney-info">
+
+          <div>
+
+            <span class="role">Expanded Biography</span>
+            <h2>Justice through service.</h2>
+
+            <p>
+              Melissa's legal career has been defined by a commitment to justice. Early in her
+              practice, she focused extensively on criminal prosecution, serving in Special Victims
+              Units and working to combat child sex trafficking both domestically and internationally.
+            </p>
+
+            <p>
+              In Hawaii, she served as an Analyst and Special Prosecutor for the Hawaii Internet Crimes
+              Against Children Unit within the Hawaii Attorney General's Office. She also served as a
+              Legislative Attorney for the Judiciary Chair at the Hawaii State Legislature, helping shape
+              policy affecting families, children, and communities.
+            </p>
+
+            <p>
+              Beyond courtroom advocacy, Melissa has served as a law professor at the University of Arizona's
+              Rogers College of Law, Faulkner University's Jones School of Law, and the University of Hawaii's
+              Richardson School of Law, mentoring future attorneys and legal leaders.
+            </p>
+
+            <p>
+              Today, Melissa serves as a Founding Partner at Signature Law Partners, PLLC, where she
+              continues to advocate for women and children, assist entrepreneurs in building successful
+              businesses, and zealously litigate on behalf of her clients. Operating through a boutique
+              cloud-based law firm model, she provides clients with flexible and effective representation
+              regardless of geography.
+            </p>
+
+            <p>
+              Melissa remains deeply committed to public service. She served on Hawaii's Joint Venture
+              Education Forum for three years and on Ho'Ola Na Pua's Executive Board of Directors for
+              six years. She currently serves as Chair of Washington D.C.'s CGO Foundation and on the
+              Common Sense Media Advisory Board.
+            </p>
+
+            <p>
+              Her work combating child sex trafficking and helping advance Arizona's Purple Star School
+              legislation has been featured in numerous publications. As a USAF senior leader spouse,
+              Melissa is also a sought-after speaker at MAJCOM command conferences, national women's
+              symposiums, and international podcasts.
+            </p>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="section white">
+
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <div class="kicker">Experience & Service</div>
+        <h2 class="section-title">Leadership across law, policy, and education.</h2>
+      </div>
+
+      <p class="section-lede">
+        Melissa's career reflects a rare combination of courtroom advocacy,
+        legislative leadership, academic excellence, and nonprofit service.
+      </p>
+    </div>
+
+    <div class="case-grid">
+
+      <article class="case-card">
+        <span class="role">Prosecution</span>
+        <h3>Special Victims & Child Protection</h3>
+        <p>
+          Prosecuted cases involving vulnerable victims and dedicated significant portions of her
+          career to protecting children and combating exploitation and trafficking.
+        </p>
+      </article>
+
+      <article class="case-card">
+        <span class="role">Public Service</span>
+        <h3>Internet Crimes Against Children</h3>
+        <p>
+          Served as Analyst and Special Prosecutor for Hawaii's Internet Crimes Against Children Unit,
+          working alongside law enforcement and government agencies to pursue offenders and protect communities.
+        </p>
+      </article>
+
+      <article class="case-card">
+        <span class="role">Education & Leadership</span>
+        <h3>Professor, Speaker & Advocate</h3>
+        <p>
+          Educated future attorneys at three respected law schools while serving nonprofit organizations,
+          legislative initiatives, and national leadership programs.
+        </p>
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section statement">
+
+  <div class="container statement-inner">
+
+    <h2>Justice requires more than experience. It requires purpose.</h2>
+
+    <p>
+      Whether advocating for children, supporting entrepreneurs,
+      litigating complex matters, or serving communities,
+      Melissa brings passion, preparation, and unwavering commitment to every client she represents.
+    </p>
+
+  </div>
+
+</section>
+
+<section class="closing">
+
+  <div class="container">
+
+    <div class="eyebrow">Speak With Signature Law</div>
+
+    <h2>Experienced advocacy. Trusted counsel.</h2>
+
+    <p>
+      Connect with Signature Law Partners to learn how Melissa Rueschhoff's
+      experience in litigation, prosecution, policy, and leadership can help
+      you achieve your legal goals.
+    </p>
+
+    <a class="button gold" href="contact.html">Request Counsel</a>
+
+  </div>
+
+</section>
+
+</main>
+
+<footer class="footer">
+
+  <div class="container footer-inner">
+
+    <div>
+      <img src="siglogo.png" alt="Signature Law" />
+      Attorney leadership for complex matters.
+    </div>
+
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="practice-areas.html">Practice Areas</a>
+      <a href="attorneys.html">Attorneys</a>
+      <a href="inthenews.html">In the News</a>
+      <a href="contact.html">Contact</a>
+      <a href="whycms.html">Why CMS Tech?</a>
+    </div>
+
+  </div>
+
+</footer>
+
+</body>
+</html>
+```

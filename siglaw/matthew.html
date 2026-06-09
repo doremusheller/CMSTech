@@ -1,0 +1,783 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Matthew A. Rivela | Signature Law</title>
+  <meta name="description" content="Meet Matthew A. Rivela, Founding Partner at Signature Law Partners, PLLC. Experienced counsel for mergers and acquisitions, commercial litigation, corporate law, and strategic business matters." />
+
+  <style>
+    :root{
+      --ink:#101621;
+      --navy:#0d2d55;
+      --gold:#b98218;
+      --gold-2:#d7a62d;
+      --gold-3:#f1cf67;
+      --paper:#fbf7ef;
+      --white:#fff;
+      --max:1240px
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+
+    body{
+      margin:0;
+      font-family:Inter,Arial,Helvetica,sans-serif;
+      color:var(--ink);
+      background:var(--paper);
+      line-height:1.55;
+      overflow-x:hidden
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none
+    }
+
+    img{
+      display:block;
+      max-width:100%
+    }
+
+    h1,h2,h3,p{
+      margin-top:0
+    }
+
+    .container{
+      width:min(var(--max),calc(100% - 56px));
+      margin:0 auto
+    }
+
+    .topbar{
+      background:#fff;
+      border-bottom:1px solid rgba(16,22,33,.08);
+      color:rgba(16,22,33,.62);
+      font-size:11px;
+      letter-spacing:.22em;
+      text-transform:uppercase
+    }
+
+    .topbar-inner{
+      height:38px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px
+    }
+
+    .header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(255,255,255,.86);
+      border-bottom:1px solid rgba(16,22,33,.08);
+      backdrop-filter:blur(18px)
+    }
+
+    .nav{
+      min-height:86px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:30px
+    }
+
+    .brand img{
+      width:214px
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:34px;
+      color:rgba(16,22,33,.72);
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-weight:850
+    }
+
+    .nav-links a:hover{
+      color:var(--gold)
+    }
+
+    .nav-cta{
+      min-height:46px;
+      padding:0 22px;
+      border:1px solid rgba(185,130,24,.72);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      color:#7d5510;
+      font-size:11px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-weight:950;
+      background:rgba(185,130,24,.06)
+    }
+
+    .button{
+      min-height:58px;
+      padding:0 28px;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      font-size:11px;
+      letter-spacing:.2em;
+      text-transform:uppercase;
+      font-weight:950;
+      transition:.22s ease;
+      border:1px solid transparent
+    }
+
+    .button:hover{
+      transform:translateY(-2px)
+    }
+
+    .button.gold{
+      background:linear-gradient(135deg,var(--gold-3),var(--gold-2) 44%,var(--gold));
+      color:#080808;
+      border-color:var(--gold-2);
+      box-shadow:0 18px 38px rgba(185,130,24,.18)
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 50% 8%,rgba(241,207,103,.24),transparent 24rem),
+        radial-gradient(circle at 80% 42%,rgba(23,63,115,.13),transparent 30rem),
+        linear-gradient(180deg,#fff 0%,#fbf7ef 58%,#f4ecde 100%)
+    }
+
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg,rgba(13,45,85,.055) 1px,transparent 1px),
+        linear-gradient(rgba(13,45,85,.045) 1px,transparent 1px);
+      background-size:104px 104px;
+      mask-image:radial-gradient(circle at 50% 30%,rgba(0,0,0,.58),transparent 68%);
+      opacity:.7;
+      pointer-events:none
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      padding:82px 0 96px;
+      display:grid;
+      grid-template-columns:.86fr 1.14fr;
+      gap:70px;
+      align-items:end
+    }
+
+    .hero-logo{
+      width:min(460px,80vw);
+      margin-bottom:38px
+    }
+
+    .eyebrow{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      margin-bottom:22px;
+      color:#8b6115;
+      font-size:12px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      font-weight:950
+    }
+
+    .eyebrow:before{
+      content:"";
+      width:52px;
+      height:1px;
+      background:linear-gradient(90deg,var(--gold),transparent)
+    }
+
+    h1{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(4rem,7.4vw,8.2rem);
+      line-height:.84;
+      letter-spacing:-.082em;
+      font-weight:500;
+      margin-bottom:0;
+      color:var(--ink)
+    }
+
+    .hero-copy{
+      color:#4e5969;
+      font-size:clamp(1.08rem,1.45vw,1.25rem);
+      line-height:1.8;
+      margin:0
+    }
+
+    .hero-side{
+      background:rgba(255,255,255,.72);
+      border:1px solid rgba(185,130,24,.18);
+      box-shadow:0 28px 80px rgba(13,45,85,.1);
+      padding:38px
+    }
+
+    .hero-side strong{
+      display:block;
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(2rem,3vw,3.4rem);
+      line-height:.9;
+      letter-spacing:-.065em;
+      font-weight:500;
+      color:var(--navy);
+      margin-bottom:18px
+    }
+
+    .section{
+      padding:104px 0
+    }
+
+    .light{
+      background:var(--paper)
+    }
+
+    .white{
+      background:#fff
+    }
+
+    .section-head{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:72px;
+      align-items:end;
+      margin-bottom:52px
+    }
+
+    .kicker{
+      color:var(--gold);
+      font-size:12px;
+      letter-spacing:.24em;
+      text-transform:uppercase;
+      font-weight:950;
+      margin-bottom:16px
+    }
+
+    .section-title{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(3.1rem,5.8vw,6.25rem);
+      line-height:.86;
+      letter-spacing:-.085em;
+      font-weight:500;
+      margin:0;
+      color:var(--ink)
+    }
+
+    .section-lede{
+      color:#4f5968;
+      font-size:1.08rem;
+      line-height:1.82;
+      max-width:660px;
+      margin:0
+    }
+
+    .profile-grid{
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:18px
+    }
+
+    .attorney-card{
+      background:#fff;
+      border:1px solid rgba(16,22,33,.09);
+      box-shadow:0 24px 66px rgba(13,45,85,.08);
+      display:flex;
+      flex-direction:column;
+      overflow:hidden
+    }
+
+    .attorney-card.founder{
+      border-color:rgba(185,130,24,.28);
+      box-shadow:0 28px 80px rgba(185,130,24,.13)
+    }
+
+    .photo-wrap{
+      height:520px;
+      background:#f3ede3;
+      overflow:hidden
+    }
+
+    .photo-wrap img{
+      width:100%;
+      height:100%;
+      object-fit:cover
+    }
+
+    .attorney-info{
+      padding:30px;
+      display:flex;
+      flex:1;
+      flex-direction:column;
+      justify-content:space-between
+    }
+
+    .role{
+      color:var(--gold);
+      letter-spacing:.19em;
+      text-transform:uppercase;
+      font-weight:950;
+      font-size:11px
+    }
+
+    .attorney-info h2{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:2.45rem;
+      line-height:.94;
+      letter-spacing:-.065em;
+      font-weight:500;
+      margin:14px 0 18px;
+      color:var(--navy)
+    }
+
+    .attorney-info p{
+      color:#566170;
+      margin-bottom:22px;
+      line-height:1.74
+    }
+
+    .meta{
+      display:grid;
+      gap:10px;
+      border-top:1px solid rgba(16,22,33,.1);
+      padding-top:20px;
+      color:#303949;
+      font-size:14px
+    }
+
+    .meta span:before{
+      content:"— ";
+      color:var(--gold)
+    }
+
+    .case-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px
+    }
+
+    .case-card{
+      background:#fff;
+      border:1px solid rgba(16,22,33,.09);
+      box-shadow:0 24px 66px rgba(13,45,85,.08);
+      padding:34px
+    }
+
+    .case-card h3{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:2.05rem;
+      line-height:.95;
+      letter-spacing:-.06em;
+      font-weight:500;
+      color:var(--navy);
+      margin:12px 0 18px
+    }
+
+    .case-card p{
+      color:#566170;
+      line-height:1.74;
+      margin-bottom:0
+    }
+
+    .statement{
+      background:linear-gradient(115deg,#fff 0%,#f7f1e7 48%,#eaf0f7 100%);
+      border-top:1px solid rgba(16,22,33,.08);
+      border-bottom:1px solid rgba(16,22,33,.08)
+    }
+
+    .statement-inner{
+      display:grid;
+      grid-template-columns:1fr .78fr;
+      gap:72px;
+      align-items:end
+    }
+
+    .statement h2{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(3.6rem,6.8vw,7.2rem);
+      line-height:.82;
+      letter-spacing:-.09em;
+      font-weight:500;
+      margin:0
+    }
+
+    .statement p{
+      color:#4f5968;
+      font-size:1.13rem;
+      line-height:1.85;
+      margin:0
+    }
+
+    .closing{
+      text-align:center;
+      padding:128px 0;
+      background:radial-gradient(circle at 50% 0%,rgba(215,166,45,.19),transparent 34rem),
+      linear-gradient(#fbf7ef,#fff)
+    }
+
+    .closing .eyebrow{
+      justify-content:center
+    }
+
+    .closing .eyebrow:after{
+      content:"";
+      width:52px;
+      height:1px;
+      background:linear-gradient(90deg,transparent,var(--gold))
+    }
+
+    .closing h2{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(3.5rem,7vw,7.6rem);
+      line-height:.83;
+      letter-spacing:-.09em;
+      font-weight:500;
+      max-width:980px;
+      margin:0 auto 28px
+    }
+
+    .closing p{
+      color:#4f5968;
+      max-width:590px;
+      margin:0 auto 38px;
+      font-size:1.1rem;
+      line-height:1.8
+    }
+
+    .footer{
+      background:#fff;
+      color:#6b7483;
+      border-top:1px solid rgba(16,22,33,.08);
+      padding:46px 0 62px;
+      font-size:13px
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:28px
+    }
+
+    .footer img{
+      width:190px;
+      margin-bottom:12px
+    }
+
+    .footer-links{
+      display:flex;
+      gap:24px;
+      color:var(--ink);
+      font-weight:850;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:11px
+    }
+
+    @media(max-width:1060px){
+      .hero-inner,.section-head,.statement-inner,.profile-grid{
+        grid-template-columns:1fr
+      }
+      .case-grid{
+        grid-template-columns:1fr
+      }
+    }
+
+    @media(max-width:760px){
+      .topbar{display:none}
+      .container{width:min(100% - 30px,var(--max))}
+      .photo-wrap{height:390px}
+      .footer-inner{flex-direction:column}
+      .footer-links{flex-direction:column}
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="topbar">
+  <div class="container topbar-inner">
+    <span>Signature Law Attorney Leadership</span>
+    <span>Transactions · Litigation · Corporate Law · Strategic Counsel</span>
+  </div>
+</div>
+
+<header class="header">
+  <div class="container nav">
+
+    <a class="brand" href="index.html">
+      <img src="siglogo.png" alt="Signature Law" />
+    </a>
+
+    <nav class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="practice-areas.html">Practice Areas</a>
+      <a href="attorneys.html">Attorneys</a>
+      <a href="inthenews.html">In the News</a>
+      <a href="contact.html">Contact</a>
+      <a href="whycms.html">Why CMS Tech?</a>
+    </nav>
+
+    <a class="nav-cta" href="contact.html">Request Counsel</a>
+
+  </div>
+</header>
+
+<main>
+
+<section class="hero">
+  <div class="container hero-inner">
+
+    <div>
+      <img class="hero-logo" src="siglogo.png" alt="Signature Law" />
+      <div class="eyebrow">Founding Partner</div>
+      <h1>Matthew A. Rivela</h1>
+    </div>
+
+    <aside class="hero-side">
+      <strong>Strategic counsel. Proven execution.</strong>
+      <p class="hero-copy">
+        For more than twenty years, Matthew A. Rivela has represented businesses, entrepreneurs,
+        investors, executives, and high-profile individuals in complex transactional and litigation matters.
+      </p>
+    </aside>
+
+  </div>
+</section>
+
+<section class="section light">
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <div class="kicker">Biography</div>
+        <h2 class="section-title">Business counsel built on experience.</h2>
+      </div>
+
+      <p class="section-lede">
+        Matthew A. Rivela is a Founding Partner at Signature Law Partners, PLLC. His practice focuses on
+        mergers and acquisitions, commercial litigation, corporate law, and strategic business counseling.
+      </p>
+    </div>
+
+    <div class="profile-grid">
+
+      <article class="attorney-card founder">
+
+        <div class="photo-wrap">
+          <img src="matthew.png" alt="Matthew A. Rivela, Founding Partner" />
+        </div>
+
+        <div class="attorney-info">
+          <div>
+            <span class="role">Founding Partner</span>
+            <h2>Matthew A. Rivela</h2>
+
+            <p>
+              Matthew combines sophisticated transactional knowledge with extensive litigation experience,
+              helping clients identify opportunities, manage risk, protect value, and execute complex
+              business strategies with confidence.
+            </p>
+          </div>
+
+          <div class="meta">
+            <span>Mergers and acquisitions</span>
+            <span>Commercial litigation</span>
+            <span>Corporate law and governance</span>
+            <span>Strategic business counseling</span>
+          </div>
+        </div>
+
+      </article>
+
+      <article class="attorney-card">
+
+        <div class="attorney-info">
+
+          <div>
+
+            <span class="role">Expanded Biography</span>
+            <h2>Transactions, disputes, and strategic growth.</h2>
+
+            <p>
+              Matthew A. Rivela is a Founding Partner at Signature Law Partners, PLLC. For more than
+              twenty years, he has represented businesses, entrepreneurs, investors, executives, and
+              high-profile individuals in complex transactional and litigation matters. His practice
+              focuses on mergers and acquisitions, commercial litigation, corporate law, and strategic
+              business counseling.
+            </p>
+
+            <p>
+              Throughout his career, Matthew has advised clients across a wide range of industries on
+              acquisitions, divestitures, corporate governance, contract negotiations, financing
+              transactions, and other significant business matters. He has structured, negotiated, and
+              closed transactions with an aggregate value exceeding $3 billion, representing buyers,
+              sellers, investors, and companies in matters ranging from middle-market transactions to
+              complex strategic acquisitions.
+            </p>
+
+            <p>
+              His practical, business-focused approach enables clients to identify opportunities, manage
+              risk, and maximize value.
+            </p>
+
+            <p>
+              In addition to his transactional practice, Matthew has extensive experience litigating
+              complex commercial disputes across numerous state and federal jurisdictions throughout the
+              United States, as well as in international matters.
+            </p>
+
+            <p>
+              He has represented clients in matters involving breach of contract claims, shareholder and
+              partnership disputes, fiduciary duty claims, business torts, employment disputes, and
+              restrictive covenant and anti-competition matters, including non-compete, non-solicitation,
+              and trade secret litigation. His litigation experience provides a unique perspective when
+              advising clients on transactions, allowing him to anticipate and mitigate risks before they
+              become disputes.
+            </p>
+
+            <p>
+              As a Founding Partner of Signature Law Partners, Matthew leverages his extensive experience
+              and expertise in complex transactions and high-stakes litigation to deliver sophisticated
+              legal representation tailored to each client's objectives.
+            </p>
+
+            <p>
+              He serves as a trusted advisor to businesses, entrepreneurs, and investors, helping them
+              navigate complex legal challenges, capitalize on opportunities, and achieve successful
+              outcomes, while consistently delivering meaningful value and measurable results for his
+              clients.
+            </p>
+
+          </div>
+
+        </div>
+
+      </article>
+
+    </div>
+
+  </div>
+</section>
+
+<section class="section white">
+
+  <div class="container">
+
+    <div class="section-head">
+      <div>
+        <div class="kicker">Experience & Counsel</div>
+        <h2 class="section-title">Complex transactions. High-stakes disputes.</h2>
+      </div>
+
+      <p class="section-lede">
+        Matthew's practice reflects a sophisticated blend of transactional execution,
+        commercial litigation experience, corporate guidance, and practical business judgment.
+      </p>
+    </div>
+
+    <div class="case-grid">
+
+      <article class="case-card">
+        <span class="role">Mergers & Acquisitions</span>
+        <h3>$3+ Billion in Closed Transactions</h3>
+        <p>
+          Structured, negotiated, and closed acquisitions, divestitures, financing transactions,
+          and strategic business matters with an aggregate value exceeding $3 billion.
+        </p>
+      </article>
+
+      <article class="case-card">
+        <span class="role">Commercial Litigation</span>
+        <h3>Complex Business Disputes</h3>
+        <p>
+          Represented clients in state, federal, and international matters involving contract claims,
+          shareholder and partnership disputes, fiduciary duty claims, business torts, and employment disputes.
+        </p>
+      </article>
+
+      <article class="case-card">
+        <span class="role">Corporate Counsel</span>
+        <h3>Strategic Business Guidance</h3>
+        <p>
+          Advises businesses, entrepreneurs, investors, and executives on corporate governance,
+          contract negotiations, risk management, growth opportunities, and value creation.
+        </p>
+      </article>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section statement">
+
+  <div class="container statement-inner">
+
+    <h2>Experience where business strategy and legal execution meet.</h2>
+
+    <p>
+      From complex acquisitions to high-stakes litigation, Matthew delivers practical,
+      results-oriented counsel designed to help clients manage risk, capitalize on opportunities,
+      and achieve successful outcomes.
+    </p>
+
+  </div>
+
+</section>
+
+<section class="closing">
+
+  <div class="container">
+
+    <div class="eyebrow">Speak With Signature Law</div>
+
+    <h2>Experienced counsel for significant business matters.</h2>
+
+    <p>
+      Connect with Signature Law Partners to discuss your transaction, dispute,
+      corporate matter, or strategic business objective.
+    </p>
+
+    <a class="button gold" href="contact.html">Request Counsel</a>
+
+  </div>
+
+</section>
+
+</main>
+
+<footer class="footer">
+
+  <div class="container footer-inner">
+
+    <div>
+      <img src="siglogo.png" alt="Signature Law" />
+      Attorney leadership for complex matters.
+    </div>
+
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="practice-areas.html">Practice Areas</a>
+      <a href="attorneys.html">Attorneys</a>
+      <a href="inthenews.html">In the News</a>
+      <a href="contact.html">Contact</a>
+      <a href="whycms.html">Why CMS Tech?</a>
+    </div>
+
+  </div>
+
+</footer>
+
+</body>
+</html>

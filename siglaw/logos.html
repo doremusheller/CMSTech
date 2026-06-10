@@ -1,0 +1,818 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Logo Choice | Signature Law Partners</title>
+  <meta name="description" content="Compare Signature Law Partners logo options including the original logo, refined variants, and a gag logo concept." />
+
+  <style>
+    :root{
+      --ink:#101621;
+      --navy:#0d2d55;
+      --navy-dark:#061e43;
+      --gold:#b98218;
+      --gold-2:#d7a62d;
+      --gold-3:#f1cf67;
+      --paper:#fbf7ef;
+      --white:#fff;
+      --muted:#566170;
+      --line:rgba(16,22,33,.1);
+      --max:1240px;
+    }
+
+    *{box-sizing:border-box}
+
+    body{
+      margin:0;
+      font-family:Inter,Arial,Helvetica,sans-serif;
+      color:var(--ink);
+      background:var(--paper);
+      line-height:1.55;
+    }
+
+    a{
+      color:inherit;
+      text-decoration:none;
+    }
+
+    img{
+      display:block;
+      max-width:100%;
+    }
+
+    .container{
+      width:min(var(--max),calc(100% - 56px));
+      margin:0 auto;
+    }
+
+    .topbar{
+      background:#fff;
+      border-bottom:1px solid var(--line);
+      color:rgba(16,22,33,.62);
+      font-size:11px;
+      letter-spacing:.22em;
+      text-transform:uppercase;
+    }
+
+    .topbar-inner{
+      height:38px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:24px;
+    }
+
+    .header{
+      position:sticky;
+      top:0;
+      z-index:100;
+      background:rgba(255,255,255,.9);
+      border-bottom:1px solid var(--line);
+      backdrop-filter:blur(18px);
+    }
+
+    .nav{
+      min-height:86px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:30px;
+    }
+
+    .brand img{
+      width:214px;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:34px;
+      color:rgba(16,22,33,.72);
+      font-size:12px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-weight:850;
+    }
+
+    .nav-links a:hover{
+      color:var(--gold);
+    }
+
+    .nav-cta{
+      min-height:46px;
+      padding:0 22px;
+      border:1px solid rgba(185,130,24,.72);
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      color:#7d5510;
+      font-size:11px;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      font-weight:950;
+      background:rgba(185,130,24,.06);
+    }
+
+    .hero{
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 50% 8%,rgba(241,207,103,.24),transparent 24rem),
+        radial-gradient(circle at 80% 42%,rgba(23,63,115,.13),transparent 30rem),
+        linear-gradient(180deg,#fff 0%,#fbf7ef 58%,#f4ecde 100%);
+    }
+
+    .hero:before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        linear-gradient(90deg,rgba(13,45,85,.055) 1px,transparent 1px),
+        linear-gradient(rgba(13,45,85,.045) 1px,transparent 1px);
+      background-size:104px 104px;
+      mask-image:radial-gradient(circle at 50% 30%,rgba(0,0,0,.58),transparent 68%);
+      opacity:.7;
+      pointer-events:none;
+    }
+
+    .hero-inner{
+      position:relative;
+      z-index:2;
+      padding:86px 0 96px;
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:70px;
+      align-items:end;
+    }
+
+    .eyebrow{
+      display:flex;
+      align-items:center;
+      gap:16px;
+      margin-bottom:22px;
+      color:#8b6115;
+      font-size:12px;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+      font-weight:950;
+    }
+
+    .eyebrow:before{
+      content:"";
+      width:52px;
+      height:1px;
+      background:linear-gradient(90deg,var(--gold),transparent);
+    }
+
+    h1{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(4rem,7.4vw,8.2rem);
+      line-height:.84;
+      letter-spacing:-.082em;
+      font-weight:500;
+      margin:0;
+      color:var(--ink);
+    }
+
+    .hero-side{
+      background:rgba(255,255,255,.76);
+      border:1px solid rgba(185,130,24,.18);
+      box-shadow:0 28px 80px rgba(13,45,85,.1);
+      padding:38px;
+    }
+
+    .hero-side strong{
+      display:block;
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(2rem,3vw,3.4rem);
+      line-height:.9;
+      letter-spacing:-.065em;
+      font-weight:500;
+      color:var(--navy);
+      margin-bottom:18px;
+    }
+
+    .hero-side p{
+      color:#4e5969;
+      font-size:clamp(1.08rem,1.45vw,1.25rem);
+      line-height:1.8;
+      margin:0;
+    }
+
+    .section{
+      padding:96px 0;
+    }
+
+    .section-head{
+      display:grid;
+      grid-template-columns:.9fr 1.1fr;
+      gap:72px;
+      align-items:end;
+      margin-bottom:52px;
+    }
+
+    .kicker{
+      color:var(--gold);
+      font-size:12px;
+      letter-spacing:.24em;
+      text-transform:uppercase;
+      font-weight:950;
+      margin-bottom:16px;
+    }
+
+    .section-title{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(3.1rem,5.8vw,6.25rem);
+      line-height:.86;
+      letter-spacing:-.085em;
+      font-weight:500;
+      margin:0;
+      color:var(--ink);
+    }
+
+    .section-lede{
+      color:#4f5968;
+      font-size:1.08rem;
+      line-height:1.82;
+      max-width:720px;
+      margin:0;
+    }
+
+    .comparison-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(520px,1fr));
+      gap:24px;
+    }
+
+    .logo-card{
+      background:#fff;
+      border:1px solid rgba(16,22,33,.09);
+      box-shadow:0 24px 66px rgba(13,45,85,.08);
+      display:flex;
+      flex-direction:column;
+      overflow:hidden;
+    }
+
+    .logo-card.featured{
+      border-color:rgba(185,130,24,.32);
+      box-shadow:0 30px 86px rgba(185,130,24,.14);
+    }
+
+    .logo-preview{
+      min-height:360px;
+      padding:36px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      background:
+        linear-gradient(135deg,#fff 0%,#fbf7ef 100%);
+      border-bottom:1px solid rgba(16,22,33,.08);
+    }
+
+    .logo-preview.dark{
+      background:
+        radial-gradient(circle at 50% 40%,rgba(215,166,45,.16),transparent 24rem),
+        linear-gradient(135deg,#061e43,#101621);
+    }
+
+    .logo-preview img{
+      max-height:260px;
+      width:auto;
+      object-fit:contain;
+    }
+
+    .logo-info{
+      padding:30px;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+      flex:1;
+    }
+
+    .logo-title-row{
+      display:flex;
+      justify-content:space-between;
+      gap:18px;
+      align-items:flex-start;
+    }
+
+    .logo-info h2{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:2.2rem;
+      line-height:.95;
+      letter-spacing:-.06em;
+      font-weight:500;
+      color:var(--navy);
+      margin:0;
+    }
+
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      min-height:30px;
+      padding:0 12px;
+      border:1px solid rgba(185,130,24,.42);
+      color:#7d5510;
+      font-size:10px;
+      letter-spacing:.15em;
+      text-transform:uppercase;
+      font-weight:950;
+      white-space:nowrap;
+      background:rgba(185,130,24,.06);
+    }
+
+    .logo-info p{
+      color:#566170;
+      line-height:1.74;
+      margin:0;
+    }
+
+    .notes{
+      display:grid;
+      gap:10px;
+      border-top:1px solid rgba(16,22,33,.1);
+      padding-top:20px;
+      color:#303949;
+      font-size:14px;
+    }
+
+    .notes span:before{
+      content:"— ";
+      color:var(--gold);
+    }
+
+    .compare-strip{
+      margin-top:46px;
+      background:#fff;
+      border:1px solid rgba(16,22,33,.09);
+      box-shadow:0 24px 66px rgba(13,45,85,.08);
+      padding:28px;
+    }
+
+    .strip-grid{
+      display:grid;
+      grid-template-columns:repeat(5,1fr);
+      gap:18px;
+    }
+
+    .mini-logo{
+      min-height:180px;
+      background:#fbf7ef;
+      border:1px solid rgba(16,22,33,.08);
+      padding:20px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .mini-logo img{
+      max-height:120px;
+      object-fit:contain;
+    }
+
+    .mini-caption{
+      margin-top:12px;
+      font-size:12px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      font-weight:950;
+      color:var(--navy);
+      text-align:center;
+    }
+
+    .recommendation{
+      background:linear-gradient(115deg,#fff 0%,#f7f1e7 48%,#eaf0f7 100%);
+      border-top:1px solid rgba(16,22,33,.08);
+      border-bottom:1px solid rgba(16,22,33,.08);
+    }
+
+    .recommendation-inner{
+      display:grid;
+      grid-template-columns:1fr .78fr;
+      gap:72px;
+      align-items:end;
+    }
+
+    .recommendation h2{
+      font-family:Georgia,'Times New Roman',serif;
+      font-size:clamp(3.6rem,6.8vw,7.2rem);
+      line-height:.82;
+      letter-spacing:-.09em;
+      font-weight:500;
+      margin:0;
+      color:var(--ink);
+    }
+
+    .recommendation p{
+      color:#4f5968;
+      font-size:1.13rem;
+      line-height:1.85;
+      margin:0;
+      max-width:620px;
+    }
+
+    .footer{
+      background:#fff;
+      color:#6b7483;
+      border-top:1px solid rgba(16,22,33,.08);
+      padding:46px 0 62px;
+      font-size:13px;
+    }
+
+    .footer-inner{
+      display:flex;
+      justify-content:space-between;
+      align-items:flex-start;
+      gap:28px;
+    }
+
+    .footer img{
+      width:190px;
+      margin-bottom:12px;
+    }
+
+    .footer-links{
+      display:flex;
+      gap:24px;
+      color:var(--ink);
+      font-weight:850;
+      text-transform:uppercase;
+      letter-spacing:.14em;
+      font-size:11px;
+    }
+
+    @media(max-width:1060px){
+      .hero-inner,
+      .section-head,
+      .recommendation-inner{
+        grid-template-columns:1fr;
+      }
+
+      .comparison-grid{
+        grid-template-columns:1fr;
+      }
+
+      .strip-grid{
+        grid-template-columns:repeat(2,1fr);
+      }
+    }
+
+    @media(max-width:760px){
+      .topbar{
+        display:none;
+      }
+
+      .container{
+        width:min(100% - 30px,var(--max));
+      }
+
+      .nav{
+        height:auto;
+        min-height:76px;
+        padding:12px 0 10px;
+        flex-wrap:wrap;
+        gap:10px 16px;
+      }
+
+      .brand img{
+        width:156px;
+      }
+
+      .nav-cta{
+        display:none;
+      }
+
+      .nav-links{
+        order:3;
+        width:100%;
+        display:flex;
+        gap:18px;
+        overflow-x:auto;
+        white-space:nowrap;
+        padding:8px 0 2px;
+        font-size:10px;
+        letter-spacing:.14em;
+        scrollbar-width:none;
+      }
+
+      .nav-links::-webkit-scrollbar{
+        display:none;
+      }
+
+      .hero-inner{
+        padding:58px 0 72px;
+      }
+
+      .hero-side{
+        padding:30px;
+      }
+
+      .section{
+        padding:76px 0;
+      }
+
+      .logo-preview{
+        min-height:260px;
+        padding:24px;
+      }
+
+      .logo-preview img{
+        max-height:200px;
+      }
+
+      .strip-grid{
+        grid-template-columns:1fr;
+      }
+
+      .footer-inner{
+        flex-direction:column;
+      }
+
+      .footer-links{
+        flex-direction:column;
+        gap:12px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <span>Signature Law Partners</span>
+      <span>Logo Review · Brand Comparison · Final Selection</span>
+    </div>
+  </div>
+
+  <header class="header">
+    <div class="container nav">
+
+      <a class="brand" href="index.html" aria-label="Signature Law home">
+        <img src="siglogo.png" alt="Signature Law" />
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="practice-areas.html">Practice Areas</a>
+        <a href="attorneys.html">Attorneys</a>
+        <a href="inthenews.html">In the News</a>
+        <a href="contact.html">Contact</a>
+        <a href="whycms.html">Why CMS Tech?</a>
+      </nav>
+
+      <a class="nav-cta" href="contact.html">Request Counsel</a>
+
+    </div>
+  </header>
+
+  <main>
+
+    <section class="hero">
+      <div class="container hero-inner">
+
+        <div>
+          <div class="eyebrow">Logo Comparison</div>
+          <h1>Choose the mark that feels most Signature.</h1>
+        </div>
+
+        <aside class="hero-side">
+          <strong>Same brand. Five different personalities.</strong>
+          <p>
+            Compare the original Signature Law Partners logo against three refined
+            alternatives, one premium alternative, and one intentionally comedic
+            gag version.
+          </p>
+        </aside>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+
+        <div class="section-head">
+          <div>
+            <div class="kicker">Primary Options</div>
+            <h2 class="section-title">Side-by-side logo review.</h2>
+          </div>
+
+          <p class="section-lede">
+            Each option preserves the recognizable Signature Law identity while shifting tone:
+            the original emphasizes continuity, the refined variants increase polish and authority,
+            and the gag version introduces personality without replacing the core brand.
+          </p>
+        </div>
+
+        <div class="comparison-grid">
+
+          <article class="logo-card">
+            <div class="logo-preview">
+              <img src="siglogoog.png" alt="Option 1: The Original Signature Law Partners logo" />
+            </div>
+
+            <div class="logo-info">
+              <div class="logo-title-row">
+                <h2>Option 1: The Original</h2>
+                <span class="badge">Baseline</span>
+              </div>
+
+              <p>
+                The current mark preserves brand familiarity and continuity. It carries the established
+                navy-and-gold legal identity with a traditional wordmark and sweeping signature-style emblem.
+              </p>
+
+              <div class="notes">
+                <span>Best for continuity and recognition</span>
+                <span>Most familiar to existing clients</span>
+                <span>Traditional, established, and conservative</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="logo-card featured">
+            <div class="logo-preview">
+              <img src="siglogotake2.png" alt="Variant 1: Refined Signature Law Partners logo" />
+            </div>
+
+            <div class="logo-info">
+              <div class="logo-title-row">
+                <h2>Variant 1</h2>
+                <span class="badge">Refined</span>
+              </div>
+
+              <p>
+                A sharper, cleaner interpretation of the original concept. This version keeps the same
+                essential identity while improving visual confidence, clarity, and professional polish.
+              </p>
+
+              <div class="notes">
+                <span>Best general-purpose upgrade</span>
+                <span>More authoritative and modern</span>
+                <span>Strong candidate for primary firm branding</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="logo-card">
+            <div class="logo-preview dark">
+              <img src="siglogotake3.png" alt="Variant 2: Dark premium Signature Law Partners logo" />
+            </div>
+
+            <div class="logo-info">
+              <div class="logo-title-row">
+                <h2>Variant 2</h2>
+                <span class="badge">Premium</span>
+              </div>
+
+              <p>
+                A moodier, more cinematic presentation. This version leans into luxury, depth,
+                and high-stakes sophistication, making it well-suited for dramatic web sections,
+                presentations, or campaign visuals.
+              </p>
+
+              <div class="notes">
+                <span>Best for prestige and atmosphere</span>
+                <span>Strong for hero images and pitch decks</span>
+                <span>Less ideal for small everyday placement</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="logo-card">
+            <div class="logo-preview">
+              <img src="siglogotake4.png" alt="Variant 4: Executive Signature Law Partners logo" />
+            </div>
+
+            <div class="logo-info">
+              <div class="logo-title-row">
+                <h2>Variant 4</h2>
+                <span class="badge">Executive</span>
+              </div>
+
+              <p>
+                A more assertive executive-brand interpretation emphasizing authority,
+                confidence, and institutional presence while preserving the Signature
+                Law identity.
+              </p>
+
+              <div class="notes">
+                <span>Best for authority and leadership</span>
+                <span>Strong executive and boardroom presence</span>
+                <span>Balances prestige with readability</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="logo-card">
+            <div class="logo-preview">
+              <img src="siglogogag.png" alt="Variant 5: Gag Signature Law Partners logo" />
+            </div>
+
+            <div class="logo-info">
+              <div class="logo-title-row">
+                <h2>Variant 5</h2>
+                <span class="badge">Gag</span>
+              </div>
+
+              <p>
+                A comedic internal or campaign-specific mark combining the firm's legal identity with
+                character-driven humor. This should be treated as a playful alternate, not the primary brand.
+              </p>
+
+              <div class="notes">
+                <span>Best for internal jokes and social content</span>
+                <span>Memorable, playful, and campaign-friendly</span>
+                <span>Not recommended as the main firm logo</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="compare-strip">
+          <div class="strip-grid">
+
+            <div>
+              <div class="mini-logo">
+                <img src="siglogoog.png" alt="Original logo thumbnail" />
+              </div>
+              <div class="mini-caption">Original</div>
+            </div>
+
+            <div>
+              <div class="mini-logo">
+                <img src="siglogotake2.png" alt="Variant 1 logo thumbnail" />
+              </div>
+              <div class="mini-caption">Variant 1</div>
+            </div>
+
+            <div>
+              <div class="mini-logo">
+                <img src="siglogotake3.png" alt="Variant 2 logo thumbnail" />
+              </div>
+              <div class="mini-caption">Variant 2</div>
+            </div>
+
+            <div>
+              <div class="mini-logo">
+                <img src="siglogotake4.png" alt="Variant 4 logo thumbnail" />
+              </div>
+              <div class="mini-caption">Variant 4</div>
+            </div>
+
+            <div>
+              <div class="mini-logo">
+                <img src="siglogogag.png" alt="Variant 5 logo thumbnail" />
+              </div>
+              <div class="mini-caption">Variant 5</div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section recommendation">
+      <div class="container recommendation-inner">
+
+        <h2>The strongest brand choice is usually the quietest upgrade.</h2>
+
+        <p>
+          Variant 1 remains the strongest overall upgrade for day-to-day brand use.
+          Variant 2 introduces a more premium aesthetic, Variant 4 emphasizes executive
+          authority, and Variant 5 serves as a memorable humorous alternative for
+          internal presentations, social content, and client-facing jokes.
+        </p>
+
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+
+      <div>
+        <img src="siglogo.png" alt="Signature Law" />
+        Logo comparison for Signature Law Partners.
+      </div>
+
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="practice-areas.html">Practice Areas</a>
+        <a href="attorneys.html">Attorneys</a>
+        <a href="inthenews.html">In the News</a>
+        <a href="contact.html">Contact</a>
+        <a href="whycms.html">Why CMS Tech?</a>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>

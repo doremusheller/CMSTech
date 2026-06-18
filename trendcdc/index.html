@@ -50,8 +50,6 @@
     }
 
     iframe {
-        display: block;
-        width: 100%;
         border: 0;
     }
 
@@ -128,18 +126,7 @@
         margin-top: 16px;
     }
 
-    .video-wrapper {
-        overflow: hidden;
-        border-radius: 8px;
-        background: #000;
-        margin-bottom: 24px;
-    }
-
-    .video-standard {
-        max-width: 800px;
-        margin: 0 auto 24px;
-        aspect-ratio: 16 / 9;
-    }
+    /* ---------- Integration & Automation ---------- */
 
     .inline-media {
         display: flex;
@@ -150,19 +137,44 @@
     .inline-media .video-short {
         flex: 0 0 280px;
         width: 280px;
-        border-radius: 8px;
         overflow: hidden;
+        border-radius: 8px;
         background: #000;
         aspect-ratio: 9 / 16;
+    }
+
+    .inline-media .video-short iframe {
+        width: 100%;
+        height: 100%;
+        display: block;
     }
 
     .inline-media .content {
         flex: 1;
     }
 
-    .inline-media .content h3 {
-        margin-top: 0;
+    /* ---------- Digital Creation ---------- */
+
+    .video-standard {
+        position: relative;
+        width: 100%;
+        max-width: 800px;
+        margin: 0 auto 24px;
+        padding-bottom: 56.25%;
+        height: 0;
+        overflow: hidden;
+        border-radius: 8px;
+        background: #000;
     }
+
+    .video-standard iframe {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    /* ---------- Mission Consolidation ---------- */
 
     .local-video {
         max-width: 800px;
@@ -173,6 +185,8 @@
         width: 100%;
         border-radius: 8px;
     }
+
+    /* ---------- CMS Section ---------- */
 
     .cms-support {
         background: #ffffff;
@@ -328,7 +342,7 @@
 
             <article class="card">
 
-                <div class="video-wrapper video-standard">
+                <div class="video-standard">
 
                     <iframe
                         src="https://www.youtube.com/embed/TJhNfdgJEhg"

@@ -142,17 +142,26 @@
     }
 
     .inline-media {
-        overflow: hidden;
+        display: flex;
+        gap: 40px;
+        align-items: flex-start;
     }
 
     .inline-media .video-short {
-        float: left;
-        width: 300px;
-        margin: 0 30px 15px 0;
+        flex: 0 0 280px;
+        width: 280px;
         border-radius: 8px;
         overflow: hidden;
         background: #000;
         aspect-ratio: 9 / 16;
+    }
+
+    .inline-media .content {
+        flex: 1;
+    }
+
+    .inline-media .content h3 {
+        margin-top: 0;
     }
 
     .local-video {
@@ -215,11 +224,14 @@
             padding: 30px;
         }
 
+        .inline-media {
+            flex-direction: column;
+        }
+
         .inline-media .video-short {
-            float: none;
             width: 100%;
             max-width: 320px;
-            margin: 0 auto 24px;
+            margin: 0 auto;
         }
 
     }
@@ -273,36 +285,44 @@
 
         <div class="focus-stack">
 
-            <article class="card inline-media">
+            <article class="card">
 
-                <div class="video-short">
+                <div class="inline-media">
 
-                    <iframe
-                        src="https://www.youtube.com/embed/TOV-LKc0sT4"
-                        title="Integration and Automation"
-                        allowfullscreen>
-                    </iframe>
+                    <div class="video-short">
+
+                        <iframe
+                            src="https://www.youtube.com/embed/TOV-LKc0sT4"
+                            title="Integration and Automation"
+                            allowfullscreen>
+                        </iframe>
+
+                    </div>
+
+                    <div class="content">
+
+                        <h3>
+                            Integration & Automation
+                        </h3>
+
+                        <p>
+                            CMS Technical Optimization integrates artificial intelligence
+                            into existing business processes to automate repetitive tasks,
+                            streamline workflows, reduce administrative burden, and improve
+                            organizational efficiency.
+                        </p>
+
+                        <p>
+                            The result is more time, greater organizational capacity,
+                            and more resources available for mission-critical work.
+                            Smart AI integrations connect systems that previously operated
+                            independently, helping organizations work faster, smarter,
+                            and with greater consistency.
+                        </p>
+
+                    </div>
 
                 </div>
-
-                <h3>
-                    Integration & Automation
-                </h3>
-
-                <p>
-                    CMS Technical Optimization integrates artificial intelligence
-                    into existing business processes to automate repetitive tasks,
-                    streamline workflows, reduce administrative burden, and improve
-                    organizational efficiency.
-                </p>
-
-                <p>
-                    The result is more time, greater organizational capacity,
-                    and more resources available for mission-critical work.
-                    Smart AI integrations connect systems that previously operated
-                    independently, helping organizations work faster, smarter,
-                    and with greater consistency.
-                </p>
 
             </article>
 

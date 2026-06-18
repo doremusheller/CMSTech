@@ -6,16 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 ```
-<title>TREND CDC | Community Development & Innovation</title>
+<title>TREND CDC | Technology Supporting Community Impact</title>
 
-<meta name="description" content="TREND CDC strengthens communities through inclusive economic development, neighborhood investment, entrepreneurship, and innovative solutions that create lasting impact.">
+<meta name="description" content="TREND CDC and CMS Technical Optimization are exploring how Artificial Intelligence, Infrastructure Design, and Smart Teams can strengthen community development and expand impact.">
 
-<meta property="og:title" content="TREND CDC">
-<meta property="og:description" content="Strengthening communities through innovation, economic opportunity, and neighborhood development.">
+<meta property="og:title" content="TREND CDC | Technology Supporting Community Impact">
+<meta property="og:description" content="Exploring how smart technology can strengthen community development, organizational capacity, and neighborhood impact.">
 <meta property="og:type" content="website">
 <meta property="og:image" content="trendhero.png">
 
 <style>
+
     :root {
         --trend-blue: #0f4c81;
         --trend-teal: #0b7d79;
@@ -26,9 +27,9 @@
     }
 
     * {
-        box-sizing: border-box;
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
     }
 
     html {
@@ -37,18 +38,14 @@
 
     body {
         font-family: "Segoe UI", Arial, sans-serif;
-        color: var(--trend-dark);
         background: #ffffff;
+        color: var(--trend-dark);
         line-height: 1.7;
     }
 
     img {
-        max-width: 100%;
         display: block;
-    }
-
-    a {
-        text-decoration: none;
+        max-width: 100%;
     }
 
     .container {
@@ -58,39 +55,10 @@
 
     .hero {
         min-height: 100vh;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        color: #fff;
         background:
-            linear-gradient(rgba(0,0,0,.58), rgba(0,0,0,.58)),
-            url('trendhero.png') center center / cover no-repeat;
-    }
-
-    .hero-content {
-        max-width: 900px;
-        padding: 40px 20px;
-    }
-
-    .logo {
-        width: 280px;
-        margin: 0 auto 40px;
-    }
-
-    .hero h1 {
-        font-size: clamp(2.8rem, 6vw, 5rem);
-        line-height: 1.1;
-        font-weight: 700;
-        margin-bottom: 24px;
-    }
-
-    .hero p {
-        font-size: 1.25rem;
-        max-width: 760px;
-        margin: 0 auto;
-        opacity: .95;
+            url("trendhero.png")
+            center center / cover
+            no-repeat;
     }
 
     section {
@@ -100,23 +68,28 @@
     .section-title {
         font-size: clamp(2rem, 4vw, 3.5rem);
         text-align: center;
-        margin-bottom: 30px;
         color: var(--trend-blue);
+        margin-bottom: 30px;
+        line-height: 1.15;
     }
 
     .section-copy {
-        max-width: 850px;
+        max-width: 900px;
         margin: 0 auto;
         text-align: center;
         color: var(--trend-gray);
         font-size: 1.15rem;
     }
 
-    .initiatives {
+    .section-copy p + p {
+        margin-top: 24px;
+    }
+
+    .focus-section {
         background: var(--trend-light);
     }
 
-    .cards {
+    .card-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 30px;
@@ -125,59 +98,42 @@
 
     .card {
         background: #fff;
-        padding: 40px 30px;
+        padding: 40px 32px;
         border-radius: 10px;
         box-shadow: 0 12px 40px rgba(0,0,0,.08);
-        text-align: center;
     }
 
     .card h3 {
         color: var(--trend-blue);
-        margin-bottom: 16px;
         font-size: 1.4rem;
+        margin-bottom: 18px;
+        text-align: center;
     }
 
     .card p {
         color: var(--trend-gray);
-    }
-
-    .cta {
         text-align: center;
     }
 
-    .cta-button {
-        display: inline-block;
-        background: var(--trend-blue);
-        color: #fff;
-        padding: 16px 34px;
-        border-radius: 6px;
-        font-weight: 600;
-        transition: .25s ease;
-    }
-
-    .cta-button:hover {
-        background: var(--trend-teal);
-    }
-
     .cms-support {
-        background: #ffffff;
         border-top: 1px solid #e5e8eb;
+        background: #fff;
     }
 
     .cms-logo {
-        width: 220px;
+        width: 240px;
         margin: 0 auto 30px;
     }
 
     .cms-support h2 {
         text-align: center;
         color: var(--trend-blue);
-        margin-bottom: 24px;
+        margin-bottom: 20px;
         font-size: 2rem;
     }
 
     .cms-support p {
-        max-width: 820px;
+        max-width: 850px;
         margin: 0 auto;
         text-align: center;
         color: var(--trend-gray);
@@ -185,8 +141,8 @@
     }
 
     .cms-tagline {
-        margin-top: 24px;
         text-align: center;
+        margin-top: 24px;
         font-weight: 600;
         color: var(--trend-dark);
     }
@@ -196,25 +152,21 @@
         color: rgba(255,255,255,.8);
         text-align: center;
         padding: 40px 20px;
-    }
-
-    footer a {
-        color: #fff;
+        font-size: .95rem;
     }
 
     @media (max-width: 900px) {
-        .cards {
+
+        .card-grid {
             grid-template-columns: 1fr;
         }
 
-        .logo {
-            width: 220px;
+        section {
+            padding: 80px 0;
         }
 
-        .hero h1 {
-            font-size: 2.8rem;
-        }
     }
+
 </style>
 ```
 
@@ -222,169 +174,130 @@
 
 <body>
 
-<section class="hero">
-
 ```
-<div class="hero-content">
-
-    <img
-        src="trendlogo.webp"
-        alt="TREND CDC"
-        class="logo">
-
-    <h1>
-        Strengthening TRENDCDC's mission approach with Smart AI.
-    </h1>
-
-    <p>
-        Advancing community development, economic opportunity,
-        entrepreneurship, and neighborhood revitalization through
-        innovation, collaboration, and strategic growth.
-    </p>
-
-</div>
-```
-
-</section>
+<section class="hero"></section>
 
 <section>
 
-```
-<div class="container">
+    <div class="container">
 
-    <h2 class="section-title">
-        Building Stronger Communities
-    </h2>
+        <h2 class="section-title">
+            Technology in Service of Community Development
+        </h2>
 
-    <p class="section-copy">
-        TREND CDC works to strengthen neighborhoods through inclusive
-        economic development, support for entrepreneurs and small businesses,
-        strategic partnerships, community investment, and innovative
-        approaches that create lasting impact throughout the communities
-        it serves.
-    </p>
-
-</div>
-```
-
-</section>
-
-<section class="initiatives">
-
-```
-<div class="container">
-
-    <h2 class="section-title">
-        Areas of Focus
-    </h2>
-
-    <div class="cards">
-
-        <div class="card">
-
-            <h3>
-                Community Development
-            </h3>
+        <div class="section-copy">
 
             <p>
-                Supporting neighborhood investment, revitalization,
-                and sustainable growth.
+                TREND CDC's work is centered on strengthening neighborhoods,
+                supporting entrepreneurs, expanding economic opportunity,
+                and creating lasting community impact throughout Chicago's communities.
             </p>
 
-        </div>
-
-        <div class="card">
-
-            <h3>
-                Data & Insights
-            </h3>
-
             <p>
-                Leveraging information and research to guide
-                impactful decision-making.
-            </p>
-
-        </div>
-
-        <div class="card">
-
-            <h3>
-                Smart AI Enablement
-            </h3>
-
-            <p>
-                Exploring practical technology solutions that
-                strengthen mission delivery and organizational capacity.
+                CMS Technical Optimization is helping explore how
+                Artificial Intelligence, Infrastructure Design,
+                and Smart Teams can support that mission through
+                improved operations, better access to information,
+                stronger organizational capacity, and scalable technology solutions.
             </p>
 
         </div>
 
     </div>
 
-</div>
-```
-
 </section>
 
-<section class="cta">
+<section class="focus-section">
 
-```
-<div class="container">
+    <div class="container">
 
-    <h2 class="section-title">
-        Connect With TREND CDC
-    </h2>
+        <h2 class="section-title">
+            Focus Areas
+        </h2>
 
-    <a
-        href="https://www.linkedin.com/company/trendcdc/"
-        class="cta-button"
-        target="_blank">
-        Follow on LinkedIn
-    </a>
+        <div class="card-grid">
 
-</div>
-```
+            <article class="card">
+
+                <h3>
+                    Artificial Intelligence
+                </h3>
+
+                <p>
+                    Practical AI solutions that reduce administrative burden,
+                    improve decision-making, and help organizations focus more
+                    resources on community impact.
+                </p>
+
+            </article>
+
+            <article class="card">
+
+                <h3>
+                    Infrastructure Design
+                </h3>
+
+                <p>
+                    Modern digital infrastructure designed to support growth,
+                    collaboration, security, and long-term sustainability.
+                </p>
+
+            </article>
+
+            <article class="card">
+
+                <h3>
+                    Smart Teams
+                </h3>
+
+                <p>
+                    Technology systems that help staff, partners,
+                    volunteers, and stakeholders work together
+                    more effectively.
+                </p>
+
+            </article>
+
+        </div>
+
+    </div>
 
 </section>
 
 <section class="cms-support">
 
-```
-<div class="container">
+    <div class="container">
 
-    <img
-        src="cmstechlogo3.png"
-        alt="CMS Technical Optimization"
-        class="cms-logo">
+        <img
+            src="cmstechlogo3.png"
+            alt="CMS Technical Optimization"
+            class="cms-logo">
 
-    <h2>
-        Technology Supporting Community Impact
-    </h2>
+        <h2>
+            Technology Supporting Community Impact
+        </h2>
 
-    <p>
-        CMS Technical Optimization supports TREND CDC through Artificial Intelligence,
-        Infrastructure Design, and Smart Teams—helping mission-driven organizations
-        work smarter, scale impact, and focus more resources on the communities they serve.
-    </p>
+        <p>
+            CMS Technical Optimization supports TREND CDC through
+            Artificial Intelligence, Infrastructure Design, and Smart Teams—helping
+            mission-driven organizations work smarter, scale impact,
+            and focus more resources on the communities they serve.
+        </p>
 
-    <div class="cms-tagline">
-        Artificial Intelligence • Infrastructure Design • Smart Teams
+        <div class="cms-tagline">
+            Artificial Intelligence • Infrastructure Design • Smart Teams
+        </div>
+
     </div>
-
-</div>
-```
 
 </section>
 
 <footer>
 
-```
-<p>
-    © 2026 CMS Technical Optimization
-</p>
-```
+    © 2026 TREND CDC • Chicago, Illinois
 
 </footer>
+
 
 </body>
 </html>

@@ -8,7 +8,7 @@
 ```
 <title>TREND CDC | Technology Supporting Community Impact</title>
 
-<meta name="description" content="TREND CDC and CMS Technical Optimization are exploring how Artificial Intelligence, Infrastructure Design, and Smart Teams can strengthen community development and expand impact.">
+<meta name="description" content="TREND CDC and CMS Technical Optimization are exploring how intelligent automation, digital creation, and mission-focused AI can strengthen community impact.">
 
 <meta property="og:title" content="TREND CDC | Technology Supporting Community Impact">
 <meta property="og:description" content="Exploring how smart technology can strengthen community development, organizational capacity, and neighborhood impact.">
@@ -23,7 +23,7 @@
         --trend-dark: #16222c;
         --trend-light: #f6f8fa;
         --trend-gray: #5f6b76;
-        --container: 1200px;
+        --container: 1280px;
     }
 
     * {
@@ -46,6 +46,12 @@
     img {
         display: block;
         max-width: 100%;
+    }
+
+    iframe {
+        width: 100%;
+        border: 0;
+        border-radius: 8px;
     }
 
     .container {
@@ -74,7 +80,7 @@
     }
 
     .section-copy {
-        max-width: 900px;
+        max-width: 920px;
         margin: 0 auto;
         text-align: center;
         color: var(--trend-gray);
@@ -97,8 +103,8 @@
     }
 
     .card {
-        background: #fff;
-        padding: 40px 32px;
+        background: #ffffff;
+        padding: 24px;
         border-radius: 10px;
         box-shadow: 0 12px 40px rgba(0,0,0,.08);
     }
@@ -113,11 +119,28 @@
     .card p {
         color: var(--trend-gray);
         text-align: center;
+        font-size: .98rem;
+    }
+
+    .video-wrapper {
+        margin-bottom: 20px;
+        overflow: hidden;
+        border-radius: 8px;
+        background: #000;
+    }
+
+    .video-standard {
+        aspect-ratio: 16 / 9;
+    }
+
+    .video-short {
+        aspect-ratio: 9 / 16;
+        max-height: 520px;
     }
 
     .cms-support {
+        background: #ffffff;
         border-top: 1px solid #e5e8eb;
-        background: #fff;
     }
 
     .cms-logo {
@@ -149,17 +172,20 @@
 
     footer {
         background: var(--trend-dark);
-        color: rgba(255,255,255,.8);
+        color: rgba(255,255,255,.85);
         text-align: center;
         padding: 40px 20px;
-        font-size: .95rem;
     }
 
-    @media (max-width: 900px) {
+    @media (max-width: 1100px) {
 
         .card-grid {
             grid-template-columns: 1fr;
         }
+
+    }
+
+    @media (max-width: 768px) {
 
         section {
             padding: 80px 0;
@@ -190,15 +216,14 @@
             <p>
                 TREND CDC's work is centered on strengthening neighborhoods,
                 supporting entrepreneurs, expanding economic opportunity,
-                and creating lasting community impact throughout Chicago's communities.
+                and creating lasting community impact throughout Chicago communities.
             </p>
 
             <p>
-                CMS Technical Optimization is helping explore how
-                Artificial Intelligence, Infrastructure Design,
-                and Smart Teams can support that mission through
-                improved operations, better access to information,
-                stronger organizational capacity, and scalable technology solutions.
+                CMS Technical Optimization is helping explore how intelligent
+                automation, digital creation, and mission-focused AI systems
+                can support that work through improved operations, stronger
+                organizational capacity, and scalable technology solutions.
             </p>
 
         </div>
@@ -219,14 +244,52 @@
 
             <article class="card">
 
+                <div class="video-wrapper video-short">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/TOV-LKc0sT4"
+                        title="Integration and Automation"
+                        allowfullscreen>
+                    </iframe>
+
+                </div>
+
                 <h3>
-                    Artificial Intelligence
+                    Integration & Automation
                 </h3>
 
                 <p>
-                    Practical AI solutions that reduce administrative burden,
-                    improve decision-making, and help organizations focus more
-                    resources on community impact.
+                    CMS Technical Optimization integrates artificial intelligence
+                    into existing business processes to automate repetitive tasks,
+                    streamline workflows, reduce administrative burden, and improve
+                    organizational efficiency. The result is more time, more capacity,
+                    and greater focus on mission-critical work.
+                </p>
+
+            </article>
+
+            <article class="card">
+
+                <div class="video-wrapper video-standard">
+
+                    <iframe
+                        src="https://www.youtube.com/embed/TJhNfdgJEhg"
+                        title="Digital Creation"
+                        allowfullscreen>
+                    </iframe>
+
+                </div>
+
+                <h3>
+                    Digital Creation
+                </h3>
+
+                <p>
+                    Modern AI tools can rapidly create professional video,
+                    audio, graphics, presentations, outreach campaigns,
+                    educational content, and training materials. Complex
+                    ideas can be communicated quickly, consistently,
+                    and at scale.
                 </p>
 
             </article>
@@ -234,26 +297,23 @@
             <article class="card">
 
                 <h3>
-                    Infrastructure Design
+                    Mission Consolidation
                 </h3>
 
                 <p>
-                    Modern digital infrastructure designed to support growth,
-                    collaboration, security, and long-term sustainability.
+                    CMS Technical Optimization helps organizations gather
+                    data, documents, institutional knowledge, communications,
+                    and operational assets from across organizational silos
+                    into a unified intelligent ecosystem.
                 </p>
 
-            </article>
-
-            <article class="card">
-
-                <h3>
-                    Smart Teams
-                </h3>
+                <br>
 
                 <p>
-                    Technology systems that help staff, partners,
-                    volunteers, and stakeholders work together
-                    more effectively.
+                    By combining information sources and applying AI-driven
+                    analysis, leadership gains better visibility, stronger
+                    decision-making capabilities, and improved alignment
+                    around core organizational goals.
                 </p>
 
             </article>
@@ -269,7 +329,7 @@
     <div class="container">
 
         <img
-            src="cmslogo3.png"
+            src="cmstechlogo3.png"
             alt="CMS Technical Optimization"
             class="cms-logo">
 

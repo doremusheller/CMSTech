@@ -23,7 +23,7 @@
         --trend-dark: #16222c;
         --trend-light: #f6f8fa;
         --trend-gray: #5f6b76;
-        --container: 1280px;
+        --container: 1200px;
     }
 
     * {
@@ -49,9 +49,9 @@
     }
 
     iframe {
+        display: block;
         width: 100%;
         border: 0;
-        border-radius: 8px;
     }
 
     .container {
@@ -95,47 +95,55 @@
         background: var(--trend-light);
     }
 
-    .card-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 30px;
+    .focus-stack {
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
         margin-top: 60px;
     }
 
     .card {
         background: #ffffff;
-        padding: 24px;
+        padding: 40px;
         border-radius: 10px;
         box-shadow: 0 12px 40px rgba(0,0,0,.08);
+        max-width: 1000px;
+        width: 100%;
+        margin: 0 auto;
     }
 
     .card h3 {
         color: var(--trend-blue);
-        font-size: 1.4rem;
+        font-size: 1.6rem;
         margin-bottom: 18px;
-        text-align: center;
+        text-align: left;
     }
 
     .card p {
         color: var(--trend-gray);
-        text-align: center;
-        font-size: .98rem;
+        text-align: left;
+        font-size: 1rem;
+    }
+
+    .card p + p {
+        margin-top: 16px;
     }
 
     .video-wrapper {
-        margin-bottom: 20px;
         overflow: hidden;
         border-radius: 8px;
         background: #000;
-    }
-
-    .video-standard {
-        aspect-ratio: 16 / 9;
+        margin: 0 auto 24px;
     }
 
     .video-short {
+        max-width: 360px;
         aspect-ratio: 9 / 16;
-        max-height: 520px;
+    }
+
+    .video-standard {
+        max-width: 800px;
+        aspect-ratio: 16 / 9;
     }
 
     .cms-support {
@@ -175,20 +183,17 @@
         color: rgba(255,255,255,.85);
         text-align: center;
         padding: 40px 20px;
-    }
-
-    @media (max-width: 1100px) {
-
-        .card-grid {
-            grid-template-columns: 1fr;
-        }
-
+        font-size: .95rem;
     }
 
     @media (max-width: 768px) {
 
         section {
             padding: 80px 0;
+        }
+
+        .card {
+            padding: 30px;
         }
 
     }
@@ -240,7 +245,7 @@
             Focus Areas
         </h2>
 
-        <div class="card-grid">
+        <div class="focus-stack">
 
             <article class="card">
 
@@ -262,8 +267,12 @@
                     CMS Technical Optimization integrates artificial intelligence
                     into existing business processes to automate repetitive tasks,
                     streamline workflows, reduce administrative burden, and improve
-                    organizational efficiency. The result is more time, more capacity,
-                    and greater focus on mission-critical work.
+                    organizational efficiency.
+                </p>
+
+                <p>
+                    The result is more time, greater organizational capacity,
+                    and more resources available for mission-critical work.
                 </p>
 
             </article>
@@ -287,9 +296,12 @@
                 <p>
                     Modern AI tools can rapidly create professional video,
                     audio, graphics, presentations, outreach campaigns,
-                    educational content, and training materials. Complex
-                    ideas can be communicated quickly, consistently,
-                    and at scale.
+                    educational content, training materials, and visual assets.
+                </p>
+
+                <p>
+                    Complex ideas can be communicated quickly, consistently,
+                    and at scale while dramatically reducing production time.
                 </p>
 
             </article>
@@ -303,11 +315,9 @@
                 <p>
                     CMS Technical Optimization helps organizations gather
                     data, documents, institutional knowledge, communications,
-                    and operational assets from across organizational silos
-                    into a unified intelligent ecosystem.
+                    operational systems, and digital assets from across
+                    organizational silos into a unified intelligent ecosystem.
                 </p>
-
-                <br>
 
                 <p>
                     By combining information sources and applying AI-driven
@@ -353,11 +363,9 @@
 </section>
 
 <footer>
-
     © 2026 TREND CDC • Chicago, Illinois
-
 </footer>
-
+```
 
 </body>
 </html>

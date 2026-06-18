@@ -43,7 +43,8 @@
         line-height: 1.7;
     }
 
-    img {
+    img,
+    video {
         display: block;
         max-width: 100%;
     }
@@ -116,12 +117,10 @@
         color: var(--trend-blue);
         font-size: 1.6rem;
         margin-bottom: 18px;
-        text-align: left;
     }
 
     .card p {
         color: var(--trend-gray);
-        text-align: left;
         font-size: 1rem;
     }
 
@@ -133,17 +132,37 @@
         overflow: hidden;
         border-radius: 8px;
         background: #000;
-        margin: 0 auto 24px;
-    }
-
-    .video-short {
-        max-width: 360px;
-        aspect-ratio: 9 / 16;
+        margin-bottom: 24px;
     }
 
     .video-standard {
         max-width: 800px;
+        margin: 0 auto 24px;
         aspect-ratio: 16 / 9;
+    }
+
+    .inline-media {
+        overflow: hidden;
+    }
+
+    .inline-media .video-short {
+        float: left;
+        width: 300px;
+        margin: 0 30px 15px 0;
+        border-radius: 8px;
+        overflow: hidden;
+        background: #000;
+        aspect-ratio: 9 / 16;
+    }
+
+    .local-video {
+        max-width: 800px;
+        margin: 0 auto 24px;
+    }
+
+    .local-video video {
+        width: 100%;
+        border-radius: 8px;
     }
 
     .cms-support {
@@ -194,6 +213,13 @@
 
         .card {
             padding: 30px;
+        }
+
+        .inline-media .video-short {
+            float: none;
+            width: 100%;
+            max-width: 320px;
+            margin: 0 auto 24px;
         }
 
     }
@@ -247,9 +273,9 @@
 
         <div class="focus-stack">
 
-            <article class="card">
+            <article class="card inline-media">
 
-                <div class="video-wrapper video-short">
+                <div class="video-short">
 
                     <iframe
                         src="https://www.youtube.com/embed/TOV-LKc0sT4"
@@ -273,6 +299,9 @@
                 <p>
                     The result is more time, greater organizational capacity,
                     and more resources available for mission-critical work.
+                    Smart AI integrations connect systems that previously operated
+                    independently, helping organizations work faster, smarter,
+                    and with greater consistency.
                 </p>
 
             </article>
@@ -307,6 +336,15 @@
             </article>
 
             <article class="card">
+
+                <div class="local-video">
+
+                    <video controls preload="metadata">
+                        <source src="trendvid.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+
+                </div>
 
                 <h3>
                     Mission Consolidation

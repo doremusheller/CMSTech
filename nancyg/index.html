@@ -1,12 +1,10 @@
-
 <!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-
   <title>Gibbs Law Office, PLLC | Estate Planning Attorney in Naples, FL</title>
-  <meta name="description" content="Gibbs Law Office, PLLC provides personal, professional estate planning, wills, trusts, powers of attorney, and probate, estate and trust settlement services in Southwest Florida." />
+  <meta name="description" content="Gibbs Law Office, PLLC provides estate planning, revocable trusts, wills, powers of attorney, health care powers of attorney, living wills, Florida community property trusts, irrevocable trusts, and probate, estate and trust settlement services in Southwest Florida." />
 
   <link rel="preload" as="image" href="/assets/nancyg2.png" />
   <link rel="preload" as="image" href="/assets/boardwalk.png" />
@@ -14,17 +12,15 @@
   <style>
     :root {
       --navy: #061d33;
-      --navy-2: #082742;
+      --navy2: #092943;
       --cream: #f8f4ed;
       --paper: #fffdf8;
       --gold: #b47a2a;
-      --gold-2: #d49b45;
-      --text: #102033;
-      --muted: #5e6470;
       --line: #ddd4c6;
-      --shadow: 0 20px 60px rgba(6, 29, 51, .12);
+      --text: #102033;
+      --muted: #5f6670;
       --serif: Georgia, "Times New Roman", serif;
-      --sans: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     * { box-sizing: border-box; }
@@ -37,7 +33,15 @@
       line-height: 1.6;
     }
 
-    a { color: inherit; text-decoration: none; }
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
 
     .container {
       width: min(1180px, calc(100% - 48px));
@@ -47,14 +51,14 @@
     .topbar {
       position: sticky;
       top: 0;
-      z-index: 20;
-      background: rgba(255, 253, 248, .94);
-      backdrop-filter: blur(16px);
-      border-bottom: 1px solid rgba(221, 212, 198, .7);
+      z-index: 50;
+      background: rgba(255,253,248,.96);
+      border-bottom: 1px solid var(--line);
+      backdrop-filter: blur(14px);
     }
 
     .nav {
-      height: 96px;
+      min-height: 94px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -64,32 +68,36 @@
     .brand strong {
       display: block;
       font-family: var(--serif);
-      font-size: clamp(1.55rem, 2.5vw, 2.15rem);
-      line-height: 1;
-      letter-spacing: .02em;
-      color: var(--navy);
+      font-size: clamp(1.55rem, 2.4vw, 2.2rem);
       font-weight: 500;
+      line-height: 1;
+      color: var(--navy);
       text-transform: uppercase;
+      letter-spacing: .02em;
+    }
+
+    .brand small {
+      font-size: .62em;
     }
 
     .brand span {
       display: block;
-      margin-top: 7px;
+      margin-top: 8px;
       color: var(--gold);
-      font-size: .82rem;
-      letter-spacing: .18em;
       text-transform: uppercase;
+      letter-spacing: .18em;
+      font-size: .82rem;
       font-weight: 700;
     }
 
     .links {
       display: flex;
-      align-items: center;
       gap: 28px;
+      align-items: center;
       font-size: .78rem;
-      letter-spacing: .06em;
-      text-transform: uppercase;
       font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .06em;
     }
 
     .links a {
@@ -122,7 +130,6 @@
       justify-content: center;
       min-height: 48px;
       padding: 0 24px;
-      border-radius: 2px;
       border: 1px solid var(--gold);
       background: var(--navy);
       color: #fff;
@@ -135,7 +142,7 @@
 
     .btn:hover {
       transform: translateY(-1px);
-      box-shadow: var(--shadow);
+      box-shadow: 0 16px 40px rgba(6,29,51,.18);
     }
 
     .btn.secondary {
@@ -144,44 +151,45 @@
     }
 
     .hero {
-      min-height: 640px;
-      background:
-        linear-gradient(90deg, rgba(255,253,248,.98) 0%, rgba(255,253,248,.9) 38%, rgba(255,253,248,.2) 62%, rgba(255,253,248,0) 100%),
-        url("/assets/nancyg2.png") right center / auto 100% no-repeat,
-        #f5f1ea;
-      display: flex;
+      background: linear-gradient(90deg, #fffdf8 0%, #fffdf8 45%, #f1ece4 45%, #f1ece4 100%);
+      overflow: hidden;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: 660px;
       align-items: center;
     }
 
     .hero-copy {
-      max-width: 560px;
-      padding: 86px 0;
+      padding: 78px 64px 78px 0;
     }
 
     .eyebrow {
       color: var(--gold);
-      letter-spacing: .14em;
       text-transform: uppercase;
-      font-size: .86rem;
+      letter-spacing: .16em;
       font-weight: 800;
-      margin-bottom: 18px;
+      font-size: .88rem;
+      margin-bottom: 20px;
     }
 
     h1, h2, h3 {
+      margin: 0;
+      color: var(--navy);
       font-family: var(--serif);
       font-weight: 500;
       line-height: 1.08;
-      color: var(--navy);
-      margin: 0;
     }
 
     h1 {
-      font-size: clamp(3rem, 6vw, 5.15rem);
+      font-size: clamp(3rem, 5.5vw, 5rem);
       letter-spacing: -.04em;
     }
 
     h2 {
-      font-size: clamp(2.2rem, 4vw, 3.2rem);
+      font-size: clamp(2.1rem, 4vw, 3.15rem);
       letter-spacing: -.03em;
     }
 
@@ -194,7 +202,7 @@
 
     .hero p {
       font-size: 1.12rem;
-      max-width: 520px;
+      max-width: 560px;
       margin: 0 0 34px;
     }
 
@@ -204,9 +212,23 @@
       flex-wrap: wrap;
     }
 
+    .hero-image {
+      align-self: stretch;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+    }
+
+    .hero-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+    }
+
     .value-bar {
-      background: linear-gradient(135deg, var(--navy), var(--navy-2));
-      color: #fff;
+      background: linear-gradient(135deg, var(--navy), var(--navy2));
+      color: white;
       padding: 34px 0;
     }
 
@@ -216,16 +238,23 @@
     }
 
     .value {
-      padding: 10px 32px;
+      padding: 8px 32px;
       border-left: 1px solid rgba(255,255,255,.22);
     }
 
-    .value:first-child { border-left: 0; }
+    .value:first-child {
+      border-left: 0;
+    }
 
-    .icon {
-      color: var(--gold-2);
-      font-size: 2rem;
-      margin-bottom: 10px;
+    .value svg,
+    .service svg,
+    .proof-card svg {
+      width: 42px;
+      height: 42px;
+      stroke: var(--gold);
+      fill: none;
+      stroke-width: 1.6;
+      margin-bottom: 14px;
     }
 
     .value strong {
@@ -238,7 +267,7 @@
 
     .value p {
       margin: 0;
-      color: rgba(255,255,255,.86);
+      color: rgba(255,255,255,.85);
       font-size: .95rem;
     }
 
@@ -247,16 +276,13 @@
     }
 
     .section-head {
-      text-align: center;
       max-width: 780px;
+      text-align: center;
       margin: 0 auto 42px;
     }
 
     .section-head .rule {
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 18px;
-      margin-bottom: 18px;
+      margin: 18px auto;
     }
 
     .section-head p {
@@ -274,31 +300,25 @@
     }
 
     .service {
-      min-height: 240px;
+      min-height: 245px;
       padding: 34px 24px;
+      text-align: center;
       border-right: 1px solid var(--line);
       border-bottom: 1px solid var(--line);
-      text-align: center;
-    }
-
-    .service .icon {
-      font-size: 2.6rem;
-      margin-bottom: 18px;
     }
 
     .service h3 {
       font-family: var(--sans);
-      font-size: .92rem;
-      line-height: 1.35;
+      font-size: .9rem;
       text-transform: uppercase;
       letter-spacing: .05em;
       font-weight: 900;
+      line-height: 1.35;
       margin-bottom: 14px;
     }
 
     .service p {
       margin: 0;
-      color: #273445;
       font-size: .95rem;
     }
 
@@ -310,16 +330,17 @@
     .guidance-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      align-items: stretch;
     }
 
-    .guidance-image {
-      min-height: 430px;
-      background: url("/assets/boardwalk.png") center / cover no-repeat;
+    .guidance-image img {
+      width: 100%;
+      height: 100%;
+      min-height: 440px;
+      object-fit: cover;
     }
 
     .guidance-copy {
-      padding: 70px;
+      padding: 72px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -332,18 +353,16 @@
     }
 
     .check-list {
-      display: grid;
-      gap: 0;
-      max-width: 650px;
+      max-width: 680px;
     }
 
     .check {
       display: flex;
-      align-items: center;
       gap: 14px;
+      align-items: center;
       padding: 20px 0;
       border-top: 1px solid var(--line);
-      font-weight: 600;
+      font-weight: 650;
     }
 
     .check:last-child {
@@ -353,73 +372,44 @@
     .check span {
       width: 24px;
       height: 24px;
-      display: inline-grid;
-      place-items: center;
       border: 1px solid var(--gold);
       color: var(--gold);
-      border-radius: 50%;
-      font-size: .8rem;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
       flex: 0 0 auto;
+      font-size: .8rem;
     }
 
     .proof {
-      background: var(--paper);
       padding: 58px 0;
     }
 
     .proof-grid {
       display: grid;
-      grid-template-columns: 1.2fr repeat(4, 1fr);
-      gap: 0;
-      align-items: stretch;
-    }
-
-    .quote {
-      padding: 16px 34px 16px 0;
-    }
-
-    .quote-mark {
-      color: var(--gold);
-      font-size: 3rem;
-      line-height: 1;
-      font-family: var(--serif);
-    }
-
-    .quote p {
-      margin: 0 0 14px;
-      font-family: var(--serif);
-      font-size: 1.15rem;
-      font-style: italic;
-      color: #1e2e42;
-    }
-
-    .quote cite {
-      font-style: normal;
-      font-weight: 700;
-      color: var(--navy);
+      grid-template-columns: repeat(4, 1fr);
+      border-left: 1px solid var(--line);
     }
 
     .proof-card {
-      border-left: 1px solid var(--line);
+      padding: 30px 24px;
       text-align: center;
-      padding: 24px 20px;
-      display: grid;
-      place-items: center;
+      border-right: 1px solid var(--line);
     }
 
     .proof-card strong {
       display: block;
+      font-size: .86rem;
       text-transform: uppercase;
       letter-spacing: .06em;
       line-height: 1.35;
-      font-size: .85rem;
       color: var(--navy);
       font-weight: 900;
     }
 
     .contact {
       background: linear-gradient(135deg, var(--navy), #031321);
-      color: #fff;
+      color: white;
       padding: 56px 0 0;
     }
 
@@ -427,18 +417,23 @@
       display: grid;
       grid-template-columns: 1.1fr 1fr 1fr;
       gap: 48px;
-      padding-bottom: 48px;
       align-items: center;
+      padding-bottom: 48px;
     }
 
     .contact h2 {
-      color: #fff;
+      color: white;
       font-size: 2.2rem;
     }
 
     .contact p,
-    .contact a {
+    .contact a,
+    address {
       color: rgba(255,255,255,.86);
+    }
+
+    address {
+      font-style: normal;
     }
 
     .contact-details {
@@ -448,22 +443,22 @@
       padding-left: 36px;
     }
 
-    .contact-details a,
-    .contact-details div {
+    .contact-details div,
+    .contact-details a {
       display: flex;
       gap: 12px;
       align-items: flex-start;
     }
 
     .contact-details span {
-      color: var(--gold-2);
+      color: var(--gold);
       font-weight: 900;
     }
 
     .contact .btn {
-      width: 100%;
       background: transparent;
-      color: var(--gold-2);
+      color: var(--gold);
+      width: 100%;
     }
 
     .footer {
@@ -481,27 +476,37 @@
       gap: 18px;
     }
 
-    @media (max-width: 1000px) {
-      .links { display: none; }
-      .hero {
-        background:
-          linear-gradient(180deg, rgba(255,253,248,.96) 0%, rgba(255,253,248,.9) 45%, rgba(255,253,248,.4) 100%),
-          url("/assets/nancyg2.png") right bottom / auto 70% no-repeat,
-          #f5f1ea;
-        min-height: 760px;
-        align-items: flex-start;
+    @media (max-width: 1050px) {
+      .links {
+        display: none;
       }
+
+      .hero {
+        background: var(--paper);
+      }
+
+      .hero-grid,
+      .guidance-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-copy {
+        padding-right: 0;
+      }
+
+      .hero-image img {
+        max-height: 640px;
+      }
+
       .values,
       .services-grid,
       .proof-grid,
       .contact-grid {
         grid-template-columns: 1fr 1fr;
       }
-      .guidance-grid {
-        grid-template-columns: 1fr;
-      }
+
       .guidance-copy {
-        padding: 54px 32px;
+        padding: 56px 32px;
       }
     }
 
@@ -511,7 +516,6 @@
       }
 
       .nav {
-        height: auto;
         padding: 20px 0;
         align-items: flex-start;
       }
@@ -532,19 +536,9 @@
         font-size: .7rem;
       }
 
-      .hero {
-        min-height: 720px;
-        background:
-          linear-gradient(180deg, rgba(255,253,248,.98) 0%, rgba(255,253,248,.94) 45%, rgba(255,253,248,.55) 100%),
-          url("/assets/nancyg2.png") center bottom / 100% auto no-repeat,
-          #f5f1ea;
+      h1 {
+        font-size: 3rem;
       }
-
-      .hero-copy {
-        padding-top: 48px;
-      }
-
-      h1 { font-size: 3rem; }
 
       .values,
       .services-grid,
@@ -553,19 +547,30 @@
         grid-template-columns: 1fr;
       }
 
-      .value,
-      .proof-card,
-      .contact-details {
+      .value {
         border-left: 0;
         border-top: 1px solid rgba(255,255,255,.22);
+        padding: 24px 0;
+      }
+
+      .value:first-child {
+        border-top: 0;
+      }
+
+      .proof-grid {
+        border-left: 0;
       }
 
       .proof-card {
+        border-right: 0;
         border-top: 1px solid var(--line);
       }
 
-      .quote {
-        padding-right: 0;
+      .contact-details {
+        border-left: 0;
+        border-top: 1px solid rgba(255,255,255,.22);
+        padding-left: 0;
+        padding-top: 28px;
       }
 
       .footer {
@@ -573,6 +578,38 @@
       }
     }
   </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LegalService",
+    "name": "Gibbs Law Office, PLLC",
+    "url": "https://example.com/",
+    "email": "nancy@gibbsgnapleslaw.com",
+    "telephone": "239-203-2770",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "3785 Airport Road North, Suite 4",
+      "addressLocality": "Naples",
+      "addressRegion": "FL",
+      "postalCode": "34105",
+      "addressCountry": "US"
+    },
+    "areaServed": "Southwest Florida",
+    "legalName": "Gibbs Law Office, PLLC",
+    "serviceType": [
+      "Estate Planning",
+      "Revocable Trusts",
+      "Wills",
+      "Powers of Attorney",
+      "Health Care Powers of Attorney",
+      "Living Wills and Cremation Directives",
+      "Florida Community Property Trusts",
+      "Irrevocable Trusts",
+      "Probate, Estate and Trust Settlement"
+    ]
+  }
+  </script>
 </head>
 
 <body>
@@ -599,8 +636,8 @@
   </header>
 
   <main id="home">
-    <section class="hero" aria-label="Gibbs Law Office introduction">
-      <div class="container">
+    <section class="hero">
+      <div class="container hero-grid">
         <div class="hero-copy">
           <div class="eyebrow">Thoughtful Planning. Lasting Peace of Mind.</div>
           <h1>Thoughtful Planning.<br>Lasting Peace of Mind.</h1>
@@ -614,28 +651,32 @@
             <a class="btn secondary" href="#practice-areas">Learn More</a>
           </div>
         </div>
+
+        <picture class="hero-image">
+          <img src="/assets/nancyg2.png" alt="Nancy Gibbs of Gibbs Law Office, PLLC" width="900" height="1100" fetchpriority="high">
+        </picture>
       </div>
     </section>
 
-    <aside class="value-bar" aria-label="Client values">
+    <aside class="value-bar">
       <div class="container values">
         <div class="value">
-          <div class="icon">♙</div>
+          <svg viewBox="0 0 48 48"><circle cx="24" cy="15" r="8"/><path d="M10 42c2-11 8-17 14-17s12 6 14 17"/></svg>
           <strong>Personal Attention</strong>
           <p>You are more than a file number here.</p>
         </div>
         <div class="value">
-          <div class="icon">♡</div>
+          <svg viewBox="0 0 48 48"><path d="M12 27c8-12 16-12 24 0"/><path d="M14 31h20"/><path d="M24 38c-7-5-14-11-14-19a8 8 0 0 1 14-5 8 8 0 0 1 14 5c0 8-7 14-14 19z"/></svg>
           <strong>Practical Advice</strong>
           <p>Solutions designed for your unique situation.</p>
         </div>
         <div class="value">
-          <div class="icon">◌</div>
+          <svg viewBox="0 0 48 48"><path d="M8 22c0-8 7-14 16-14s16 6 16 14-7 14-16 14c-3 0-6-.6-8-2l-8 4 3-8c-2-2-3-5-3-8z"/></svg>
           <strong>Clear Communication</strong>
           <p>We explain everything in plain language.</p>
         </div>
         <div class="value">
-          <div class="icon">♢</div>
+          <svg viewBox="0 0 48 48"><path d="M24 40s16-10 16-24c0-5-4-9-9-9-3 0-6 2-7 5-1-3-4-5-7-5-5 0-9 4-9 9 0 14 16 24 16 24z"/></svg>
           <strong>Peace of Mind</strong>
           <p>Protect what matters most for the people you love.</p>
         </div>
@@ -648,56 +689,56 @@
           <h2>Estate Planning Services</h2>
           <div class="rule"></div>
           <p>
-            Our practice is dedicated exclusively to helping individuals and families
-            plan ahead and protect their loved ones.
+            Our practice is limited to focused estate planning, trust, will, directive,
+            and settlement services for Southwest Florida individuals and families.
           </p>
         </div>
 
         <div class="services-grid">
           <article class="service">
-            <div class="icon">▧</div>
+            <svg viewBox="0 0 48 48"><path d="M14 6h16l8 8v28H14z"/><path d="M30 6v10h8"/><path d="M19 24h14M19 31h14"/></svg>
             <h3>Estate Planning</h3>
-            <p>Comprehensive estate plans tailored to your goals and priorities.</p>
+            <p>Personal planning documents tailored to your goals and priorities.</p>
           </article>
 
           <article class="service">
-            <div class="icon">♢</div>
+            <svg viewBox="0 0 48 48"><path d="M24 5l17 7v10c0 11-7 18-17 21C14 40 7 33 7 22V12z"/></svg>
             <h3>Revocable Trusts</h3>
-            <p>Flexible trusts to manage and protect your assets during your lifetime.</p>
+            <p>Trust planning designed to manage and protect assets during your lifetime.</p>
           </article>
 
           <article class="service">
-            <div class="icon">✒</div>
+            <svg viewBox="0 0 48 48"><path d="M10 40l8-3 20-20-5-5-20 20z"/><path d="M29 16l5 5"/></svg>
             <h3>Wills</h3>
-            <p>Legally sound wills that clearly express your wishes.</p>
+            <p>Clearly written wills that express your wishes.</p>
           </article>
 
           <article class="service">
-            <div class="icon">♙</div>
+            <svg viewBox="0 0 48 48"><circle cx="18" cy="16" r="7"/><path d="M6 40c2-10 7-15 12-15s10 5 12 15"/><circle cx="32" cy="18" r="6"/><path d="M30 29c5 1 9 5 11 11"/></svg>
             <h3>Powers of Attorney</h3>
             <p>Designate someone you trust to act on your behalf.</p>
           </article>
 
           <article class="service">
-            <div class="icon">♡</div>
+            <svg viewBox="0 0 48 48"><path d="M24 40s16-10 16-24c0-5-4-9-9-9-3 0-6 2-7 5-1-3-4-5-7-5-5 0-9 4-9 9 0 14 16 24 16 24z"/><path d="M24 17v12M18 23h12"/></svg>
             <h3>Health Care Powers of Attorney</h3>
-            <p>Ensure your medical decisions are in trusted hands.</p>
+            <p>Appoint a trusted person to assist with medical decision-making.</p>
           </article>
 
           <article class="service">
-            <div class="icon">☷</div>
+            <svg viewBox="0 0 48 48"><path d="M13 7h22v34H13z"/><path d="M19 16h10M19 23h10M19 30h7"/></svg>
             <h3>Living Wills &amp; Cremation Directives</h3>
-            <p>Provide guidance and peace of mind for important decisions.</p>
+            <p>Document your wishes for important health care and final decisions.</p>
           </article>
 
           <article class="service">
-            <div class="icon">⌂</div>
+            <svg viewBox="0 0 48 48"><path d="M6 24L24 9l18 15"/><path d="M12 22v20h24V22"/><path d="M18 41V29h12v12"/></svg>
             <h3>Florida Community Property Trusts</h3>
-            <p>Specialized planning for Florida couples.</p>
+            <p>Community property trust planning for Florida residents.</p>
           </article>
 
           <article class="service">
-            <div class="icon">⚖</div>
+            <svg viewBox="0 0 48 48"><path d="M24 6v36"/><path d="M10 16h28"/><path d="M14 16l-7 14h14z"/><path d="M34 16l-7 14h14z"/></svg>
             <h3>Irrevocable Trusts</h3>
             <p>Irrevocable trusts for family, multi-generational planning, or charity.</p>
           </article>
@@ -707,13 +748,17 @@
 
     <section class="guidance" id="about">
       <div class="guidance-grid">
-        <div class="guidance-image" role="img" aria-label="Boardwalk leading to a Southwest Florida beach at sunset"></div>
+        <picture class="guidance-image">
+          <img src="/assets/boardwalk.png" alt="Boardwalk leading to a calm beach at sunset" width="1600" height="1000" loading="lazy">
+        </picture>
 
         <div class="guidance-copy">
           <h2>Experienced Guidance.<br>Trusted Support.</h2>
           <div class="rule"></div>
           <p>
-            We are here to help you make informed decisions for a secure future.
+            Gibbs Law Office, PLLC provides personal, professional legal representation
+            for Southwest Florida individuals who seek competent, compassionate and
+            practical advice.
           </p>
 
           <div class="check-list">
@@ -730,43 +775,23 @@
       </div>
     </section>
 
-    <section class="proof">
+    <section class="proof" id="resources">
       <div class="container proof-grid">
-        <div class="quote">
-          <div class="quote-mark">“</div>
-          <p>
-            Nancy is knowledgeable, compassionate, and incredibly responsive.
-            She made the entire process easy to understand and gave my family great peace of mind.
-          </p>
-          <cite>– M. T., Naples</cite>
-        </div>
-
         <div class="proof-card">
-          <div>
-            <div class="icon">♢</div>
-            <strong>Personal, Professional Representation</strong>
-          </div>
+          <svg viewBox="0 0 48 48"><circle cx="24" cy="15" r="8"/><path d="M10 42c2-11 8-17 14-17s12 6 14 17"/></svg>
+          <strong>Personal, Professional Representation</strong>
         </div>
-
         <div class="proof-card">
-          <div>
-            <div class="icon">♡</div>
-            <strong>Competent, Compassionate Advice</strong>
-          </div>
+          <svg viewBox="0 0 48 48"><path d="M24 40s16-10 16-24c0-5-4-9-9-9-3 0-6 2-7 5-1-3-4-5-7-5-5 0-9 4-9 9 0 14 16 24 16 24z"/></svg>
+          <strong>Competent, Compassionate Advice</strong>
         </div>
-
         <div class="proof-card">
-          <div>
-            <div class="icon">⚖</div>
-            <strong>Practical, Focused Solutions</strong>
-          </div>
+          <svg viewBox="0 0 48 48"><path d="M24 6v36"/><path d="M10 16h28"/><path d="M14 16l-7 14h14z"/><path d="M34 16l-7 14h14z"/></svg>
+          <strong>Practical, Focused Solutions</strong>
         </div>
-
         <div class="proof-card">
-          <div>
-            <div class="icon">♙</div>
-            <strong>Dedicated to Your Family’s Future</strong>
-          </div>
+          <svg viewBox="0 0 48 48"><path d="M24 5l17 7v10c0 11-7 18-17 21C14 40 7 33 7 22V12z"/></svg>
+          <strong>Estate, Trust &amp; Settlement Planning</strong>
         </div>
       </div>
     </section>
@@ -777,9 +802,7 @@
       <div>
         <h2>Let’s Plan for What Matters Most</h2>
         <div class="rule"></div>
-        <p>
-          Contact Nancy Gibbs today to schedule your confidential consultation.
-        </p>
+        <p>Contact Gibbs Law Office, PLLC to schedule a confidential consultation.</p>
       </div>
 
       <address class="contact-details">

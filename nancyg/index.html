@@ -1,590 +1,36 @@
+
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Gibbs Law Office, PLLC | Estate Planning Attorney in Naples, FL</title>
-  <meta name="description" content="Gibbs Law Office, PLLC provides estate planning, revocable trusts, wills, powers of attorney, health care powers of attorney, living wills, Florida community property trusts, irrevocable trusts, and probate, estate and trust settlement services in Southwest Florida." />
-
-  <link rel="preload" as="image" href="/assets/nancyg2.png" />
-  <link rel="preload" as="image" href="/assets/boardwalk.png" />
-
-  <style>
-    :root {
-      --navy: #061d33;
-      --navy2: #092943;
-      --cream: #f8f4ed;
-      --paper: #fffdf8;
-      --gold: #b47a2a;
-      --line: #ddd4c6;
-      --text: #102033;
-      --muted: #5f6670;
-      --serif: Georgia, "Times New Roman", serif;
-      --sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-    }
-
-    * { box-sizing: border-box; }
-
-    body {
-      margin: 0;
-      font-family: var(--sans);
-      color: var(--text);
-      background: var(--paper);
-      line-height: 1.6;
-    }
-
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(1180px, calc(100% - 48px));
-      margin: 0 auto;
-    }
-
-    .topbar {
-      position: sticky;
-      top: 0;
-      z-index: 50;
-      background: rgba(255,253,248,.96);
-      border-bottom: 1px solid var(--line);
-      backdrop-filter: blur(14px);
-    }
-
-    .nav {
-      min-height: 94px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 28px;
-    }
-
-    .brand strong {
-      display: block;
-      font-family: var(--serif);
-      font-size: clamp(1.55rem, 2.4vw, 2.2rem);
-      font-weight: 500;
-      line-height: 1;
-      color: var(--navy);
-      text-transform: uppercase;
-      letter-spacing: .02em;
-    }
-
-    .brand small {
-      font-size: .62em;
-    }
-
-    .brand span {
-      display: block;
-      margin-top: 8px;
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: .18em;
-      font-size: .82rem;
-      font-weight: 700;
-    }
-
-    .links {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-      font-size: .78rem;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-    }
-
-    .links a {
-      padding: 10px 0;
-      border-bottom: 2px solid transparent;
-    }
-
-    .links a:hover,
-    .links a.active {
-      color: var(--gold);
-      border-color: var(--gold);
-    }
-
-    .nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      white-space: nowrap;
-    }
-
-    .phone {
-      color: var(--gold);
-      font-weight: 800;
-      font-size: 1.05rem;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 0 24px;
-      border: 1px solid var(--gold);
-      background: var(--navy);
-      color: #fff;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      font-size: .78rem;
-      font-weight: 800;
-      transition: .2s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 16px 40px rgba(6,29,51,.18);
-    }
-
-    .btn.secondary {
-      background: transparent;
-      color: var(--gold);
-    }
-
-    .hero {
-      background: linear-gradient(90deg, #fffdf8 0%, #fffdf8 45%, #f1ece4 45%, #f1ece4 100%);
-      overflow: hidden;
-    }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      min-height: 660px;
-      align-items: center;
-    }
-
-    .hero-copy {
-      padding: 78px 64px 78px 0;
-    }
-
-    .eyebrow {
-      color: var(--gold);
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      font-weight: 800;
-      font-size: .88rem;
-      margin-bottom: 20px;
-    }
-
-    h1, h2, h3 {
-      margin: 0;
-      color: var(--navy);
-      font-family: var(--serif);
-      font-weight: 500;
-      line-height: 1.08;
-    }
-
-    h1 {
-      font-size: clamp(3rem, 5.5vw, 5rem);
-      letter-spacing: -.04em;
-    }
-
-    h2 {
-      font-size: clamp(2.1rem, 4vw, 3.15rem);
-      letter-spacing: -.03em;
-    }
-
-    .rule {
-      width: 58px;
-      height: 2px;
-      background: var(--gold);
-      margin: 28px 0;
-    }
-
-    .hero p {
-      font-size: 1.12rem;
-      max-width: 560px;
-      margin: 0 0 34px;
-    }
-
-    .hero-buttons {
-      display: flex;
-      gap: 22px;
-      flex-wrap: wrap;
-    }
-
-    .hero-image {
-      align-self: stretch;
-      display: flex;
-      align-items: flex-end;
-      justify-content: center;
-    }
-
-    .hero-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      object-position: center top;
-    }
-
-    .value-bar {
-      background: linear-gradient(135deg, var(--navy), var(--navy2));
-      color: white;
-      padding: 34px 0;
-    }
-
-    .values {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-    }
-
-    .value {
-      padding: 8px 32px;
-      border-left: 1px solid rgba(255,255,255,.22);
-    }
-
-    .value:first-child {
-      border-left: 0;
-    }
-
-    .value svg,
-    .service svg,
-    .proof-card svg {
-      width: 42px;
-      height: 42px;
-      stroke: var(--gold);
-      fill: none;
-      stroke-width: 1.6;
-      margin-bottom: 14px;
-    }
-
-    .value strong {
-      display: block;
-      text-transform: uppercase;
-      letter-spacing: .07em;
-      font-size: .78rem;
-      margin-bottom: 6px;
-    }
-
-    .value p {
-      margin: 0;
-      color: rgba(255,255,255,.85);
-      font-size: .95rem;
-    }
-
-    section {
-      padding: 78px 0;
-    }
-
-    .section-head {
-      max-width: 780px;
-      text-align: center;
-      margin: 0 auto 42px;
-    }
-
-    .section-head .rule {
-      margin: 18px auto;
-    }
-
-    .section-head p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 1.05rem;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-top: 1px solid var(--line);
-      border-left: 1px solid var(--line);
-      background: rgba(255,255,255,.55);
-    }
-
-    .service {
-      min-height: 245px;
-      padding: 34px 24px;
-      text-align: center;
-      border-right: 1px solid var(--line);
-      border-bottom: 1px solid var(--line);
-    }
-
-    .service h3 {
-      font-family: var(--sans);
-      font-size: .9rem;
-      text-transform: uppercase;
-      letter-spacing: .05em;
-      font-weight: 900;
-      line-height: 1.35;
-      margin-bottom: 14px;
-    }
-
-    .service p {
-      margin: 0;
-      font-size: .95rem;
-    }
-
-    .guidance {
-      padding: 0;
-      background: var(--cream);
-    }
-
-    .guidance-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .guidance-image img {
-      width: 100%;
-      height: 100%;
-      min-height: 440px;
-      object-fit: cover;
-    }
-
-    .guidance-copy {
-      padding: 72px;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-
-    .guidance-copy p {
-      max-width: 460px;
-      font-size: 1.08rem;
-      margin: 0 0 28px;
-    }
-
-    .check-list {
-      max-width: 680px;
-    }
-
-    .check {
-      display: flex;
-      gap: 14px;
-      align-items: center;
-      padding: 20px 0;
-      border-top: 1px solid var(--line);
-      font-weight: 650;
-    }
-
-    .check:last-child {
-      border-bottom: 1px solid var(--line);
-    }
-
-    .check span {
-      width: 24px;
-      height: 24px;
-      border: 1px solid var(--gold);
-      color: var(--gold);
-      border-radius: 999px;
-      display: grid;
-      place-items: center;
-      flex: 0 0 auto;
-      font-size: .8rem;
-    }
-
-    .proof {
-      padding: 58px 0;
-    }
-
-    .proof-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-left: 1px solid var(--line);
-    }
-
-    .proof-card {
-      padding: 30px 24px;
-      text-align: center;
-      border-right: 1px solid var(--line);
-    }
-
-    .proof-card strong {
-      display: block;
-      font-size: .86rem;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      line-height: 1.35;
-      color: var(--navy);
-      font-weight: 900;
-    }
-
-    .contact {
-      background: linear-gradient(135deg, var(--navy), #031321);
-      color: white;
-      padding: 56px 0 0;
-    }
-
-    .contact-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 1fr 1fr;
-      gap: 48px;
-      align-items: center;
-      padding-bottom: 48px;
-    }
-
-    .contact h2 {
-      color: white;
-      font-size: 2.2rem;
-    }
-
-    .contact p,
-    .contact a,
-    address {
-      color: rgba(255,255,255,.86);
-    }
-
-    address {
-      font-style: normal;
-    }
-
-    .contact-details {
-      display: grid;
-      gap: 13px;
-      border-left: 1px solid rgba(255,255,255,.22);
-      padding-left: 36px;
-    }
-
-    .contact-details div,
-    .contact-details a {
-      display: flex;
-      gap: 12px;
-      align-items: flex-start;
-    }
-
-    .contact-details span {
-      color: var(--gold);
-      font-weight: 900;
-    }
-
-    .contact .btn {
-      background: transparent;
-      color: var(--gold);
-      width: 100%;
-    }
-
-    .footer {
-      border-top: 1px solid rgba(255,255,255,.12);
-      padding: 18px 0;
-      font-size: .85rem;
-      color: rgba(255,255,255,.7);
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 18px;
-    }
-
-    @media (max-width: 1050px) {
-      .links {
-        display: none;
-      }
-
-      .hero {
-        background: var(--paper);
-      }
-
-      .hero-grid,
-      .guidance-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-copy {
-        padding-right: 0;
-      }
-
-      .hero-image img {
-        max-height: 640px;
-      }
-
-      .values,
-      .services-grid,
-      .proof-grid,
-      .contact-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .guidance-copy {
-        padding: 56px 32px;
-      }
-    }
-
-    @media (max-width: 680px) {
-      .container {
-        width: min(100% - 32px, 1180px);
-      }
-
-      .nav {
-        padding: 20px 0;
-        align-items: flex-start;
-      }
-
-      .nav-actions {
-        flex-direction: column;
-        align-items: flex-end;
-        gap: 10px;
-      }
-
-      .phone {
-        font-size: .95rem;
-      }
-
-      .btn {
-        min-height: 44px;
-        padding: 0 16px;
-        font-size: .7rem;
-      }
-
-      h1 {
-        font-size: 3rem;
-      }
-
-      .values,
-      .services-grid,
-      .proof-grid,
-      .contact-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .value {
-        border-left: 0;
-        border-top: 1px solid rgba(255,255,255,.22);
-        padding: 24px 0;
-      }
-
-      .value:first-child {
-        border-top: 0;
-      }
-
-      .proof-grid {
-        border-left: 0;
-      }
-
-      .proof-card {
-        border-right: 0;
-        border-top: 1px solid var(--line);
-      }
-
-      .contact-details {
-        border-left: 0;
-        border-top: 1px solid rgba(255,255,255,.22);
-        padding-left: 0;
-        padding-top: 28px;
-      }
-
-      .footer {
-        flex-direction: column;
-      }
-    }
-  </style>
+  <meta name="description" content="Gibbs Law Office, PLLC provides personal, professional estate planning, revocable trusts, wills, powers of attorney, health care powers of attorney, living wills, Florida community property trusts, irrevocable trusts, and probate, estate and trust settlement services in Southwest Florida.">
+
+  <meta property="og:title" content="Gibbs Law Office, PLLC | Estate Planning Attorney in Naples, FL">
+  <meta property="og:description" content="Personal, professional estate planning legal representation for Southwest Florida individuals.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/nancyg2.jpg">
+
+  <link rel="preload" as="image" href="assets/nancyg2.jpg">
+  <link rel="preload" as="image" href="assets/boardwalk.png">
+
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
 
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "LegalService",
     "name": "Gibbs Law Office, PLLC",
-    "url": "https://example.com/",
+    "legalName": "Gibbs Law Office, PLLC",
+    "image": "assets/nancyg2.jpg",
     "email": "nancy@gibbsgnapleslaw.com",
     "telephone": "239-203-2770",
     "address": {
@@ -596,7 +42,6 @@
       "addressCountry": "US"
     },
     "areaServed": "Southwest Florida",
-    "legalName": "Gibbs Law Office, PLLC",
     "serviceType": [
       "Estate Planning",
       "Revocable Trusts",
@@ -605,7 +50,7 @@
       "Health Care Powers of Attorney",
       "Living Wills and Cremation Directives",
       "Florida Community Property Trusts",
-      "Irrevocable Trusts",
+      "Irrevocable Trusts for family, multi-generational planning, or charity",
       "Probate, Estate and Trust Settlement"
     ]
   }
@@ -613,224 +58,297 @@
 </head>
 
 <body>
-  <header class="topbar">
-    <div class="container nav">
-      <a class="brand" href="/" aria-label="Gibbs Law Office, PLLC home">
-        <strong>Gibbs Law Office, <small>PLLC</small></strong>
-        <span>Estate Planning Attorney</span>
-      </a>
+  <a class="skip-link" href="#main">Skip to content</a>
 
-      <nav class="links" aria-label="Primary navigation">
-        <a class="active" href="#home">Home</a>
-        <a href="#about">About Nancy</a>
-        <a href="#practice-areas">Practice Areas</a>
-        <a href="#resources">Resources</a>
-        <a href="#contact">Contact</a>
-      </nav>
+  <header class="site-header fixed-top">
+    <nav class="navbar navbar-expand-lg" aria-label="Primary navigation">
+      <div class="container">
+        <a class="navbar-brand" href="index.html" aria-label="Gibbs Law Office home">
+          <span class="brand-main">Gibbs Law Office</span>
+          <span class="brand-sub">PLLC</span>
+        </a>
 
-      <div class="nav-actions">
-        <a class="phone" href="tel:2392032770">239-203-2770</a>
-        <a class="btn" href="#contact">Schedule a Consultation</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div id="mainNav" class="collapse navbar-collapse justify-content-end">
+          <ul class="navbar-nav align-items-lg-center gap-lg-3">
+            <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+            <li class="nav-item"><a class="nav-link" href="#about">About Nancy</a></li>
+            <li class="nav-item"><a class="nav-link" href="#practice-areas">Practice Areas</a></li>
+            <li class="nav-item"><a class="nav-link" href="#resources">Resources</a></li>
+            <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+          </ul>
+
+          <div class="header-actions ms-lg-4 mt-4 mt-lg-0">
+            <a class="header-phone" href="tel:2392032770">239-203-2770</a>
+            <a class="btn btn-gold ms-lg-3" href="#contact">Schedule Consultation</a>
+          </div>
+        </div>
       </div>
-    </div>
+    </nav>
   </header>
 
-  <main id="home">
-    <section class="hero">
-      <div class="container hero-grid">
-        <div class="hero-copy">
-          <div class="eyebrow">Thoughtful Planning. Lasting Peace of Mind.</div>
-          <h1>Thoughtful Planning.<br>Lasting Peace of Mind.</h1>
-          <div class="rule"></div>
-          <p>
-            Providing personal, professional legal representation for Southwest Florida
-            individuals seeking competent, compassionate and practical advice.
-          </p>
-          <div class="hero-buttons">
-            <a class="btn" href="#contact">Schedule a Consultation</a>
-            <a class="btn secondary" href="#practice-areas">Learn More</a>
-          </div>
-        </div>
-
-        <picture class="hero-image">
-          <img src="/assets/nancyg2.png" alt="Nancy Gibbs of Gibbs Law Office, PLLC" width="900" height="1100" fetchpriority="high">
-        </picture>
-      </div>
-    </section>
-
-    <aside class="value-bar">
-      <div class="container values">
-        <div class="value">
-          <svg viewBox="0 0 48 48"><circle cx="24" cy="15" r="8"/><path d="M10 42c2-11 8-17 14-17s12 6 14 17"/></svg>
-          <strong>Personal Attention</strong>
-          <p>You are more than a file number here.</p>
-        </div>
-        <div class="value">
-          <svg viewBox="0 0 48 48"><path d="M12 27c8-12 16-12 24 0"/><path d="M14 31h20"/><path d="M24 38c-7-5-14-11-14-19a8 8 0 0 1 14-5 8 8 0 0 1 14 5c0 8-7 14-14 19z"/></svg>
-          <strong>Practical Advice</strong>
-          <p>Solutions designed for your unique situation.</p>
-        </div>
-        <div class="value">
-          <svg viewBox="0 0 48 48"><path d="M8 22c0-8 7-14 16-14s16 6 16 14-7 14-16 14c-3 0-6-.6-8-2l-8 4 3-8c-2-2-3-5-3-8z"/></svg>
-          <strong>Clear Communication</strong>
-          <p>We explain everything in plain language.</p>
-        </div>
-        <div class="value">
-          <svg viewBox="0 0 48 48"><path d="M24 40s16-10 16-24c0-5-4-9-9-9-3 0-6 2-7 5-1-3-4-5-7-5-5 0-9 4-9 9 0 14 16 24 16 24z"/></svg>
-          <strong>Peace of Mind</strong>
-          <p>Protect what matters most for the people you love.</p>
-        </div>
-      </div>
-    </aside>
-
-    <section id="practice-areas">
+  <main id="main">
+    <section id="home" class="hero-section">
       <div class="container">
-        <div class="section-head">
-          <h2>Estate Planning Services</h2>
-          <div class="rule"></div>
-          <p>
-            Our practice is limited to focused estate planning, trust, will, directive,
-            and settlement services for Southwest Florida individuals and families.
-          </p>
-        </div>
-
-        <div class="services-grid">
-          <article class="service">
-            <svg viewBox="0 0 48 48"><path d="M14 6h16l8 8v28H14z"/><path d="M30 6v10h8"/><path d="M19 24h14M19 31h14"/></svg>
-            <h3>Estate Planning</h3>
-            <p>Personal planning documents tailored to your goals and priorities.</p>
-          </article>
-
-          <article class="service">
-            <svg viewBox="0 0 48 48"><path d="M24 5l17 7v10c0 11-7 18-17 21C14 40 7 33 7 22V12z"/></svg>
-            <h3>Revocable Trusts</h3>
-            <p>Trust planning designed to manage and protect assets during your lifetime.</p>
-          </article>
-
-          <article class="service">
-            <svg viewBox="0 0 48 48"><path d="M10 40l8-3 20-20-5-5-20 20z"/><path d="M29 16l5 5"/></svg>
-            <h3>Wills</h3>
-            <p>Clearly written wills that express your wishes.</p>
-          </article>
-
-          <article class="service">
-            <svg viewBox="0 0 48 48"><circle cx="18" cy="16" r="7"/><path d="M6 40c2-10 7-15 12-15s10 5 12 15"/><circle cx="32" cy="18" r="6"/><path d="M30 29c5 1 9 5 11 11"/></svg>
-            <h3>Powers of Attorney</h3>
-            <p>Designate someone you trust to act on your behalf.</p>
-          </article>
-
-          <article class="service">
-            <svg viewBox="0 0 48 48"><path d="M24 40s16-10 16-24c0-5-4-9-9-9-3 0-6 2-7 5-1-3-4-5-7-5-5 0-9 4-9 9 0 14 16 24 16 24z"/><path d="M24 17v12M18 23h12"/></svg>
-            <h3>Health Care Powers of Attorney</h3>
-            <p>Appoint a trusted person to assist with medical decision-making.</p>
-          </article>
-
-          <article class="service">
-            <svg viewBox="0 0 48 48"><path d="M13 7h22v34H13z"/><path d="M19 16h10M19 23h10M19 30h7"/></svg>
-            <h3>Living Wills &amp; Cremation Directives</h3>
-            <p>Document your wishes for important health care and final decisions.</p>
-          </article>
-
-          <article class="service">
-            <svg viewBox="0 0 48 48"><path d="M6 24L24 9l18 15"/><path d="M12 22v20h24V22"/><path d="M18 41V29h12v12"/></svg>
-            <h3>Florida Community Property Trusts</h3>
-            <p>Community property trust planning for Florida residents.</p>
-          </article>
-
-          <article class="service">
-            <svg viewBox="0 0 48 48"><path d="M24 6v36"/><path d="M10 16h28"/><path d="M14 16l-7 14h14z"/><path d="M34 16l-7 14h14z"/></svg>
-            <h3>Irrevocable Trusts</h3>
-            <p>Irrevocable trusts for family, multi-generational planning, or charity.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="guidance" id="about">
-      <div class="guidance-grid">
-        <picture class="guidance-image">
-          <img src="/assets/boardwalk.png" alt="Boardwalk leading to a calm beach at sunset" width="1600" height="1000" loading="lazy">
-        </picture>
-
-        <div class="guidance-copy">
-          <h2>Experienced Guidance.<br>Trusted Support.</h2>
-          <div class="rule"></div>
-          <p>
-            Gibbs Law Office, PLLC provides personal, professional legal representation
-            for Southwest Florida individuals who seek competent, compassionate and
-            practical advice.
-          </p>
-
-          <div class="check-list">
-            <div class="check">
-              <span>✓</span>
-              Irrevocable Trusts for Family, Multi-Generational Planning, or Charity
+        <div class="row align-items-center min-vh-100 hero-row">
+          <div class="col-lg-6 hero-copy">
+            <p class="eyebrow">Estate Planning Attorney in Naples, Florida</p>
+            <h1>Thoughtful Planning.<br>Lasting Peace of Mind.</h1>
+            <div class="gold-rule"></div>
+            <p class="lead">
+              Gibbs Law Office, PLLC provides personal, professional legal representation
+              for Southwest Florida individuals who seek competent, compassionate and practical advice.
+            </p>
+            <div class="d-flex flex-column flex-sm-row gap-3 mt-4">
+              <a class="btn btn-navy btn-lg" href="#contact">Schedule Consultation</a>
+              <a class="btn btn-outline-gold btn-lg" href="#practice-areas">View Practice Areas</a>
             </div>
-            <div class="check">
-              <span>✓</span>
-              Probate, Estate &amp; Trust Settlement
+          </div>
+
+          <div class="col-lg-6 hero-image-wrap">
+            <div class="hero-image-card">
+              <img src="assets/nancyg2.jpg" alt="Nancy Gibbs, attorney at Gibbs Law Office, PLLC" width="900" height="1100" fetchpriority="high">
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <section class="proof" id="resources">
-      <div class="container proof-grid">
-        <div class="proof-card">
-          <svg viewBox="0 0 48 48"><circle cx="24" cy="15" r="8"/><path d="M10 42c2-11 8-17 14-17s12 6 14 17"/></svg>
-          <strong>Personal, Professional Representation</strong>
+    <section class="trust-strip" aria-label="Firm values">
+      <div class="container">
+        <div class="row g-0">
+          <div class="col-md-6 col-lg-3">
+            <div class="trust-item">
+              <i class="bi bi-person-check"></i>
+              <h2>Personal Attention</h2>
+              <p>Focused representation for each client’s needs.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="trust-item">
+              <i class="bi bi-heart"></i>
+              <h2>Compassionate Advice</h2>
+              <p>Practical guidance for important life decisions.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="trust-item">
+              <i class="bi bi-chat-square-text"></i>
+              <h2>Clear Communication</h2>
+              <p>Plain-language explanations and responsive support.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-3">
+            <div class="trust-item">
+              <i class="bi bi-shield-check"></i>
+              <h2>Peace of Mind</h2>
+              <p>Planning designed to protect what matters most.</p>
+            </div>
+          </div>
         </div>
-        <div class="proof-card">
-          <svg viewBox="0 0 48 48"><path d="M24 40s16-10 16-24c0-5-4-9-9-9-3 0-6 2-7 5-1-3-4-5-7-5-5 0-9 4-9 9 0 14 16 24 16 24z"/></svg>
-          <strong>Competent, Compassionate Advice</strong>
+      </div>
+    </section>
+
+    <section id="practice-areas" class="practice-section section-padding">
+      <div class="container">
+        <div class="section-heading text-center mx-auto">
+          <p class="eyebrow">Practice Areas</p>
+          <h2>Focused Estate Planning Services</h2>
+          <div class="gold-rule mx-auto"></div>
+          <p>
+            Our areas of practice are limited to the estate planning, trust, directive,
+            and settlement services listed below.
+          </p>
         </div>
-        <div class="proof-card">
-          <svg viewBox="0 0 48 48"><path d="M24 6v36"/><path d="M10 16h28"/><path d="M14 16l-7 14h14z"/><path d="M34 16l-7 14h14z"/></svg>
-          <strong>Practical, Focused Solutions</strong>
+
+        <div class="row g-4 mt-4">
+          <div class="col-md-6 col-lg-3">
+            <article class="practice-card">
+              <i class="bi bi-file-earmark-text"></i>
+              <h3>Estate Planning</h3>
+              <p>Personalized planning for individuals and families in Southwest Florida.</p>
+            </article>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <article class="practice-card">
+              <i class="bi bi-safe"></i>
+              <h3>Revocable Trusts</h3>
+              <p>Trust planning designed to support your wishes and your loved ones.</p>
+            </article>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <article class="practice-card">
+              <i class="bi bi-pen"></i>
+              <h3>Wills</h3>
+              <p>Clear documents that express your intentions and provide direction.</p>
+            </article>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <article class="practice-card">
+              <i class="bi bi-person-lines-fill"></i>
+              <h3>Powers of Attorney</h3>
+              <p>Authorizing a trusted person to act on your behalf when needed.</p>
+            </article>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <article class="practice-card">
+              <i class="bi bi-hospital"></i>
+              <h3>Health Care Powers of Attorney</h3>
+              <p>Planning for health care decisions with confidence and clarity.</p>
+            </article>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <article class="practice-card">
+              <i class="bi bi-journal-text"></i>
+              <h3>Living Wills &amp; Cremation Directives</h3>
+              <p>Documenting your wishes for important medical and final decisions.</p>
+            </article>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <article class="practice-card">
+              <i class="bi bi-house-heart"></i>
+              <h3>Florida Community Property Trusts</h3>
+              <p>Community property trust planning for Florida individuals and families.</p>
+            </article>
+          </div>
+
+          <div class="col-md-6 col-lg-3">
+            <article class="practice-card">
+              <i class="bi bi-diagram-3"></i>
+              <h3>Irrevocable Trusts</h3>
+              <p>Irrevocable trusts for family, multi-generational planning, or charity.</p>
+            </article>
+          </div>
         </div>
-        <div class="proof-card">
-          <svg viewBox="0 0 48 48"><path d="M24 5l17 7v10c0 11-7 18-17 21C14 40 7 33 7 22V12z"/></svg>
-          <strong>Estate, Trust &amp; Settlement Planning</strong>
+      </div>
+    </section>
+
+    <section id="about" class="guidance-section">
+      <div class="container-fluid px-0">
+        <div class="row g-0 align-items-stretch">
+          <div class="col-lg-6">
+            <img class="guidance-img" src="assets/boardwalk.png" alt="Peaceful boardwalk leading to a beach at sunset" width="1600" height="1000" loading="lazy">
+          </div>
+          <div class="col-lg-6">
+            <div class="guidance-copy">
+              <p class="eyebrow">Experienced Guidance</p>
+              <h2>Trusted Support for Important Decisions.</h2>
+              <div class="gold-rule"></div>
+              <p>
+                Gibbs Law Office, PLLC provides competent, compassionate and practical legal
+                advice for Southwest Florida individuals seeking estate planning and settlement services.
+              </p>
+
+              <ul class="check-list">
+                <li><i class="bi bi-check2"></i> Irrevocable Trusts for family, multi-generational planning, or charity</li>
+                <li><i class="bi bi-check2"></i> Probate, Estate &amp; Trust Settlement</li>
+              </ul>
+
+              <a class="btn btn-navy mt-4" href="#contact">Contact the Office</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="resources" class="resources-section section-padding">
+      <div class="container">
+        <div class="row align-items-center g-5">
+          <div class="col-lg-5">
+            <p class="eyebrow">Approach</p>
+            <h2>Personal, Professional Representation.</h2>
+            <div class="gold-rule"></div>
+          </div>
+          <div class="col-lg-7">
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="resource-card">
+                  <i class="bi bi-compass"></i>
+                  <h3>Practical Advice</h3>
+                  <p>Legal guidance that is grounded, understandable and useful.</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="resource-card">
+                  <i class="bi bi-people"></i>
+                  <h3>Individual Focus</h3>
+                  <p>Representation for Southwest Florida individuals and families.</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="resource-card">
+                  <i class="bi bi-folder-check"></i>
+                  <h3>Careful Planning</h3>
+                  <p>Documents prepared with attention to your circumstances and wishes.</p>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="resource-card">
+                  <i class="bi bi-envelope-paper"></i>
+                  <h3>Responsive Support</h3>
+                  <p>Clear communication from consultation through completion.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
   </main>
 
-  <footer class="contact" id="contact">
-    <div class="container contact-grid">
-      <div>
-        <h2>Let’s Plan for What Matters Most</h2>
-        <div class="rule"></div>
-        <p>Contact Gibbs Law Office, PLLC to schedule a confidential consultation.</p>
+  <footer id="contact" class="site-footer">
+    <div class="container">
+      <div class="row g-5 align-items-center footer-cta">
+        <div class="col-lg-5">
+          <p class="eyebrow">Contact</p>
+          <h2>Let’s Plan for What Matters Most.</h2>
+          <div class="gold-rule"></div>
+          <p>Contact Gibbs Law Office, PLLC to schedule a confidential consultation.</p>
+        </div>
+
+        <div class="col-lg-4">
+          <address class="footer-contact">
+            <p>
+              <i class="bi bi-geo-alt"></i>
+              <span>3785 Airport Road North, Suite 4<br>Naples, FL 34105</span>
+            </p>
+            <p>
+              <i class="bi bi-envelope"></i>
+              <a href="mailto:nancy@gibbsgnapleslaw.com">nancy@gibbsgnapleslaw.com</a>
+            </p>
+            <p>
+              <i class="bi bi-telephone"></i>
+              <a href="tel:2392032770">239-203-2770</a>
+            </p>
+          </address>
+        </div>
+
+        <div class="col-lg-3">
+          <a class="btn btn-outline-light w-100" href="mailto:nancy@gibbsgnapleslaw.com">Schedule Consultation</a>
+        </div>
       </div>
 
-      <address class="contact-details">
+      <div class="footer-bottom">
+        <p>© <span id="year">2025</span> Gibbs Law Office, PLLC. All Rights Reserved.</p>
         <div>
-          <span>⌖</span>
-          <span>3785 Airport Road North, Suite 4<br>Naples, FL 34105</span>
+          <a href="privacy-policy.html">Privacy Policy</a>
+          <span>|</span>
+          <a href="disclaimer.html">Disclaimer</a>
         </div>
-        <a href="mailto:nancy@gibbsgnapleslaw.com">
-          <span>✉</span>
-          nancy@gibbsgnapleslaw.com
-        </a>
-        <a href="tel:2392032770">
-          <span>☎</span>
-          239-203-2770
-        </a>
-      </address>
-
-      <a class="btn" href="mailto:nancy@gibbsgnapleslaw.com">Schedule a Consultation</a>
-    </div>
-
-    <div class="container footer">
-      <div>© 2025 Gibbs Law Office, PLLC. All Rights Reserved.</div>
-      <div class="footer-links">
-        <a href="/privacy-policy/">Privacy Policy</a>
-        <span>|</span>
-        <a href="/disclaimer/">Disclaimer</a>
       </div>
     </div>
   </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="js/site.js"></script>
 </body>
 </html>

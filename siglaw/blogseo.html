@@ -1,0 +1,660 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+
+  <title>Signature Law Blog Platform Recommendation</title>
+
+  <meta
+    name="description"
+    content="A comparison of WordPress and a custom AI-assisted publishing system for Signature Law's attorney-authored legal blog."
+  />
+
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .page-signature-law .proposal-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      align-items: start;
+    }
+
+    .page-signature-law .proposal-panel {
+      height: 100%;
+    }
+
+    .page-signature-law .option-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      color: var(--accent, #ff7a1a);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
+    .page-signature-law .option-label::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      background: currentColor;
+      border-radius: 999px;
+    }
+
+    .page-signature-law .comparison-block {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 28px;
+    }
+
+    .page-signature-law .compare-card {
+      padding: 20px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 18px;
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .page-signature-law .compare-card h3 {
+      margin: 0 0 14px;
+      font-size: 1rem;
+    }
+
+    .page-signature-law .compare-card ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .page-signature-law .compare-card li {
+      position: relative;
+      margin: 0 0 12px;
+      padding-left: 24px;
+      line-height: 1.55;
+    }
+
+    .page-signature-law .compare-card li:last-child {
+      margin-bottom: 0;
+    }
+
+    .page-signature-law .pros h3 {
+      color: #62d49b;
+    }
+
+    .page-signature-law .pros li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: #62d49b;
+      font-weight: 800;
+    }
+
+    .page-signature-law .cons h3 {
+      color: #ff9b72;
+    }
+
+    .page-signature-law .cons li::before {
+      content: "–";
+      position: absolute;
+      left: 2px;
+      color: #ff9b72;
+      font-weight: 800;
+    }
+
+    .page-signature-law .cost-card {
+      margin-top: 28px;
+      padding: 22px;
+      border: 1px solid rgba(255, 122, 26, 0.22);
+      border-radius: 20px;
+      background:
+        linear-gradient(
+          180deg,
+          rgba(255, 122, 26, 0.07),
+          rgba(255, 255, 255, 0.02)
+        );
+    }
+
+    .page-signature-law .cost-card h3 {
+      margin: 0 0 18px;
+      font-size: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .page-signature-law .cost-list {
+      margin: 0;
+    }
+
+    .page-signature-law .cost-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 13px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .page-signature-law .cost-row dt,
+    .page-signature-law .cost-row dd {
+      margin: 0;
+    }
+
+    .page-signature-law .cost-row dt {
+      color: rgba(255, 255, 255, 0.72);
+    }
+
+    .page-signature-law .cost-row dd {
+      color: #fff;
+      font-weight: 700;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .page-signature-law .cost-total {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding-top: 20px;
+      font-size: 1.12rem;
+      font-weight: 800;
+    }
+
+    .page-signature-law .cost-total strong:last-child {
+      color: var(--accent, #ff7a1a);
+      text-align: right;
+    }
+
+    .page-signature-law .bottom-line {
+      margin-top: 24px;
+      padding-top: 22px;
+      border-top: 1px solid rgba(255, 255, 255, 0.09);
+    }
+
+    .page-signature-law .bottom-line strong {
+      color: #fff;
+    }
+
+    .page-signature-law .full-panel {
+      margin-top: 24px;
+    }
+
+    .page-signature-law .seo-list {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px 24px;
+      margin: 26px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .page-signature-law .seo-list li {
+      position: relative;
+      padding: 15px 16px 15px 44px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    .page-signature-law .seo-list li::before {
+      content: "✓";
+      position: absolute;
+      left: 17px;
+      color: var(--accent, #ff7a1a);
+      font-weight: 900;
+    }
+
+    .page-signature-law .recommendation-panel {
+      position: relative;
+      overflow: hidden;
+      border-color: rgba(255, 122, 26, 0.34);
+      background:
+        radial-gradient(
+          circle at top right,
+          rgba(255, 122, 26, 0.14),
+          transparent 38%
+        ),
+        rgba(255, 255, 255, 0.025);
+    }
+
+    .page-signature-law .recommendation-panel::after {
+      content: "";
+      position: absolute;
+      top: -90px;
+      right: -90px;
+      width: 220px;
+      height: 220px;
+      border: 1px solid rgba(255, 122, 26, 0.16);
+      border-radius: 50%;
+    }
+
+    .page-signature-law .recommendation-lead {
+      max-width: 900px;
+      font-size: clamp(1.2rem, 2vw, 1.55rem);
+      line-height: 1.55;
+      color: #fff;
+    }
+
+    .page-signature-law .recommendation-points {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin: 28px 0;
+    }
+
+    .page-signature-law .recommendation-point {
+      padding: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.09);
+      border-radius: 16px;
+      background: rgba(0, 0, 0, 0.16);
+    }
+
+    .page-signature-law .recommendation-point strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--accent, #ff7a1a);
+      font-size: 1.15rem;
+    }
+
+    .page-signature-law .closing-line {
+      margin: 28px 0 0;
+      color: #fff;
+      font-size: 1.15rem;
+      font-weight: 750;
+    }
+
+    @media (max-width: 980px) {
+      .page-signature-law .proposal-grid,
+      .page-signature-law .recommendation-points {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 700px) {
+      .page-signature-law .comparison-block,
+      .page-signature-law .seo-list {
+        grid-template-columns: 1fr;
+      }
+
+      .page-signature-law .cost-row,
+      .page-signature-law .cost-total {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 5px;
+      }
+
+      .page-signature-law .cost-row dd,
+      .page-signature-law .cost-total strong:last-child {
+        text-align: left;
+        white-space: normal;
+      }
+    }
+  </style>
+</head>
+
+<body class="page-signature-law">
+
+  <canvas class="bg-canvas" id="network" aria-hidden="true"></canvas>
+
+  <div id="nav-placeholder"></div>
+
+  <main>
+
+    <section class="hero">
+      <div class="wrap">
+
+        <div class="banner-card">
+          <img
+            class="banner"
+            src="siglawroom.png"
+            alt="Signature Law legal content and SEO strategy presentation"
+            loading="eager"
+          />
+        </div>
+
+        <h1>Signature Law Blog Platform Recommendation</h1>
+
+        <p class="subhead">
+          Prepared for: Partners, Sumer Blackner
+        </p>
+
+        <p class="subhead">
+          Two practical paths for publishing attorney-written legal content,
+          improving search visibility, and keeping the machinery out of the way.
+        </p>
+
+        <div class="fire-underline" aria-hidden="true"></div>
+
+      </div>
+    </section>
+
+
+    <section class="content">
+      <div class="wrap">
+
+        <div class="proposal-grid">
+
+          <!-- OPTION A -->
+          <section class="panel proposal-panel">
+            <div class="panel-inner">
+
+              <p class="option-label">Option A</p>
+
+              <h2 class="h2">WordPress</h2>
+
+              <p class="p">
+                WordPress is proven, flexible, and widely used. It can support
+                a strong legal blog and handle every important SEO requirement.
+              </p>
+
+              <p class="p">
+                It also comes with ongoing care. Plugins, updates, backups,
+                security, and compatibility issues do not manage themselves.
+              </p>
+
+              <div class="comparison-block">
+
+                <div class="compare-card pros">
+                  <h3>Pros</h3>
+
+                  <ul>
+                    <li>Established and widely supported</li>
+                    <li>Strong SEO capabilities</li>
+                    <li>Familiar editor for many users</li>
+                    <li>Easy to add features later</li>
+                    <li>Large developer community</li>
+                    <li>Many ready-made integrations</li>
+                  </ul>
+                </div>
+
+                <div class="compare-card cons">
+                  <h3>Cons</h3>
+
+                  <ul>
+                    <li>Regular software and plugin updates</li>
+                    <li>Plugins can conflict or break</li>
+                    <li>Security and backups need attention</li>
+                    <li>More moving parts than the firm needs</li>
+                    <li>Ongoing maintenance cost</li>
+                    <li>Dependence on third-party plugins</li>
+                  </ul>
+                </div>
+
+              </div>
+
+              <div class="cost-card">
+
+                <h3>12-Month Total Cost of Ownership</h3>
+
+                <dl class="cost-list">
+
+                  <div class="cost-row">
+                    <dt>Initial setup and website integration</dt>
+                    <dd>$3,000–$5,000</dd>
+                  </div>
+
+                  <div class="cost-row">
+                    <dt>Premium plugins and licenses</dt>
+                    <dd>$300–$700</dd>
+                  </div>
+
+                  <div class="cost-row">
+                    <dt>Maintenance, updates, backups and security</dt>
+                    <dd>$1,200–$2,400</dd>
+                  </div>
+
+                  <div class="cost-row">
+                    <dt>Hosting impact</dt>
+                    <dd>$100–$300</dd>
+                  </div>
+
+                </dl>
+
+                <div class="cost-total">
+                  <strong>12-Month Total</strong>
+                  <strong>$4,600–$8,400</strong>
+                </div>
+
+              </div>
+
+              <p class="p bottom-line">
+                <strong>Bottom line:</strong> WordPress works well. It also
+                creates permanent housekeeping. For four posts per month,
+                it may be more platform than Signature Law needs.
+              </p>
+
+            </div>
+          </section>
+
+
+          <!-- OPTION B -->
+          <section class="panel proposal-panel">
+            <div class="panel-inner">
+
+              <p class="option-label">Option B</p>
+
+              <h2 class="h2">Custom AI-Assisted Publishing System</h2>
+
+              <p class="p">
+                Instead of adding a separate CMS, we build the exact publishing
+                system Signature Law needs.
+              </p>
+
+              <p class="p">
+                The attorneys write the articles. The system handles the
+                technical work around them: SEO titles, clean page addresses,
+                article structure, internal links, sitemap updates, social
+                sharing details, archives, and publishing.
+              </p>
+
+              <div class="comparison-block">
+
+                <div class="compare-card pros">
+                  <h3>Pros</h3>
+
+                  <ul>
+                    <li>Built specifically for Signature Law</li>
+                    <li>No WordPress maintenance</li>
+                    <li>No plugin licensing</li>
+                    <li>Faster, cleaner pages</li>
+                    <li>Simple attorney workflow</li>
+                    <li>AI assists while attorneys remain the authors</li>
+                    <li>Complete control over future improvements</li>
+                  </ul>
+                </div>
+
+                <div class="compare-card cons">
+                  <h3>Cons</h3>
+
+                  <ul>
+                    <li>Higher initial build cost</li>
+                    <li>New features are added intentionally</li>
+                    <li>Custom changes come through our team</li>
+                    <li>Less off-the-shelf flexibility</li>
+                    <li>Not meant to become a general-purpose CMS</li>
+                  </ul>
+                </div>
+
+              </div>
+
+              <div class="cost-card">
+
+                <h3>12-Month Total Cost of Ownership</h3>
+
+                <dl class="cost-list">
+
+                  <div class="cost-row">
+                    <dt>Custom publishing system</dt>
+                    <dd>$3,500–$4,000</dd>
+                  </div>
+
+                  <div class="cost-row">
+                    <dt>AI-assisted SEO features</dt>
+                    <dd>Included</dd>
+                  </div>
+
+                  <div class="cost-row">
+                    <dt>Maintenance and support</dt>
+                    <dd>Included</dd>
+                  </div>
+
+                  <div class="cost-row">
+                    <dt>Additional licensing</dt>
+                    <dd>$0</dd>
+                  </div>
+
+                </dl>
+
+                <div class="cost-total">
+                  <strong>12-Month Total</strong>
+                  <strong>$3,500–$4,000</strong>
+                </div>
+
+              </div>
+
+              <p class="p bottom-line">
+                <strong>Bottom line:</strong> Instead of buying a Swiss Army
+                knife and using one blade, we build the tool Signature Law
+                will actually use.
+              </p>
+
+            </div>
+          </section>
+
+        </div>
+
+
+        <!-- SEO -->
+        <section class="panel full-panel">
+          <div class="panel-inner">
+
+            <p class="kicker">Search visibility</p>
+
+            <h2 class="h2">SEO considerations</h2>
+
+            <p class="p">
+              WordPress does not receive a ranking bonus from Google.
+            </p>
+
+            <p class="p">
+              Google cares about the quality of the article, the authority of
+              the author, the speed of the page, the structure of the site,
+              and whether the content is easy to find and understand.
+            </p>
+
+            <p class="p">
+              Both options can provide every important SEO feature:
+            </p>
+
+            <ul class="seo-list">
+              <li>Search-friendly page addresses</li>
+              <li>Automatic XML sitemaps</li>
+              <li>Article and FAQ structure</li>
+              <li>Attorney author pages</li>
+              <li>Canonical page references</li>
+              <li>Internal links to practice areas</li>
+              <li>Mobile-friendly layouts</li>
+              <li>Fast page loads</li>
+              <li>Clean, search-friendly HTML</li>
+              <li>Social sharing previews</li>
+            </ul>
+
+            <p class="p" style="margin-top: 28px;">
+              The custom system may also have a practical SEO advantage. It can
+              be built around Signature Law's exact practice areas, attorneys,
+              locations, and internal linking strategy from day one.
+            </p>
+
+            <p class="p">
+              That means less clutter, fewer technical dependencies, and a
+              cleaner path between each article and the legal service page it
+              supports.
+            </p>
+
+            <p class="p">
+              The biggest SEO advantage will not come from WordPress or custom
+              software. It will come from attorneys consistently publishing
+              useful, accurate, authoritative legal content.
+            </p>
+
+          </div>
+        </section>
+
+
+        <!-- RECOMMENDATION -->
+        <section class="panel full-panel recommendation-panel">
+          <div class="panel-inner">
+
+            <p class="kicker">Recommendation</p>
+
+            <h2 class="h2">
+              Build the custom AI-assisted publishing system.
+            </h2>
+
+            <p class="recommendation-lead">
+              For approximately 48 attorney-written articles each year, the
+              custom system gives Signature Law the cleanest balance of SEO
+              performance, cost control, simplicity, and long-term ownership.
+            </p>
+
+            <div class="recommendation-points">
+
+              <div class="recommendation-point">
+                <strong>Lower first-year cost</strong>
+                $3,500–$4,000, with maintenance and support included.
+              </div>
+
+              <div class="recommendation-point">
+                <strong>No SEO sacrifice</strong>
+                Every meaningful search feature can be built directly into
+                the platform.
+              </div>
+
+              <div class="recommendation-point">
+                <strong>Less machinery</strong>
+                No plugin stack, surprise updates, recurring licenses, or
+                permanent housekeeping.
+              </div>
+
+            </div>
+
+            <p class="p">
+              The custom system has no meaningful SEO disadvantage compared
+              with WordPress. In several areas, it may be stronger because the
+              platform can be tailored to Signature Law's content, attorneys,
+              practice areas, and internal linking structure instead of being
+              adapted through plugins.
+            </p>
+
+            <p class="p">
+              The attorneys remain the experts and authors. The system makes
+              sure their work is presented clearly, loads quickly, connects
+              to the right practice pages, and follows current SEO standards.
+            </p>
+
+            <p class="p">
+              This keeps the firm's investment focused on useful legal content,
+              stronger visibility, and new clients—not on maintaining the
+              software behind the blog.
+            </p>
+
+            <p class="closing-line">
+              The best CMS is the one nobody has to think about.
+            </p>
+
+          </div>
+        </section>
+
+      </div>
+    </section>
+
+  </main>
+
+  <div id="footer-placeholder"></div>
+
+  <script src="site.js"></script>
+</body>
+</html>

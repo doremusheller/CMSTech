@@ -66,7 +66,6 @@
     .logo-banner {
       width: 100%;
       max-width: 900px;
-      height: auto;
       display: block;
       margin-bottom: 32px;
       filter:
@@ -88,11 +87,9 @@
 
     .video-wrap video {
       width: 100%;
-      height: auto;
-      display: block;
       aspect-ratio: 16 / 9;
       object-fit: cover;
-      background: #000;
+      display: block;
     }
 
     .video-caption {
@@ -101,422 +98,334 @@
       bottom: 28px;
       transform: translateX(-50%);
       width: calc(100% - 56px);
-      z-index: 2;
-      color: var(--white);
-      font-family: "Brush Script MT", "Lucida Handwriting", "Segoe Script", cursive;
-      font-size: clamp(1.35rem, 3vw, 2.7rem);
-      font-style: italic;
-      line-height: 1.15;
+      color: white;
       text-align: center;
-      text-shadow:
-        0 3px 10px rgba(0,0,0,0.9),
-        0 0 24px rgba(0,0,0,0.75);
-      pointer-events: none;
+      font-family: "Brush Script MT","Segoe Script",cursive;
+      font-size: clamp(1.4rem,3vw,2.7rem);
+      text-shadow:0 3px 10px rgba(0,0,0,.9);
     }
 
-    .energy-line {
-      height: 3px;
-      margin: 34px 0 18px;
-      background: linear-gradient(90deg, var(--orange), var(--gold), transparent);
-      box-shadow: 0 0 22px rgba(255,122,0,0.75);
+    .energy-line{
+      height:3px;
+      margin:34px 0 18px;
+      background:linear-gradient(90deg,var(--orange),var(--gold),transparent);
+      box-shadow:0 0 22px rgba(255,122,0,.75);
     }
 
-    .tagline {
-      color: rgba(255,255,255,0.8);
-      font-size: 1.15rem;
-      letter-spacing: 0.04em;
+    .tagline{
+      color:rgba(255,255,255,.8);
+      font-size:1.15rem;
+      letter-spacing:.04em;
     }
 
-    .content {
-      padding: 48px 56px 56px;
+    .content{
+      padding:48px 56px 56px;
     }
 
-    .week-of {
-      color: var(--gold);
-      font-size: 0.95rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      margin-bottom: 18px;
+    .week-of{
+      color:var(--gold);
+      font-size:.95rem;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.22em;
+      margin-bottom:18px;
     }
 
-    h1 {
-      max-width: 820px;
-      margin: 0 0 34px;
-      color: var(--white);
-      font-size: clamp(2.5rem, 5vw, 4.4rem);
-      line-height: 0.96;
-      letter-spacing: -0.06em;
+    h1{
+      margin:0 0 34px;
+      color:white;
+      font-size:clamp(2.5rem,5vw,4.4rem);
+      line-height:.96;
+      letter-spacing:-.06em;
     }
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
+    .grid{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:24px;
     }
 
-    .card {
-      padding: 28px;
-      border: 1px solid var(--panel-border);
-      border-radius: 26px;
-      background: var(--panel);
-      box-shadow: 0 0 42px rgba(255,122,0,0.08);
+    .card,.wide-card{
+      border:1px solid rgba(255,140,0,.24);
+      border-radius:28px;
+      padding:30px;
+      background:rgba(255,255,255,.045);
+      box-shadow:0 0 42px rgba(255,122,0,.08);
     }
 
-    .card h2 {
-      margin: 0 0 14px;
-      color: var(--gold);
-      font-size: 1.35rem;
-      line-height: 1.15;
-    }
-
-    ul {
-      margin: 0;
-      padding-left: 20px;
-    }
-
-    li {
-      margin-bottom: 10px;
-    }
-
-    strong {
-      color: var(--white);
-    }
-
-    .wide-card {
-      margin-top: 24px;
-      padding: 32px;
-      border: 1px solid rgba(255,140,0,0.28);
-      border-radius: 30px;
-      background: linear-gradient(
+    .wide-card{
+      margin-top:24px;
+      background:linear-gradient(
         135deg,
-        rgba(255,122,0,0.16),
-        rgba(255,60,0,0.07)
+        rgba(255,122,0,.16),
+        rgba(255,60,0,.07)
       );
     }
 
-    .wide-card h2 {
-      margin: 0 0 10px;
-      color: var(--white);
-      font-size: 1.55rem;
-    }
-
-    .wide-card p {
-      max-width: 860px;
-      margin: 0;
-      color: var(--text);
-      font-size: 1.08rem;
-    }
-
-    .tip-card {
+    .tip-card{
       background:
-        linear-gradient(135deg, rgba(255,179,71,0.18), rgba(255,122,0,0.08)),
-        rgba(255,255,255,0.04);
+      linear-gradient(135deg,rgba(255,179,71,.18),rgba(255,122,0,.08)),
+      rgba(255,255,255,.04);
     }
 
-    .tip-label {
-      color: var(--gold);
-      font-size: 0.8rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-      margin-bottom: 10px;
+    .tip-label{
+      color:var(--gold);
+      font-size:.8rem;
+      font-weight:900;
+      text-transform:uppercase;
+      letter-spacing:.18em;
+      margin-bottom:10px;
     }
 
-    .footer {
-      margin-top: 44px;
-      padding-top: 24px;
-      border-top: 1px solid rgba(255,255,255,0.12);
-      display: flex;
-      justify-content: space-between;
-      gap: 24px;
-      flex-wrap: wrap;
-      color: var(--muted);
+    .footer{
+      margin-top:44px;
+      padding-top:24px;
+      border-top:1px solid rgba(255,255,255,.12);
+      display:flex;
+      justify-content:space-between;
+      flex-wrap:wrap;
+      color:var(--muted);
     }
 
-    .footer strong {
-      color: var(--white);
-    }
-
-    .footer-label {
-      color: var(--gold);
-      font-size: 0.8rem;
-      font-weight: 900;
-      text-transform: uppercase;
-      letter-spacing: 0.18em;
-    }
-
-    @media (max-width: 900px) {
-      .page {
-        padding: 18px;
-      }
-
-      .header,
-      .content {
-        padding: 32px 24px;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .tagline {
-        font-size: 0.95rem;
-      }
-
-      .video-wrap {
-        border-radius: 22px;
-      }
-
-      .video-wrap video {
-        aspect-ratio: 16 / 9;
-      }
-
-      .video-caption {
-        bottom: 20px;
-        width: calc(100% - 40px);
-      }
-
-      h1 {
-        font-size: clamp(2.2rem, 10vw, 3.8rem);
-      }
-    }
-
-    @media (max-width: 640px) {
-      .brochure {
-        border-radius: 22px;
-      }
-
-      .header {
-        padding: 24px 18px 28px;
-      }
-
-      .content {
-        padding: 28px 18px 34px;
-      }
-
-      .logo-banner {
-        max-width: 100%;
-        margin-bottom: 24px;
-      }
-
-      .week-of {
-        font-size: 0.78rem;
-        letter-spacing: 0.16em;
-      }
-
-      .card {
-        padding: 22px;
-        border-radius: 20px;
-      }
-
-      .wide-card {
-        padding: 24px;
-        border-radius: 22px;
-      }
-
-      .video-caption {
-        bottom: 14px;
-        font-size: clamp(1.05rem, 6vw, 1.75rem);
-      }
-
-      .footer {
-        flex-direction: column;
-      }
+    @media(max-width:900px){
+      .grid{grid-template-columns:1fr;}
+      .page{padding:18px;}
+      .header,.content{padding:28px 22px;}
     }
   </style>
 </head>
 
 <body>
-  <main class="page">
-    <article class="brochure">
-      <header class="header">
-        <img
-          src="cmslogo3.png"
-          alt="CMS Technical Optimization Logo"
-          class="logo-banner"
-        />
 
-        <div class="energy-line"></div>
+<main class="page">
+<article class="brochure">
 
-        <div class="tagline">
-          Artificial Intelligence • Infrastructure Design • Intelligent Teams
-        </div>
-      </header>
+<header class="header">
 
-      <section class="content">
-        <div class="week-of">
-          June 15, 2026 – Present
-        </div>
+<img src="cmslogo3.png"
+     class="logo-banner"
+     alt="CMS Technical Optimization">
 
-        <h1>
-          Weekly Update for Signature Law
-        </h1>
+<div class="energy-line"></div>
 
-        <section class="wide-card">
-          <h2>Team Moment</h2>
+<div class="tagline">
+Artificial Intelligence • Infrastructure Design • Intelligent Teams
+</div>
 
-          <div class="video-wrap" style="margin-top:20px;">
-            <video
-              autoplay
-              muted
-              loop
-              playsinline
-              controls
-              preload="auto"
-              poster="cmslogo3.png"
-            >
-              <source src="donvacay.MP4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+</header>
 
-            <div class="video-caption">
-              The Don isn't on the run. He's on vacation.
-            </div>
-          </div>
+<section class="content">
 
-          <p style="margin-top:18px;">
-            The Don isn't on the run. He's on vacation in brilliant disguises!
-          </p>
-        </section>
+<div class="week-of">
+July 13, 2026 – Present
+</div>
 
-        <div class="grid" style="margin-top:24px;">
-          <section class="card">
-            <h2>Website Development</h2>
+<h1>Weekly Update for Signature Law</h1>
 
-            <ul>
-              <li>
-                Completed development and rollout of the new Signature Law website.
-              </li>
-              <li>
-                Performed base revisions and refinements following launch.
-              </li>
-              <li>
-                Continued improving the site foundation for maintainability, clarity, and future content expansion.
-              </li>
-              <li>
-                Planning blog integration with Sumer this week to support ongoing content publishing and search visibility.
-              </li>
-            </ul>
-          </section>
+<section class="wide-card">
 
-          <section class="card">
-            <h2>Security & Infrastructure</h2>
+<h2>Team Moment</h2>
 
-            <ul>
-              <li>
-                Continued ongoing threat protection and monitoring across the firm's web and domain infrastructure.
-              </li>
-              <li>
-                Improved the firm's domain security score by <strong>6 points</strong>.
-              </li>
-              <li>
-                Current domain security score is now <strong>89% of possible</strong>.
-              </li>
-              <li>
-                This score is comfortably above the recommended level for a medium-sized law firm.
-              </li>
-            </ul>
-          </section>
-        </div>
+<div class="video-wrap" style="margin-top:20px;">
 
-        <section class="wide-card">
-          <h2>Strategic Brief</h2>
+<video autoplay muted loop playsinline controls preload="auto" poster="cmslogo3.png">
+<source src="squidvid.mp4" type="video/mp4">
+</video>
 
-          <p>
-            Since June 15, the primary focus has been completing and rolling out the firm's new website, making base post-launch revisions, and continuing security work around the firm's domain and web infrastructure.
-          </p>
+<div class="video-caption">
+A special thank-you from the Don.
+</div>
 
-          <p style="margin-top:16px;">
-            The website is now in a stronger operational position, with blog integration planned with Sumer this week. That integration will support easier publishing, clearer content organization, and a better long-term foundation for search visibility and thought leadership.
-          </p>
+</div>
 
-          <p style="margin-top:16px;">
-            On the security side, the firm's domain security posture continues to improve. The domain security score increased by <strong>6 points</strong> to <strong>89% of possible</strong>, placing Signature Law comfortably above the recommended benchmark for a medium-sized law firm.
-          </p>
-        </section>
+<p style="margin-top:18px;">
+Don del Mare extends his thanks—and perhaps an offer you can't refuse.
+</p>
 
-        <section class="wide-card tip-card">
-          <div class="tip-label">
-            Chief Digital Officer Tip of the Week
-          </div>
+</section>
 
-          <h2>Memory Costs Are Moving Fast</h2>
+<div class="grid" style="margin-top:24px;">
 
-          <p>
-            The cost of memory-heavy PCs has gone mad due to a combination of global supply disruption and aggressive memory consumption by AI data centers. As AI farms continue buying up high-performance memory, laptop and desktop prices are likely to rise in the coming months.
-          </p>
+<section class="card">
 
-          <p style="margin-top:16px;">
-            <strong>Recommendation:</strong>
-            If laptop or workstation orders are needed this year, earlier is better. Waiting may mean higher prices, weaker availability, or both.
-          </p>
-        </section>
+<h2>Website Development</h2>
 
-        <section class="wide-card">
-          <h2>Next Opportunities</h2>
+<ul>
 
-          <p>
-            Next meaningful opportunities: a real Signature Law welcome video, and/or automation. CMS Technical Optimization can evaluate practical ways to reduce repetitive administrative work, improve follow-up consistency, and create smoother handoffs between intake, client communication, and matter management. Let's discuss?
-          </p>
+<li>Continued R&amp;D on Sumer's blog integration and long-term legal content SEO strategy.</li>
 
-          <p style="margin-top:16px;">
-            Potential automation targets include <strong>Clio workflows</strong>, customer intake processes, lead routing, follow-up reminders, document collection, and internal task creation.
-          </p>
-        </section>
+<li>Expanded evaluation of <strong>Build with AI vs. WordPress</strong> architecture as documented in <strong>blogseo.html</strong>.</li>
 
-        <div class="grid" style="margin-top:24px;">
-          <section class="card">
-            <h2>Completed</h2>
+<li>Melissa's profile page now features a rotating client testimonial carousel.</li>
 
-            <ul>
-              <li>
-                New website completed and rolled out.
-              </li>
-              <li>
-                Base revisions completed after launch.
-              </li>
-              <li>
-                Ongoing threat protection maintained.
-              </li>
-              <li>
-                Domain security score improved to <strong>89%</strong>.
-              </li>
-            </ul>
-          </section>
+<li>Jim has begun supplying client testimonial blurbs. Additional testimonials can be added as they become available.</li>
 
-          <section class="card">
-            <h2>Coming Next</h2>
+</ul>
 
-            <ul>
-              <li>
-                Coordinate blog integration with Sumer.
-              </li>
-              <li>
-                Continue monitoring domain and web security posture.
-              </li>
-              <li>
-                Identify practical automation opportunities.
-              </li>
-              <li>
-                Review Clio and intake workflows for potential efficiency gains.
-              </li>
-            </ul>
-          </section>
-        </div>
+</section>
 
-        <footer class="footer">
-          <div>
-            <strong>CMS Technical Optimization</strong><br />
-            Performance • Security • Infrastructure • Deployment
-          </div>
+<section class="card">
 
-          <div class="footer-label">
-            Strategic Weekly Brief
-          </div>
-        </footer>
-      </section>
-    </article>
-  </main>
+<h2>Security &amp; Infrastructure</h2>
+
+<ul>
+
+<li>Continued monitoring and protection of Signature Law web infrastructure.</li>
+
+<li>Research continues into emerging infrastructure and AI deployment strategies.</li>
+
+<li>Security posture remains strong while infrastructure planning continues.</li>
+
+</ul>
+
+</section>
+
+</div>
+<section class="wide-card">
+
+<h2>Strategic Brief</h2>
+
+<p>
+Development efforts this week focused on long-term content strategy, AI-assisted publishing workflows, and internal tooling. Research continued into Sumer's legal content integration strategy with an emphasis on creating a scalable publishing system that strengthens search visibility while reducing editorial overhead.
+</p>
+
+<p style="margin-top:16px;">
+Additional investigation continued into the long-term advantages of AI-generated website architecture versus traditional WordPress deployments, using the concepts documented in <strong>blogseo.html</strong> as the basis for evaluation.
+</p>
+
+<p style="margin-top:16px;">
+Development also began on an internal expense tracking prototype. While still in the early stages, the project may evolve into a practical solution for Signature Law should future operational needs warrant it.
+</p>
+
+<p style="margin-top:16px;">
+CMS Technical Optimization also completed a full systems and infrastructure upgrade, significantly improving development performance, AI workflow throughput, and overall responsiveness.
+</p>
+
+</section>
+
+<section class="wide-card tip-card">
+
+<div class="tip-label">
+Chief Digital Officer Tip of the Week
+</div>
+
+<h2>Hardware Prices Continue to Rise</h2>
+
+<p>
+
+The rapid expansion of AI infrastructure continues to place pressure on high-performance computer components. Shortages have expanded beyond memory into newer high-speed solid-state drives, resulting in increasing workstation and laptop costs across the industry.
+
+</p>
+
+<p style="margin-top:16px;">
+
+<strong>Recommendation:</strong>
+
+If additional laptops, workstations, or storage upgrades are anticipated later this year, earlier procurement may reduce both cost and availability risks.
+
+</p>
+
+</section>
+
+<section class="wide-card">
+
+<h2>Internal Development</h2>
+
+<p>
+
+An internal expense tracking system prototype is currently under development. Early concepts are focused on simplifying operational expense reporting and creating a flexible platform that could potentially be adapted for Signature Law if desired.
+
+</p>
+
+</section>
+
+<section class="wide-card">
+
+<h2>CMS Technical Optimization Infrastructure</h2>
+
+<p>
+
+A comprehensive systems upgrade has been completed across the CMSTech.ai development environment, improving rendering speed, AI workflow performance, development responsiveness, and infrastructure reliability.
+
+</p>
+
+<p style="margin-top:16px;">
+
+Official engineering assessment:
+
+<strong>We squid faster now.</strong>
+
+</p>
+
+</section>
+
+<div class="grid" style="margin-top:24px;">
+
+<section class="card">
+
+<h2>Completed</h2>
+
+<ul>
+
+<li>Sumer legal content SEO research continued.</li>
+
+<li>AI vs. WordPress architectural evaluation expanded.</li>
+
+<li>Melissa testimonial carousel implemented.</li>
+
+<li>Expense tracking prototype initiated.</li>
+
+<li>CMSTech.ai infrastructure upgrade completed.</li>
+
+</ul>
+
+</section>
+
+<section class="card">
+
+<h2>Coming Next</h2>
+
+<ul>
+
+<li>Continue Build with AI vs. WordPress research.</li>
+
+<li>Advance the expense tracking prototype.</li>
+
+<li>Continue collecting client testimonials.</li>
+
+<li>Coordinate Sumer publishing workflow implementation.</li>
+
+<li>Evaluate future automation opportunities.</li>
+
+</ul>
+
+</section>
+
+</div>
+<footer class="footer">
+
+<div>
+
+<strong>CMS Technical Optimization</strong><br>
+
+Performance • Security • Infrastructure • Deployment
+
+</div>
+
+<div class="footer-label">
+
+Strategic Weekly Brief
+
+</div>
+
+</footer>
+
+</section>
+
+</article>
+
+</main>
+
 </body>
+
 </html>

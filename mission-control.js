@@ -90,7 +90,7 @@
     style.textContent = ".chart.connected:after{display:none}";
     document.head.appendChild(style);
     graphClient = new msal.PublicClientApplication({
-      auth:{clientId:CLIENT_ID,authority:"https://login.microsoftonline.com/" + TENANT_ID,redirectUri:window.location.origin + "/mission-control.html"},
+      auth:{clientId:CLIENT_ID,authority:"https://login.microsoftonline.com/" + TENANT_ID,redirectUri:"https://cmstech.ai/mission-control.html"},
       cache:{cacheLocation:"sessionStorage"}
     });
     await graphClient.initialize();

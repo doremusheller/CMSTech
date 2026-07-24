@@ -11,7 +11,13 @@
   let records = [];
   let graphClient;
 
-  function receiptUrl(formula, value) { const match = String(formula || "").match(/HYPERLINK\\(\\s*"([^"]+)"/i); const candidate = match ? match[1].replace(/""/g, "\\\"") : String(value || "").trim(); return /^https?:\\/\\//i.test(candidate) ? candidate : ""; }\n\n  function parse(values, formulas) {
+  function receiptUrl(formula, value) {
+    const match = String(formula || "").match(/HYPERLINK\(\s*"([^"]+)"/i);
+    const candidate = match ? match[1].replace(/""/g, '"') : String(value || "").trim();
+    return /^https?:\/\//i.test(candidate) ? candidate : "";
+  }
+
+  function parse(values, formulas) {
     const [headers, ...rows] = values || [];
     if (!headers) throw new Error("The CMSLedger workbook is empty.");
     const index = label => headers.findIndex(header => String(header ?? "").trim().toLowerCase() === label.toLowerCase());

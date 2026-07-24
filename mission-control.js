@@ -71,8 +71,6 @@
     $("clientFilter").innerHTML = '<option value="">All clients</option>' + clients.map(client => '<option value="' + esc(client) + '">' + esc(client) + '</option>').join("");
     ["clientFilter","expenseSearch","resetButton"].forEach(id => $(id).disabled = false);
     document.querySelector(".chart").classList.add("connected");
-    const rail = document.querySelector(".clients");
-    rail.innerHTML = clients.map(client => '<div class="client">' + esc(client) + '<small>Ledger client</small></div>').join("") || '<div class="client">No client data<small>Secure source</small></div>';
     $("signInButton").disabled = false;
     $("signInButton").textContent = "Refresh private ledger";
     $("signInButton").onclick = () => fetchLedger(account).catch(showError);

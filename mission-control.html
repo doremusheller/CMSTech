@@ -27,25 +27,25 @@
     </section>
     <section class="auth">
       <div><b>Secure Microsoft 365 data connection</b><br>Mission Control is built; sign-in will load the private workbook after Entra registration is connected.</div>
-      <button type="button" disabled>Sign in with Microsoft</button>
+      <button type="button" id="signInButton">Sign in with Microsoft</button>
     </section>
     <section class="controls">
-      <div class="field"><label>Client</label><select disabled><option>Available after sign-in</option></select></div>
-      <div class="field"><label>Find an expense</label><input disabled placeholder="Vendor, category, or client"></div>
-      <button class="reset" type="button" disabled>Reset view</button>
+      <div class="field"><label>Client</label><select id="clientFilter" disabled><option value="">All clients</option></select></div>
+      <div class="field"><label>Find an expense</label><input id="expenseSearch" disabled placeholder="Vendor, category, or client"></div>
+      <button class="reset" id="resetButton" type="button" disabled>Reset view</button>
     </section>
     <section class="kpis">
-      <article class="kpi"><label>Visible spend</label><strong>—</strong><p>Loads from the private ledger</p></article>
-      <article class="kpi"><label>Deductible candidates</label><strong>—</strong><p>Confirmed business classification</p></article>
-      <article class="kpi"><label>Receipt certainty</label><strong>—</strong><p>Average extraction confidence</p></article>
-      <article class="kpi review"><label>Needs review</label><strong>—</strong><p>Receipt or classification signal</p></article>
+      <article class="kpi"><label>Visible spend</label><strong id="visibleSpend">—</strong><p id="visibleNote">Sign in to load your ledger</p></article>
+      <article class="kpi"><label>Deductible candidates</label><strong id="deductible">—</strong><p>Confirmed business classification</p></article>
+      <article class="kpi"><label>Receipt certainty</label><strong id="receiptCertainty">—</strong><p>Average extraction confidence</p></article>
+      <article class="kpi review"><label>Needs review</label><strong id="needsReview">—</strong><p>Receipt or classification signal</p></article>
     </section>
     <section class="grid">
-      <article class="block"><div class="head"><div><p class="kicker">Spend velocity</p><h2 class="title">Live ledger curve</h2></div><span class="tag">Secure source</span></div><div class="chart"></div><div class="axis"><span>First record</span><span>Current total</span></div><div class="empty-list"><div class="empty-row"><span>Ledger record</span><span class="ghost"></span></div><div class="empty-row"><span>Ledger record</span><span class="ghost"></span></div><div class="empty-row"><span>Ledger record</span><span class="ghost"></span></div></div></article>
+      <article class="block"><div class="head"><div><p class="kicker">Spend velocity</p><h2 class="title">Live ledger curve</h2></div><span class="tag">Secure source</span></div><div class="chart"><svg id="curve" viewBox="0 0 1000 250" preserveAspectRatio="none" aria-hidden="true"></svg></div><div class="axis"><span>First record</span><span>Current total</span></div><div class="empty-list"><div class="empty-row"><span>Ledger record</span><span class="ghost"></span></div><div class="empty-row"><span>Ledger record</span><span class="ghost"></span></div><div class="empty-row"><span>Ledger record</span><span class="ghost"></span></div></div></article>
       <aside class="block"><div class="head"><div><p class="kicker">Classification</p><h2 class="title">Spend by category</h2></div></div><div class="categories"><div class="category"><span>Hardware</span><div class="bar"><span></span></div><b>—</b></div><div class="category"><span>Software</span><div class="bar"><span></span></div><b>—</b></div><div class="category"><span>Services</span><div class="bar"><span></span></div><b>—</b></div></div></aside>
     </section>
     <section class="client-zone"><header><div><p class="kicker">Client network</p><h2>Working organizations</h2></div><p>Linked client marks load after sign-in</p></header><div class="clients"><div class="client">Client identity<small>Secure source</small></div><div class="client">Client identity<small>Secure source</small></div><div class="client">Client identity<small>Secure source</small></div><div class="client">Client identity<small>Secure source</small></div></div></section>
     <footer class="foot">CMS Tech Mission Control · CMSLedger · Microsoft 365 protected data</footer>
   </main>
-</body>
+<script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@3.28.1/lib/msal-browser.min.js"></script><script src="mission-control.js"></script></body>
 </html>

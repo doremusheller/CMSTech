@@ -2,7 +2,7 @@
   const CLIENT_ID = "4ee3e5d2-4598-4656-8e20-358dc63226da";
   const TENANT_ID = "04bfc180-5650-4f0b-9a97-22fc45c33b9c";
   const WORKBOOK_ITEM_ID = "015GYJNAHEDZFFW2NWT5CZ6D5HMWSBNW7W";
-  const SCOPES = ["User.Read", "Files.ReadWrite"];
+  const SCOPES = ["User.Read", "Files.ReadWrite", "Mail.Send"];
   const $ = id => document.getElementById(id);
   const esc = value => String(value ?? "").replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
   const money = value => new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(value || 0);
@@ -241,23 +241,40 @@
     return (range.columnIndex || 0) + (range.columnCount || headers.length) + 1;
   }
 
+  async function sendReturnMessage(account, record, recipient) {
+    const token = await graphClient.acquireTokenSilent({account,scopes:SCOPES});
+    const subject = "CMS Tech receipt needs correction — " + record.vendor;
+    const content = "Hello,\n\nThe receipt submitted for " + record.vendor + " (" + money(record.amount) + (record.date ? ", dated " + record.date : "") + ") needs correction or clarification before it can be entered into CMSLedger. Please review and resend the corrected receipt.\n\nThank you,\nCMS Tech";
+    const response = await fetch("https://graph.microsoft.com/v1.0/me/sendMail",{method:"POST",headers:{Authorization:"Bearer " + token.accessToken,"Content-Type":"application/json"},body:JSON.stringify({message:{subject,body:{contentType:"Text",content},toRecipients:[{emailAddress:{address:recipient}}]},saveToSentItems:true})});
+    if (!response.ok) throw new Error("Microsoft Graph returned " + response.status);
+  }
+
   async function decideReview(status) {
     const id = Number($("expenseModal").dataset.expenseId);
     const record = records.find(item => item.id === id);
     const account = graphClient.getActiveAccount() || graphClient.getAllAccounts()[0];
     if (!record || !account) return;
     const state = $("reviewState");
+    const rejecting = status.startsWith("Rejected");
+    const recipient = $("returnEmail").value.trim();
+    if (rejecting && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipient)) {
+      state.textContent = "Enter the sender's email address to send the return notice.";
+      $("returnEmail").focus();
+      return;
+    }
     $("reviewApprove").disabled = true; $("reviewDeny").disabled = true;
-    state.textContent = "Saving review decision…";
+    state.textContent = rejecting ? "Sending return notice…" : "Approving and entering receipt…";
     try {
+      if (rejecting) await sendReturnMessage(account, record, recipient);
       const column = await ensureReviewColumn(account);
       await graphRequest(account, "worksheets/Expenses/range(address='" + excelColumn(column) + record.sheetRow + "')", {method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({values:[[status]]})});
       record.reviewStatus = status;
-      state.textContent = status.startsWith("Rejected") ? "Receipt rejected and marked for return to sender." : "Receipt approved and entered."
+      state.textContent = rejecting ? "Return notice sent and receipt marked rejected." : "Receipt approved and entered.";
       $("reviewActions").hidden = true;
+      $("returnEmail").hidden = true;
       render();
     } catch (error) {
-      console.error(error); state.textContent = "Could not save the review. Please try again.";
+      console.error(error); state.textContent = rejecting ? "Could not send the return notice; the receipt was not changed." : "Could not save the review. Please try again.";
     } finally { $("reviewApprove").disabled = false; $("reviewDeny").disabled = false; }
   }
 
@@ -272,6 +289,8 @@
     $("expenseModal").dataset.expenseId = record.id;
     const needsDecision = record.certainty < 95 && !record.reviewStatus;
     $("reviewActions").hidden = !needsDecision;
+    $("returnEmail").hidden = !needsDecision;
+    $("returnEmail").value = "";
     $("reviewState").textContent = record.reviewStatus ? "Review status: " + record.reviewStatus : (needsDecision ? "This receipt is flagged for review." : "No review action required.");
     $("expenseModal").hidden = false; $("expenseModal").setAttribute("aria-hidden","false");
   }

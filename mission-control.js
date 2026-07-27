@@ -54,18 +54,34 @@
     catch (error) { if (String(error.message).includes("404")) return []; throw error; }
   }
 
+  function isException(item) { return /failed|needs review|duplicate|error|reject/i.test(item.status || ""); }
+  function matchingRecord(item) {
+    const vendor = String(item.vendor || "").trim().toLowerCase();
+    return records.find(record => !record.reviewStatus && record.certainty < 95 && String(record.vendor || "").trim().toLowerCase() === vendor) || null;
+  }
   function renderCaptureHealth() {
     const panel = $("captureHealth");
     if (!panel) return;
-    const priority = processing.filter(item => /failed|needs review|duplicate/i.test(item.status));
-    const latest = [...priority, ...processing.filter(item => !priority.includes(item))].slice(0, 8);
+    const exceptions = processing.filter(isException);
+    const receiptFlags = records.filter(record => record.certainty < 95 && !record.reviewStatus && !exceptions.some(item => matchingRecord(item)?.id === record.id));
     const counts = processing.reduce((all, item) => { const key=item.status.toLowerCase(); all[key]=(all[key]||0)+1; return all; }, {});
-    $("captureSummary").textContent = (counts.processed || 0) + " processed · " + (counts.duplicate || 0) + " duplicate blocked · " + (counts.failed || 0) + " failed";
-    panel.innerHTML = latest.length ? latest.map(item => {
-      const tone = /failed/i.test(item.status) ? "#ff9b6b" : /duplicate/i.test(item.status) ? "#ffc247" : /review/i.test(item.status) ? "#ffb36b" : "#78e8a2";
+    const totalExceptions = exceptions.length + receiptFlags.length;
+    $("captureSummary").textContent = totalExceptions ? totalExceptions + " exception" + (totalExceptions === 1 ? "" : "s") + " require attention" : "No intake exceptions";
+    const processingRows = exceptions.map(item => {
+      const tone = /failed|error/i.test(item.status) ? "#ff9b6b" : /duplicate/i.test(item.status) ? "#ffc247" : "#ffb36b";
+      const detail = item.notes || (item.date ? "Transaction date: " + item.date : "No processing note");
+      const match = matchingRecord(item);
+      return '<div class="empty-row exception-row"><span><b style="color:' + tone + '">' + esc(item.status) + '</b> · ' + esc(item.vendor) + '<br><small style="color:#bca899">' + esc(detail) + '</small></span>' + (match ? '<button class="review-flag" type="button" data-expense-id="' + match.id + '">Review</button>' : '<strong style="color:#efe1d5">' + (item.total ? money(item.total) : "—") + '</strong>') + '</div>';
+    });
+    const receiptRows = receiptFlags.map(record => '<div class="empty-row exception-row"><span><b style="color:#ffb36b">Needs review</b> · ' + esc(record.vendor) + '<br><small style="color:#bca899">AI extraction confidence: ' + record.certainty + '%</small></span><button class="review-flag" type="button" data-expense-id="' + record.id + '">Review</button></div>');
+    panel.innerHTML = totalExceptions ? processingRows.concat(receiptRows).join("") : '<div class="empty-row">No failed, duplicate, or review-required receipts.</div>';
+    const breakdown = $("intakeBreakdown");
+    if (breakdown) breakdown.innerHTML = processing.length ? processing.map(item => {
+      const tone = isException(item) ? "#ffb36b" : "#78e8a2";
       const detail = item.notes || (item.date ? "Transaction date: " + item.date : "No processing note");
       return '<div class="empty-row"><span><b style="color:' + tone + '">' + esc(item.status) + '</b> · ' + esc(item.vendor) + '<br><small style="color:#bca899">' + esc(detail) + '</small></span><strong style="color:#efe1d5">' + (item.total ? money(item.total) : "—") + '</strong></div>';
     }).join("") : '<div class="empty-row">No processing-log activity found.</div>';
+    $("intakeCount").textContent = processing.length + " processing event" + (processing.length === 1 ? "" : "s") + " · " + (counts.processed || 0) + " processed · " + (counts.duplicate || 0) + " duplicate blocked · " + (counts.failed || 0) + " failed";
   }
 
   async function fetchDeposits(account) {
@@ -201,7 +217,7 @@
     processing = await fetchProcessing(account);
     const clients = [...new Set(records.map(record => record.client).filter(Boolean))].sort();
     $("clientFilter").innerHTML = '<option value="">All clients</option>' + clients.map(client => '<option value="' + esc(client) + '">' + esc(client) + '</option>').join("");
-    ["clientFilter","expenseSearch","resetButton","depositButton"].forEach(id => $(id).disabled = false);
+    ["clientFilter","expenseSearch","resetButton","depositButton","intakeButton"].forEach(id => $(id).disabled = false);
     document.querySelector(".chart").classList.add("connected");
     $("signInButton").disabled = false;
     $("signInButton").textContent = "Refresh private ledger";
@@ -237,7 +253,7 @@
       const column = await ensureReviewColumn(account);
       await graphRequest(account, "worksheets/Expenses/range(address='" + excelColumn(column) + record.sheetRow + "')", {method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({values:[[status]]})});
       record.reviewStatus = status;
-      state.textContent = "Receipt " + status.toLowerCase() + " and saved.";
+      state.textContent = status.startsWith("Rejected") ? "Receipt rejected and marked for return to sender." : "Receipt approved and entered."
       $("reviewActions").hidden = true;
       render();
     } catch (error) {
@@ -246,6 +262,8 @@
   }
 
   function closeExpense() { $("expenseModal").hidden = true; $("expenseModal").setAttribute("aria-hidden","true"); }
+  function openIntake() { $("intakeModal").hidden = false; $("intakeModal").setAttribute("aria-hidden","false"); }
+  function closeIntake() { $("intakeModal").hidden = true; $("intakeModal").setAttribute("aria-hidden","true"); }
   function openExpense(id) {
     const record = records.find(item => item.id === Number(id)); if (!record) return;
     $("expenseTitle").textContent = record.vendor;
@@ -279,6 +297,10 @@
     $("clientFilter").addEventListener("change", render);
     $("resetButton").addEventListener("click", () => { $("clientFilter").value = ""; $("expenseSearch").value = ""; render(); });
     $("depositButton").addEventListener("click", openDeposit);
+    $("intakeButton").addEventListener("click", openIntake);
+    $("intakeClose").addEventListener("click", closeIntake);
+    $("intakeModal").addEventListener("click", event => { if (event.target === $("intakeModal")) closeIntake(); });
+    $("captureHealth").addEventListener("click", event => { const button = event.target.closest("[data-expense-id]"); if (button) openExpense(button.dataset.expenseId); });
     $("depositForm").addEventListener("submit", saveDeposit);
     $("depositClose").addEventListener("click", closeDeposit);
     $("depositHistoryButton").addEventListener("click", showDepositHistory);
@@ -286,9 +308,9 @@
     $("ledgerRows").addEventListener("click", event => { const row = event.target.closest("[data-expense-id]"); if (row) openExpense(row.dataset.expenseId); });
     $("expenseClose").addEventListener("click", closeExpense);
     $("reviewApprove").addEventListener("click", () => decideReview("Approved"));
-    $("reviewDeny").addEventListener("click", () => decideReview("Denied"));
+    $("reviewDeny").addEventListener("click", () => decideReview("Rejected — return to sender"));
     $("expenseModal").addEventListener("click", event => { if (event.target === $("expenseModal")) closeExpense(); });
-    document.addEventListener("keydown", event => { if (event.key === "Escape") { closeExpense(); closeDeposit(); } });
+    document.addEventListener("keydown", event => { if (event.key === "Escape") { closeExpense(); closeDeposit(); closeIntake(); } });
     const account = graphClient.getActiveAccount() || graphClient.getAllAccounts()[0];
     if (account) {
       graphClient.setActiveAccount(account);

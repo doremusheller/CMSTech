@@ -87,7 +87,9 @@
     const effectiveRate=nonCharged ? "N/A — "+nonCharged : (record["Effective Standard Rate / Retainer"] ?? record["Standard Rate / Retainer"]);
     $("legalName").textContent=value(record,"Client / Legal Name");
     $("status").textContent=nonCharged ? "Non-charged · "+nonCharged : value(record,"Status");
-    $("scope").textContent=value(record,"Services / Scope");\n    $("deliverySummary").textContent=value(record,"Services / Scope");\n    $("deliveryCard").classList.remove("hidden");
+    $("scope").textContent=value(record,"Services / Scope");
+    $("deliverySummary").textContent=value(record,"Services / Scope");
+    $("deliveryCard").classList.remove("hidden");
     $("coreFacts").innerHTML=[
       ["Client ID",value(record,"Client ID")],["Industry",value(record,"Industry")],
       ["Primary contact",value(record,"Primary Contact")],["Email",value(record,"Email")],

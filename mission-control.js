@@ -380,7 +380,7 @@
     $("reviewActions").hidden=false;
     $("returnEmail").hidden=false; $("returnEmail").value="";
     $("reviewApprove").textContent="Approve & enter";
-    $("reviewState").textContent="Approve creates a live expense entry; default fields are Unclassified, CMS Tech, and Unspecified until edited in the full ledger.";
+    $("reviewState").textContent="Approve creates a live expense entry; default fields are Unclassified, CMS Tech, and Unspecified; they remain visible for later correction in the workbook.";
     $("expenseModal").hidden=false; $("expenseModal").setAttribute("aria-hidden","false");
   }
 

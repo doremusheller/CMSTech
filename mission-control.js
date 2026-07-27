@@ -11,6 +11,7 @@
   let records = [];
   let deposits = [];
   let processing = [];
+  let processingColumnCount = 0;
   let graphClient;
 
   function receiptUrl(formula, value) {
@@ -46,15 +47,19 @@
     const index = label => headers.findIndex(header => String(header ?? "").trim().toLowerCase() === label.toLowerCase());
     const status = index("Status"), vendor = index("Vendor"), total = index("Total"), notes = index("Notes / Error"), date = index("Transaction Date");
     if (status < 0) return [];
-    return rows.filter(row => String(row[status] ?? "").trim()).map((row, id) => ({ id, status:String(row[status] ?? "").trim(), vendor:String(row[vendor] ?? "Unidentified receipt").trim(), total:number(row[total]), notes:String(row[notes] ?? "").trim(), date:String(row[date] ?? "").trim() }));
+    return rows.filter(row => String(row[status] ?? "").trim()).map((row, id) => ({ id, sheetRow:id + 2, status:String(row[status] ?? "").trim(), vendor:String(row[vendor] ?? "Unidentified receipt").trim(), total:number(row[total]), notes:String(row[notes] ?? "").trim(), date:String(row[date] ?? "").trim() }));
   }
 
   async function fetchProcessing(account) {
-    try { const data = await graphRequest(account, "worksheets/Processing Log/usedRange"); return parseProcessing(data.values); }
-    catch (error) { if (String(error.message).includes("404")) return []; throw error; }
+    try {
+      const data = await graphRequest(account, "worksheets/Processing Log/usedRange");
+      processingColumnCount = data.columnCount || data.values?.[0]?.length || 1;
+      return parseProcessing(data.values);
+    } catch (error) { if (String(error.message).includes("404")) return []; throw error; }
   }
 
-  function isException(item) { return /failed|needs review|duplicate|error|reject/i.test(item.status || ""); }
+  function isNeedsReview(item) { return /needs review/i.test(item.status || ""); }
+  function isDuplicate(item) { return /duplicate/i.test(item.status || ""); }
   function matchingRecord(item) {
     const vendor = String(item.vendor || "").trim().toLowerCase();
     return records.find(record => !record.reviewStatus && record.certainty < 95 && String(record.vendor || "").trim().toLowerCase() === vendor) || null;
@@ -62,28 +67,27 @@
   function renderCaptureHealth() {
     const panel = $("captureHealth");
     if (!panel) return;
-    const exceptions = processing.filter(isException);
-    const receiptFlags = records.filter(record => record.certainty < 95 && !record.reviewStatus && !exceptions.some(item => matchingRecord(item)?.id === record.id));
-    const counts = processing.reduce((all, item) => { const key=item.status.toLowerCase(); all[key]=(all[key]||0)+1; return all; }, {});
-    const totalExceptions = exceptions.length + receiptFlags.length;
-    $("captureSummary").textContent = totalExceptions ? totalExceptions + " exception" + (totalExceptions === 1 ? "" : "s") + " require attention" : "No intake exceptions";
-    const processingRows = exceptions.map(item => {
-      const tone = /failed|error/i.test(item.status) ? "#ff9b6b" : /duplicate/i.test(item.status) ? "#ffc247" : "#ffb36b";
+    const needsReview = processing.filter(isNeedsReview);
+    const duplicates = processing.filter(isDuplicate);
+    const receiptFlags = records.filter(record => record.certainty < 95 && !record.reviewStatus && !needsReview.some(item => matchingRecord(item)?.id === record.id));
+    const reviewRows = needsReview.map(item => {
       const detail = item.notes || (item.date ? "Transaction date: " + item.date : "No processing note");
       const match = matchingRecord(item);
-      return '<div class="empty-row exception-row"><span><b style="color:' + tone + '">' + esc(item.status) + '</b> · ' + esc(item.vendor) + '<br><small style="color:#bca899">' + esc(detail) + '</small></span>' + (match ? '<button class="review-flag" type="button" data-expense-id="' + match.id + '">Review</button>' : '<strong style="color:#efe1d5">' + (item.total ? money(item.total) : "—") + '</strong>') + '</div>';
+      return '<div class="empty-row exception-row"><span><b style="color:#ffb36b">Needs review</b> · ' + esc(item.vendor) + '<br><small style="color:#bca899">' + esc(detail) + '</small></span>' + (match ? '<button class="review-flag" type="button" data-expense-id="' + match.id + '">Review</button>' : '<strong style="color:#efe1d5">' + (item.total ? money(item.total) : "—") + '</strong>') + '</div>';
     });
     const receiptRows = receiptFlags.map(record => '<div class="empty-row exception-row"><span><b style="color:#ffb36b">Needs review</b> · ' + esc(record.vendor) + '<br><small style="color:#bca899">AI extraction confidence: ' + record.certainty + '%</small></span><button class="review-flag" type="button" data-expense-id="' + record.id + '">Review</button></div>');
-    panel.innerHTML = totalExceptions ? processingRows.concat(receiptRows).join("") : '<div class="empty-row">No failed, duplicate, or review-required receipts.</div>';
+    const duplicateRows = duplicates.map(item => '<div class="empty-row exception-row"><span><b style="color:#ffc247">Duplicate</b> · ' + esc(item.vendor) + '<br><small style="color:#bca899">' + esc(item.notes || "Duplicate intake record blocked before ledger entry.") + '</small></span><button class="review-flag delete-duplicate" type="button" data-processing-id="' + item.id + '">Delete duplicate</button></div>');
+    const attention = reviewRows.concat(receiptRows, duplicateRows);
+    $("captureSummary").textContent = attention.length ? attention.length + " item" + (attention.length === 1 ? "" : "s") + " require attention" : "No review items or duplicates";
+    panel.innerHTML = attention.length ? attention.join("") : '<div class="empty-row">No receipt review items or duplicates.</div>';
     const breakdown = $("intakeBreakdown");
     if (breakdown) breakdown.innerHTML = processing.length ? processing.map(item => {
-      const tone = isException(item) ? "#ffb36b" : "#78e8a2";
+      const tone = isNeedsReview(item) ? "#ffb36b" : isDuplicate(item) ? "#ffc247" : /failed|error/i.test(item.status) ? "#ff9b6b" : "#78e8a2";
       const detail = item.notes || (item.date ? "Transaction date: " + item.date : "No processing note");
       return '<div class="empty-row"><span><b style="color:' + tone + '">' + esc(item.status) + '</b> · ' + esc(item.vendor) + '<br><small style="color:#bca899">' + esc(detail) + '</small></span><strong style="color:#efe1d5">' + (item.total ? money(item.total) : "—") + '</strong></div>';
     }).join("") : '<div class="empty-row">No processing-log activity found.</div>';
-    $("intakeCount").textContent = processing.length + " processing event" + (processing.length === 1 ? "" : "s") + " · " + (counts.processed || 0) + " processed · " + (counts.duplicate || 0) + " duplicate blocked · " + (counts.failed || 0) + " failed";
+    $("intakeCount").textContent = processing.length + " processing event" + (processing.length === 1 ? "" : "s") + " · " + needsReview.length + " needs review · " + duplicates.length + " duplicate" + (duplicates.length === 1 ? "" : "s");
   }
-
   async function fetchDeposits(account) {
     try {
       const data = await graphRequest(account, "worksheets/Deposits/usedRange");
@@ -278,6 +282,25 @@
     } finally { $("reviewApprove").disabled = false; $("reviewDeny").disabled = false; }
   }
 
+  async function deleteDuplicate(processingId) {
+    const item = processing.find(entry => entry.id === Number(processingId));
+    const account = graphClient.getActiveAccount() || graphClient.getAllAccounts()[0];
+    if (!item || !account || !isDuplicate(item)) return;
+    if (!window.confirm("Delete this duplicate Processing Log entry? The original expense record will not be changed.")) return;
+    const button = document.querySelector('[data-processing-id="' + item.id + '"]');
+    if (button) { button.disabled = true; button.textContent = "Deleting…"; }
+    try {
+      const endColumn = excelColumn(processingColumnCount || 1);
+      await graphRequest(account, "worksheets/Processing Log/range(address='A" + item.sheetRow + ":" + endColumn + item.sheetRow + "')/delete", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({shift:"Up"})});
+      processing = processing.filter(entry => entry.id !== item.id);
+      processing.forEach(entry => { if (entry.sheetRow > item.sheetRow) entry.sheetRow -= 1; });
+      renderCaptureHealth();
+    } catch (error) {
+      console.error(error);
+      if (button) { button.disabled = false; button.textContent = "Could not delete"; }
+    }
+  }
+
   function closeExpense() { $("expenseModal").hidden = true; $("expenseModal").setAttribute("aria-hidden","true"); }
   function openIntake() { $("intakeModal").hidden = false; $("intakeModal").setAttribute("aria-hidden","false"); }
   function closeIntake() { $("intakeModal").hidden = true; $("intakeModal").setAttribute("aria-hidden","true"); }
@@ -319,7 +342,12 @@
     $("intakeButton").addEventListener("click", openIntake);
     $("intakeClose").addEventListener("click", closeIntake);
     $("intakeModal").addEventListener("click", event => { if (event.target === $("intakeModal")) closeIntake(); });
-    $("captureHealth").addEventListener("click", event => { const button = event.target.closest("[data-expense-id]"); if (button) openExpense(button.dataset.expenseId); });
+    $("captureHealth").addEventListener("click", event => {
+      const duplicate = event.target.closest("[data-processing-id]");
+      if (duplicate) { deleteDuplicate(duplicate.dataset.processingId); return; }
+      const button = event.target.closest("[data-expense-id]");
+      if (button) openExpense(button.dataset.expenseId);
+    });
     $("depositForm").addEventListener("submit", saveDeposit);
     $("depositClose").addEventListener("click", closeDeposit);
     $("depositHistoryButton").addEventListener("click", showDepositHistory);

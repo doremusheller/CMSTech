@@ -59,6 +59,59 @@
     curve.insertAdjacentHTML("afterbegin", points ? '<polyline points="' + points + '" fill="none" stroke="#ffc247" stroke-width="4"></polyline>' : "");
   }
 
+  async function graphRequest(account, path, options = {}) {
+    const token = await graphClient.acquireTokenSilent({account,scopes:SCOPES});
+    const headers = {Authorization:"Bearer " + token.accessToken, ...(options.headers || {})};
+    const response = await fetch("https://graph.microsoft.com/v1.0/me/drive/items/" + WORKBOOK_ITEM_ID + "/workbook/" + path, {...options, headers});
+    if (!response.ok) throw new Error("Microsoft Graph returned " + response.status);
+    return response.status === 204 ? null : response.json();
+  }
+
+  async function ensureDepositsSheet(account) {
+    try { await graphRequest(account, "worksheets/Deposits/usedRange"); return; }
+    catch (error) {
+      if (!String(error.message).includes("404")) throw error;
+    }
+    await graphRequest(account, "worksheets/add", {method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({name:"Deposits"})});
+    await graphRequest(account, "worksheets/Deposits/range(address='A1:D1')", {method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({values:[["Date Deposited","Deposit Amount","Source","Client/Project Name"]]})});
+  }
+
+  function openDeposit() {
+    $("depositForm").reset();
+    $("depositDate").value = new Date().toISOString().slice(0,10);
+    $("depositStatus").textContent = "";
+    $("depositStatus").className = "deposit-status";
+    $("depositModal").hidden = false;
+    $("depositModal").setAttribute("aria-hidden","false");
+    $("depositAmount").focus();
+  }
+
+  function closeDeposit() { $("depositModal").hidden = true; $("depositModal").setAttribute("aria-hidden","true"); }
+
+  async function saveDeposit(event) {
+    event.preventDefault();
+    const account = graphClient.getActiveAccount() || graphClient.getAllAccounts()[0];
+    if (!account) return signIn();
+    const date = $("depositDate").value;
+    const amount = Number($("depositAmount").value);
+    const source = $("depositSource").value.trim();
+    const client = $("depositClient").value.trim();
+    if (!date || !(amount > 0) || !source) return;
+    const submit = $("depositSubmit"), status = $("depositStatus");
+    submit.disabled = true; submit.textContent = "Saving private deposit…"; status.textContent = "";
+    try {
+      await ensureDepositsSheet(account);
+      const range = await graphRequest(account, "worksheets/Deposits/usedRange");
+      const row = (range.rowIndex || 0) + (range.rowCount || 1) + 1;
+      await graphRequest(account, "worksheets/Deposits/range(address='A" + row + ":D" + row + "')", {method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({values:[[date,amount,source,client]]})});
+      status.textContent = "Deposit saved to the private workbook.";
+      submit.textContent = "Saved";
+      setTimeout(closeDeposit, 800);
+    } catch (error) {
+      console.error(error); status.className = "deposit-status error"; status.textContent = "Could not save the deposit. Please try again."; submit.textContent = "Save private deposit";
+    } finally { submit.disabled = false; }
+  }
+
   function showError(error) {
     console.error(error);
     $("visibleNote").textContent = "Microsoft connection needs attention";
@@ -75,7 +128,7 @@
     records = parse(data.values, data.formulas);
     const clients = [...new Set(records.map(record => record.client).filter(Boolean))].sort();
     $("clientFilter").innerHTML = '<option value="">All clients</option>' + clients.map(client => '<option value="' + esc(client) + '">' + esc(client) + '</option>').join("");
-    ["clientFilter","expenseSearch","resetButton"].forEach(id => $(id).disabled = false);
+    ["clientFilter","expenseSearch","resetButton","depositButton"].forEach(id => $(id).disabled = false);
     document.querySelector(".chart").classList.add("connected");
     $("signInButton").disabled = false;
     $("signInButton").textContent = "Refresh private ledger";
@@ -112,10 +165,14 @@
     $("expenseSearch").addEventListener("input", render);
     $("clientFilter").addEventListener("change", render);
     $("resetButton").addEventListener("click", () => { $("clientFilter").value = ""; $("expenseSearch").value = ""; render(); });
+    $("depositButton").addEventListener("click", openDeposit);
+    $("depositForm").addEventListener("submit", saveDeposit);
+    $("depositClose").addEventListener("click", closeDeposit);
+    $("depositModal").addEventListener("click", event => { if (event.target === $("depositModal")) closeDeposit(); });
     $("ledgerRows").addEventListener("click", event => { const row = event.target.closest("[data-expense-id]"); if (row) openExpense(row.dataset.expenseId); });
     $("expenseClose").addEventListener("click", closeExpense);
     $("expenseModal").addEventListener("click", event => { if (event.target === $("expenseModal")) closeExpense(); });
-    document.addEventListener("keydown", event => { if (event.key === "Escape") closeExpense(); });
+    document.addEventListener("keydown", event => { if (event.key === "Escape") { closeExpense(); closeDeposit(); } });
     const account = graphClient.getActiveAccount() || graphClient.getAllAccounts()[0];
     if (account) {
       graphClient.setActiveAccount(account);

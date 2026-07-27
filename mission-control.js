@@ -2,7 +2,8 @@
   const CLIENT_ID = "4ee3e5d2-4598-4656-8e20-358dc63226da";
   const TENANT_ID = "04bfc180-5650-4f0b-9a97-22fc45c33b9c";
   const WORKBOOK_ITEM_ID = "015GYJNAHEDZFFW2NWT5CZ6D5HMWSBNW7W";
-  const SCOPES = ["User.Read", "Files.ReadWrite", "Mail.Send"];
+  const SCOPES = ["User.Read", "Files.ReadWrite"];
+  const MAIL_SCOPE = "Mail.Send";
   const $ = id => document.getElementById(id);
   const esc = value => String(value ?? "").replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
   const money = value => new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(value || 0);
@@ -12,6 +13,7 @@
   let deposits = [];
   let processing = [];
   let processingColumnCount = 0;
+  let processingHeaders = [];
   let graphClient;
 
   function receiptUrl(formula, value) {
@@ -54,6 +56,7 @@
     try {
       const data = await graphRequest(account, "worksheets/Processing Log/usedRange");
       processingColumnCount = data.columnCount || data.values?.[0]?.length || 1;
+      processingHeaders = data.values?.[0] || [];
       return parseProcessing(data.values);
     } catch (error) { if (String(error.message).includes("404")) return []; throw error; }
   }
@@ -72,8 +75,7 @@
     const receiptFlags = records.filter(record => record.certainty < 95 && !record.reviewStatus && !needsReview.some(item => matchingRecord(item)?.id === record.id));
     const reviewRows = needsReview.map(item => {
       const detail = item.notes || (item.date ? "Transaction date: " + item.date : "No processing note");
-      const match = matchingRecord(item);
-      return '<div class="empty-row exception-row"><span><b style="color:#ffb36b">Needs review</b> · ' + esc(item.vendor) + '<br><small style="color:#bca899">' + esc(detail) + '</small></span>' + (match ? '<button class="review-flag" type="button" data-expense-id="' + match.id + '">Review</button>' : '<strong style="color:#efe1d5">' + (item.total ? money(item.total) : "—") + '</strong>') + '</div>';
+      return '<div class="empty-row exception-row"><span><b style="color:#ffb36b">Needs review</b> · ' + esc(item.vendor) + '<br><small style="color:#bca899">' + esc(detail) + '</small></span><button class="review-flag" type="button" data-processing-review-id="' + item.id + '">Review</button></div>';
     });
     const receiptRows = receiptFlags.map(record => '<div class="empty-row exception-row"><span><b style="color:#ffb36b">Needs review</b> · ' + esc(record.vendor) + '<br><small style="color:#bca899">AI extraction confidence: ' + record.certainty + '%</small></span><button class="review-flag" type="button" data-expense-id="' + record.id + '">Review</button></div>');
     const duplicateRows = duplicates.map(item => '<div class="empty-row exception-row"><span><b style="color:#ffc247">Duplicate</b> · ' + esc(item.vendor) + '<br><small style="color:#bca899">' + esc(item.notes || "Duplicate intake record blocked before ledger entry.") + '</small></span><button class="review-flag delete-duplicate" type="button" data-processing-id="' + item.id + '">Delete duplicate</button></div>');
@@ -112,14 +114,20 @@
   function render() {
     const query = $("expenseSearch").value.trim().toLowerCase();
     const client = $("clientFilter").value;
-    const visible = records.filter(record => (!client || record.client === client) && (!query || [record.vendor,record.category,record.client,record.date].join(" ").toLowerCase().includes(query)));
-    const total = visible.reduce((sum, record) => sum + record.amount, 0);
-    const average = visible.length ? Math.round(visible.reduce((sum,record) => sum + record.certainty,0) / visible.length) : 0;
+    const matching = records.filter(record => (!client || record.client === client) && (!query || [record.vendor,record.category,record.client,record.date].join(" ").toLowerCase().includes(query)));
+    const hasFilter = Boolean(client || query);
+    const recent = [...matching].sort((a,b) => {
+      const aTime=Date.parse(a.date), bTime=Date.parse(b.date);
+      return (Number.isFinite(bTime)?bTime:-Infinity) - (Number.isFinite(aTime)?aTime:-Infinity);
+    }).slice(0,5);
+    const visible = hasFilter ? matching : recent;
+    const total = matching.reduce((sum, record) => sum + record.amount, 0);
+    const average = matching.length ? Math.round(matching.reduce((sum,record) => sum + record.certainty,0) / matching.length) : 0;
     $("visibleSpend").textContent = money(total);
     $("deductible").textContent = money(total);
     $("receiptCertainty").textContent = visible.length ? average + "%" : "—";
     $("needsReview").textContent = visible.filter(record => record.certainty < 95).length;
-    $("visibleNote").textContent = visible.length + " live ledger record" + (visible.length === 1 ? "" : "s");
+    $("visibleNote").textContent = hasFilter ? matching.length + " matching ledger record" + (matching.length === 1 ? "" : "s") : "Latest " + visible.length + " of " + matching.length + " ledger records";
 
     $("ledgerRows").innerHTML = visible.length ? visible.map(record => '<div class="empty-row" data-expense-id="' + record.id + '"><span><b style="color:#efe1d5">' + esc(record.vendor) + '</b> · ' + esc(record.category) + '<br><small style="color:#38dfd0">' + esc(record.client) + '</small></span><strong style="color:#ffc247">' + money(record.amount) + '</strong></div>').join("") : '<div class="empty-row">No matching ledger records.</div>';
 
@@ -246,7 +254,9 @@
   }
 
   async function sendReturnMessage(account, record, recipient) {
-    const token = await graphClient.acquireTokenSilent({account,scopes:SCOPES});
+    let token;
+    try { token = await graphClient.acquireTokenSilent({account,scopes:[...SCOPES, MAIL_SCOPE]}); }
+    catch (error) { token = await graphClient.acquireTokenPopup({account,scopes:[...SCOPES, MAIL_SCOPE]}); }
     const subject = "CMS Tech receipt needs correction — " + record.vendor;
     const content = "Hello,\n\nThe receipt submitted for " + record.vendor + " (" + money(record.amount) + (record.date ? ", dated " + record.date : "") + ") needs correction or clarification before it can be entered into CMSLedger. Please review and resend the corrected receipt.\n\nThank you,\nCMS Tech";
     const response = await fetch("https://graph.microsoft.com/v1.0/me/sendMail",{method:"POST",headers:{Authorization:"Bearer " + token.accessToken,"Content-Type":"application/json"},body:JSON.stringify({message:{subject,body:{contentType:"Text",content},toRecipients:[{emailAddress:{address:recipient}}]},saveToSentItems:true})});
@@ -301,6 +311,79 @@
     }
   }
 
+  async function setProcessingStatus(account, item, status) {
+    const statusIndex = processingHeaders.findIndex(header => String(header ?? "").trim().toLowerCase() === "status");
+    if (statusIndex < 0) throw new Error("Processing Log does not have a Status column.");
+    await graphRequest(account, "worksheets/Processing Log/range(address='" + excelColumn(statusIndex + 1) + item.sheetRow + "')", {method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({values:[[status]]})});
+    item.status = status;
+  }
+
+  async function decideProcessingReview(status) {
+    const id = Number($("expenseModal").dataset.processingReviewId);
+    const item = processing.find(entry => entry.id === id);
+    const account = graphClient.getActiveAccount() || graphClient.getAllAccounts()[0];
+    if (!item || !account) return;
+    const state = $("reviewState");
+    const rejecting = status.startsWith("Rejected");
+    const recipient = $("returnEmail").value.trim();
+    if (rejecting && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(recipient)) {
+      state.textContent = "Enter the sender's email address to send the return notice.";
+      $("returnEmail").focus();
+      return;
+    }
+    $("reviewApprove").disabled = true; $("reviewDeny").disabled = true;
+    state.textContent = rejecting ? "Sending return notice…" : "Entering approved receipt…";
+    try {
+      if (rejecting) {
+        await sendReturnMessage(account, {vendor:item.vendor,amount:item.total,date:item.date}, recipient);
+        await setProcessingStatus(account, item, "Rejected — return to sender");
+        state.textContent = "Return notice sent and intake item rejected.";
+      } else {
+        await ensureReviewColumn(account);
+        const range = await graphRequest(account, "worksheets/Expenses/usedRange");
+        const headers = range.values?.[0] || [];
+        const row = (range.rowIndex || 0) + (range.rowCount || 1) + 1;
+        const values = headers.map(header => {
+          const key=String(header ?? "").trim().toLowerCase();
+          if (key === "date") return item.date;
+          if (key === "vendor") return item.vendor;
+          if (key === "amount") return item.total;
+          if (key === "tax") return "";
+          if (key === "category") return "Unclassified";
+          if (key === "client") return "CMS Tech";
+          if (key === "payment") return "Unspecified";
+          if (key === "ai certainty (%)") return 0;
+          if (key === "notes") return item.notes || "Approved from Processing Log";
+          if (key === "review status") return "Approved";
+          return "";
+        });
+        const lastColumn = excelColumn((range.columnIndex || 0) + headers.length);
+        await graphRequest(account, "worksheets/Expenses/range(address='A" + row + ":" + lastColumn + row + "')", {method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({values:[values]})});
+        await setProcessingStatus(account, item, "Approved & entered");
+        state.textContent = "Receipt approved and entered into the live ledger.";
+      }
+      $("reviewActions").hidden = true;
+      $("returnEmail").hidden = true;
+      renderCaptureHealth();
+    } catch (error) {
+      console.error(error); state.textContent = "Could not complete this intake review. Nothing was changed.";
+    } finally { $("reviewApprove").disabled = false; $("reviewDeny").disabled = false; }
+  }
+
+  function openProcessingReview(id) {
+    const item = processing.find(entry => entry.id === Number(id)); if (!item) return;
+    $("expenseTitle").textContent = item.vendor;
+    $("expenseFacts").innerHTML = [["Amount",money(item.total)],["Date",item.date || "Not recorded"],["Status",item.status],["Source","Processing Log"]].map(([label,value]) => '<div class="expense-fact"><label>' + esc(label) + '</label><b>' + esc(value) + '</b></div>').join("");
+    const receipt = $("viewReceipt"); receipt.href="#"; receipt.setAttribute("aria-disabled","true"); receipt.textContent="Receipt link unavailable";
+    $("expenseModal").dataset.processingReviewId=item.id;
+    delete $("expenseModal").dataset.expenseId;
+    $("reviewActions").hidden=false;
+    $("returnEmail").hidden=false; $("returnEmail").value="";
+    $("reviewApprove").textContent="Approve & enter";
+    $("reviewState").textContent="Approve creates a live expense entry; default fields are Unclassified, CMS Tech, and Unspecified until edited in the full ledger.";
+    $("expenseModal").hidden=false; $("expenseModal").setAttribute("aria-hidden","false");
+  }
+
   function closeExpense() { $("expenseModal").hidden = true; $("expenseModal").setAttribute("aria-hidden","true"); }
   function openIntake() { $("intakeModal").hidden = false; $("intakeModal").setAttribute("aria-hidden","false"); }
   function closeIntake() { $("intakeModal").hidden = true; $("intakeModal").setAttribute("aria-hidden","true"); }
@@ -310,6 +393,8 @@
     $("expenseFacts").innerHTML = [["Amount",money(record.amount)],["Category",record.category],["Client",record.client],["Date",record.date || "Not recorded"],["AI certainty",record.certainty + "%"]].map(([label,value]) => '<div class="expense-fact"><label>' + esc(label) + '</label><b>' + esc(value) + '</b></div>').join("");
     const receipt = $("viewReceipt"); receipt.href = record.receiptUrl || "#"; receipt.setAttribute("aria-disabled", record.receiptUrl ? "false" : "true"); receipt.textContent = record.receiptUrl ? "View receipt ↗" : "No receipt linked";
     $("expenseModal").dataset.expenseId = record.id;
+    delete $("expenseModal").dataset.processingReviewId;
+    $("reviewApprove").textContent = "Approve receipt";
     const needsDecision = record.certainty < 95 && !record.reviewStatus;
     $("reviewActions").hidden = !needsDecision;
     $("returnEmail").hidden = !needsDecision;
@@ -345,6 +430,8 @@
     $("captureHealth").addEventListener("click", event => {
       const duplicate = event.target.closest("[data-processing-id]");
       if (duplicate) { deleteDuplicate(duplicate.dataset.processingId); return; }
+      const review = event.target.closest("[data-processing-review-id]");
+      if (review) { openProcessingReview(review.dataset.processingReviewId); return; }
       const button = event.target.closest("[data-expense-id]");
       if (button) openExpense(button.dataset.expenseId);
     });
@@ -354,8 +441,8 @@
     $("depositModal").addEventListener("click", event => { if (event.target === $("depositModal")) closeDeposit(); });
     $("ledgerRows").addEventListener("click", event => { const row = event.target.closest("[data-expense-id]"); if (row) openExpense(row.dataset.expenseId); });
     $("expenseClose").addEventListener("click", closeExpense);
-    $("reviewApprove").addEventListener("click", () => decideReview("Approved"));
-    $("reviewDeny").addEventListener("click", () => decideReview("Rejected — return to sender"));
+    $("reviewApprove").addEventListener("click", () => $("expenseModal").dataset.processingReviewId !== undefined ? decideProcessingReview("Approved & entered") : decideReview("Approved"));
+    $("reviewDeny").addEventListener("click", () => $("expenseModal").dataset.processingReviewId !== undefined ? decideProcessingReview("Rejected — return to sender") : decideReview("Rejected — return to sender"));
     $("expenseModal").addEventListener("click", event => { if (event.target === $("expenseModal")) closeExpense(); });
     document.addEventListener("keydown", event => { if (event.key === "Escape") { closeExpense(); closeDeposit(); closeIntake(); } });
     const account = graphClient.getActiveAccount() || graphClient.getAllAccounts()[0];

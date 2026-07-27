@@ -65,6 +65,16 @@
   let graphClient;
   function index(headers,label){return headers.findIndex(h=>String(h??"").trim().toLowerCase()===label.toLowerCase())}
   function value(record,field){return record[field]===undefined||record[field]===null||record[field]===""?"Not recorded":record[field]}
+  function formatDate(raw){
+    if(raw===undefined||raw===null||raw==="")return "Not recorded";
+    const date=typeof raw==="number" ? new Date(Date.UTC(1899,11,30)+raw*86400000) : new Date(raw);
+    return Number.isNaN(date.getTime()) ? String(raw) : new Intl.DateTimeFormat("en-US",{timeZone:"UTC",month:"numeric",day:"numeric",year:"numeric"}).format(date);
+  }
+  function formatRate(raw){
+    if(raw===undefined||raw===null||raw==="")return "Not recorded";
+    const amount=Number(raw);
+    return Number.isFinite(amount) ? new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(amount)+"/hour" : String(raw);
+  }
   function card(label,content){return '<div class="fact"><label>'+esc(label)+'</label><span>'+esc(content)+'</span></div>'}
   function display(record){
     $("legalName").textContent=value(record,"Client / Legal Name");
@@ -77,9 +87,9 @@
       ["Billing email",value(record,"Billing Email")],["Billing address",value(record,"Billing Address")]
     ].map(([a,b])=>card(a,b)).join("");
     $("relationshipFacts").innerHTML=[
-      ["Payment terms",value(record,"Default Payment Terms")],["Standard rate / retainer",value(record,"Standard Rate / Retainer")],
-      ["Start date",value(record,"Start Date")],["Renewal / review",value(record,"Renewal / Review Date")],
-      ["Client owner",value(record,"Client Owner")],["Last updated",value(record,"Last Updated")],
+      ["Payment terms",value(record,"Default Payment Terms")],["Standard rate / retainer",formatRate(record["Standard Rate / Retainer"])],
+      ["Start date",formatDate(record["Start Date"])],["Renewal / review",formatDate(record["Renewal / Review Date"])],
+      ["Client owner",value(record,"Client Owner")],["Last updated",formatDate(record["Last Updated"])],
       ["Notes",value(record,"Notes")]
     ].map(([a,b])=>card(a,b)).join("");
     $("clientConsole").classList.remove("hidden");

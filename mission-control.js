@@ -34,9 +34,9 @@
     const [headers, ...rows] = values || [];
     if (!headers) return [];
     const index = label => headers.findIndex(header => String(header ?? "").trim().toLowerCase() === label.toLowerCase());
-    const amount = index("Deposit Amount");
+    const date = index("Date Deposited"), amount = index("Deposit Amount"), source = index("Source"), client = index("Client/Project Name");
     if (amount < 0) return [];
-    return rows.filter(row => String(row[amount] ?? "").trim()).map(row => number(row[amount]));
+    return rows.filter(row => String(row[amount] ?? "").trim()).map((row, id) => ({ id, date:String(row[date] ?? "").trim(), amount:number(row[amount]), source:String(row[source] ?? "").trim(), client:String(row[client] ?? "").trim() }));
   }
 
   async function fetchDeposits(account) {
@@ -51,7 +51,7 @@
 
   function renderCashFlow() {
     const totalExpenses = records.reduce((sum, record) => sum + record.amount, 0);
-    const totalDeposits = deposits.reduce((sum, value) => sum + value, 0);
+    const totalDeposits = deposits.reduce((sum, deposit) => sum + deposit.amount, 0);
     const max = Math.max(1, totalExpenses, totalDeposits);
     const net = totalDeposits - totalExpenses;
     $("cashNet").textContent = (net >= 0 ? "+" : "−") + money(Math.abs(net));
@@ -120,6 +120,11 @@
   }
 
   function closeDeposit() { $("depositModal").hidden = true; $("depositModal").setAttribute("aria-hidden","true"); }
+  function showDepositHistory() {
+    const panel = $("depositHistory");
+    panel.hidden = false;
+    panel.innerHTML = deposits.length ? '<div class="deposit-history-title">Deposit history</div>' + deposits.map(deposit => '<div class="deposit-history-row"><span>' + esc(deposit.date || "No date") + '<small>' + esc(deposit.source || "Source not recorded") + (deposit.client ? ' · ' + esc(deposit.client) : "") + '</small></span><b>' + money(deposit.amount) + '</b></div>').join("") : '<div class="deposit-history-empty">No deposits recorded yet.</div>';
+  }
 
   async function saveDeposit(event) {
     event.preventDefault();
@@ -137,8 +142,9 @@
       const range = await graphRequest(account, "worksheets/Deposits/usedRange");
       const row = (range.rowIndex || 0) + (range.rowCount || 1) + 1;
       await graphRequest(account, "worksheets/Deposits/range(address='A" + row + ":D" + row + "')", {method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({values:[[date,amount,source,client]]})});
-      deposits.push(amount);
+      deposits.push({date, amount, source, client});
       renderCashFlow();
+      showDepositHistory();
       status.textContent = "Deposit saved to the private workbook.";
       submit.textContent = "Saved";
       setTimeout(closeDeposit, 800);
@@ -244,6 +250,7 @@
     $("depositButton").addEventListener("click", openDeposit);
     $("depositForm").addEventListener("submit", saveDeposit);
     $("depositClose").addEventListener("click", closeDeposit);
+    $("depositHistoryButton").addEventListener("click", showDepositHistory);
     $("depositModal").addEventListener("click", event => { if (event.target === $("depositModal")) closeDeposit(); });
     $("ledgerRows").addEventListener("click", event => { const row = event.target.closest("[data-expense-id]"); if (row) openExpense(row.dataset.expenseId); });
     $("expenseClose").addEventListener("click", closeExpense);

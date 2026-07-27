@@ -10,6 +10,7 @@
   const toCertainty = value => { const n = number(value); return n <= 1 ? Math.round(n * 100) : Math.round(n); };
   let records = [];
   let deposits = [];
+  let processing = [];
   let graphClient;
 
   function receiptUrl(formula, value) {
@@ -37,6 +38,34 @@
     const date = index("Date Deposited"), amount = index("Deposit Amount"), source = index("Source"), client = index("Client/Project Name");
     if (amount < 0) return [];
     return rows.filter(row => String(row[amount] ?? "").trim()).map((row, id) => ({ id, date:String(row[date] ?? "").trim(), amount:number(row[amount]), source:String(row[source] ?? "").trim(), client:String(row[client] ?? "").trim() }));
+  }
+
+  function parseProcessing(values) {
+    const [headers, ...rows] = values || [];
+    if (!headers) return [];
+    const index = label => headers.findIndex(header => String(header ?? "").trim().toLowerCase() === label.toLowerCase());
+    const status = index("Status"), vendor = index("Vendor"), total = index("Total"), notes = index("Notes / Error"), date = index("Transaction Date");
+    if (status < 0) return [];
+    return rows.filter(row => String(row[status] ?? "").trim()).map((row, id) => ({ id, status:String(row[status] ?? "").trim(), vendor:String(row[vendor] ?? "Unidentified receipt").trim(), total:number(row[total]), notes:String(row[notes] ?? "").trim(), date:String(row[date] ?? "").trim() }));
+  }
+
+  async function fetchProcessing(account) {
+    try { const data = await graphRequest(account, "worksheets/Processing Log/usedRange"); return parseProcessing(data.values); }
+    catch (error) { if (String(error.message).includes("404")) return []; throw error; }
+  }
+
+  function renderCaptureHealth() {
+    const panel = $("captureHealth");
+    if (!panel) return;
+    const priority = processing.filter(item => /failed|needs review|duplicate/i.test(item.status));
+    const latest = [...priority, ...processing.filter(item => !priority.includes(item))].slice(0, 8);
+    const counts = processing.reduce((all, item) => { const key=item.status.toLowerCase(); all[key]=(all[key]||0)+1; return all; }, {});
+    $("captureSummary").textContent = (counts.processed || 0) + " processed · " + (counts.duplicate || 0) + " duplicate blocked · " + (counts.failed || 0) + " failed";
+    panel.innerHTML = latest.length ? latest.map(item => {
+      const tone = /failed/i.test(item.status) ? "#ff9b6b" : /duplicate/i.test(item.status) ? "#ffc247" : /review/i.test(item.status) ? "#ffb36b" : "#78e8a2";
+      const detail = item.notes || (item.date ? "Transaction date: " + item.date : "No processing note");
+      return '<div class="empty-row"><span><b style="color:' + tone + '">' + esc(item.status) + '</b> · ' + esc(item.vendor) + '<br><small style="color:#bca899">' + esc(detail) + '</small></span><strong style="color:#efe1d5">' + (item.total ? money(item.total) : "—") + '</strong></div>';
+    }).join("") : '<div class="empty-row">No processing-log activity found.</div>';
   }
 
   async function fetchDeposits(account) {
@@ -90,6 +119,7 @@
     const points = values.map((value,index) => (20 + 960 * (values.length === 1 ? .5 : index / (values.length - 1))) + "," + (230 - 200 * value / peak)).join(" ");
     curve.insertAdjacentHTML("afterbegin", points ? '<polyline points="' + points + '" fill="none" stroke="#ffc247" stroke-width="4"></polyline>' : "");
     renderCashFlow();
+    renderCaptureHealth();
   }
 
   async function graphRequest(account, path, options = {}) {
@@ -168,6 +198,7 @@
     const data = await response.json();
     records = parse(data.values, data.formulas);
     deposits = await fetchDeposits(account);
+    processing = await fetchProcessing(account);
     const clients = [...new Set(records.map(record => record.client).filter(Boolean))].sort();
     $("clientFilter").innerHTML = '<option value="">All clients</option>' + clients.map(client => '<option value="' + esc(client) + '">' + esc(client) + '</option>').join("");
     ["clientFilter","expenseSearch","resetButton","depositButton"].forEach(id => $(id).disabled = false);

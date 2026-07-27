@@ -9,6 +9,7 @@
   const number = value => Number(String(value ?? "").replace(/[$,%]/g,"").replace(/,/g,"")) || 0;
   const toCertainty = value => { const n = number(value); return n <= 1 ? Math.round(n * 100) : Math.round(n); };
   let records = [];
+  let deposits = [];
   let graphClient;
 
   function receiptUrl(formula, value) {
@@ -27,6 +28,36 @@
       id, vendor:String(row[columns.vendor] ?? "Unclassified vendor").trim(), category:String(row[columns.category] ?? "Unclassified").trim(),
       client:String(row[columns.client] ?? "CMS Tech").trim(), amount:number(row[columns.amount]), certainty:toCertainty(row[columns.certainty]), receiptUrl:receiptUrl(formulas?.[id + 1]?.[columns.receipt], row[columns.receipt]), date:String(row[columns.date] ?? "").trim()
     }));
+  }
+
+  function parseDeposits(values) {
+    const [headers, ...rows] = values || [];
+    if (!headers) return [];
+    const index = label => headers.findIndex(header => String(header ?? "").trim().toLowerCase() === label.toLowerCase());
+    const amount = index("Deposit Amount");
+    if (amount < 0) return [];
+    return rows.filter(row => String(row[amount] ?? "").trim()).map(row => number(row[amount]));
+  }
+
+  async function fetchDeposits(account) {
+    try {
+      const data = await graphRequest(account, "worksheets/Deposits/usedRange");
+      return parseDeposits(data.values);
+    } catch (error) {
+      if (String(error.message).includes("404")) return [];
+      throw error;
+    }
+  }
+
+  function renderCashFlow() {
+    const totalExpenses = records.reduce((sum, record) => sum + record.amount, 0);
+    const totalDeposits = deposits.reduce((sum, value) => sum + value, 0);
+    const max = Math.max(1, totalExpenses, totalDeposits);
+    const net = totalDeposits - totalExpenses;
+    $("cashNet").textContent = (net >= 0 ? "+" : "−") + money(Math.abs(net));
+    $("cashNet").style.color = net >= 0 ? "#78e8a2" : "#ff9b6b";
+    $("cashFlowChart").innerHTML = '<div><div class="cash-bar-label"><span>Deposits</span><b>' + money(totalDeposits) + '</b></div><div class="cash-bar"><span class="deposit-fill" style="width:' + (totalDeposits / max * 100) + '%"></span></div></div><div><div class="cash-bar-label"><span>Expenses</span><b>' + money(totalExpenses) + '</b></div><div class="cash-bar"><span class="expense-fill" style="width:' + (totalExpenses / max * 100) + '%"></span></div></div>';
+    $("cashFlowNote").textContent = (deposits.length ? deposits.length + " deposit" + (deposits.length === 1 ? "" : "s") + " reconciled" : "No deposits recorded yet") + " · private workbook totals";
   }
 
   function render() {
@@ -57,6 +88,7 @@
     }).map(point => '<circle cx="' + point.x + '" cy="' + point.y + '" r="8" fill="#ffc247" stroke="#7a3b07" stroke-width="5"></circle>').join("");
     const points = values.map((value,index) => (20 + 960 * (values.length === 1 ? .5 : index / (values.length - 1))) + "," + (230 - 200 * value / peak)).join(" ");
     curve.insertAdjacentHTML("afterbegin", points ? '<polyline points="' + points + '" fill="none" stroke="#ffc247" stroke-width="4"></polyline>' : "");
+    renderCashFlow();
   }
 
   async function graphRequest(account, path, options = {}) {
@@ -104,6 +136,8 @@
       const range = await graphRequest(account, "worksheets/Deposits/usedRange");
       const row = (range.rowIndex || 0) + (range.rowCount || 1) + 1;
       await graphRequest(account, "worksheets/Deposits/range(address='A" + row + ":D" + row + "')", {method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({values:[[date,amount,source,client]]})});
+      deposits.push(amount);
+      renderCashFlow();
       status.textContent = "Deposit saved to the private workbook.";
       submit.textContent = "Saved";
       setTimeout(closeDeposit, 800);
@@ -126,6 +160,7 @@
     if (!response.ok) throw new Error("Microsoft Graph returned " + response.status);
     const data = await response.json();
     records = parse(data.values, data.formulas);
+    deposits = await fetchDeposits(account);
     const clients = [...new Set(records.map(record => record.client).filter(Boolean))].sort();
     $("clientFilter").innerHTML = '<option value="">All clients</option>' + clients.map(client => '<option value="' + esc(client) + '">' + esc(client) + '</option>').join("");
     ["clientFilter","expenseSearch","resetButton","depositButton"].forEach(id => $(id).disabled = false);

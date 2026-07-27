@@ -56,7 +56,7 @@
     const net = totalDeposits - totalExpenses;
     $("cashNet").textContent = (net >= 0 ? "+" : "−") + money(Math.abs(net));
     $("cashNet").style.color = net >= 0 ? "#78e8a2" : "#ff9b6b";
-    $("cashFlowChart").innerHTML = '<div><div class="cash-bar-label"><span>Deposits</span><b>' + money(totalDeposits) + '</b></div><div class="cash-bar"><span class="deposit-fill" style="width:' + (totalDeposits / max * 100) + '%"></span></div></div><div><div class="cash-bar-label"><span>Expenses</span><b>' + money(totalExpenses) + '</b></div><div class="cash-bar"><span class="expense-fill" style="width:' + (totalExpenses / max * 100) + '%"></span></div></div>';
+    $("cashFlowChart").innerHTML = '<div class="cash-column"><div class="cash-amount"><span>Deposits</span><b style="color:#78e8a2">' + money(totalDeposits) + '</b></div><div class="cash-pillar"><span class="deposit-fill" style="height:' + Math.max(4, totalDeposits / max * 100) + '%"></span></div></div><div class="cash-column"><div class="cash-amount"><span>Expenses</span><b style="color:#ffc247">' + money(totalExpenses) + '</b></div><div class="cash-pillar"><span class="expense-fill" style="height:' + Math.max(4, totalExpenses / max * 100) + '%"></span></div></div>';
     $("cashFlowNote").textContent = (deposits.length ? deposits.length + " deposit" + (deposits.length === 1 ? "" : "s") + " reconciled" : "No deposits recorded yet") + " · private workbook totals";
   }
 
@@ -76,7 +76,8 @@
 
     const groups = visible.reduce((all,record) => { all[record.category] = (all[record.category] || 0) + record.amount; return all; }, {});
     const peakCategory = Math.max(1,...Object.values(groups));
-    $("categories").innerHTML = Object.keys(groups).length ? Object.entries(groups).map(([category, amount]) => '<div class="category"><span>' + esc(category) + '</span><div class="bar"><span style="width:' + (amount / peakCategory * 100) + '%"></span></div><b>' + money(amount) + '</b></div>').join("") : '<div class="category"><span>No category data</span><div class="bar"><span></span></div><b>—</b></div>';
+    const categoryPanel = $("categories");
+    if (categoryPanel) categoryPanel.innerHTML = Object.keys(groups).length ? Object.entries(groups).map(([category, amount]) => '<div class="category"><span>' + esc(category) + '</span><div class="bar"><span style="width:' + (amount / peakCategory * 100) + '%"></span></div><b>' + money(amount) + '</b></div>').join("") : '<div class="category"><span>No category data</span><div class="bar"><span></span></div><b>—</b></div>';
 
     const values = []; visible.reduce((sum,record) => { sum += record.amount; values.push(sum); return sum; },0);
     const peak = Math.max(1,...values);

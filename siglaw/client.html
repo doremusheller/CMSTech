@@ -24,7 +24,7 @@
         <h1>Signature Law<br>Partners</h1>
         <p>A private, live view of the CMS client record—built for clear operating context, not a public marketing page.</p>
       </div>
-      <img class="signature-logo" src="https://siglawpartners.com/assets/siglogo.png" alt="Signature Law Partners, PLLC">
+      <img class="signature-logo" src="https://raw.githubusercontent.com/doremusheller/siglaw/main/assets/siglogo.png" alt="Signature Law Partners, PLLC">
     </section>
 
     <section class="auth" aria-live="polite">
@@ -112,9 +112,17 @@
     $("connectionNote").textContent="The private client record could not be loaded. Reconnect and try again.";
     $("signInButton").disabled=false;$("signInButton").textContent="Reconnect Microsoft 365";$("signInButton").onclick=signIn;
   }
-  async function signIn(){$("signInButton").disabled=true;$("signInButton").textContent="Opening Microsoft sign-in…";await graphClient.loginRedirect({scopes:SCOPES})}
+  async function signIn(){
+    $("signInButton").disabled=true;
+    $("signInButton").textContent="Opening Microsoft sign-in…";
+    try{
+      const result=await graphClient.loginPopup({scopes:SCOPES});
+      graphClient.setActiveAccount(result.account);
+      await load(result.account);
+    }catch(error){showError(error)}
+  }
   async function start(){
-    graphClient=new msal.PublicClientApplication({auth:{clientId:CLIENT_ID,authority:"https://login.microsoftonline.com/"+TENANT_ID,redirectUri:"https://cmstech.ai/siglaw/client.html"},cache:{cacheLocation:"sessionStorage"}});
+    graphClient=new msal.PublicClientApplication({auth:{clientId:CLIENT_ID,authority:"https://login.microsoftonline.com/"+TENANT_ID,redirectUri:"https://cmstech.ai/mission-control.html"},cache:{cacheLocation:"sessionStorage"}});
     await graphClient.initialize();await graphClient.handleRedirectPromise();$("signInButton").onclick=signIn;
     const account=graphClient.getActiveAccount()||graphClient.getAllAccounts()[0];
     if(account){graphClient.setActiveAccount(account);try{await load(account)}catch(error){showError(error)}}

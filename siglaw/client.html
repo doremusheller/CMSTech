@@ -83,8 +83,10 @@
   }
   function card(label,content){return '<div class="fact"><label>'+esc(label)+'</label><span>'+esc(content)+'</span></div>'}
   function display(record){
+    const nonCharged=String(record["Non-Charged Client"]??"").trim();
+    const effectiveRate=nonCharged ? "N/A — "+nonCharged : (record["Effective Standard Rate / Retainer"] ?? record["Standard Rate / Retainer"]);
     $("legalName").textContent=value(record,"Client / Legal Name");
-    $("status").textContent=value(record,"Status");
+    $("status").textContent=nonCharged ? "Non-charged · "+nonCharged : value(record,"Status");
     $("scope").textContent=value(record,"Services / Scope");\n    $("deliverySummary").textContent=value(record,"Services / Scope");\n    $("deliveryCard").classList.remove("hidden");
     $("coreFacts").innerHTML=[
       ["Client ID",value(record,"Client ID")],["Industry",value(record,"Industry")],
@@ -93,9 +95,9 @@
       ["Billing email",value(record,"Billing Email")],["Billing address",value(record,"Billing Address")]
     ].map(([a,b])=>card(a,b)).join("");
     $("relationshipFacts").innerHTML=[
-      ["Payment terms",value(record,"Default Payment Terms")],["Standard rate / retainer",formatRate(record["Standard Rate / Retainer"])],
+      ["Payment terms",value(record,"Default Payment Terms")],["Effective standard rate",formatRate(effectiveRate)],
       ["Start date",formatDate(record["Start Date"])],["Renewal / review",formatDate(record["Renewal / Review Date"])],
-      ["Client owner",value(record,"Client Owner")],["Last updated",formatDate(record["Last Updated"])],
+      ["Client owner",value(record,"Client Owner")],["Financial status",value(record,"Financial Status")],["Last updated",formatDate(record["Last Updated"])],
       ["Notes",value(record,"Notes")]
     ].map(([a,b])=>card(a,b)).join("");
     $("clientConsole").classList.remove("hidden");

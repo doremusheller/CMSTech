@@ -22,12 +22,12 @@
     const [headers, ...rows] = values || [];
     if (!headers) throw new Error("The CMSLedger workbook is empty.");
     const index = label => headers.findIndex(header => String(header ?? "").trim().toLowerCase() === label.toLowerCase());
-    const columns = { vendor:index("Vendor"), category:index("Category"), client:index("Client"), amount:index("Amount"), certainty:index("AI Certainty (%)"), receipt:index("Receipt"), date:index("Date") };
+    const columns = { vendor:index("Vendor"), category:index("Category"), client:index("Client"), amount:index("Amount"), certainty:index("AI Certainty (%)"), receipt:index("Receipt"), date:index("Date"), reviewStatus:index("Review Status") };
     if ([columns.vendor,columns.category,columns.client,columns.amount,columns.certainty].some(value => value < 0)) throw new Error("The workbook does not have the CMSLedger columns Mission Control expects.");
-    return rows.filter(row => String(row[columns.amount] ?? "").trim()).map((row, id) => ({
-      id, vendor:String(row[columns.vendor] ?? "Unclassified vendor").trim(), category:String(row[columns.category] ?? "Unclassified").trim(),
-      client:String(row[columns.client] ?? "CMS Tech").trim(), amount:number(row[columns.amount]), certainty:toCertainty(row[columns.certainty]), receiptUrl:receiptUrl(formulas?.[id + 1]?.[columns.receipt], row[columns.receipt]), date:String(row[columns.date] ?? "").trim()
-    }));
+    return rows.map((row, rowIndex) => ({
+      id:rowIndex, sheetRow:rowIndex + 2, hasAmount:String(row[columns.amount] ?? "").trim(), vendor:String(row[columns.vendor] ?? "Unclassified vendor").trim(), category:String(row[columns.category] ?? "Unclassified").trim(),
+      client:String(row[columns.client] ?? "CMS Tech").trim(), amount:number(row[columns.amount]), certainty:toCertainty(row[columns.certainty]), receiptUrl:receiptUrl(formulas?.[rowIndex + 1]?.[columns.receipt], row[columns.receipt]), date:String(row[columns.date] ?? "").trim(), reviewStatus:columns.reviewStatus < 0 ? "" : String(row[columns.reviewStatus] ?? "").trim()
+    })).filter(record => record.hasAmount);
   }
 
   function parseDeposits(values) {
@@ -172,12 +172,52 @@
     render();
   }
 
+  function excelColumn(number) {
+    let result = "";
+    while (number > 0) { const remainder = (number - 1) % 26; result = String.fromCharCode(65 + remainder) + result; number = Math.floor((number - 1) / 26); }
+    return result;
+  }
+
+  async function ensureReviewColumn(account) {
+    const range = await graphRequest(account, "worksheets/Expenses/usedRange");
+    const headers = range.values?.[0] || [];
+    const existing = headers.findIndex(value => String(value ?? "").trim().toLowerCase() === "review status");
+    if (existing >= 0) return existing + 1;
+    const column = excelColumn((range.columnIndex || 0) + (range.columnCount || headers.length) + 1);
+    await graphRequest(account, "worksheets/Expenses/range(address='" + column + "1')", {method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({values:[["Review Status"]]})});
+    return (range.columnIndex || 0) + (range.columnCount || headers.length) + 1;
+  }
+
+  async function decideReview(status) {
+    const id = Number($("expenseModal").dataset.expenseId);
+    const record = records.find(item => item.id === id);
+    const account = graphClient.getActiveAccount() || graphClient.getAllAccounts()[0];
+    if (!record || !account) return;
+    const state = $("reviewState");
+    $("reviewApprove").disabled = true; $("reviewDeny").disabled = true;
+    state.textContent = "Saving review decision…";
+    try {
+      const column = await ensureReviewColumn(account);
+      await graphRequest(account, "worksheets/Expenses/range(address='" + excelColumn(column) + record.sheetRow + "')", {method:"PATCH",headers:{"Content-Type":"application/json"},body:JSON.stringify({values:[[status]]})});
+      record.reviewStatus = status;
+      state.textContent = "Receipt " + status.toLowerCase() + " and saved.";
+      $("reviewActions").hidden = true;
+      render();
+    } catch (error) {
+      console.error(error); state.textContent = "Could not save the review. Please try again.";
+    } finally { $("reviewApprove").disabled = false; $("reviewDeny").disabled = false; }
+  }
+
   function closeExpense() { $("expenseModal").hidden = true; $("expenseModal").setAttribute("aria-hidden","true"); }
   function openExpense(id) {
     const record = records.find(item => item.id === Number(id)); if (!record) return;
     $("expenseTitle").textContent = record.vendor;
     $("expenseFacts").innerHTML = [["Amount",money(record.amount)],["Category",record.category],["Client",record.client],["Date",record.date || "Not recorded"],["AI certainty",record.certainty + "%"]].map(([label,value]) => '<div class="expense-fact"><label>' + esc(label) + '</label><b>' + esc(value) + '</b></div>').join("");
     const receipt = $("viewReceipt"); receipt.href = record.receiptUrl || "#"; receipt.setAttribute("aria-disabled", record.receiptUrl ? "false" : "true"); receipt.textContent = record.receiptUrl ? "View receipt ↗" : "No receipt linked";
+    $("expenseModal").dataset.expenseId = record.id;
+    const needsDecision = record.certainty < 95 && !record.reviewStatus;
+    $("reviewActions").hidden = !needsDecision;
+    $("reviewState").textContent = record.reviewStatus ? "Review status: " + record.reviewStatus : (needsDecision ? "This receipt is flagged for review." : "No review action required.");
     $("expenseModal").hidden = false; $("expenseModal").setAttribute("aria-hidden","false");
   }
 
@@ -207,6 +247,8 @@
     $("depositModal").addEventListener("click", event => { if (event.target === $("depositModal")) closeDeposit(); });
     $("ledgerRows").addEventListener("click", event => { const row = event.target.closest("[data-expense-id]"); if (row) openExpense(row.dataset.expenseId); });
     $("expenseClose").addEventListener("click", closeExpense);
+    $("reviewApprove").addEventListener("click", () => decideReview("Approved"));
+    $("reviewDeny").addEventListener("click", () => decideReview("Denied"));
     $("expenseModal").addEventListener("click", event => { if (event.target === $("expenseModal")) closeExpense(); });
     document.addEventListener("keydown", event => { if (event.key === "Escape") { closeExpense(); closeDeposit(); } });
     const account = graphClient.getActiveAccount() || graphClient.getAllAccounts()[0];

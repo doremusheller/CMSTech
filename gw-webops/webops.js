@@ -63,7 +63,7 @@
     try{
       r=await fetch(W+route,{method:"POST",credentials:"omit",headers:{"content-type":"application/json"},body:JSON.stringify(data)});
     }catch{
-      throw Error("Secure author connection unavailable. Open "+W+" in a new tab, complete Cloudflare sign-in, then retry.");
+      throw Error("The public preview service is unavailable right now. Please try again shortly.");
     }
     const j=await r.json().catch(()=>({}));
     if(!r.ok)throw Error(j.error||"Secure author request failed.");

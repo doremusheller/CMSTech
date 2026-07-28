@@ -1,6 +1,6 @@
 (()=>{
   const W="https://gw-webops-control.doremusheller.workers.dev";
-  const P=[["shag","shag.html","Shag Fantastiq","Velvet Titan of Bass","shag-hero.svg"],["bo","bo.html","Bodacious Scraggleton XIII","Fallen royal groove sovereign","bo-hero.svg"],["luna","luna.html","Luna Voce","Amethyst Siren of Trion-6","luna-hero.svg"],["djastro","djastro.html","DJ Astrognome","Temporal turntablist","djastro-hero.svg"],["gary","gary.html","Gary","Earth-born road manager","gary-hero.svg"]];
+  const P=[["shag","shag.html","Shag Fantastiq","Velvet Titan of Bass","shag-hero.svg"],["bo","bo.html","Bodacious Scraggleton XIII","Fallen royal groove sovereign","bo-hero.svg"],["luna","luna.html","Luna Voce","Amethyst Siren of Trion-6","luna-hero.svg"],["djastro","djastro.html","DJ Astrognome","Temporal turntablist","djastro-hero.svg"],["drummakaan","drummakaan.html","Drumma Kaan","Primal thunder drummer","drummakaan-hero.svg"],["gary","gary.html","Gary","Earth-born road manager","gary-hero.svg"]];
   const $=x=>document.getElementById(x);
   const E=x=>String(x??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   let s=P[0],p=null,rec,blob;

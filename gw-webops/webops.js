@@ -71,7 +71,7 @@
   }
 
   async function propose(){
-    if(!location.hostname.endsWith(".workers.dev")){location.href=W+"/editor/";return;}
+    
     const i=$("instruction").value.trim();
     if(!i)return $("instruction").focus();
     $("proposeButton").disabled=true;

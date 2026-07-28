@@ -9,6 +9,17 @@
   const money = value => new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(value || 0);
   const number = value => Number(String(value ?? "").replace(/[$,%]/g,"").replace(/,/g,"")) || 0;
   const toCertainty = value => { const n = number(value); return n <= 1 ? Math.round(n * 100) : Math.round(n); };
+  const displayDate = value => {
+    const raw = String(value ?? "").trim();
+    if (!raw) return "";
+    let date;
+    if (/^\d+(?:\.\d+)?$/.test(raw)) date = new Date(Date.UTC(1899, 11, 30) + Math.round(Number(raw)) * 86400000);
+    else {
+      const iso = raw.match(/^(\d{4})-(\d{2})-(\d{2})/);
+      date = iso ? new Date(Date.UTC(Number(iso[1]), Number(iso[2]) - 1, Number(iso[3]))) : new Date(raw);
+    }
+    return Number.isNaN(date.getTime()) ? raw : new Intl.DateTimeFormat("en-US",{month:"short",day:"2-digit",year:"numeric",timeZone:"UTC"}).format(date);
+  };
   let records = [];
   let deposits = [];
   let processing = [];
@@ -30,7 +41,7 @@
     if ([columns.vendor,columns.category,columns.client,columns.amount,columns.certainty].some(value => value < 0)) throw new Error("The workbook does not have the CMSLedger columns Mission Control expects.");
     return rows.map((row, rowIndex) => ({
       id:rowIndex, sheetRow:rowIndex + 2, hasAmount:String(row[columns.amount] ?? "").trim(), vendor:String(row[columns.vendor] ?? "Unclassified vendor").trim(), category:String(row[columns.category] ?? "Unclassified").trim(),
-      client:String(row[columns.client] ?? "CMS Tech").trim(), amount:number(row[columns.amount]), certainty:toCertainty(row[columns.certainty]), receiptUrl:receiptUrl(formulas?.[rowIndex + 1]?.[columns.receipt], row[columns.receipt]), date:String(row[columns.date] ?? "").trim(), reviewStatus:columns.reviewStatus < 0 ? "" : String(row[columns.reviewStatus] ?? "").trim()
+      client:String(row[columns.client] ?? "CMS Tech").trim(), amount:number(row[columns.amount]), certainty:toCertainty(row[columns.certainty]), receiptUrl:receiptUrl(formulas?.[rowIndex + 1]?.[columns.receipt], row[columns.receipt]), date:displayDate(row[columns.date]), reviewStatus:columns.reviewStatus < 0 ? "" : String(row[columns.reviewStatus] ?? "").trim()
     })).filter(record => record.hasAmount);
   }
 
@@ -40,7 +51,7 @@
     const index = label => headers.findIndex(header => String(header ?? "").trim().toLowerCase() === label.toLowerCase());
     const date = index("Date Deposited"), amount = index("Deposit Amount"), source = index("Source"), client = index("Client/Project Name");
     if (amount < 0) return [];
-    return rows.filter(row => String(row[amount] ?? "").trim()).map((row, id) => ({ id, date:String(row[date] ?? "").trim(), amount:number(row[amount]), source:String(row[source] ?? "").trim(), client:String(row[client] ?? "").trim() }));
+    return rows.filter(row => String(row[amount] ?? "").trim()).map((row, id) => ({ id, date:displayDate(row[date]), amount:number(row[amount]), source:String(row[source] ?? "").trim(), client:String(row[client] ?? "").trim() }));
   }
 
   function parseProcessing(values) {
@@ -49,7 +60,7 @@
     const index = label => headers.findIndex(header => String(header ?? "").trim().toLowerCase() === label.toLowerCase());
     const status = index("Status"), vendor = index("Vendor"), total = index("Total"), notes = index("Notes / Error"), date = index("Transaction Date");
     if (status < 0) return [];
-    return rows.filter(row => String(row[status] ?? "").trim()).map((row, id) => ({ id, sheetRow:id + 2, status:String(row[status] ?? "").trim(), vendor:String(row[vendor] ?? "Unidentified receipt").trim(), total:number(row[total]), notes:String(row[notes] ?? "").trim(), date:String(row[date] ?? "").trim() }));
+    return rows.filter(row => String(row[status] ?? "").trim()).map((row, id) => ({ id, sheetRow:id + 2, status:String(row[status] ?? "").trim(), vendor:String(row[vendor] ?? "Unidentified receipt").trim(), total:number(row[total]), notes:String(row[notes] ?? "").trim(), date:displayDate(row[date]) }));
   }
 
   async function fetchProcessing(account) {

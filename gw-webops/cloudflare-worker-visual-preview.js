@@ -19,7 +19,8 @@ const TARGETS = {
   shag: { file: "bandsite/shag.html", identity: "Shag Fantastiq: a charismatic mahogany-furred Wookie bassist, wearing a purple/violet hat and matching ornate vest, sunglasses, and gold jewelry. Preserve this unmistakable character and wardrobe unless the instruction explicitly changes them." },
   bo: { file: "bandsite/bo.html", identity: "Bodacious Scraggleton XIII: preserve the specific character identity, costume, proportions, and visual style shown in the supplied hero image unless the instruction explicitly changes them." },
   luna: { file: "bandsite/luna.html", identity: "Luna Voce: preserve the specific character identity, costume, proportions, and visual style shown in the supplied hero image unless the instruction explicitly changes them." },
-  djastro: { file: "bandsite/djastro.html", identity: "DJ Astrognome: preserve the specific character identity, costume, proportions, and visual style shown in the supplied hero image unless the instruction explicitly changes them." },
+  djastro: { file: "bandsite/djastro.html", identity: "DJ Astrognome: a gnome turntablist with headphones and a microphone, shown in the supplied purple cosmic hero art. Preserve this unmistakable character and visual style unless the instruction explicitly changes them." },
+  drummakaan: { file: "bandsite/drummakaan.html", identity: "Drumma Kaan: Ghetto Wookie’s chimp drummer, shown wielding drumsticks in the supplied hero image. Preserve this unmistakable character and visual style unless the instruction explicitly changes them." },
   gary: { file: "bandsite/gary.html", identity: "Gary: preserve the specific character identity, costume, proportions, and visual style shown in the supplied hero image unless the instruction explicitly changes them." },
 };
 

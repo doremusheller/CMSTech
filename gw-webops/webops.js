@@ -90,7 +90,11 @@
     if(!i)return $("instruction").focus();
     $("proposeButton").disabled=true;
     const iterative=Boolean(p);
+    const started=Date.now();
+    busy(true,/\b(image|photo|hero|picture|visual|illustration)\b/i.test(i));
     msg(iterative?"Refining the current preview…":"Generating a faithful page preview from the current source…");
+    // Force the loading panel to paint before the Worker request begins.
+    await new Promise(requestAnimationFrame);
     try{
       p=await api("/proposal",{target:s[0],instruction:i,draft:iterative?p.content:null});
       $("proposalTitle").textContent=s[2]+" · proposed revision";
@@ -103,7 +107,12 @@
       a.unshift({page:s[1],state:"Controlled preview generated",instruction:i,time:new Date().toLocaleString()});
       save(a.slice(0,12));audit();
       msg(iterative?"Refined preview ready. Nothing has been published.":"Preview ready. Nothing has been published.");
-    }catch(e){msg(e.message)}finally{busy(false);$("proposeButton").disabled=false;}
+    }catch(e){msg(e.message)}finally{
+      const remaining=800-(Date.now()-started);
+      if(remaining>0)await new Promise(resolve=>setTimeout(resolve,remaining));
+      busy(false);
+      $("proposeButton").disabled=false;
+    }
   }
 
   function voice(){

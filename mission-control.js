@@ -140,15 +140,19 @@
     $("needsReview").textContent = visible.filter(record => record.certainty < 95).length;
     $("visibleNote").textContent = hasFilter ? matching.length + " matching ledger record" + (matching.length === 1 ? "" : "s") : "Latest " + visible.length + " of " + matching.length + " ledger records";
 
-    $("ledgerRows").innerHTML = visible.length ? visible.map(record => '<div class="empty-row" data-expense-id="' + record.id + '"><span><b style="color:#efe1d5">' + esc(record.vendor) + '</b> · ' + esc(record.category) + '<br><small style="color:#38dfd0">' + esc(record.client) + '</small></span><strong style="color:#ffc247">' + money(record.amount) + '</strong></div>').join("") : '<div class="empty-row">No matching ledger records.</div>';
+    $("ledgerRows").innerHTML = visible.length ? visible.map(record => '<div class="empty-row" data-expense-id="' + record.id + '"><span><b style="color:#efe1d5">' + esc(record.vendor) + '</b> · ' + esc(record.category) + '<br><small style="color:#38dfd0">' + esc(record.date || "Date not recorded") + ' · ' + esc(record.client) + '</small></span><strong style="color:#ffc247">' + money(record.amount) + '</strong></div>').join("") : '<div class="empty-row">No matching ledger records.</div>';
 
     const groups = visible.reduce((all,record) => { all[record.category] = (all[record.category] || 0) + record.amount; return all; }, {});
     const peakCategory = Math.max(1,...Object.values(groups));
     const categoryPanel = $("categories");
     if (categoryPanel) categoryPanel.innerHTML = Object.keys(groups).length ? Object.entries(groups).map(([category, amount]) => '<div class="category"><span>' + esc(category) + '</span><div class="bar"><span style="width:' + (amount / peakCategory * 100) + '%"></span></div><b>' + money(amount) + '</b></div>').join("") : '<div class="category"><span>No category data</span><div class="bar"><span></span></div><b>—</b></div>';
 
-    const values = []; visible.reduce((sum,record) => { sum += record.amount; values.push(sum); return sum; },0);
+    const curveRecords = [...visible].sort((a,b) => Date.parse(a.date) - Date.parse(b.date));
+    const values = []; curveRecords.reduce((sum,record) => { sum += record.amount; values.push(sum); return sum; },0);
     const peak = Math.max(1,...values);
+    $("curveContext").textContent = visible.length ? "Cumulative spend across the " + visible.length + " displayed transaction" + (visible.length === 1 ? "." : "s.") + " Click a transaction below to open its full record." : "No transactions match the current view.";
+    $("curveStart").textContent = curveRecords[0]?.date || "Earlier";
+    $("curveEnd").textContent = curveRecords[curveRecords.length - 1]?.date || "Most recent";
     const curve = $("curve");
     curve.innerHTML = values.map((value,index) => {
       const x = 20 + 960 * (values.length === 1 ? .5 : index / (values.length - 1));

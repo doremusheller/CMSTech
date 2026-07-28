@@ -13,7 +13,7 @@
     const raw = String(value ?? "").trim();
     if (!raw) return "";
     let date;
-    if (/^\d+(?:\.\d+)?$/.test(raw)) date = new Date(Date.UTC(1899, 11, 30) + Math.round(Number(raw)) * 86400000);
+    if (Number.isFinite(Number(raw)) && Number(raw) > 1000 && Number(raw) < 100000) date = new Date(Date.UTC(1899, 11, 30) + Math.floor(Number(raw)) * 86400000);
     else {
       const iso = raw.match(/^(\d{4})-(\d{2})-(\d{2})/);
       date = iso ? new Date(Date.UTC(Number(iso[1]), Number(iso[2]) - 1, Number(iso[3]))) : new Date(raw);

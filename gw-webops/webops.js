@@ -61,7 +61,7 @@
   async function api(route,data){
     let r;
     try{
-      r=await fetch(W+route,{method:"POST",credentials:"include",headers:{"content-type":"application/json"},body:JSON.stringify(data)});
+      r=await fetch(W+route,{method:"POST",credentials:"omit",headers:{"content-type":"application/json"},body:JSON.stringify(data)});
     }catch{
       throw Error("Secure author connection unavailable. Open "+W+" in a new tab, complete Cloudflare sign-in, then retry.");
     }

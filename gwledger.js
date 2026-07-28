@@ -1,6 +1,6 @@
 (()=>{
   const $=x=>document.getElementById(x);
-  const K="gw-demo-console-v14";
+  const K="gw-demo-console-v15";
   const RECEIPTS={
     "gw-exp-001":"https://cmstech.ai/assets/gw-demo-receipts/laser-llama-rentals-receipt.svg?v=receipt-repair-1",
     "gw-exp-002":"https://cmstech.ai/assets/gw-demo-receipts/the-thang-instrument-works-receipt.svg?v=receipt-repair-1",

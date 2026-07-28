@@ -308,7 +308,13 @@ export default {
 
     if (request.method === "OPTIONS") return new Response(null, { status: 204 });
 
-    if (url.pathname === "/editor" || url.pathname.startsWith("/editor/")) {
+    // Treat /editor as a directory so the browser resolves webops.css and
+    // bandsite/* beneath /editor/ rather than at the Worker root.
+    if (url.pathname === "/editor") {
+      return Response.redirect(new URL("/editor/", url), 302);
+    }
+
+    if (url.pathname.startsWith("/editor/")) {
       return serveAuthorConsole(request, url.pathname);
     }
 

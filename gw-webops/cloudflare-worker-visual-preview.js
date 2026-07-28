@@ -252,8 +252,9 @@ async function generateHeroPreview({ svg, instruction, identity, apiKey }) {
   );
   form.append("size", "1536x1024");
   form.append("quality", "medium");
-  form.append("output_format", "jpeg");
-  form.append("output_compression", "82");
+  // PNG avoids a browser decode failure if an image endpoint ignores an
+  // alternate output format and returns its default PNG payload.
+  form.append("output_format", "png");
 
   const response = await fetch("https://api.openai.com/v1/images/edits", {
     method: "POST",
@@ -267,7 +268,7 @@ async function generateHeroPreview({ svg, instruction, identity, apiKey }) {
   }
   const b64 = data?.data?.[0]?.b64_json;
   if (!b64) throw new Error("The image service did not return preview image data.");
-  return `data:image/jpeg;base64,${b64}`;
+  return `data:image/png;base64,${b64}`;
 }
 
 async function serveAuthorConsole(request, pathname) {

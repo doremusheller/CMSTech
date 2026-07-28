@@ -1,11 +1,41 @@
 {
   "site": "Ghetto Wookie Bandsite Sandbox",
+  "mode": "simulated",
   "pages": [
-    "shag.html",
-    "bo.html",
-    "luna.html",
-    "djastro.html",
-    "gary.html"
-  ],
-  "mode": "simulated"
+    {
+      "id": "shag",
+      "file": "shag.html",
+      "name": "Shag Fantastiq",
+      "role": "Velvet Titan of Bass",
+      "image": "bandsite/assets/shag-hero.svg"
+    },
+    {
+      "id": "bo",
+      "file": "bo.html",
+      "name": "Bodacious Scraggleton XIII",
+      "role": "Fallen royal groove sovereign",
+      "image": "bandsite/assets/bo-hero.svg"
+    },
+    {
+      "id": "luna",
+      "file": "luna.html",
+      "name": "Luna Voce",
+      "role": "Amethyst Siren of Trion-6",
+      "image": "bandsite/assets/luna-hero.svg"
+    },
+    {
+      "id": "djastro",
+      "file": "djastro.html",
+      "name": "DJ Astrognome",
+      "role": "Temporal turntablist",
+      "image": "bandsite/assets/djastro-hero.svg"
+    },
+    {
+      "id": "gary",
+      "file": "gary.html",
+      "name": "Gary",
+      "role": "Earth-born road manager",
+      "image": "bandsite/assets/gary-hero.svg"
+    }
+  ]
 }

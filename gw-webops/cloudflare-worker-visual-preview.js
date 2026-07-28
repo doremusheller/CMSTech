@@ -23,13 +23,14 @@ const TARGETS = {
   gary: { file: "bandsite/gary.html", identity: "Gary: preserve the specific character identity, costume, proportions, and visual style shown in the supplied hero image unless the instruction explicitly changes them." },
 };
 
-function cors(request) {
-  const origin = request.headers.get("Origin");
+function cors() {
+  // Public, preview-only endpoint: do not use cookies or credentials.
+  // Wildcard CORS permits both cmstech.ai and www.cmstech.ai.
   return {
-    "access-control-allow-origin": origin === ALLOWED_ORIGIN ? ALLOWED_ORIGIN : ALLOWED_ORIGIN,
+    "access-control-allow-origin": "*",
     "access-control-allow-methods": "POST, OPTIONS",
     "access-control-allow-headers": "content-type",
-    "vary": "Origin",
+    "access-control-max-age": "86400",
   };
 }
 

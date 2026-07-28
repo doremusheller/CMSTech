@@ -69,19 +69,19 @@
     const i=$("instruction").value.trim();
     if(!i)return $("instruction").focus();
     $("proposeButton").disabled=true;
-    msg("Generating a real visual preview from the current hero image…");
+    msg("Generating a faithful page preview from the current source…");
     try{
-      p=await api("/visual-proposal",{target:s[0],instruction:i});
-      $("proposalTitle").textContent=s[2]+" · visual proposal";
+      p=await api("/proposal",{target:s[0],instruction:i});
+      $("proposalTitle").textContent=s[2]+" · proposed revision";
       $("proposalSummary").textContent=p.summary;
-      $("proposalDiff").innerHTML="<ins>Hero image revised in a temporary preview. No page, style, or GitHub content has been published.</ins>";
+      $("proposalDiff").innerHTML="<ins>Controlled text, style, section, and/or image changes applied in a temporary preview. Nothing has been published.</ins>";
       $("proposal").hidden=false;
       $("proposedButton").disabled=false;
       mode("proposed");
       const a=log();
-      a.unshift({page:s[1],state:"Visual preview generated",instruction:i,time:new Date().toLocaleString()});
+      a.unshift({page:s[1],state:"Controlled preview generated",instruction:i,time:new Date().toLocaleString()});
       save(a.slice(0,12));audit();
-      msg("Visual preview ready. Nothing has been published.");
+      msg("Preview ready. Nothing has been published.");
     }catch(e){msg(e.message)}finally{$("proposeButton").disabled=false;}
   }
 

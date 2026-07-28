@@ -87,18 +87,47 @@ async function getGitHubFile(path, token) {
   return { content: new TextDecoder().decode(decodeBase64(data.content)), sha: data.sha };
 }
 
-function heroAssetFromHtml(html) {
+function heroSourceFromHtml(html) {
   const match = html.match(/<img[^>]*class=["'][^"']*hero-image[^"']*["'][^>]*src=["']([^"']+)["']/i);
   if (!match) throw new Error("The selected page does not contain a supported hero image.");
-  const source = match[1];
-  if (!source.startsWith("assets/")) throw new Error("The selected hero image is not a local editable asset.");
-  return source;
+  return match[1];
 }
 
 function imageFromSvg(svg) {
   const match = svg.match(/href=["']data:(image\/(?:jpeg|png|webp));base64,([^"']+)["']/i);
   if (!match) throw new Error("The hero asset did not contain an editable source image.");
   return { type: match[1], bytes: decodeBase64(match[2]) };
+}
+
+function imageFromDataUrl(value) {
+  const match = String(value).match(/^data:(image\/(?:jpeg|png|webp));base64,([\s\S]+)$/i);
+  if (!match) throw new Error("The current preview does not contain an editable hero image.");
+  return { type: match[1], bytes: decodeBase64(match[2]) };
+}
+
+async function heroInputFromHtml(html, target, token) {
+  const source = heroSourceFromHtml(html);
+  if (source.startsWith("data:image/")) return imageFromDataUrl(source);
+  if (!source.startsWith("assets/")) throw new Error("The selected hero image is not a supported editable asset.");
+  const assetPath = target.file.replace(/[^/]+$/, source);
+  const heroSvg = await getGitHubFile(assetPath, token);
+  return imageFromSvg(heroSvg.content);
+}
+
+function validateDraft(value) {
+  const draft = String(value || "");
+  if (!draft) return null;
+  if (draft.length > 12_000_000) throw new Error("The working preview is too large to iterate safely.");
+  // Prior safe preview CSS is part of the working draft, so style tags are
+  // allowed here. Active markup remains forbidden.
+  if (/<\/?(?:script|iframe|object|embed)|\son\w+\s*=|javascript:/i.test(draft)) {
+    throw new Error("The working preview contains unsupported active markup.");
+  }
+  return draft;
+}
+
+function planningSource(html) {
+  return html.replace(/data:image\/(?:jpeg|png|webp);base64,[^"']+/gi, "[CURRENT HERO IMAGE]");
 }
 
 function swapHero(html, dataUrl) {
@@ -235,8 +264,7 @@ async function buildChangePlan({ html, instruction, apiKey }) {
   return parsePlan(data);
 }
 
-async function generateHeroPreview({ svg, instruction, identity, apiKey }) {
-  const image = imageFromSvg(svg);
+async function generateHeroPreview({ image, instruction, identity, apiKey }) {
   const form = new FormData();
   form.append("model", "gpt-image-1");
   form.append("image", new Blob([image.bytes], { type: image.type }), "current-hero.jpg");
@@ -337,18 +365,19 @@ export default {
           return json({ error: "A supported page and visual change instruction are required." }, 400);
         }
 
-        const source = await getGitHubFile(target.file, env.GITHUB_TOKEN);
+        const draft = validateDraft(body.draft);
+        const source = draft
+          ? { content: draft, sha: null }
+          : await getGitHubFile(target.file, env.GITHUB_TOKEN);
         const plan = safePlan(
-          await buildChangePlan({ html: source.content, instruction, apiKey: env.OPENAI_API_KEY }),
+          await buildChangePlan({ html: planningSource(source.content), instruction, apiKey: env.OPENAI_API_KEY }),
           source.content,
         );
         let content = injectPreviewChanges(source.content, plan);
         if (plan.imageEdit) {
-          const asset = heroAssetFromHtml(source.content);
-          const assetPath = target.file.replace(/[^/]+$/, asset);
-          const heroSvg = await getGitHubFile(assetPath, env.GITHUB_TOKEN);
+          const image = await heroInputFromHtml(source.content, target, env.GITHUB_TOKEN);
           const editedImage = await generateHeroPreview({
-            svg: heroSvg.content,
+            image,
             instruction: plan.imageInstruction || instruction,
             identity: target.identity,
             apiKey: env.OPENAI_API_KEY,

@@ -115,6 +115,126 @@ function swapHero(html, dataUrl) {
     .replace(/<head([^>]*)>/i, `<head$1><base href="${STATIC_ORIGIN}bandsite/">`);
 }
 
+function outputText(data) {
+  if (data.output_text) return data.output_text;
+  return (data.output || [])
+    .flatMap((item) => item.content || [])
+    .filter((item) => item.type === "output_text")
+    .map((item) => item.text || "")
+    .join("");
+}
+
+function parsePlan(data) {
+  const match = outputText(data).match(/\{[\s\S]*\}/);
+  if (!match) throw new Error("The AI did not return a usable change plan.");
+  return JSON.parse(match[0]);
+}
+
+function safePlan(plan, source) {
+  const replacements = Array.isArray(plan.replacements) ? plan.replacements : [];
+  const css = String(plan.css || "").trim();
+  const appendHtml = String(plan.append_html || "").trim();
+
+  if (css && /@import|url\(|expression\(|javascript:/i.test(css)) {
+    throw new Error("The requested style preview contains an unsupported external resource.");
+  }
+  if (appendHtml && /<\/?(?:script|style|iframe|object|embed)|\son\w+\s*=|javascript:/i.test(appendHtml)) {
+    throw new Error("The requested content block contains unsupported markup.");
+  }
+  if (replacements.length > 18) throw new Error("The requested change is too broad for a safe preview.");
+
+  for (const change of replacements) {
+    if (!change || typeof change.find !== "string" || typeof change.replace !== "string") {
+      throw new Error("The AI returned an invalid text change.");
+    }
+    if (!change.find || change.find.includes("<") || change.replace.includes("<")) {
+      throw new Error("The AI proposed an unsupported markup replacement.");
+    }
+    if (!source.includes(change.find)) {
+      throw new Error(`The requested text target was not found: ${change.find}`);
+    }
+  }
+
+  return {
+    summary: String(plan.summary || "Preview changes generated."),
+    imageEdit: Boolean(plan.image_edit),
+    imageInstruction: String(plan.image_instruction || "").trim(),
+    replacements,
+    css,
+    appendHtml,
+  };
+}
+
+function injectPreviewChanges(html, plan) {
+  let output = html;
+  for (const change of plan.replacements) output = output.replace(change.find, change.replace);
+  if (plan.css) {
+    output = output.replace(/<\/head>/i, `<style data-webops-preview="true">${plan.css}</style></head>`);
+  }
+  if (plan.appendHtml) {
+    const footer = output.lastIndexOf("<footer");
+    if (footer === -1) throw new Error("The selected page has no supported content insertion point.");
+    output = `${output.slice(0, footer)}${plan.appendHtml}${output.slice(footer)}`;
+  }
+  return output;
+}
+
+async function buildChangePlan({ html, instruction, apiKey }) {
+  const schema = {
+    type: "object",
+    additionalProperties: false,
+    required: ["summary", "image_edit", "image_instruction", "replacements", "css", "append_html"],
+    properties: {
+      summary: { type: "string" },
+      image_edit: { type: "boolean" },
+      image_instruction: { type: "string" },
+      replacements: {
+        type: "array",
+        items: {
+          type: "object",
+          additionalProperties: false,
+          required: ["find", "replace"],
+          properties: { find: { type: "string" }, replace: { type: "string" } },
+        },
+      },
+      css: { type: "string" },
+      append_html: { type: "string" },
+    },
+  };
+  const response = await fetch("https://api.openai.com/v1/responses", {
+    method: "POST",
+    headers: { authorization: `Bearer ${apiKey}`, "content-type": "application/json" },
+    body: JSON.stringify({
+      model: "gpt-5-mini",
+      input: [
+        {
+          role: "developer",
+          content: [{
+            type: "input_text",
+            text: [
+              "You are the controlled change planner for a website preview.",
+              "Return a minimal plan, never a rewritten page.",
+              "Use replacements only for exact existing plain-text or URL substrings from the supplied source. Do not include HTML in replacements.",
+              "Use css only for requested visual/style/layout changes. It will be injected as a temporary override, so do not recreate the page.",
+              "Use append_html only when the user explicitly asks to add a content section. It may contain only ordinary harmless page markup; never scripts, styles, iframes, forms, external embeds, or event handlers.",
+              "Set image_edit true only if the request requires changing the actual hero image. Describe the intended image edit in image_instruction. Otherwise false and empty string.",
+              "Preserve every unrequested part of the page exactly. Pronouns refer to the selected page subject.",
+            ].join("\n"),
+          }],
+        },
+        {
+          role: "user",
+          content: [{ type: "input_text", text: `User request:\n${instruction}\n\nSelected page source:\n${html}` }],
+        },
+      ],
+      text: { format: { type: "json_schema", name: "webops_change_plan", strict: true, schema } },
+    }),
+  });
+  const data = await response.json().catch(() => ({}));
+  if (!response.ok) throw new Error(data?.error?.message || `AI planning failed (${response.status}).`);
+  return parsePlan(data);
+}
+
 async function generateHeroPreview({ svg, instruction, identity, apiKey }) {
   const image = imageFromSvg(svg);
   const form = new FormData();
@@ -195,7 +315,7 @@ export default {
       return json({ ok: true, service: "GW WebOps Visual Preview", authenticated_as: actor || null, preview_only: true });
     }
 
-    if (request.method === "POST" && url.pathname === "/visual-proposal") {
+    if (request.method === "POST" && url.pathname === "/proposal") {
       if (!env.GITHUB_TOKEN || !env.OPENAI_API_KEY) {
         return json({ error: "Worker secrets are missing. Configure GITHUB_TOKEN and OPENAI_API_KEY." }, 500);
       }
@@ -211,21 +331,28 @@ export default {
         }
 
         const source = await getGitHubFile(target.file, env.GITHUB_TOKEN);
-        const asset = heroAssetFromHtml(source.content);
-        const assetPath = target.file.replace(/[^/]+$/, asset);
-        const heroSvg = await getGitHubFile(assetPath, env.GITHUB_TOKEN);
-        const editedImage = await generateHeroPreview({
-          svg: heroSvg.content,
-          instruction,
-          identity: target.identity,
-          apiKey: env.OPENAI_API_KEY,
-        });
-        const content = swapHero(source.content, editedImage);
+        const plan = safePlan(
+          await buildChangePlan({ html: source.content, instruction, apiKey: env.OPENAI_API_KEY }),
+          source.content,
+        );
+        let content = injectPreviewChanges(source.content, plan);
+        if (plan.imageEdit) {
+          const asset = heroAssetFromHtml(source.content);
+          const assetPath = target.file.replace(/[^/]+$/, asset);
+          const heroSvg = await getGitHubFile(assetPath, env.GITHUB_TOKEN);
+          const editedImage = await generateHeroPreview({
+            svg: heroSvg.content,
+            instruction: plan.imageInstruction || instruction,
+            identity: target.identity,
+            apiKey: env.OPENAI_API_KEY,
+          });
+          content = swapHero(content, editedImage);
+        }
         return json({
           ok: true,
-          mode: "visual-preview-only",
+          mode: "controlled-preview-only",
           target: body.target,
-          summary: "Visual hero revision generated. The original page layout, style, and content are unchanged.",
+          summary: plan.summary,
           content,
           sha: source.sha,
         });

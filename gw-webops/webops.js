@@ -38,8 +38,14 @@
       if(blob)URL.revokeObjectURL(blob);
       blob=URL.createObjectURL(new Blob([previewDocument(p.content)],{type:"text/html"}));
       $("pagePreview").src=blob;
+      $("openPage").href=blob;
+      $("openPage").textContent="Visit proposed page ↗";
       $("overlaySummary").textContent="Visual proposal loaded — original page styling retained.";
-    }else $("pagePreview").src="bandsite/"+s[1]+"?v="+Date.now();
+    }else {
+      $("pagePreview").src="bandsite/"+s[1]+"?v="+Date.now();
+      $("openPage").href="bandsite/"+s[1];
+      $("openPage").textContent="Open page ↗";
+    }
   }
 
   function select(id){

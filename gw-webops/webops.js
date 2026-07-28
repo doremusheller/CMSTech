@@ -8,6 +8,20 @@
   const save=x=>localStorage.gwWebOpsLog=JSON.stringify(x);
   const msg=x=>$("voiceStatus").textContent=x;
 
+  const busyLines=[
+    ["Shag’s web team is shaping the preview.","Reading the current page and preserving everything you did not ask to change."],
+    ["Threading in your direction.","Building the proposed revision without touching the published site."],
+    ["Polishing the visual treatment.","Image and layout work may take a moment. The preview is still in progress."],
+  ];
+  let busyTimer=null,busyStep=0;
+  function busy(on, visual=false){
+    const overlay=$("busyOverlay");
+    if(!on){clearInterval(busyTimer);busyTimer=null;overlay.hidden=true;return}
+    busyStep=0;
+    const write=()=>{const line=busyLines[busyStep++%busyLines.length];$("busyTitle").textContent=line[0];$("busyDetail").textContent=visual&&busyStep===1?"Preparing a visual revision. This can take a little longer, but your original page remains safe.":line[1]};
+    write();overlay.hidden=false;busyTimer=setInterval(write,4200);
+  }
+
   function audit(){
     const a=log();
     $("auditRows").innerHTML=a.length?a.map(x=>"<div class=ops-audit-row><b>"+E(x.page)+" · "+E(x.state)+"</b><small>"+E(x.time)+" · "+E(x.instruction)+"</small></div>").join(""):"<div class=ops-audit-row><b>No preview history yet</b><small>Generated visual previews will appear here.</small></div>";
@@ -89,7 +103,7 @@
       a.unshift({page:s[1],state:"Controlled preview generated",instruction:i,time:new Date().toLocaleString()});
       save(a.slice(0,12));audit();
       msg(iterative?"Refined preview ready. Nothing has been published.":"Preview ready. Nothing has been published.");
-    }catch(e){msg(e.message)}finally{$("proposeButton").disabled=false;}
+    }catch(e){msg(e.message)}finally{busy(false);$("proposeButton").disabled=false;}
   }
 
   function voice(){

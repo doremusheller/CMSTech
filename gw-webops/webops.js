@@ -69,9 +69,10 @@
     const i=$("instruction").value.trim();
     if(!i)return $("instruction").focus();
     $("proposeButton").disabled=true;
-    msg("Generating a faithful page preview from the current source…");
+    const iterative=Boolean(p);
+    msg(iterative?"Refining the current preview…":"Generating a faithful page preview from the current source…");
     try{
-      p=await api("/proposal",{target:s[0],instruction:i});
+      p=await api("/proposal",{target:s[0],instruction:i,draft:iterative?p.content:null});
       $("proposalTitle").textContent=s[2]+" · proposed revision";
       $("proposalSummary").textContent=p.summary;
       $("proposalDiff").innerHTML="<ins>Controlled text, style, section, and/or image changes applied in a temporary preview. Nothing has been published.</ins>";
@@ -81,7 +82,7 @@
       const a=log();
       a.unshift({page:s[1],state:"Controlled preview generated",instruction:i,time:new Date().toLocaleString()});
       save(a.slice(0,12));audit();
-      msg("Preview ready. Nothing has been published.");
+      msg(iterative?"Refined preview ready. Nothing has been published.":"Preview ready. Nothing has been published.");
     }catch(e){msg(e.message)}finally{$("proposeButton").disabled=false;}
   }
 

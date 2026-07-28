@@ -120,7 +120,7 @@
   function init(){
     $("pageCards").innerHTML=P.map(x=>'<button class=ops-page data-id="'+x[0]+'"><img src="bandsite/assets/'+x[4]+'" alt=""><span><b>'+x[2]+'</b><small>'+x[1]+' · '+x[3]+"</small></span></button>").join("");
     $("pageCards").onclick=e=>{const x=e.target.closest("[data-id]");if(x)select(x.dataset.id)};
-    select("shag");audit();
+    busy(false);\n    select("shag");audit();
     $("voiceButton").onclick=voice;
     $("proposeButton").onclick=propose;
     $("approveButton").textContent="Keep exploring";

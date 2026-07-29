@@ -37,6 +37,12 @@
     $("alerts").textContent=alerts.length;
     $("spend").textContent=money(records.reduce((sum,x)=>sum+Number(x.amount||0),0));
     $("receiptCount").textContent=records.filter(x=>x.receiptUrl).length;
+    const deposits=[...(S.deposits||[])].sort((a,b)=>Date.parse(b.date)-Date.parse(a.date));
+    const depositTotal=deposits.reduce((sum,x)=>sum+Number(x.amount||0),0);
+    $("depositNote").textContent=deposits.length
+      ? deposits.length+" fictional deposits · "+money(depositTotal)+" received across active client accounts."
+      : "No fictional deposits have been recorded yet.";
+    $("depositRows").innerHTML=deposits.map(x=>'<div class="deposit-row"><span>'+esc(x.date)+'</span><b>'+esc(x.source)+'</b><span>'+esc(x.client)+'</span><span class="deposit-amount">'+money(x.amount)+'</span></div>').join("")||'<p class="note">No deposit history available.</p>';
     $("queueNote").textContent=records.length
       ? records.length+" unresolved expenses · "+alerts.length+" marked ALERT · select a transaction to review."
       : "No open expenses or alerts. The working queue is clear.";

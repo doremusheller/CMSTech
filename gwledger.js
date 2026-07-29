@@ -22,11 +22,48 @@
     const cached=localStorage.getItem(K);
     S=normalize(cached?JSON.parse(cached):await fetch("assets/gwdemo-data.json").then(r=>r.json()));
     $("rows").onclick=e=>{ const row=e.target.closest("[data-id]"); if(row) open(row.dataset.id); };
+    $("historyRows").onclick=e=>{ const row=e.target.closest("[data-id]"); if(row) open(row.dataset.id); };
+    ["historySearch","historyCategory","historyStatus","historySort"].forEach(id=>$(id).addEventListener("input",renderHistory));
     $("close").onclick=()=>$("modal").hidden=true;
     $("modal").onclick=e=>{ if(e.target===$("modal")) $("modal").hidden=true; };
     $("approve").onclick=()=>resolve("Approved");
     $("reject").onclick=()=>resolve("Rejected");
+    populateHistoryCategories();
     render();
+  }
+
+  function populateHistoryCategories(){
+    const select=$("historyCategory");
+    [...new Set(S.records.map(x=>x.category).filter(Boolean))].sort().forEach(category=>{
+      select.insertAdjacentHTML("beforeend",'<option value="'+esc(category)+'">'+esc(category)+'</option>');
+    });
+  }
+
+  function historyStatus(x){
+    if(isOpen(x)) return "open";
+    return String(x.reviewStatus||"").toLowerCase()==="rejected"?"rejected":"approved";
+  }
+
+  function renderHistory(){
+    const query=$("historySearch").value.trim().toLowerCase();
+    const category=$("historyCategory").value;
+    const status=$("historyStatus").value;
+    const sort=$("historySort").value;
+    const haystack=x=>[x.date,x.vendor,x.category,x.client,x.payment,x.notes,x.amount,x.tax,x.certainty,x.reviewStatus].join(" ").toLowerCase();
+    let rows=S.records.filter(x=>(!query||haystack(x).includes(query))&&(!category||x.category===category)&&(!status||historyStatus(x)===status));
+    rows.sort((a,b)=>{
+      if(sort==="oldest") return Date.parse(a.date)-Date.parse(b.date);
+      if(sort==="high") return Number(b.amount)-Number(a.amount);
+      if(sort==="low") return Number(a.amount)-Number(b.amount);
+      if(sort==="vendor") return String(a.vendor).localeCompare(String(b.vendor));
+      return Date.parse(b.date)-Date.parse(a.date);
+    });
+    $("historyNote").textContent=rows.length+" of "+S.records.length+" fictional expenses shown · select any row for its full record"+(rows.some(x=>x.receiptUrl)?"; linked receipts open from their detail view.":".");
+    $("historyRows").innerHTML=rows.map(x=>{
+      const state=isOpen(x)?(isAlert(x)?"ALERT · "+x.certainty+"%":"Needs review · "+x.certainty+"%"):esc(x.reviewStatus||"Approved");
+      const receipt=x.receiptUrl?' <small class="receipt-chip">Receipt ↗</small>':"";
+      return '<div class="row history-row" data-id="'+x.id+'"><span>'+esc(x.date)+'</span><b>'+esc(x.vendor)+receipt+'</b><span>'+esc(x.category)+'</span><span>'+esc(x.client)+'</span><span class="state '+(isAlert(x)?"alert":"")+'">'+state+'</span><span class="amount">'+money(x.amount)+'</span></div>';
+    }).join("")||'<p class="note">No entries match these ledger filters.</p>';
   }
 
   function openRecords(){ return S.records.filter(isOpen).sort((a,b)=>Date.parse(b.date)-Date.parse(a.date)); }
@@ -51,6 +88,7 @@
       return '<div class="row" data-id="'+x.id+'"><span>'+esc(x.date)+'</span><b>'+esc(x.vendor)+'</b><span>'+esc(x.category)+'</span><span>'+esc(x.client)+'</span><span class="state '+(isAlert(x)?"alert":"")+'">'+state+'</span><span class="amount">'+money(x.amount)+'</span></div>';
     }).join("")||'<p class="note">Nothing is awaiting review. Visit the full audit trail for the complete fictional history.</p>';
     charts(records);
+    renderHistory();
   }
 
   function charts(records){

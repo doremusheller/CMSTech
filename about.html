@@ -47,10 +47,6 @@
                 <figcaption>Anonymous client · Placeholder testimonial</figcaption>
               </figure>
             </div>
-            <div class="testimonial-controls" aria-label="Testimonial controls">
-              <button class="testimonial-control" id="testimonialPrevious" type="button" aria-label="Show previous testimonial">←</button>
-              <button class="testimonial-control" id="testimonialNext" type="button" aria-label="Show next testimonial">→</button>
-            </div>
           </section>
           <div class="hero-actions about-hero-actions">
             <a class="text-link" href="contact.html">Start a conversation <span aria-hidden="true">↗</span></a>
@@ -123,9 +119,7 @@
   <script>
     (() => {
       const slides = [...document.querySelectorAll('.testimonial')];
-      const previous = document.getElementById('testimonialPrevious');
-      const next = document.getElementById('testimonialNext');
-      if (!slides.length || !previous || !next) return;
+      if (!slides.length) return;
       let current = 0;
       const show = (index, direction) => {
         const outgoing = slides[current];
@@ -137,8 +131,7 @@
         incoming.classList.add('active', direction === 'next' ? 'enter-right' : 'enter-left');
         window.setTimeout(() => { outgoing.classList.remove('exit-left', 'exit-right'); incoming.classList.remove('enter-right', 'enter-left'); }, 520);
       };
-      previous.addEventListener('click', () => show(current - 1, 'previous'));
-      next.addEventListener('click', () => show(current + 1, 'next'));
+      window.setInterval(() => show(current + 1, 'next'), 10000);
     })();
   </script>
 </body>

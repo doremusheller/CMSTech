@@ -24,10 +24,7 @@
           <p class="about-name">Craig Schneider · Founder</p>
           <h1>Practical AI, built by someone who understands the work.</h1>
           <section class="testimonial-stage" aria-labelledby="testimonial-heading">
-            <div class="testimonial-stage-head">
-              <p class="kicker" id="testimonial-heading">Client signals</p>
-              <span class="testimonial-count" id="testimonialCount">01 / 05</span>
-            </div>
+            <p class="testimonial-label" id="testimonial-heading">In their words</p>
             <div class="testimonial-window" aria-live="polite">
               <figure class="testimonial active">
                 <blockquote>“Craig made a confusing set of AI options feel practical and manageable.”</blockquote>
@@ -50,7 +47,7 @@
                 <figcaption>Anonymous client · Placeholder testimonial</figcaption>
               </figure>
             </div>
-            <div class="testimonial-controls">
+            <div class="testimonial-controls" aria-label="Testimonial controls">
               <button class="testimonial-control" id="testimonialPrevious" type="button" aria-label="Show previous testimonial">←</button>
               <button class="testimonial-control" id="testimonialNext" type="button" aria-label="Show next testimonial">→</button>
             </div>
@@ -128,8 +125,7 @@
       const slides = [...document.querySelectorAll('.testimonial')];
       const previous = document.getElementById('testimonialPrevious');
       const next = document.getElementById('testimonialNext');
-      const count = document.getElementById('testimonialCount');
-      if (!slides.length || !previous || !next || !count) return;
+      if (!slides.length || !previous || !next) return;
       let current = 0;
       const show = (index, direction) => {
         const outgoing = slides[current];
@@ -139,7 +135,6 @@
         outgoing.classList.add(direction === 'next' ? 'exit-left' : 'exit-right');
         incoming.classList.remove('exit-left', 'exit-right');
         incoming.classList.add('active', direction === 'next' ? 'enter-right' : 'enter-left');
-        count.textContent = String(current + 1).padStart(2, '0') + ' / ' + String(slides.length).padStart(2, '0');
         window.setTimeout(() => { outgoing.classList.remove('exit-left', 'exit-right'); incoming.classList.remove('enter-right', 'enter-left'); }, 520);
       };
       previous.addEventListener('click', () => show(current - 1, 'previous'));

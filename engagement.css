@@ -1,0 +1,16 @@
+/* A clear, low-risk invitation at the decision point. */
+.first-step{
+  width:min(100%,720px);
+  margin:18px auto 0;
+  padding:13px 17px;
+  border:1px solid rgba(255,179,71,.3);
+  border-radius:14px;
+  background:rgba(255,179,71,.07);
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.55;
+  text-align:center;
+}
+.first-step strong{color:var(--accent-2)}
+.contact-first-step{margin-top:19px}
+@media(max-width:720px){.first-step{padding:12px 14px;font-size:12px;text-align:left}}

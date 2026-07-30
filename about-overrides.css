@@ -1,0 +1,24 @@
+/* About-page hero layout, isolated from the shared stylesheet. */
+@media (min-width:721px){
+  .about-hero{padding:34px 0}
+  .about-hero-grid{display:grid!important;grid-template-columns:minmax(270px,345px) minmax(0,1fr)!important;gap:50px;align-items:center;width:min(100%,1120px)}
+  .about-portrait-wrap{width:100%;max-width:345px}
+  .about-hero-copy{min-width:0}
+  .about-hero-copy h1{max-width:13ch;font-size:clamp(36px,3.7vw,52px)}
+  .testimonial-stage{max-width:620px}
+  .testimonial-window{min-height:168px}
+  .testimonial{padding:27px 30px;background:#faf8f3;border:1px solid rgba(255,211,84,.78);box-shadow:0 20px 44px rgba(0,0,0,.34)}
+  .testimonial blockquote{color:#1b1225;font-size:clamp(19px,1.65vw,24px);font-weight:650}
+  .testimonial figcaption{color:#665b6d;font-weight:650}
+  .testimonial-stage-head .kicker,.testimonial-count{color:var(--accent-2)}
+  .testimonial-control{background:#faf8f3;color:#21142d;border-color:rgba(255,211,84,.72)}
+}
+
+@media (max-width:720px){
+  .about-hero-grid{display:grid;grid-template-columns:1fr!important}
+  .about-portrait-wrap{max-width:360px;aspect-ratio:4/5}
+  .about-hero-copy{width:100%}
+  .testimonial{background:#faf8f3;border-color:rgba(255,211,84,.78)}
+  .testimonial blockquote{color:#1b1225;font-weight:650}
+  .testimonial figcaption{color:#665b6d}
+}

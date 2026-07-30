@@ -27,8 +27,8 @@
             <p class="testimonial-label" id="testimonial-heading">In their words</p>
             <div class="testimonial-window" aria-live="polite">
               <figure class="testimonial active">
-                <blockquote>“Craig made a confusing set of AI options feel practical and manageable.”</blockquote>
-                <figcaption>Anonymous client · Placeholder testimonial</figcaption>
+                <blockquote>“What has impressed us most is his ability to identify smart, efficient ways to use AI and other technology to improve our operations without overcomplicating the process. His recommendations have helped us work more efficiently and have delivered significant value and a strong return on our investment.<br><br>We highly recommend Craig and CMS Technical Optimization to any business looking for a thoughtful, reliable technology partner who understands both the technical side and the real-world needs of a growing organization.”</blockquote>
+                <figcaption>Jim Boland · Founder, Signature Law Partners</figcaption>
               </figure>
               <figure class="testimonial">
                 <blockquote>“CMS Tech helped us turn a good idea into a working system.”</blockquote>
@@ -119,8 +119,12 @@
   <script>
     (() => {
       const slides = [...document.querySelectorAll('.testimonial')];
-      if (!slides.length) return;
+      const testimonialWindow = document.querySelector('.testimonial-window');
+      if (!slides.length || !testimonialWindow) return;
       let current = 0;
+      const fitWindow = () => {
+        testimonialWindow.style.height = `${Math.ceil(slides[current].scrollHeight)}px`;
+      };
       const show = (index, direction) => {
         const outgoing = slides[current];
         current = (index + slides.length) % slides.length;
@@ -129,8 +133,11 @@
         outgoing.classList.add(direction === 'next' ? 'exit-left' : 'exit-right');
         incoming.classList.remove('exit-left', 'exit-right');
         incoming.classList.add('active', direction === 'next' ? 'enter-right' : 'enter-left');
+        window.requestAnimationFrame(fitWindow);
         window.setTimeout(() => { outgoing.classList.remove('exit-left', 'exit-right'); incoming.classList.remove('enter-right', 'enter-left'); }, 520);
       };
+      fitWindow();
+      window.addEventListener('resize', fitWindow);
       window.setInterval(() => show(current + 1, 'next'), 10000);
     })();
   </script>

@@ -17,3 +17,11 @@
 
 /* The public status needs no implementation detail. */
 .ops-status small{display:none}
+
+/* Visitor orientation — presentation only; the WebOps flow is unchanged. */
+.ops-hero{flex-wrap:wrap}
+.ops-hero:after{content:"WHAT YOU’RE SEEING\A AI-assisted website updates in plain English—with a reviewable preview before anything goes live.";flex:0 0 100%;margin-top:2px;padding:13px 15px;border:1px solid rgba(255,211,84,.28);border-radius:12px;background:linear-gradient(90deg,rgba(255,211,84,.09),rgba(62,219,213,.05));color:var(--cream);font-size:13px;font-weight:650;line-height:1.55;letter-spacing:.01em;white-space:pre-line}
+.ops-hero:after::first-line{color:var(--gold);font-size:10px;font-weight:900;letter-spacing:.14em}
+.module-dock a:nth-child(1) b:after,.module-dock a:nth-child(2) b:after,.module-dock>.is-current b:after{display:block;margin-top:5px;color:var(--muted);font:700 9px/1.25 Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}.module-dock a:nth-child(1) b:after{content:"Automated expense intake"}.module-dock a:nth-child(2) b:after{content:"Connected client operations"}.module-dock>.is-current b:after{content:"Reviewable website updates"}
+.ops-prompt:before{content:"REAL-WORLD EQUIVALENT\A A client asks: “Make this page clearer and emphasize our flagship service.” This demo shows the review-before-publish pattern that keeps the change safe.";display:block;margin:0 0 15px;padding:11px 12px;border-left:2px solid var(--aqua);background:rgba(62,219,213,.06);color:var(--muted);font-size:11px;line-height:1.5;white-space:pre-line}.ops-prompt:before::first-line{color:var(--aqua);font-size:9px;font-weight:900;letter-spacing:.13em}
+@media(max-width:600px){.ops-hero:after{margin-top:0;font-size:12px}.module-dock a:nth-child(1) b:after,.module-dock a:nth-child(2) b:after,.module-dock>.is-current b:after{font-size:8px}}

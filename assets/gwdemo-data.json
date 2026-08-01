@@ -501,7 +501,7 @@
       "vendor": "Laser Llama Rentals",
       "total": 1840,
       "date": "Jul 27, 2026",
-      "notes": "Duplicate fictional receipt blocked before ledger entry."
+      "notes": "Matched to the July 27 Laser Llama Rentals charge; no second ledger entry was created."
     }
   ]
 }

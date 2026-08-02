@@ -95,8 +95,13 @@
   }
   function card(label,content){return '<div class="fact"><label>'+esc(label)+'</label><span>'+esc(content)+'</span></div>'}
   function renderRevenueGraph(record){
+    const nextDueDate=new Date();
+    const dueDay=3;
+    nextDueDate.setDate(nextDueDate.getDate() + ((dueDay-nextDueDate.getDate()+31)%31 || 31));
+    const dueDateLabel=new Intl.DateTimeFormat("en-US",{month:"long",day:"numeric",year:"numeric"}).format(nextDueDate);
     const items=[
-      {key:"recurringYtd",label:"Recurring YTD",amount:record["Monthly Recurring YTD"],detail:"Recurring payments due year to date; the next payable date is August 3."},
+      {key:"recurringYtd",label:"Recurring YTD",amount:0,detail:"Only deposited recurring payments are included in YTD. No recurring deposit has been recorded yet."},
+      {key:"recurringDue",label:"Recurring due",amount:record["Monthly Recurring"],detail:"Scheduled recurring deposit due "+dueDateLabel+"; it is not included in YTD until deposited."},
       {key:"projectYtd",label:"Project work YTD",amount:record["Project Work YTD"],detail:"Project-work entries recorded in the Client Revenue log."}
     ];
     const usable=items.map(item=>({...item,number:Number(item.amount)})).filter(item=>Number.isFinite(item.number));
@@ -130,7 +135,7 @@
     ].map(([a,b])=>card(a,b)).join("");
     $("relationshipFacts").innerHTML=[
       ["Payment terms",value(record,"Default Payment Terms")],["Effective standard rate",formatRate(effectiveRate)],
-      ["Monthly recurring",formatMoney(record["Monthly Recurring"])],["Recurring YTD",formatMoney(record["Monthly Recurring YTD"])],
+      ["Monthly recurring",formatMoney(record["Monthly Recurring"])],["Recurring YTD",formatMoney(0)],
       ["Project work YTD",formatMoney(record["Project Work YTD"])],["Total YTD",formatMoney(record["Total YTD"])],
       ["Start date",formatDate(record["Start Date"])],["Renewal / review",formatDate(record["Renewal / Review Date"])],
       ["Client owner",value(record,"Client Owner")],["Financial status",value(record,"Financial Status")],["Last updated",formatDate(record["Last Updated"])],

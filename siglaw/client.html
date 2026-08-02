@@ -134,7 +134,7 @@
     const items=[
       {key:"recurringYtd",label:"Recurring YTD",amount:2500,entries:[{label:"Monthly recurring deposit",amount:1250,date:"June 3, 2026"},{label:"Monthly recurring deposit",amount:1250,date:"July 3, 2026"}],detail:"Two deposited recurring payments: June 3 and July 3, 2026."},
       {key:"recurringDue",label:"Recurring due",amount:record["Monthly Recurring"],detail:"Upcoming monthly recurring for Signature Law Partners due "+dueDateLabel+"; it is not included in YTD until deposited."},
-      {key:"projectYtd",label:"Signature Law hosted website",amount:record["Project Work YTD"],detail:"YTD project work for the Signature Law hosted website."}
+      {key:"projectYtd",label:"Signature Law hosted website",amount:1000,entries:[{label:"Signature Law hosted website",amount:1000,date:"Recorded deposit"}],detail:"Recorded project deposit for the Signature Law hosted website."}
     ];
     const usable=items.map(item=>({...item,number:Number(item.amount)})).filter(item=>Number.isFinite(item.number));
     revenueItems=usable;
@@ -214,7 +214,7 @@
     $("relationshipFacts").innerHTML=[
       ["Payment terms",value(record,"Default Payment Terms")],["Effective standard rate",formatRate(effectiveRate)],
       ["Monthly recurring",formatMoney(record["Monthly Recurring"])],["Recurring YTD",formatMoney(2500)],
-      ["Project work YTD",formatMoney(record["Project Work YTD"])],["Total YTD",formatMoney(3500)],
+      ["Project work YTD",formatMoney(1000)],["Total YTD",formatMoney(3500)],
       ["Start date",formatDate(record["Start Date"])],["Renewal / review",formatDate(record["Renewal / Review Date"])],
       ["Client owner",value(record,"Client Owner")],["Financial status",value(record,"Financial Status")],["Last updated",formatDate(record["Last Updated"])],
       ["Notes",value(record,"Notes")]
@@ -256,9 +256,9 @@
     const recurringEntry=revenueItems.find(entry=>entry.key==="recurringYtd");
     const projectEntry=revenueItems.find(entry=>entry.key==="projectYtd");
     if(recurringEntry&&revenueLog.recurring.length)recurringEntry.entries=revenueLog.recurring;
-    if(projectEntry)projectEntry.entries=revenueLog.projects;
+    if(projectEntry&&revenueLog.projects.length)projectEntry.entries=revenueLog.projects;
     display(record);
-    renderProjects(revenueLog.projects);
+    renderProjects(revenueLog.projects.length?revenueLog.projects:[{project:"Signature Law hosted website",amount:1000}]);
     renderOpportunities();
     $("connection").textContent="Live client record connected";
     $("connectionNote").textContent="Source: CMS Tech Clients worksheet · client ID 1001";

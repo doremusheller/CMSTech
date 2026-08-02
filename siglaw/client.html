@@ -177,7 +177,7 @@
   }
   async function loadRecentActivities(account){
     try{
-      const data=await graph(account,"mailFolders/inbox/messages?$top=50&$orderby=receivedDateTime%20desc&$select=subject,from,toRecipients,receivedDateTime,webLink,bodyPreview");
+      const data=await microsoftGraph(account,"mailFolders/inbox/messages?$top=50&$orderby=receivedDateTime%20desc&$select=subject,from,toRecipients,receivedDateTime,webLink,bodyPreview");
       const messages=(data.value||[]).filter(message=>{
         const people=[message.from?.emailAddress?.address,...(message.toRecipients||[]).map(r=>r.emailAddress?.address)].filter(Boolean);
         return people.some(address=>address.toLowerCase().endsWith("@siglawpartners.com"));
@@ -247,13 +247,7 @@
     ].map(([a,b])=>card(a,b)).join("");
     $("clientConsole").classList.remove("hidden");
   }
-  async function graph(account,path){
-    const token=await graphClient.acquireTokenSilent({account,scopes:SCOPES});
-    const res=await fetch("https://graph.microsoft.com/v1.0/me/drive/items/"+WORKBOOK_ITEM_ID+"/workbook/"+path,{headers:{Authorization:"Bearer "+token.accessToken}});
-    if(!res.ok)throw new Error("Microsoft Graph returned "+res.status);
-    return res.json();
-  }
-  async function fetchProjectItems(account){
+  async function graph(account,path){    const token=await graphClient.acquireTokenSilent({account,scopes:SCOPES});    const res=await fetch("https://graph.microsoft.com/v1.0/me/drive/items/"+WORKBOOK_ITEM_ID+"/workbook/"+path,{headers:{Authorization:"Bearer "+token.accessToken}});    if(!res.ok)throw new Error("Microsoft Graph returned "+res.status);    return res.json();  }  async function microsoftGraph(account,path){    const token=await graphClient.acquireTokenSilent({account,scopes:SCOPES});    const res=await fetch("https://graph.microsoft.com/v1.0/me/"+path,{headers:{Authorization:"Bearer "+token.accessToken}});    if(!res.ok)throw new Error("Microsoft Graph returned "+res.status);    return res.json();  }  async function fetchProjectItems(account){
     try{
       const data=await graph(account,"worksheets/Client%20Revenue/usedRange");
       const [headers,...rows]=data.values||[];

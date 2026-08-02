@@ -413,7 +413,7 @@
       const projects=clientRows.filter(row=>String(row[type]??"").trim()==="Project Work").map(row=>({project:row[project],amount:row[amount],date:date>=0?formatDate(row[date]):""}));
       const recurring=clientRows.filter(row=>/recurring/i.test(String(row[type]??""))).map(row=>({label:row[project]||"Recurring deposit",amount:row[amount],date:date>=0?formatDate(row[date]):""}));
       return {projects,recurring};
-    }catch(error){console.warn("Client project log could not be loaded",error);return []}
+    }catch(error){console.warn("Client project log could not be loaded",error);return {projects:[],recurring:[]}}
   }
   function renderProjects(items){
     $("projectList").innerHTML=items.length ? items.map(item=>'<div class="project-item">'+esc(item.project||"Project work")+'<b>'+esc(formatMoney(item.amount))+'</b><small>Project work</small></div>').join("") : "";

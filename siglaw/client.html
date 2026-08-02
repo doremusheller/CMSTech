@@ -183,8 +183,8 @@
           <label>Invoice number<input id="invoiceNumber" value="SLP-2026-002"></label>
           <label>Issue date<input id="invoiceDate" type="date"></label>
           <label>Due date<input id="invoiceDueDate" type="date"></label>
-          <label>Payment terms<input id="invoiceTerms" value="Net 30"></label>
-          <label class="wide">Line item<input id="invoiceDescription" value="Monthly fractional CDO services"></label>
+          <label>Payment terms<input id="invoiceTerms" value="Due on Receipt"></label>
+          <label class="wide">Line item<input id="invoiceDescription" value="Monthly fractional CDO services; Signature Law website build and hosting; DonCortex law office management platform development"></label>
           <label>Quantity<input id="invoiceQty" type="number" min="0" step="0.01" value="1"></label>
           <label>Rate<input id="invoiceRate" type="number" min="0" step="0.01" value="1250"></label>
           <label class="wide">Notes<textarea id="invoiceNotes">Thank you for your business.</textarea></label>
@@ -285,7 +285,7 @@
   function openInvoice(){
     const today=new Date().toISOString().slice(0,10);
     if(!$("invoiceDate").value)$("invoiceDate").value=today;
-    if(!$("invoiceDueDate").value){const due=new Date();due.setDate(due.getDate()+30);$("invoiceDueDate").value=due.toISOString().slice(0,10);}
+    if(!$("invoiceDueDate").value)$("invoiceDueDate").value=today;
     $("invoiceNumber").value="SLP-"+new Date().getFullYear()+"-"+String(nextInvoiceNumber()).padStart(3,"0");
     $("invoiceModal").hidden=false;updateInvoicePreview();
   }

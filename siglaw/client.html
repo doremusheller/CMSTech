@@ -86,6 +86,8 @@
 @media(max-width:600px){.signature-logo{width:150px;height:66px;max-height:66px}}
 </style><style>
 .value-graph{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}.value-visual{border:1px solid rgba(185,101,63,.25);border-radius:10px;padding:11px;background:rgba(185,101,63,.045);cursor:pointer;text-align:left;color:inherit;width:100%}.value-visual:hover,.value-visual:focus-visible{border-color:var(--cyan);outline:none}.value-head{display:flex;justify-content:space-between;gap:8px;align-items:baseline}.value-head strong{font-size:12px;color:var(--cream)}.value-head span{font-size:9px;color:var(--gold);font-weight:800}.value-track{height:12px;margin-top:10px;border-radius:99px;background:rgba(0,0,0,.35);overflow:hidden;position:relative}.value-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--orange),var(--gold))}.value-paid{height:100%;position:absolute;left:0;top:0;border-right:2px solid var(--cream);background:var(--cyan);opacity:.9}.value-caption{display:flex;justify-content:space-between;margin-top:6px;color:var(--mute);font-size:9px}.value-detail{grid-column:1/-1;padding:12px 14px;border:1px solid rgba(85,207,195,.25);border-radius:9px;background:rgba(85,207,195,.045);color:#d5eee9;font-size:11px;line-height:1.5}.value-detail[hidden]{display:none}.value-detail h4{margin:0 0 7px;color:var(--gold);font-size:13px}.value-detail table{width:100%;border-collapse:collapse}.value-detail td{padding:3px 0;border-bottom:1px solid rgba(255,255,255,.08)}.value-detail td:last-child{text-align:right;color:var(--gold);font-weight:800}.value-detail ul{margin:7px 0 0;padding-left:18px}@media(max-width:600px){.value-graph{grid-template-columns:1fr}.value-detail{grid-column:auto}}
+</style><style>
+#roiBreakdown,#roiDraftNote{display:none}
 </style>  </style>
 </head>
 <body>
@@ -142,7 +144,7 @@
     </section>
 
     <section class="card roi-card hidden" id="roiCard">
-      <div class="revenue-head"><div><p class="kicker">CMS Tech value delivered</p><h2 class="title">Client ROI Calculator</h2></div><span class="tag">Click an assumption</span></div>
+      <div class="revenue-head"><div><p class="kicker">CMS Tech value delivered</p><h2 class="title">CMS Value Graph</h2></div><span class="tag">Click an assumption</span></div>
       <p class="delivery-copy">CMS Tech value at a glance. Click either value bar to inspect the math and the work behind it.</p>
       <div class="value-graph" id="valueGraph">
         <button class="value-visual" type="button" data-value-graph="website"><span class="value-head"><strong>Website project</strong><span>$8,700 value</span></span><div class="value-track"><i class="value-fill" style="width:100%"></i><i class="value-paid" style="width:11.5%"></i></div><span class="value-caption"><span>$1,000 paid</span><span>8.7× value</span></span></button>

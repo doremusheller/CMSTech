@@ -22,6 +22,20 @@
 .signature-logo{height:260px;max-height:260px;min-height:0;object-fit:contain}
 @media(max-width:900px){.signature-logo{height:160px;max-height:160px}}
 @media(max-width:600px){.signature-logo{height:125px;max-height:125px}}
+</style><style>
+@media(min-width:901px){
+  .shell{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px;padding-top:18px}
+  .shell>.mast,.shell>.hero,.shell>.auth,.shell>.health-strip,.shell>footer{grid-column:1/-1}
+  .mast{padding:6px 0 14px}.hero{padding:24px 18px 12px;gap:24px}.hero h1{font-size:clamp(46px,5vw,76px);margin:10px 0 16px}.hero p{font-size:14px;line-height:1.45}.signature-logo{height:150px;max-height:150px}.auth{margin:8px 0 2px;padding:11px 14px}
+  #clientConsole{grid-column:1/-1;margin-top:0}.client-summary,.roi-card{grid-column:span 6;margin-top:0}.client-summary{padding:18px}.roi-card{padding:18px}
+  #deliveryCard,#opportunitiesCard,#activitiesCard{grid-column:span 4;margin-top:0;padding:18px}
+  #notesCard{grid-column:1/-1;margin-top:0;padding:18px}
+  #deliveryCard .project-list,#opportunitiesCard .opportunity-list{grid-template-columns:1fr}
+  #activitiesCard{max-height:520px;overflow:auto}
+  #notesCard .notes-log{display:grid;grid-template-columns:minmax(280px,.7fr) minmax(0,1.3fr);gap:16px;align-items:start}
+  #notesCard .notes-list{margin-top:0}
+  .footer{padding-top:10px}
+}
 </style>  </style>
 </head>
 <body>

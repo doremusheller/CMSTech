@@ -99,9 +99,12 @@
     </section>
     <section class="card" id="activitiesCard">
       <p class="kicker">Recent activities</p>
-      <h2 class="title">Latest Outlook messages</h2>
-      <p class="delivery-copy">The five newest Inbox messages involving the client domain.</p>
+      <h2 class="title">Recent activities &amp; upcoming meetings</h2>
+      <p class="delivery-copy">The five newest Inbox messages and upcoming calendar meetings involving the client domain.</p>
+      <p class="kicker" style="margin-top:20px">Latest Outlook messages</p>
       <div class="activity-list" id="activityList"><p class="empty">Loading Outlook activity…</p></div>
+      <p class="kicker" style="margin-top:22px">Upcoming scheduled meetings</p>
+      <div class="activity-list" id="meetingList"><p class="empty">Loading calendar activity…</p></div>
     </section>
     <section class="card" id="notesCard">
       <p class="kicker">Client notes</p>
@@ -118,7 +121,7 @@
   const CLIENT_ID="4ee3e5d2-4598-4656-8e20-358dc63226da";
   const TENANT_ID="04bfc180-5650-4f0b-9a97-22fc45c33b9c";
   const WORKBOOK_ITEM_ID="015GYJNAHEDZFFW2NWT5CZ6D5HMWSBNW7W";
-  const SCOPES=["User.Read","Files.ReadWrite","Mail.Read"];
+  const SCOPES=["User.Read","Files.ReadWrite","Mail.Read","Calendars.Read"];
   const $=id=>document.getElementById(id);
   const esc=value=>String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   let graphClient;
@@ -183,6 +186,26 @@
     if(!$("invoiceDueDate").value){const due=new Date();due.setDate(due.getDate()+30);$("invoiceDueDate").value=due.toISOString().slice(0,10);}
     $("invoiceNumber").value="SLP-"+new Date().getFullYear()+"-"+String(nextInvoiceNumber()).padStart(3,"0");
     $("invoiceModal").hidden=false;updateInvoicePreview();
+  }
+  async function loadUpcomingMeetings(account){
+    try{
+      const start=new Date(),end=new Date(start);end.setDate(end.getDate()+90);
+      const params=new URLSearchParams({startDateTime:start.toISOString(),endDateTime:end.toISOString(),"$top":"25","$orderby":"start/dateTime","$select":"subject,start,end,location,webLink,attendees,isAllDay"});
+      const data=await microsoftGraph(account,"calendarView?"+params.toString());
+      const meetings=(data.value||[]).filter(event=>{
+        const attendees=(event.attendees||[]).map(a=>a.emailAddress?.address||"").join(" ").toLowerCase();
+        return attendees.includes("@siglawpartners.com")||/signature law|siglaw/i.test(event.subject||"");
+      }).slice(0,5);
+      $("meetingList").innerHTML=meetings.length?meetings.map(event=>{
+        const startDate=new Date(event.start?.dateTime),endDate=new Date(event.end?.dateTime);
+        const when=event.isAllDay?new Intl.DateTimeFormat("en-US",{dateStyle:"medium"}).format(startDate):new Intl.DateTimeFormat("en-US",{dateStyle:"medium",timeStyle:"short"}).format(startDate)+" – "+new Intl.DateTimeFormat("en-US",{timeStyle:"short"}).format(endDate);
+        const location=event.location?.displayName||"Location not specified";
+        return '<a class="activity-item" href="'+esc(event.webLink||"#")+'" target="_blank" rel="noopener"><strong>'+esc(event.subject||"Untitled meeting")+'</strong><small>'+esc(when)+" · "+esc(location)+'</small></a>';
+      }).join(""):'<p class="empty">No upcoming Signature Law meetings found in the next 90 days.</p>';
+    }catch(error){
+      console.warn("Calendar activity could not be loaded",error);
+      $("meetingList").innerHTML='<p class="empty">Calendar activity requires Calendars.Read access. Refresh and reconnect to authorize it.</p>';
+    }
   }
   async function loadRecentActivities(account){
     try{
@@ -305,7 +328,7 @@
     display(record);
     renderProjects(revenueLog.projects.length?revenueLog.projects:[{project:"Signature Law hosted website",amount:1000}]);
     renderOpportunities();
-    loadRecentActivities(account);
+    loadRecentActivities(account);    loadUpcomingMeetings(account);
     $("connection").textContent="Live client record connected";
     $("connectionNote").textContent="Source: CMS Tech Clients worksheet · client ID 1001";
     $("signInButton").textContent="Refresh live data";

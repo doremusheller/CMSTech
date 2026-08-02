@@ -371,8 +371,6 @@
     setText("ytdWebsiteCost",websiteCost);setText("ytdWebsiteValue",websiteValue);setText("ytdWebsiteNet",websiteValue-websiteCost);
     setText("ytdCdoCost",cdoPaidYtd);setText("ytdCdoValue",cdoValueYtd);setText("ytdCdoNet",cdoValueYtd-cdoPaidYtd);
     setText("ytdTotalCost",totalCost);setText("ytdTotalValue",totalValue);setText("ytdTotalNet",totalValue-totalCost);
-    $("roiTotalValue").textContent=money(total);$("roiPaid").textContent=money(paid);$("roiNetValue").textContent=money(net);$("roiPercent").textContent=paid?Math.round(net/paid*100)+"%":"—";$("roiMultiple").textContent=paid?(total/paid).toFixed(1)+"×":"—";
-    $("roiBreakdown").innerHTML=fields.map(item=>'<button class="roi-assumption" type="button" data-roi-key="'+item.key+'"><span>'+esc(item.label)+'<small>'+esc(item.confidence)+'</small></span><b>'+money(item.value)+'</b></button>').join("");
     $("roiDraftNote").textContent="Finalized CMS Tech valuation based on the documented website scope, delivery effort, hosting, and the $1,000 project payment.";
     $("roiCard").classList.remove("hidden");
     $("roiBreakdown").onclick=event=>{const button=event.target.closest("[data-roi-key]");if(!button)return;const item=fields.find(entry=>entry.key===button.dataset.roiKey);$("roiModalTitle").textContent=item.label;$("roiModalBody").innerHTML='<p>'+esc(item.detail)+'</p><div class="roi-basis"><b>Calculation value:</b> '+money(item.value)+'<br><b>Confidence:</b> '+esc(item.confidence)+'<br><b>Basis:</b> '+esc(item.basis)+'<br><b>Evidence:</b> '+esc(item.evidence)+'</div>';$("roiModal").hidden=false;};

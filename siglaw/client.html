@@ -257,8 +257,8 @@
   function renderRoi(record){
     const money=v=>new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(Number(v)||0);
     const fields=[
-      {key:"strategy",label:"Strategy and concept",field:"ROI Strategy Value",basis:record["ROI Strategy Basis"]||"Concept development, discovery, and visual direction. Draft basis: approximately 12 hours at $125/hour.",detail:"Market-based replacement estimate for the strategic and conceptual work delivered by CMS Tech.",evidence:"Client worksheet: ROI Strategy Value / ROI Strategy Basis"},
-      {key:"build",label:"Website design and build",field:"ROI Website Build Value",basis:record["ROI Website Build Basis"]||"Custom responsive website design, implementation, testing, and launch preparation. Draft basis: approximately 48 hours at $125/hour.",detail:"Replacement-cost estimate for the website build delivered from concept through implementation.",evidence:"Client worksheet: ROI Website Build Value / ROI Website Build Basis"},
+      {key:"strategy",label:"Strategy and concept",field:"ROI Strategy Value",basis:record["ROI Strategy Basis"]||"Concept development, discovery, and visual direction. Draft basis: approximately 12 hours at $150/hour.",detail:"Market-based replacement estimate for the strategic and conceptual work delivered by CMS Tech.",evidence:"Client worksheet: ROI Strategy Value / ROI Strategy Basis"},
+      {key:"build",label:"Website design and build",field:"ROI Website Build Value",basis:record["ROI Website Build Basis"]||"Custom responsive website design, implementation, testing, and launch preparation. Draft basis: approximately 48 hours at $150/hour.",detail:"Replacement-cost estimate for the website build delivered from concept through implementation.",evidence:"Client worksheet: ROI Website Build Value / ROI Website Build Basis"},
       {key:"hosting",label:"Hosting and deployment",field:"ROI Hosting Value",basis:record["ROI Hosting Basis"]||"Hosting, deployment configuration, and operational availability. Draft basis: $100/month equivalent for the first year.",detail:"Annualized value of hosting and deployment support provided by CMS Tech.",evidence:"Client worksheet: ROI Hosting Value / ROI Hosting Basis"},
       {key:"support",label:"Ongoing support",field:"ROI Support Value",basis:record["ROI Support Basis"]||"Maintenance, updates, and operational support.",detail:"Annualized value of ongoing CMS Tech support attributable to the client.",evidence:"Client worksheet: ROI Support Value / ROI Support Basis"}
     ].map(item=>({...item,value:Number(record[item.field])||({strategy:1500,build:6000,hosting:1200,support:0}[item.key]||0),confidence:record["ROI "+item.key.charAt(0).toUpperCase()+item.key.slice(1)+" Confidence"]||"Draft assumption"}));
@@ -272,7 +272,7 @@
   }
   function display(record){
     const nonCharged=String(record["Non-Charged Client"]??"").trim();
-    const effectiveRate=nonCharged ? "N/A — "+nonCharged : (record["Effective Standard Rate / Retainer"] ?? record["Standard Rate / Retainer"]);
+    const effectiveRate=nonCharged ? "N/A — "+nonCharged : 150;
     $("legalName").textContent=value(record,"Client / Legal Name");
     $("status").textContent=nonCharged ? "Non-charged · "+nonCharged : value(record,"Status");
     $("scope").textContent=value(record,"Services / Scope");

@@ -69,7 +69,7 @@
       <div class="invoice-card">
         <div class="invoice-head"><h2 id="invoiceTitle">Build invoice</h2><button class="revenue-modal-close" id="invoiceClose" type="button">Close</button></div>
         <div class="invoice-form">
-          <label>Invoice number<input id="invoiceNumber" value="SLP-2026-001"></label>
+          <label>Invoice number<input id="invoiceNumber" value="SLP-2026-002"></label>
           <label>Issue date<input id="invoiceDate" type="date"></label>
           <label>Due date<input id="invoiceDueDate" type="date"></label>
           <label>Payment terms<input id="invoiceTerms" value="Net 30"></label>
@@ -166,10 +166,13 @@
     const rows=items.map(item=>"<tr><td>"+esc(item.description)+"<br><small>"+esc(item.qty)+" x "+money(item.rate)+"</small></td><td>"+money(item.qty*item.rate)+"</td></tr>").join("");
     $("invoicePreview").innerHTML="<div style='display:flex;justify-content:space-between;gap:20px;align-items:start'><div style='display:flex;align-items:center;gap:10px'><span style=\"display:grid;place-items:center;height:34px;width:42px;border:1px solid #ff5a16;border-radius:10px;color:#ffc247;font-size:11px;font-weight:800\">CMS</span><div><strong style=\"letter-spacing:.12em\">CMS TECH</strong><br><span style=\"color:#c9b7a9\">Technical Optimization</span></div></div><div><h3>INVOICE</h3><div>"+esc($("invoiceNumber").value)+"</div></div></div><hr><p><strong>Bill to:</strong><br>Signature Law Partners<br>934 Hartinger St., Colorado Springs, CO 80916<br>admin@siglawpartners.com</p><p><strong>Issue date:</strong> "+esc($("invoiceDate").value)+" &nbsp; <strong>Due:</strong> "+esc($("invoiceDueDate").value)+"</p><table><tr><th>Description</th><th>Amount</th></tr>"+rows+"</table><div class='total'>Total due: "+money(total)+"</div><p><small>"+esc($("invoiceTerms").value)+"<br>"+esc($("invoiceNotes").value)+"</small></p>";
   }
+  function nextInvoiceNumber(){const stored=Number(localStorage.getItem("cms-next-invoice-number-1001")||"2");return Number.isFinite(stored)&&stored>1?stored:2;}
+  function setNextInvoiceNumber(number){localStorage.setItem("cms-next-invoice-number-1001",String(number));}
   function openInvoice(){
     const today=new Date().toISOString().slice(0,10);
     if(!$("invoiceDate").value)$("invoiceDate").value=today;
     if(!$("invoiceDueDate").value){const due=new Date();due.setDate(due.getDate()+30);$("invoiceDueDate").value=due.toISOString().slice(0,10);}
+    $("invoiceNumber").value="SLP-"+new Date().getFullYear()+"-"+String(nextInvoiceNumber()).padStart(3,"0");
     $("invoiceModal").hidden=false;updateInvoicePreview();
   }
   async function loadRecentActivities(account){
@@ -317,7 +320,7 @@
     renderNotes();
     $("invoiceAddItem").addEventListener("click",addInvoiceItem);
     $("invoiceClose").addEventListener("click",()=>{$("invoiceModal").hidden=true;});
-    $("invoicePrint").addEventListener("click",()=>{updateInvoicePreview();window.print();});
+    $("invoicePrint").addEventListener("click",()=>{updateInvoicePreview();window.print();setNextInvoiceNumber(nextInvoiceNumber()+1);});
     document.querySelectorAll("#invoiceModal input,#invoiceModal textarea").forEach(input=>input.addEventListener("input",updateInvoicePreview));
     const account=graphClient.getActiveAccount()||graphClient.getAllAccounts()[0];
     if(account){graphClient.setActiveAccount(account);try{await load(account)}catch(error){showError(error)}}

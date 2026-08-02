@@ -212,7 +212,7 @@
     const revenueLog=await fetchProjectItems(account);
     const recurringEntry=revenueItems.find(entry=>entry.key==="recurringYtd");
     const projectEntry=revenueItems.find(entry=>entry.key==="projectYtd");
-    if(recurringEntry)recurringEntry.entries=revenueLog.recurring;
+    if(recurringEntry&&revenueLog.recurring.length)recurringEntry.entries=revenueLog.recurring;
     if(projectEntry)projectEntry.entries=revenueLog.projects;
     display(record);
     renderProjects(revenueLog.projects);

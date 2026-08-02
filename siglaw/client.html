@@ -372,7 +372,6 @@
     setText("ytdCdoCost",cdoPaidYtd);setText("ytdCdoValue",cdoValueYtd);setText("ytdCdoNet",cdoValueYtd-cdoPaidYtd);
     setText("ytdTotalCost",totalCost);setText("ytdTotalValue",totalValue);setText("ytdTotalNet",totalValue-totalCost);
     $("roiCard").classList.remove("hidden");
-    $("roiBreakdown").onclick=event=>{const button=event.target.closest("[data-roi-key]");if(!button)return;const item=fields.find(entry=>entry.key===button.dataset.roiKey);$("roiModalTitle").textContent=item.label;$("roiModalBody").innerHTML='<p>'+esc(item.detail)+'</p><div class="roi-basis"><b>Calculation value:</b> '+money(item.value)+'<br><b>Confidence:</b> '+esc(item.confidence)+'<br><b>Basis:</b> '+esc(item.basis)+'<br><b>Evidence:</b> '+esc(item.evidence)+'</div>';$("roiModal").hidden=false;};
   }
   function display(record){
     const nonCharged=String(record["Non-Charged Client"]??"").trim();

@@ -30,7 +30,7 @@
   .foot{padding-top:4px;font-size:8px}
 }
 @media(max-width:900px){.collective-roi{margin-top:12px}}
-</style></head>
+</style><style>.collective-roi-detail-toggle{margin-top:8px;border:1px solid rgba(56,223,208,.35);border-radius:7px;background:transparent;color:#38dfd0;padding:6px 9px;font-size:10px;cursor:pointer}.collective-roi-detail-toggle:hover{background:rgba(56,223,208,.08)}</style></head>
 <body>
   <main class="shell">
     <header class="mast">
@@ -91,7 +91,7 @@
         <div class="collective-roi-row"><span>Sup</span><div class="collective-roi-track"><i style="width:100%"></i></div><strong>$22,200</strong></div>
       </button>
       <div class="collective-roi-total"><span>Total CMS value <strong>$38,820</strong></span><span>Client cost <strong>$3,500</strong></span><span>Net value <strong>$35,320</strong></span></div>
-      <div class="collective-roi-breakdown" id="collectiveRoiBreakdown" hidden><h3>Collective ROI math</h3><p><b>Signature Law</b> · $16,620 CMS value − $3,500 client cost = $13,120 net value.</p><p><b>Sup</b> · $22,200 promotional CMS value − $0 client cost = $22,200 net value.</p><p><b>Combined</b> · $38,820 CMS value − $3,500 client cost = $35,320 net value. Paid-client ROI is 1,009.1% on the combined paid cost; Sup’s promotional value is shown separately and does not imply collected revenue.</p></div>
+      <div class="collective-roi-breakdown" id="collectiveRoiBreakdown" hidden><h3>Collective ROI math</h3><p><b>Combined CMS value</b> · $16,620 + $22,200 = $38,820.</p><p><b>Combined client cost</b> · $3,500 + $0 = $3,500.</p><p><b>Collective net value</b> · $38,820 − $3,500 = $35,320. The promotional Sup value is included in delivered value and does not imply collected revenue.</p><button class="collective-roi-detail-toggle" id="collectiveRoiDetailToggle" type="button" aria-expanded="false" aria-controls="collectiveRoiClientMath">Show client-level math</button><div id="collectiveRoiClientMath" hidden><p><b>Signature Law</b> · $16,620 CMS value − $3,500 client cost = $13,120 net value.</p><p><b>Sup</b> · $22,200 promotional CMS value − $0 client cost = $22,200 net value.</p></div></div>
     </section>
     <footer class="foot">CMS Tech Mission Control · CMSLedger · Microsoft 365 protected data</footer>
   </main>
@@ -132,5 +132,5 @@
       <p class="review-state" id="reviewState"></p>
     </section>
   </div>
-<script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@3.28.1/lib/msal-browser.min.js"></script><script src="mission-control.js"></script><script>document.getElementById('collectiveRoiChart')?.addEventListener('click',function(){const detail=document.getElementById('collectiveRoiBreakdown');const open=detail.hidden;detail.hidden=!open;this.setAttribute('aria-expanded',String(open));});</script></body>
+<script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@3.28.1/lib/msal-browser.min.js"></script><script src="mission-control.js"></script><script>document.getElementById('collectiveRoiChart')?.addEventListener('click',function(){const detail=document.getElementById('collectiveRoiBreakdown');const open=detail.hidden;detail.hidden=!open;this.setAttribute('aria-expanded',String(open));});</script><script>document.getElementById("collectiveRoiDetailToggle")?.addEventListener("click",function(){const detail=document.getElementById("collectiveRoiClientMath");const open=detail.hidden;detail.hidden=!open;this.setAttribute("aria-expanded",String(open));this.textContent=open?"Hide client-level math":"Show client-level math";});</script></body>
 </html>

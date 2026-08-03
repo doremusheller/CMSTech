@@ -382,8 +382,8 @@
     ].map(([a,b])=>card(a,b)).join("");
     $("relationshipFacts").innerHTML=[
       ["Payment terms",value(record,"Default Payment Terms")],["Effective standard rate",formatRate(effectiveRate)],
-      ["Monthly recurring",formatMoney(record["Monthly Recurring"])],["Recurring YTD",formatMoney(2500)],
-      ["Project work YTD",formatMoney(1000)],["Total YTD",formatMoney(3500)],
+      ["Monthly recurring",formatMoney(record["Monthly Recurring"])],["Recurring YTD",formatMoney(record["Recurring YTD"])],
+      ["Project work YTD",formatMoney(record["Project Work YTD"])],["Total YTD",formatMoney((Number(record["Recurring YTD"])||0)+(Number(record["Project Work YTD"])||0))],
       ["Start date",formatDate(record["Start Date"])],["Renewal / review",formatDate(record["Renewal / Review Date"])],
       ["Client owner",value(record,"Client Owner")],["Financial status",value(record,"Financial Status")],["Last updated",formatDate(record["Last Updated"])],
       ["Notes",value(record,"Notes")]

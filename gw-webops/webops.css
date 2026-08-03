@@ -25,3 +25,24 @@
 .module-dock a:nth-child(1) b:after,.module-dock a:nth-child(2) b:after,.module-dock>.is-current b:after{display:block;margin-top:5px;color:var(--muted);font:700 9px/1.25 Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}.module-dock a:nth-child(1) b:after{content:"Automated expense intake"}.module-dock a:nth-child(2) b:after{content:"Connected client operations"}.module-dock>.is-current b:after{content:"Reviewable website updates"}
 .ops-prompt:before{content:"REAL-WORLD EQUIVALENT\A A client asks: “Make this page clearer and emphasize our flagship service.” This demo shows the review-before-publish pattern that keeps the change safe.";display:block;margin:0 0 15px;padding:11px 12px;border-left:2px solid var(--aqua);background:rgba(62,219,213,.06);color:var(--muted);font-size:11px;line-height:1.5;white-space:pre-line}.ops-prompt:before::first-line{color:var(--aqua);font-size:9px;font-weight:900;letter-spacing:.13em}
 @media(max-width:600px){.ops-hero:after{margin-top:0;font-size:12px}.module-dock a:nth-child(1) b:after,.module-dock a:nth-child(2) b:after,.module-dock>.is-current b:after{font-size:8px}}
+
+
+/* Preview-first WebOps dashboard */
+.ops-layout{grid-template-columns:minmax(0,1.55fr) minmax(345px,.85fr);gap:18px;align-items:start}
+.ops-workspace{grid-column:1;grid-row:1;position:sticky;top:14px}
+.ops-control{grid-column:2;grid-row:1;max-height:calc(100vh - 28px);overflow:auto;scrollbar-color:var(--lilac) rgba(255,255,255,.08)}
+.ops-workspace-head{background:linear-gradient(90deg,rgba(62,219,213,.06),transparent)}
+.ops-frame-shell{min-height:620px}
+.ops-frame-shell iframe{height:min(72vh,760px);min-height:560px}
+.ops-control:before{content:"WORKFLOW";display:block;margin:-2px 0 14px;color:var(--aqua);font-size:9px;font-weight:900;letter-spacing:.18em}
+.ops-pages{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.ops-page{min-height:68px;align-items:center;transition:transform .18s ease,border-color .18s ease,background .18s ease}
+.ops-page:hover{transform:translateY(-2px);border-color:rgba(62,219,213,.7);background:#17273a}
+.ops-page.active:after{content:"SELECTED";margin-left:auto;align-self:flex-start;color:var(--aqua);font-size:8px;font-weight:900;letter-spacing:.1em}
+.ops-prompt{background:rgba(9,29,40,.2);border-radius:12px;padding:16px 12px 13px}
+.ops-proposal{background:linear-gradient(145deg,rgba(62,219,213,.08),rgba(180,107,255,.08));border:1px solid rgba(62,219,213,.25);border-radius:12px;padding:16px 12px 13px}
+.ops-audit{padding-bottom:2px}
+.ops-preview-note{display:flex;align-items:center;gap:8px}
+.ops-preview-note:before{content:"●";color:var(--aqua);font-size:10px;box-shadow:0 0 12px var(--aqua)}
+@media(max-width:980px){.ops-layout{grid-template-columns:1fr}.ops-workspace{grid-column:1;grid-row:1;position:static}.ops-control{grid-column:1;grid-row:2;max-height:none}.ops-frame-shell iframe{height:600px;min-height:0}}
+@media(max-width:600px){.ops-pages{grid-template-columns:1fr}.ops-frame-shell{min-height:0}.ops-frame-shell iframe{height:520px}.ops-page.active:after{font-size:7px}.ops-control:before{margin-top:0}}

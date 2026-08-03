@@ -71,7 +71,17 @@
           "Merch Cannon Inventory Sync",
           1200
         ]
-      ]
+      ],
+      "dashboard": {
+        "health": "Active · aggressively retail",
+        "milestone": "Holographic hoodie drop",
+        "decision": "Glitter zipper · Y/N?",
+        "actions": [
+          "Reconcile the merch cannon inventory",
+          "Approve Tax Evasion Gold hoodie",
+          "Review identical returns"
+        ]
+      }
     },
     {
       "id": "gnome",
@@ -95,7 +105,17 @@
           "Portal Telemetry Prototype",
           2400
         ]
-      ]
+      ],
+      "dashboard": {
+        "health": "Promotional · non-billable",
+        "milestone": "Portal broadcast rehearsal",
+        "decision": "Gnome helmets · Y/N?",
+        "actions": [
+          "Confirm portal uptime",
+          "Approve legally distinct fog",
+          "Decide if gnomes need a union"
+        ]
+      }
     },
     {
       "id": "moonfizz",
@@ -123,7 +143,17 @@
           "Official Ribbon Escalation Protocol",
           2500
         ]
-      ]
+      ],
+      "dashboard": {
+        "health": "Active · highly regulated",
+        "milestone": "Confetti eclipse permit",
+        "decision": "Twelve-minute eclipse · Y/N?",
+        "actions": [
+          "File glitter variance",
+          "Approve ribbon escalation",
+          "Count ceremonial whistles"
+        ]
+      }
     },
     {
       "id": "biscuit",
@@ -151,7 +181,17 @@
           "Gravy Futures Signal Board",
           1700
         ]
-      ]
+      ],
+      "dashboard": {
+        "health": "Active · gravy-positive",
+        "milestone": "Orbital brunch launch",
+        "decision": "Gravy futures · Y/N?",
+        "actions": [
+          "Lock brunch engine",
+          "Approve biscuit protocol",
+          "Validate gravy forecast"
+        ]
+      }
     }
   ],
   "records": [

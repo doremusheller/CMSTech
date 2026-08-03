@@ -306,13 +306,13 @@
       const data=await microsoftGraph(account,"mailFolders/inbox/messages?$top=50&$orderby=receivedDateTime%20desc&$select=subject,from,toRecipients,receivedDateTime,webLink,bodyPreview");
       const messages=(data.value||[]).filter(message=>{
         const people=[message.from?.emailAddress?.address,...(message.toRecipients||[]).map(r=>r.emailAddress?.address)].filter(Boolean);
-        return people.some(address=>address.toLowerCase().endsWith("@tryasup.com"));
+        return people.some(address=>address.toLowerCase().endsWith("@cannabisexperts.net"));
       }).slice(0,5);
       $("activityList").innerHTML=messages.length?messages.map(message=>{
         const sender=message.from?.emailAddress?.name||message.from?.emailAddress?.address||"Unknown sender";
         const when=new Intl.DateTimeFormat("en-US",{dateStyle:"medium",timeStyle:"short"}).format(new Date(message.receivedDateTime));
         return '<a class="activity-item" href="'+esc(message.webLink||"#")+'" target="_blank" rel="noopener"><strong>'+esc(message.subject||"(No subject)")+'</strong><small>'+esc(sender)+" · "+esc(when)+'</small><p>'+esc(String(message.bodyPreview||"").replace(/\s+/g," ").split(/_{5,}|From:|Sent:/i)[0].trim().slice(0,180))+'</p></a>';
-      }).join(""):'<p class="empty">No recent Inbox messages matched tryasup.com.</p>';
+      }).join(""):'<p class="empty">No recent Inbox messages matched Jason’s email domain.</p>';
     }catch(error){
       console.warn("Outlook activity could not be loaded",error);
       $("activityList").innerHTML='<p class="empty">Outlook activity requires Mail.Read access. Refresh and reconnect to authorize it.</p>';

@@ -16,6 +16,31 @@
 /* Visual hierarchy refinement only — no behavior or data code changed. */
 .hero{min-height:338px;padding:31px 52px 34px}.orb{opacity:.56;transform:rotate(-27deg) scale(.84);transform-origin:left top}.orbit{opacity:.48;transform:rotate(8deg) scale(.86);transform-origin:right top}.hero-copy{max-width:680px}.hero h1{font-size:clamp(54px,7vw,92px);line-height:.81;margin:14px 0 18px}.hero p{font-size:15px;line-height:1.55}.shag{right:48px;width:min(29vw,350px);height:300px;opacity:.94}.shag-label{right:28px;bottom:15px;padding:8px 13px}.module-grid{margin-top:14px}.module{min-height:188px;padding:22px}.module b{font-size:28px}.section-head{margin-top:32px}.block{border-color:rgba(81,49,116,.78);box-shadow:0 12px 26px rgba(0,0,0,.12)}.cash-grid .positive,.cash-grid .negative{background:linear-gradient(145deg,rgba(34,16,56,.87),rgba(13,6,24,.88))}.cash-grid .net{border-color:rgba(255,211,84,.62);background:radial-gradient(circle at 83% 8%,rgba(255,211,84,.16),transparent 38%),linear-gradient(145deg,rgba(53,34,56,.98),rgba(20,10,29,.98));box-shadow:0 16px 34px rgba(0,0,0,.24)}.cash-grid .net strong{font-size:43px}.chart{background:repeating-linear-gradient(to bottom,transparent 0 48px,rgba(255,255,255,.035) 49px)}.preview-grid .block:not(.attention){background:linear-gradient(145deg,rgba(31,15,52,.88),rgba(14,7,25,.9))}.attention{border-color:rgba(255,120,134,.7);box-shadow:0 14px 30px rgba(0,0,0,.2)}.demo-reset{opacity:.7;padding:7px 10px;font-size:9px;box-shadow:none}.demo-reset:hover{opacity:1}.private{padding:8px 11px}
 @media(max-width:900px){.hero{min-height:390px;padding:30px 42px 276px}.shag{height:300px}.hero-copy{max-width:76%}}@media(max-width:600px){.hero{min-height:520px;padding:29px 18px 278px}.hero h1{font-size:52px}.hero p{font-size:13px}.shag{height:286px}.cash-grid .net strong{font-size:38px}}
+
+/* Single-pane command-center refinement. */
+.shell{max-width:1580px;padding:12px 24px 42px}
+.hero{min-height:248px;padding:24px 42px 26px;margin-top:10px}
+.hero h1{font-size:clamp(48px,6vw,78px);margin:10px 0 14px}
+.hero p{font-size:13px;line-height:1.42;max-width:570px}
+.shag{right:34px;width:min(24vw,285px);height:240px}
+.shag-label{right:20px;bottom:10px;padding:7px 10px}
+.shag-label b{font-size:15px}
+.module-grid{gap:10px;margin-top:10px}
+.module{min-height:142px;padding:17px;border-radius:14px}
+.module b{font-size:24px;margin-top:8px}
+.module p{margin-top:8px;font-size:12px}
+.section-head{margin:22px 0 9px}
+.section-head h2{font-size:27px}
+.cash-grid,.preview-grid{gap:10px}
+.block{padding:16px;border-radius:13px}
+.block strong{font-size:31px;margin-top:9px}
+.cash-grid .net strong{font-size:35px}
+.chart{height:145px;margin-top:10px}
+.attention-row{padding:9px 0}
+.category-list{gap:8px;margin-top:12px}
+.foot{padding-top:18px}
+@media(max-width:900px){.hero{min-height:300px;padding:24px 30px 220px}.shag{height:235px}.module{min-height:150px}}
+@media(max-width:600px){.shell{padding:10px 10px 34px}.hero{min-height:440px;padding:25px 16px 245px}.hero h1{font-size:48px}.hero p{font-size:12px}.shag{height:250px}.module-grid{gap:8px}.module{min-height:125px}.section-head{margin-top:22px}}
 </style></head><body><main class="shell">
 <header class="mast"><div class="brand"><span class="mark">GW</span>Hyperspace Logistics Command Center</div><div class="header-actions"><button class="demo-reset" id="resetDemo" type="button">Reset Demo Data</button><span class="private">Fictional demo data</span></div></header>
 <section class="hero"><i class="orb"></i><i class="orbit"></i><div class="hero-copy"><div class="eyebrow">Ghetto Wookie presents</div><h1>MISSION <i>CONTROL</i></h1><p>Mission Control is the operating brain for the Ghetto Wookie financial stack—one command surface for receipt intake, ledger intelligence, cash visibility, client operations, and WookWeb’s protected AI workspace for iterative page previews and change control.</p></div><img class="shag" src="assets/shag-fantastiq-cfo.svg" alt="Shag Fantastiq, Ghetto Wookie Digital CFO"><div class="shag-label"><small>Digital CFO · command architect</small><b>Shag Fantastiq</b></div></section>

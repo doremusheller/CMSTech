@@ -119,8 +119,6 @@
       <div class="health-item"><label>Billing</label><strong id="healthBilling">—</strong></div>
       <div class="health-item"><label>Relationship</label><strong id="healthRelationship">—</strong></div>
       <div class="health-item"><label>Next meeting</label><strong id="healthMeeting">—</strong></div>
-      <div class="health-item"><label>Open actions</label><strong id="healthActions">Review dashboard</strong></div>
-      <div class="health-item"><label>ROI evidence</label><strong id="healthRoi" class="warning">Finalized valuation</strong></div>
     </section>
 
     <section class="grid hidden" id="clientConsole">
@@ -391,7 +389,6 @@
     ].map(([a,b])=>card(a,b)).join("");
     $("healthBilling").textContent=String(record["Financial Status"]||"Current");
     $("healthRelationship").textContent=String(record["Status"]||"Active");
-    $("healthRoi").textContent="Finalized valuation";
     $("healthStrip").classList.remove("hidden");
     $("clientConsole").classList.remove("hidden");
   }

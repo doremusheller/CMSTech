@@ -51,8 +51,11 @@
     $("previewNote").textContent=q?"Generated visual preview · not published.":"Current published sandbox page.";
     if(q){
       if(blob)URL.revokeObjectURL(blob);
-      blob=URL.createObjectURL(new Blob([previewDocument(p.content)],{type:"text/html"}));
-      $("pagePreview").src=blob;
+      blob=null;
+      // Render the generated document directly in the viewer. This avoids blob-frame
+      // restrictions that can leave the proposed preview blank in hosted environments.
+      $("pagePreview").removeAttribute("src");
+      $("pagePreview").srcdoc=previewDocument(p.content);
       // Give the full-page link its own immutable Blob URL so it always opens this exact revision.
       const fullPageBlob=URL.createObjectURL(new Blob([previewDocument(p.content)],{type:"text/html"}));
       $("openPage").href=fullPageBlob;
@@ -60,6 +63,7 @@
       $("openPage").textContent="Visit proposed page ↗";
       $("overlaySummary").textContent="Visual proposal loaded — original page styling retained.";
     }else {
+      $("pagePreview").removeAttribute("srcdoc");
       $("pagePreview").src="bandsite/"+s[1]+"?v="+Date.now();
       $("openPage").href="bandsite/"+s[1];
       $("openPage").onclick=null;

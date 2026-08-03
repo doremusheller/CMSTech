@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Sup · CMS Client Console</title>
+  <script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@3.28.1/lib/msal-browser.min.js"></script>
+  <style>
+    :root{--ink:#070504;--panel:#160a06;--panel2:#220f08;--gold:#ffc247;--orange:#ff5a16;--cream:#fff4e9;--mute:#c9b7a9;--line:rgba(255,194,71,.2);--cyan:#38dfd0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif}*{box-sizing:border-box}html{background:var(--ink);scroll-behavior:smooth}body{margin:0;min-height:100vh;color:var(--cream);background:radial-gradient(ellipse 70% 40% at 47% -5%,#5a1e08 0%,transparent 68%),var(--ink)}body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.44;background-image:linear-gradient(115deg,transparent 0 48%,rgba(255,161,55,.06) 48.1% 48.2%,transparent 48.3% 100%),radial-gradient(circle at 10% 22%,#ff9d36 0 1px,transparent 1.5px),radial-gradient(circle at 68% 16%,#ff9d36 0 1px,transparent 1.5px);background-size:450px 450px,330px 330px,280px 280px}.shell{position:relative;width:min(1440px,calc(100% - 40px));margin:auto;padding:28px 0 76px}a{color:inherit;text-decoration:none}.mast{display:flex;justify-content:space-between;align-items:center;padding:10px 0 28px;border-bottom:1px solid var(--line);gap:18px}.cms-brand,.sig-brand{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:800}.cms-mark{height:32px;width:38px;display:grid;place-items:center;border:1px solid var(--orange);border-radius:10px;color:var(--gold);font-size:11px}.sig-brand{color:var(--cyan);border:1px solid rgba(56,223,208,.42);border-radius:99px;padding:8px 13px;font-size:10px}.sig-brand:before{content:"";height:7px;width:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 14px var(--cyan)}.hero{display:grid;grid-template-columns:1.12fr .88fr;gap:30px;align-items:center;padding:52px 24px 28px}.eyebrow,.kicker{color:var(--gold);font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase}.hero h1{font:500 clamp(58px,7vw,104px)/.82 Georgia,serif;letter-spacing:-.07em;margin:16px 0 25px}.hero h1::first-line{color:var(--cream)}.hero p{max-width:600px;margin:0;color:var(--mute);font-size:17px;line-height:1.65}.signature-logo{display:block;width:100%;min-height:188px;object-fit:contain;padding:28px;background:linear-gradient(135deg,rgba(255,107,18,.12),rgba(0,0,0,.5));border:1px solid rgba(255,194,71,.35);border-radius:16px;box-shadow:0 30px 60px rgba(0,0,0,.35)}.auth{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:15px 0 21px;padding:16px 18px;border:1px solid rgba(56,223,208,.34);border-radius:15px;background:rgba(24,91,83,.12);color:#c7f5f1;font-size:13px}.auth strong{color:var(--cyan)}.button{border:1px solid var(--cyan);border-radius:9px;background:transparent;color:var(--cyan);padding:10px 14px;font-weight:800;cursor:pointer;white-space:nowrap}.button:hover{background:rgba(56,223,208,.1)}.grid{display:grid;grid-template-columns:1.08fr .92fr;gap:18px;margin-top:20px}.card{border:1px solid var(--line);border-radius:19px;padding:22px;overflow:hidden;background:rgba(23,10,6,.82);box-shadow:0 22px 52px rgba(0,0,0,.2)}.title{color:var(--cream);font:500 28px Georgia,serif;margin:0}.status{display:inline-flex;margin-top:17px;border:1px solid rgba(56,223,208,.4);border-radius:99px;padding:7px 11px;color:var(--cyan);font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.facts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}.fact{min-height:77px;padding:13px;border:1px solid rgba(255,255,255,.09);border-radius:11px;background:rgba(0,0,0,.22)}.fact label{display:block;color:#bca899;font-size:9px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:7px}.fact span{display:block;color:#fff0dc;font-size:14px;line-height:1.35;overflow-wrap:anywhere}.scope{margin-top:20px;padding-top:18px;border-top:1px solid rgba(255,255,255,.1)}.scope p{margin:7px 0 0;color:#c9b7a9;font-size:14px;line-height:1.55}.links{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.link{display:inline-flex;border:1px solid rgba(255,194,71,.4);border-radius:9px;padding:10px 12px;color:var(--gold);font-size:12px;font-weight:800}.link:hover{background:rgba(255,194,71,.1)}.empty{color:#bca899;font-size:14px;line-height:1.55}.revenue-card{margin-top:0}.client-summary{margin-top:18px}.revenue-head{display:flex;justify-content:space-between;align-items:end;gap:16px}.revenue-head .tag{border:1px solid rgba(255,194,71,.35);border-radius:99px;color:var(--gold);padding:7px 10px;font-size:10px;white-space:nowrap}.revenue-graph{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:30px;align-items:end;min-height:250px;margin-top:22px;padding:18px 18px 0;border-top:1px solid rgba(255,255,255,.12);background:repeating-linear-gradient(to top,transparent 0 48px,rgba(255,255,255,.07) 49px,transparent 50px)}.revenue-bar{border:0;background:transparent;color:inherit;padding:0;cursor:pointer;text-align:left;display:grid;gap:11px;align-content:end;min-height:258px}.revenue-bar:focus-visible{outline:2px solid var(--cyan);outline-offset:5px;border-radius:8px}.revenue-bar b{display:block;width:100%;font:500 11px Georgia,serif;letter-spacing:-.04em;color:var(--cream);text-align:center;white-space:nowrap;overflow:hidden}.revenue-bar span{font-size:8px;color:#bca899;letter-spacing:.1em;text-transform:uppercase;line-height:1.3}.revenue-pillar{height:145px;display:flex;align-items:flex-end;border-bottom:1px solid rgba(255,255,255,.23)}.revenue-pillar i{display:block;width:62%;margin:0 auto;min-height:8px;border-radius:8px 8px 0 0;background:linear-gradient(180deg,#ffc247,#a64211);box-shadow:0 -8px 28px rgba(255,194,71,.12);transition:filter .18s ease,transform .18s ease}.revenue-bar:hover .revenue-pillar i,.revenue-bar[aria-pressed="true"] .revenue-pillar i{filter:brightness(1.18);transform:translateY(-3px)}.revenue-breakdown{margin-top:16px;padding:14px 16px;border:1px solid rgba(56,223,208,.35);border-radius:11px;background:rgba(24,91,83,.12);color:#d5eee9;font-size:13px;line-height:1.55}.revenue-breakdown b{color:var(--cyan)}.project-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:18px}.project-item{padding:12px;border:1px solid rgba(255,194,71,.2);border-radius:10px;background:rgba(0,0,0,.18);color:#fff0dc;font-size:13px}.project-item small{display:block;margin-top:4px;color:#bca899;font-size:10px;letter-spacing:.1em;text-transform:uppercase}.project-item b{color:var(--gold);float:right}.activity-list{display:grid;gap:10px;margin-top:18px}.activity-item{display:block;padding:13px;border:1px solid rgba(255,194,71,.2);border-radius:10px;background:rgba(0,0,0,.18)}.activity-item strong{display:block;color:var(--gold);font-size:13px}.activity-item small{display:block;margin-top:5px;color:#bca899;font-size:10px}.activity-item p{margin:6px 0 0;color:#c9b7a9;font-size:12px;line-height:1.4}.notes-log{margin-top:18px}.notes-entry{display:flex;gap:10px;align-items:flex-start}.notes-entry textarea{flex:1;min-height:82px;padding:12px;border:1px solid rgba(255,255,255,.15);border-radius:9px;background:rgba(0,0,0,.22);color:var(--cream);font:inherit;resize:vertical}.notes-list{display:grid;gap:10px;margin-top:16px}.note-item{padding:12px;border:1px solid rgba(255,194,71,.2);border-radius:10px;background:rgba(0,0,0,.18)}.note-item time{display:block;color:#bca899;font-size:10px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}.note-item p{margin:0;color:#fff0dc;font-size:13px;line-height:1.5;white-space:pre-wrap}.note-item button{float:right;border:0;background:transparent;color:#ff8a52;font-size:11px;cursor:pointer}.opportunity-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin-top:18px}.opportunity-item{padding:14px;border:1px solid rgba(56,223,208,.28);border-radius:10px;background:rgba(24,91,83,.1)}.opportunity-item strong{display:block;color:var(--cyan);font-size:13px}.opportunity-item span{display:block;margin-top:6px;color:#c9b7a9;font-size:12px;line-height:1.45}.delivery-copy{max-width:850px;margin:10px 0 0;color:var(--mute);font-size:16px;line-height:1.65}.footer{padding-top:28px;color:#836a5a;font-size:10px;letter-spacing:.14em;text-transform:uppercase}.hidden{display:none}.invoice-button{margin-top:18px;border:1px solid var(--cyan);border-radius:9px;background:transparent;color:var(--cyan);padding:10px 14px;font-weight:800;cursor:pointer}.invoice-button:hover{background:rgba(56,223,208,.1)}.invoice-modal{position:fixed;inset:0;z-index:30;display:grid;place-items:center;padding:20px;background:rgba(0,0,0,.78)}.invoice-modal[hidden]{display:none}.invoice-card{width:min(780px,100%);max-height:92vh;overflow:auto;padding:24px;border:1px solid rgba(255,194,71,.45);border-radius:16px;background:#160a06}.invoice-head{display:flex;justify-content:space-between;gap:16px;align-items:start}.invoice-head h2{margin:0;color:var(--cream);font:500 30px Georgia,serif}.invoice-form{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:20px}.invoice-form label{color:#bca899;font-size:10px;letter-spacing:.1em;text-transform:uppercase}.invoice-form input,.invoice-form textarea{width:100%;margin-top:6px;padding:10px;border:1px solid rgba(255,255,255,.15);border-radius:8px;background:#0d0705;color:var(--cream);font:inherit}.invoice-form textarea{min-height:76px;resize:vertical}.invoice-form .wide{grid-column:1/-1}.invoice-extra-row{display:grid;grid-template-columns:2fr .7fr .9fr auto;gap:8px;align-items:end;margin-top:10px}.invoice-extra-row input{width:100%;padding:10px;border:1px solid rgba(255,255,255,.15);border-radius:8px;background:#0d0705;color:var(--cream);font:inherit}.invoice-extra-row button{border:1px solid rgba(255,90,22,.6);border-radius:8px;background:transparent;color:#ff8a52;padding:9px;cursor:pointer}.invoice-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:18px}.invoice-preview{margin-top:22px;padding:24px;background:#160a06;color:#fff4e9;border:1px solid rgba(255,194,71,.35);border-radius:8px}.invoice-preview h3{margin:0;color:#ffc247;font:700 26px Georgia,serif;letter-spacing:.08em}.invoice-preview hr{border:0;border-top:1px solid rgba(255,194,71,.25)}.invoice-preview table{width:100%;border-collapse:collapse;margin-top:22px}.invoice-preview th,.invoice-preview td{padding:10px 0;border-bottom:1px solid rgba(255,194,71,.25);text-align:left}.invoice-preview th{color:#ffc247}.invoice-preview th:last-child,.invoice-preview td:last-child{text-align:right}.invoice-preview .total{text-align:right;color:#ffc247;font-weight:800;font-size:18px;margin-top:18px}@page{size:auto;margin:.5in}@media print{html,body{background:#fff!important}.shell>*:not(#invoiceModal){display:none!important}.invoice-modal{position:static;display:block;background:#fff;padding:0}.invoice-card{width:100%;max-width:none;max-height:none;overflow:visible;padding:0;border:0;border-radius:0;background:#fff}.invoice-head,.invoice-form,.invoice-actions{display:none!important}.invoice-preview{width:100%;min-height:9.5in;margin:0;border:0;border-radius:0;background:#fff!important;color:#24140d!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.invoice-preview h3,.invoice-preview th,.invoice-preview .total{color:#a65b12!important}.invoice-preview hr,.invoice-preview th,.invoice-preview td{border-color:#d9c7b8!important}.invoice-preview small,.invoice-preview span{color:#6f6259!important}}@media(max-width:760px){.invoice-form{grid-template-columns:1fr}.invoice-extra-row{grid-template-columns:1fr}}.revenue-modal{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:20px;background:rgba(0,0,0,.72)}.revenue-modal[hidden]{display:none}.revenue-modal-card{width:min(520px,100%);max-height:90vh;overflow:auto;padding:22px;border:1px solid rgba(255,194,71,.45);border-radius:16px;background:#160a06}.revenue-modal-head{display:flex;justify-content:space-between;gap:16px}.revenue-modal-head h3{margin:0;color:var(--cream);font:500 24px Georgia,serif}.revenue-modal-close{border:1px solid rgba(56,223,208,.45);border-radius:8px;background:transparent;color:var(--cyan);padding:7px 10px}.revenue-item-row{display:flex;justify-content:space-between;gap:16px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.1)}.revenue-item-row small{display:block;color:#bca899}.revenue-item-row b{color:var(--gold)}@media(max-width:900px){.hero,.grid{grid-template-columns:1fr}.signature-logo{width:100%;min-height:145px}.mast{align-items:flex-start;flex-direction:column}.auth{align-items:flex-start;flex-direction:column}.facts{grid-template-columns:1fr}.shell{width:calc(100% - 28px)}.hero{padding:38px 0 24px}.hero h1{font-size:61px}}
+<style>
+.roi-card{margin-top:18px}.roi-summary{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}.roi-metric{padding:14px;border:1px solid rgba(56,223,208,.28);border-radius:11px;background:rgba(24,91,83,.1)}.roi-metric label{display:block;color:#bca899;font-size:9px;letter-spacing:.14em;text-transform:uppercase}.roi-metric strong{display:block;margin-top:6px;color:var(--cyan);font:500 25px Georgia,serif}.roi-breakdown{display:grid;gap:9px;margin-top:18px}.roi-assumption{display:flex;justify-content:space-between;gap:18px;align-items:center;padding:13px;border:1px solid rgba(255,194,71,.2);border-radius:10px;background:rgba(0,0,0,.18);color:#fff0dc;cursor:pointer;text-align:left;width:100%}.roi-assumption:hover,.roi-assumption:focus-visible{border-color:var(--cyan);outline:none}.roi-assumption small{display:block;margin-top:4px;color:#bca899}.roi-assumption b{color:var(--gold);white-space:nowrap}.roi-modal{position:fixed;inset:0;z-index:25;display:grid;place-items:center;padding:20px;background:rgba(0,0,0,.76)}.roi-modal[hidden]{display:none}.roi-modal-card{width:min(600px,100%);max-height:90vh;overflow:auto;padding:24px;border:1px solid rgba(255,194,71,.45);border-radius:16px;background:#160a06}.roi-modal-head{display:flex;justify-content:space-between;gap:16px;align-items:start}.roi-modal-head h3{margin:0;color:var(--cream);font:500 27px Georgia,serif}.roi-modal-card p{color:#c9b7a9;line-height:1.55}.roi-modal-card ul{color:#fff0dc;line-height:1.7;padding-left:22px}.roi-basis{padding:13px;border-left:2px solid var(--cyan);background:rgba(24,91,83,.1);color:#d5eee9}.roi-draft-note{margin:14px 0 0;color:#ffcf82;font-size:12px}@media(max-width:900px){.roi-summary{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){.roi-summary{grid-template-columns:1fr}}
+</style><style>
+.health-strip{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px;margin:20px 0}.health-item{padding:12px 14px;border:1px solid rgba(56,223,208,.25);border-radius:10px;background:rgba(24,91,83,.08)}.health-item label{display:block;color:#a99180;font-size:9px;letter-spacing:.12em;text-transform:uppercase}.health-item strong{display:block;margin-top:5px;color:#d5eee9;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.health-item strong.warning{color:#ffcf82}.activity-item p{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.action-primary{display:inline-flex;align-items:center;gap:8px}.data-badge{display:inline-flex;align-items:center;border:1px solid rgba(255,194,71,.4);border-radius:99px;padding:6px 9px;color:#ffcf82;font-size:9px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}
+@media(max-width:900px){.health-strip{grid-template-columns:repeat(3,minmax(0,1fr))}}@media(max-width:600px){.health-strip{grid-template-columns:1fr 1fr}}
+</style><style>
+#relationshipFacts{grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}.client-summary{padding:18px}.client-summary .fact{min-height:60px;padding:10px}.client-summary .fact label{margin-bottom:4px}.client-summary .fact span{font-size:13px}.client-summary .links{margin-top:14px}
+#activitiesCard{padding:18px}.activity-list{gap:6px;margin-top:10px}.activity-item{padding:9px 11px}.activity-item p{display:none}.activity-item small{margin-top:3px}.activity-item strong{font-size:12px}#activitiesCard .kicker{margin-bottom:6px}
+@media(max-width:900px){#relationshipFacts{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:600px){#relationshipFacts{grid-template-columns:1fr}.client-summary{padding:15px}}
+</style><style>
+.signature-logo{height:260px;max-height:260px;min-height:0;object-fit:contain}
+@media(max-width:900px){.signature-logo{height:160px;max-height:160px}}
+@media(max-width:600px){.signature-logo{height:125px;max-height:125px}}
+</style><style>
+@media(min-width:901px){
+  .shell{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:14px;padding-top:18px}
+  .shell>.mast,.shell>.hero,.shell>.auth,.shell>.health-strip,.shell>footer{grid-column:1/-1}
+  .mast{padding:6px 0 14px}.hero{padding:24px 18px 12px;gap:24px}.hero h1{font-size:clamp(46px,5vw,76px);margin:10px 0 16px}.hero p{font-size:14px;line-height:1.45}.signature-logo{height:150px;max-height:150px}.auth{margin:8px 0 2px;padding:11px 14px}
+  #clientConsole{grid-column:1/-1;margin-top:0}.client-summary,.roi-card{grid-column:span 6;margin-top:0}.client-summary{padding:18px}.roi-card{padding:18px}
+  #deliveryCard,#opportunitiesCard,#activitiesCard{grid-column:span 4;margin-top:0;padding:18px}
+  #notesCard{grid-column:1/-1;margin-top:0;padding:18px}
+  #deliveryCard .project-list,#opportunitiesCard .opportunity-list{grid-template-columns:1fr}
+  #activitiesCard{max-height:520px;overflow:auto}
+  #notesCard .notes-log{display:grid;grid-template-columns:minmax(280px,.7fr) minmax(0,1.3fr);gap:16px;align-items:start}
+  #notesCard .notes-list{margin-top:0}
+  .footer{padding-top:10px}
+}
+</style><style>
+@media(min-width:901px){
+  html,body{font-size:12px}
+  .shell{width:min(1520px,calc(100% - 28px));gap:8px;padding:10px 0 18px}
+  .mast{padding:3px 0 8px;gap:10px}.cms-brand,.sig-brand{font-size:9px}.cms-mark{height:26px;width:32px}.sig-brand{padding:6px 10px}
+  .hero{padding:12px 12px 6px;gap:18px}.eyebrow,.kicker{font-size:8px}.hero h1{font-size:clamp(36px,4vw,58px);line-height:.82;margin:7px 0 10px}.hero p{font-size:12px;line-height:1.35}.signature-logo{height:105px;max-height:105px;padding:14px;border-radius:11px}
+  .auth{margin:3px 0;padding:8px 11px;font-size:11px;border-radius:10px}.button{padding:7px 10px;font-size:11px}
+  .health-strip{margin:8px 0;gap:6px}.health-item{padding:8px 10px}.health-item label{font-size:7px}.health-item strong{font-size:11px;margin-top:3px}
+  .grid{gap:8px}.card{padding:12px;border-radius:12px;box-shadow:0 12px 26px rgba(0,0,0,.16)}.title{font-size:20px}.status{margin-top:8px;padding:5px 8px;font-size:8px}.facts{gap:6px;margin-top:10px}.fact{min-height:48px;padding:8px;border-radius:8px}.fact label{font-size:7px;margin-bottom:3px}.fact span{font-size:11px;line-height:1.2}
+  .scope{margin-top:10px;padding-top:10px}.scope p{font-size:11px;line-height:1.3}.links{gap:6px;margin-top:10px}.link,.invoice-button{padding:7px 9px;font-size:10px}
+  .revenue-head{gap:8px}.revenue-head .tag{padding:5px 7px;font-size:8px}.revenue-graph{min-height:160px;gap:16px;margin-top:10px;padding:8px 10px 0}.revenue-bar{min-height:165px;gap:6px}.revenue-pillar{height:90px}.revenue-bar b{font-size:10px}.revenue-bar span{font-size:7px}
+  .roi-summary{gap:6px;margin-top:10px}.roi-metric{padding:8px;border-radius:8px}.roi-metric label{font-size:7px}.roi-metric strong{font-size:18px;margin-top:3px}.roi-breakdown{gap:5px;margin-top:10px}.roi-assumption{padding:8px 10px;font-size:11px}.roi-assumption small{font-size:9px;margin-top:2px}.roi-assumption b{font-size:11px}
+  #deliveryCard,#opportunitiesCard,#activitiesCard,#notesCard{padding:12px}.delivery-copy{font-size:11px;line-height:1.35;margin:6px 0 0}.project-list,.opportunity-list{gap:6px;margin-top:9px}.project-item,.opportunity-item{padding:8px;font-size:11px}.opportunity-item span{font-size:10px;margin-top:3px}.activity-list{gap:4px;margin-top:7px}.activity-item{padding:7px 8px}.activity-item strong{font-size:10px}.activity-item small{font-size:8px}.activity-item p{font-size:9px}
+  #activitiesCard{max-height:360px}.notes-entry textarea{min-height:54px;padding:8px}.notes-list{gap:5px}.note-item{padding:8px}.note-item time{font-size:8px;margin-bottom:3px}.note-item p{font-size:10px}
+  .footer{font-size:8px;padding-top:4px}
+}
+</style><style>
+:root{
+  --ink:#0b0706;
+  --panel:#160d0a;
+  --panel2:#21120d;
+  --gold:#f2b544;
+  --orange:#b9653f;
+  --cream:#f7ebdd;
+  --mute:#b9a79a;
+  --line:rgba(242,181,68,.16);
+  --cyan:#55cfc3;
+}
+.card,.invoice-card,.revenue-modal-card,.roi-modal-card{background:linear-gradient(135deg,rgba(33,18,13,.96),rgba(22,13,10,.96));border-color:rgba(185,101,63,.24)}
+.card{box-shadow:0 14px 34px rgba(0,0,0,.18)}
+.kicker,.eyebrow{color:var(--gold)}
+.title,.hero h1{color:var(--cream)}
+.status,.auth,.health-item,.roi-metric,.roi-basis{border-color:rgba(85,207,195,.25)}
+.project-item,.opportunity-item,.activity-item,.note-item,.roi-assumption{border-color:rgba(185,101,63,.25);background:rgba(185,101,63,.045)}
+.project-item b,.revenue-bar b,.roi-assumption b,.roi-metric strong{color:var(--gold)}
+.button,.invoice-button,.intake-button{border-color:var(--cyan);color:var(--cyan)}
+.button:hover,.invoice-button:hover,.intake-button:hover{background:rgba(85,207,195,.08)}
+.link{border-color:rgba(242,181,68,.3);color:var(--gold)}
+.link:hover{background:rgba(242,181,68,.08)}
+.revenue-pillar i{background:linear-gradient(180deg,#f2b544,#b9653f);box-shadow:0 -8px 28px rgba(242,181,68,.12)}
+.sig-brand{color:var(--cyan);border-color:rgba(85,207,195,.35)}
+.auth{background:rgba(85,207,195,.06)}
+.health-item{background:linear-gradient(135deg,rgba(85,207,195,.06),rgba(185,101,63,.035))}
+</style><style>
+.signature-logo{width:min(220px,70%);height:96px;max-height:96px;min-height:0;margin:0 auto;padding:8px;object-fit:contain;background:#fff;border:0;border-radius:8px;box-shadow:0 8px 20px rgba(0,0,0,.18)}
+@media(min-width:901px){.signature-logo{width:190px;height:82px;max-height:82px;margin-left:auto;margin-right:auto}}
+@media(max-width:900px){.signature-logo{width:180px;height:78px;max-height:78px;padding:6px}}
+@media(max-width:600px){.signature-logo{width:150px;height:66px;max-height:66px}}
+</style><style>
+.value-graph{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}.value-visual{border:1px solid rgba(185,101,63,.25);border-radius:10px;padding:11px;background:rgba(185,101,63,.045);cursor:pointer;text-align:left;color:inherit;width:100%}.value-visual:hover,.value-visual:focus-visible{border-color:var(--cyan);outline:none}.value-head{display:flex;justify-content:space-between;gap:8px;align-items:baseline}.value-head strong{font-size:12px;color:var(--cream)}.value-head span{font-size:9px;color:var(--gold);font-weight:800}.value-track{height:12px;margin-top:10px;border-radius:99px;background:rgba(0,0,0,.35);overflow:hidden;position:relative}.value-fill{height:100%;border-radius:99px;background:linear-gradient(90deg,var(--orange),var(--gold))}.value-paid{height:100%;position:absolute;left:0;top:0;border-right:2px solid var(--cream);background:var(--cyan);opacity:.9}.value-caption{display:flex;justify-content:space-between;margin-top:6px;color:var(--mute);font-size:9px}.value-detail{grid-column:1/-1;padding:12px 14px;border:1px solid rgba(85,207,195,.25);border-radius:9px;background:rgba(85,207,195,.045);color:#d5eee9;font-size:11px;line-height:1.5}.value-detail[hidden]{display:none}.value-detail h4{margin:0 0 7px;color:var(--gold);font-size:13px}.value-detail table{width:100%;border-collapse:collapse}.value-detail td{padding:3px 0;border-bottom:1px solid rgba(255,255,255,.08)}.value-detail td:last-child{text-align:right;color:var(--gold);font-weight:800}.value-detail ul{margin:7px 0 0;padding-left:18px}@media(max-width:600px){.value-graph{grid-template-columns:1fr}.value-detail{grid-column:auto}}
+</style><style>
+#roiBreakdown,#roiDraftNote{display:none},.roi-summary{display:none}
+</style><style>
+#roiSummaryTable{width:100%;border-collapse:collapse;margin-top:12px;font-size:11px}#roiSummaryTable th,#roiSummaryTable td{padding:8px 6px;border-bottom:1px solid rgba(255,255,255,.1);text-align:right}#roiSummaryTable th:first-child,#roiSummaryTable td:first-child{text-align:left}#roiSummaryTable th{color:var(--mute);font-size:8px;letter-spacing:.1em;text-transform:uppercase}#roiSummaryTable td{color:var(--gold);font-weight:800}#roiSummaryTable tr:last-child td{color:var(--cream);border-bottom:0}
+</style><style>
+.value-visual.total{grid-column:1/-1;background:linear-gradient(135deg,rgba(242,181,68,.08),rgba(185,101,63,.06));border-color:rgba(242,181,68,.35)}.value-visual.total .value-fill{background:linear-gradient(90deg,var(--gold),var(--orange))}
+@media(max-width:600px){.value-visual.total{grid-column:auto}}
+</style>  </style>
+</head>
+<body>
+  <main class="shell">
+    <header class="mast">
+      <a class="cms-brand" href="../mission-control.html"><span class="cms-mark">CMS</span><span>Technical Optimization</span></a>
+      <div class="sig-brand">Sup · Client Console</div>
+    </header>
+
+    <section class="hero">
+      <div>
+        <div class="eyebrow">CMS client control surface · live Microsoft 365 source</div>
+        <h1>Sup</h1>
+        <p>Private Client Record</p>
+      </div>
+      <img class="signature-logo" src="https://raw.githubusercontent.com/doremusheller/CMSTech/main/sup/suplogo.avif" alt="Sup">
+    </section>
+
+    <section class="auth" aria-live="polite">
+      <div><strong id="connection">Secure client record</strong><br><span id="connectionNote">Sign in with Microsoft to load the current Clients worksheet.</span></div>
+      <button class="button" id="signInButton" type="button">Sign in with Microsoft</button>
+    </section>
+    <section class="health-strip hidden" id="healthStrip" aria-label="Client health summary">
+      <div class="health-item"><label>Billing</label><strong id="healthBilling">—</strong></div>
+      <div class="health-item"><label>Relationship</label><strong id="healthRelationship">—</strong></div>
+      <div class="health-item"><label>Next meeting</label><strong id="healthMeeting">—</strong></div>
+      <div class="health-item"><label>Open actions</label><strong id="healthActions">Review dashboard</strong></div>
+      <div class="health-item"><label>ROI evidence</label><strong id="healthRoi" class="warning">Finalized valuation</strong></div>
+    </section>
+
+    <section class="grid hidden" id="clientConsole">
+      <article class="card">
+        <p class="kicker">Client record</p>
+        <h2 class="title" id="legalName">Sup</h2>
+        <span class="status" id="status">Loading status</span>
+        <div class="facts" id="coreFacts"></div>
+        <div class="scope"><p class="kicker">Services / scope</p><p id="scope">No scope is recorded yet.</p></div>
+      </article>
+    <section class="card revenue-card hidden" id="revenueCard">
+      <div class="revenue-head"><div><p class="kicker">Revenue position</p><h2 class="title">Client revenue at a glance</h2></div><span class="tag">Click a bar for detail</span></div>
+      <div class="revenue-graph" id="revenueGraph" aria-label="Client revenue graph"></div>
+      <div class="revenue-breakdown" id="revenueBreakdown" hidden aria-live="polite"></div>
+    </section>
+    </section>
+
+    <section class="card client-summary">
+      <p class="kicker">Relationship details</p>
+      <h2 class="title">CMS service context</h2>
+      <div class="facts" id="relationshipFacts"></div>
+      <button class="invoice-button" id="invoiceButton" type="button">Build invoice</button><div class="links">
+        <a class="link" href="https://tryasup.com/" target="_blank" rel="noopener">Visit Sup ↗</a>
+        <a class="link" href="../mission-control.html">Return to Mission Control</a>
+      </div>
+    </section>
+
+    <section class="card roi-card hidden" id="roiCard">
+      <div class="revenue-head"><div><p class="kicker">CMS Tech value delivered</p><h2 class="title">CMS Value Graph</h2></div><span class="tag">Click a value bar</span></div>
+      <p class="delivery-copy">CMS Tech value at a glance. Click either value bar to inspect the math and the work behind it.</p>
+      <div class="value-graph" id="valueGraph">
+        <button class="value-visual" type="button" data-value-graph="website"><span class="value-head"><strong>Website project</strong><span>$8,700 value</span></span><div class="value-track"><i class="value-fill" style="width:100%"></i><i class="value-paid" style="width:11.5%"></i></div><span class="value-caption"><span>$1,000 paid</span><span>8.7× value</span></span></button>
+        <button class="value-visual" type="button" data-value-graph="cdo"><span class="value-head"><strong>Fractional CDO</strong><span>$3,960/mo value</span></span><div class="value-track"><i class="value-fill" style="width:100%"></i><i class="value-paid" style="width:31.6%"></i></div><span class="value-caption"><span>$1,250/mo retainer</span><span>$2,710/mo gap</span></span></button>
+        <button class="value-visual total" type="button" data-value-graph="total"><span class="value-head"><strong>Total YTD ROI</strong><span>$16,620 value</span></span><div class="value-track"><i class="value-fill" style="width:100%"></i><i class="value-paid" style="width:21.1%"></i></div><span class="value-caption"><span>$3,500 total cost</span><span>$13,120 net value · 4.75×</span></span></button>
+        <div class="value-detail" id="valueGraphDetail" hidden></div>
+      </div>
+      <table id="roiSummaryTable" aria-label="Running year-to-date cost versus value">
+        <thead><tr><th>Running YTD</th><th>Client cost</th><th>CMS value</th><th>Net value</th></tr></thead>
+        <tbody>
+          <tr><td>Website project</td><td id="ytdWebsiteCost">$1,000</td><td id="ytdWebsiteValue">$8,700</td><td id="ytdWebsiteNet">$7,700</td></tr>
+          <tr><td>Fractional CDO</td><td id="ytdCdoCost">$2,500</td><td id="ytdCdoValue">$7,920</td><td id="ytdCdoNet">$5,420</td></tr>
+          <tr><td><b>Total</b></td><td id="ytdTotalCost">$3,500</td><td id="ytdTotalValue">$16,620</td><td id="ytdTotalNet">$13,120</td></tr>
+        </tbody>
+      </table>
+
+    </section>
+    <div class="roi-modal" id="roiModal" hidden role="dialog" aria-modal="true" aria-labelledby="roiModalTitle"><div class="roi-modal-card"><div class="roi-modal-head"><h3 id="roiModalTitle">Value assumption</h3><button class="revenue-modal-close" id="roiModalClose" type="button">Close</button></div><div id="roiModalBody"></div></div></div>
+    <section class="card hidden" id="deliveryCard">
+      <p class="kicker">CMS work delivered</p>
+      <h2 class="title">Engagement summary</h2>
+      <p class="delivery-copy" id="deliverySummary"></p><div class="project-list" id="projectList"></div>
+    </section>
+
+    <section class="card hidden" id="notFound"><p class="kicker">Client record</p><h2 class="title">Record not found</h2><p class="empty">No Clients-sheet row matching client ID 1002 was found. Refresh the workbook record, then reload this page.</p></section>
+<div class="revenue-modal" id="revenueModal" hidden role="dialog" aria-modal="true"><div class="revenue-modal-card"><div class="revenue-modal-head"><h3 id="revenueModalTitle">Revenue detail</h3><button class="revenue-modal-close" id="revenueModalClose" type="button">Close</button></div><div id="revenueModalItems"></div></div></div>
+<div class="invoice-modal" id="invoiceModal" hidden role="dialog" aria-modal="true" aria-labelledby="invoiceTitle">
+      <div class="invoice-card">
+        <div class="invoice-head"><h2 id="invoiceTitle">Build invoice</h2><button class="revenue-modal-close" id="invoiceClose" type="button">Close</button></div>
+        <div class="invoice-form">
+          <label>Invoice number<input id="invoiceNumber" value="SLP-2026-002"></label>
+          <label>Issue date<input id="invoiceDate" type="date"></label>
+          <label>Due date<input id="invoiceDueDate" type="date"></label>
+          <label>Payment terms<input id="invoiceTerms" value="Due on Receipt"></label>
+          <label class="wide">Line item<input id="invoiceDescription" value="Monthly fractional CDO services; Sup website build and hosting; DonCortex law office management platform development"></label>
+          <label>Quantity<input id="invoiceQty" type="number" min="0" step="0.01" value="1"></label>
+          <label>Rate<input id="invoiceRate" type="number" min="0" step="0.01" value="1250"></label>
+          <label class="wide">Notes<textarea id="invoiceNotes">Thank you for your business.</textarea></label>
+        </div>
+        <div id="invoiceExtraItems"></div><button class="invoice-button" id="invoiceAddItem" type="button">+ Add line item</button><div class="invoice-actions"><button class="button" id="invoicePrint" type="button">Print / Save PDF</button><button class="invoice-button" id="invoiceRecord" type="button">Record in Client File</button></div><p id="invoiceRecordStatus" class="empty"></p>
+        <div class="invoice-preview" id="invoicePreview"></div>
+      </div>
+    </div>
+    <section class="card" id="opportunitiesCard">
+      <p class="kicker">Growth opportunities</p>
+      <h2 class="title">Where CMS can help next</h2>
+      <p class="delivery-copy">Suggested from the client’s active services, delivered work, and recurring relationship. Review before proposing.</p>
+      <div class="opportunity-list" id="opportunityList"></div>
+    </section>
+    <section class="card" id="activitiesCard">
+      <p class="kicker">Recent activities</p>
+      <h2 class="title">Recent activities &amp; upcoming meetings</h2>
+      <p class="delivery-copy">The five newest Inbox messages and upcoming calendar meetings involving the client domain.</p>
+      <p class="kicker" style="margin-top:20px">Latest Correspondence</p>
+      <div class="activity-list" id="activityList"><p class="empty">Loading Outlook activity…</p></div>
+      <p class="kicker" style="margin-top:22px">Upcoming scheduled meetings</p>
+      <div class="activity-list" id="meetingList"><p class="empty">Loading calendar activity…</p></div>
+    </section>
+    <section class="card" id="notesCard">
+      <p class="kicker">Client notes</p>
+      <h2 class="title">Notes log</h2>
+      <div class="notes-log">
+        <div class="notes-entry"><textarea id="noteInput" placeholder="Capture a client update, decision, follow-up, or observation..."></textarea><button class="button" id="saveNote" type="button">Add note</button></div>
+        <div class="notes-list" id="notesList"></div>
+      </div>
+    </section>
+    <footer class="footer">Private CMS Tech workspace · source: Microsoft 365 Clients worksheet</footer>
+  </main>
+<script>
+(() => {
+  const CLIENT_ID="4ee3e5d2-4598-4656-8e20-358dc63226da";
+  const TENANT_ID="04bfc180-5650-4f0b-9a97-22fc45c33b9c";
+  const WORKBOOK_ITEM_ID="015GYJNAHEDZFFW2NWT5CZ6D5HMWSBNW7W";
+  const SCOPES=["User.Read","Files.ReadWrite","Mail.Read","Calendars.Read"];
+  const $=id=>document.getElementById(id);
+  const esc=value=>String(value??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  let graphClient;
+  let revenueItems=[];
+  function index(headers,label){return headers.findIndex(h=>String(h??"").trim().toLowerCase()===label.toLowerCase())}
+  function value(record,field){return record[field]===undefined||record[field]===null||record[field]===""?"Not recorded":record[field]}
+  function formatDate(raw){
+    if(raw===undefined||raw===null||raw==="")return "Not recorded";
+    const date=typeof raw==="number" ? new Date(Date.UTC(1899,11,30)+raw*86400000) : new Date(raw);
+    return Number.isNaN(date.getTime()) ? String(raw) : new Intl.DateTimeFormat("en-US",{timeZone:"UTC",month:"numeric",day:"numeric",year:"numeric"}).format(date);
+  }
+  function formatMoney(raw){
+    if(raw===undefined||raw===null||raw==="")return "Not recorded";
+    const amount=Number(raw);
+    return Number.isFinite(amount) ? new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(amount) : String(raw);
+  }
+  function formatRate(raw){
+    if(raw===undefined||raw===null||raw==="")return "Not recorded";
+    const amount=Number(raw);
+    return Number.isFinite(amount) ? new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(amount)+"/hour" : String(raw);
+  }
+  function card(label,content){return '<div class="fact"><label>'+esc(label)+'</label><span>'+esc(content)+'</span></div>'}
+  function renderRevenueGraph(record){
+    const nextDueDate=new Date();
+    const dueDay=3;
+    nextDueDate.setDate(nextDueDate.getDate() + ((dueDay-nextDueDate.getDate()+31)%31 || 31));
+    const dueDateLabel=new Intl.DateTimeFormat("en-US",{month:"long",day:"numeric",year:"numeric"}).format(nextDueDate);
+    const items=[
+      {key:"recurringYtd",label:"Recurring YTD",amount:2500,entries:[{label:"Monthly recurring deposit",amount:1250,date:"June 3, 2026"},{label:"Monthly recurring deposit",amount:1250,date:"July 3, 2026"}],detail:"Two deposited recurring payments: June 3 and July 3, 2026."},
+      {key:"recurringDue",label:"Recurring due",amount:record["Monthly Recurring"],detail:"Upcoming monthly recurring for Sup due "+dueDateLabel+"; it is not included in YTD until deposited."},
+      {key:"projectYtd",label:"Sup hosted website",amount:1000,entries:[{label:"Sup hosted website",amount:1000,date:"Recorded deposit"}],detail:"Recorded project deposit for the Sup hosted website."}
+    ];
+    const usable=items.map(item=>({...item,number:Number(item.amount)})).filter(item=>Number.isFinite(item.number));
+    revenueItems=usable;
+    const graph=$("revenueGraph");
+    if(!usable.length){graph.innerHTML='<p class="empty">Revenue is not available for this client.</p>';return}
+    const max=Math.max(1,...usable.map(item=>item.number));
+    graph.innerHTML=usable.map(item=>'<button class="revenue-bar" type="button" data-revenue-key="'+esc(item.key)+'" aria-pressed="false"><b>'+esc(formatMoney(item.number))+'</b><div class="revenue-pillar"><i style="height:'+Math.max(6,item.number/max*100)+'%"></i></div><span>'+esc(item.label)+'</span></button>').join("");
+    $("revenueCard").classList.remove("hidden");
+  }
+  function addInvoiceItem(){
+    const row=document.createElement("div");
+    row.className="invoice-extra-row";
+    row.innerHTML='<input class="extra-description" placeholder="Additional service or project"><input class="extra-qty" type="number" min="0" step="0.01" value="1"><input class="extra-rate" type="number" min="0" step="0.01" value="0"><button type="button" aria-label="Remove line item">Remove</button>';
+    row.querySelector("button").addEventListener("click",()=>{row.remove();updateInvoicePreview();});
+    row.querySelectorAll("input").forEach(input=>input.addEventListener("input",updateInvoicePreview));
+    $("invoiceExtraItems").appendChild(row);
+  }
+  function updateInvoicePreview(){
+    const money=v=>new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(v);
+    const items=[{description:$("invoiceDescription").value,qty:Number($("invoiceQty").value)||0,rate:Number($("invoiceRate").value)||0}];
+    document.querySelectorAll(".invoice-extra-row").forEach(row=>items.push({description:row.querySelector(".extra-description").value,qty:Number(row.querySelector(".extra-qty").value)||0,rate:Number(row.querySelector(".extra-rate").value)||0}));
+    const total=items.reduce((sum,item)=>sum+item.qty*item.rate,0);
+    const rows=items.map(item=>"<tr><td>"+esc(item.description)+"<br><small>"+esc(item.qty)+" x "+money(item.rate)+"</small></td><td>"+money(item.qty*item.rate)+"</td></tr>").join("");
+    $("invoicePreview").innerHTML="<div style='display:flex;justify-content:space-between;gap:20px;align-items:start'><div style='display:flex;align-items:center;gap:10px'><img src=\"https://raw.githubusercontent.com/doremusheller/CMSTech/main/siglaw/cmslogo3.png\" alt=\"CMS Tech\" style=\"height:42px;width:auto;max-width:180px;object-fit:contain\"><div><strong style=\"letter-spacing:.12em\">CMS TECH</strong><br><span style=\"color:#c9b7a9\">Technical Optimization</span></div></div><div><h3>INVOICE</h3><div>"+esc($("invoiceNumber").value)+"</div></div></div><hr><p><strong>Bill to:</strong><br>Sup<br>Billing address not recorded<br>admin@tryasup.com</p><p><strong>Issue date:</strong> "+esc($("invoiceDate").value)+" &nbsp; <strong>Due:</strong> "+esc($("invoiceDueDate").value)+"</p><div style='display:flex;justify-content:flex-end;margin:8px 0 2px'><img src=\"https://raw.githubusercontent.com/doremusheller/CMSTech/main/siglaw/ottogoes.png\" alt=\"Don Ottavio\" title=\"A Don Ottavio surprise\" style=\"width:54px;height:54px;object-fit:contain;opacity:.9\"></div><table><tr><th>Description</th><th>Amount</th></tr>"+rows+"</table><div class='total'>Total due: "+money(total)+"</div><p><small>"+esc($("invoiceTerms").value)+"<br>"+esc($("invoiceNotes").value)+"</small></p>";
+  }
+  function nextInvoiceNumber(){const stored=Number(localStorage.getItem("cms-next-invoice-number-1002")||"2");return Number.isFinite(stored)&&stored>1?stored:2;}
+  function setNextInvoiceNumber(number){localStorage.setItem("cms-next-invoice-number-1002",String(number));}
+  function openInvoice(){
+    const today=new Date().toISOString().slice(0,10);
+    if(!$("invoiceDate").value)$("invoiceDate").value=today;
+    if(!$("invoiceDueDate").value)$("invoiceDueDate").value=today;
+    $("invoiceNumber").value="SLP-"+new Date().getFullYear()+"-"+String(nextInvoiceNumber()).padStart(3,"0");
+    $("invoiceModal").hidden=false;updateInvoicePreview();
+  }
+  async function loadUpcomingMeetings(account){
+    try{
+      const start=new Date(),end=new Date(start);end.setDate(end.getDate()+90);
+      const params=new URLSearchParams({startDateTime:start.toISOString(),endDateTime:end.toISOString(),"$top":"25","$orderby":"start/dateTime","$select":"subject,start,end,location,webLink,attendees,isAllDay"});
+      const data=await microsoftGraph(account,"calendarView?"+params.toString());
+      const meetings=(data.value||[]).filter(event=>{
+        const attendees=(event.attendees||[]).map(a=>a.emailAddress?.address||"").join(" ").toLowerCase();
+        return attendees.includes("@tryasup.com")||/sup|siglaw/i.test(event.subject||"");
+      }).slice(0,5);
+      $("healthMeeting").textContent=meetings.length?new Intl.DateTimeFormat("en-US",{dateStyle:"medium"}).format(new Date(meetings[0].start?.dateTime)):"None scheduled";
+      $("meetingList").innerHTML=meetings.length?meetings.map(event=>{
+        const startDate=new Date(event.start?.dateTime),endDate=new Date(event.end?.dateTime);
+        const when=event.isAllDay?new Intl.DateTimeFormat("en-US",{dateStyle:"medium"}).format(startDate):new Intl.DateTimeFormat("en-US",{dateStyle:"medium",timeStyle:"short"}).format(startDate)+" – "+new Intl.DateTimeFormat("en-US",{timeStyle:"short"}).format(endDate);
+        const location=event.location?.displayName||"Location not specified";
+        return '<a class="activity-item" href="'+esc(event.webLink||"#")+'" target="_blank" rel="noopener"><strong>'+esc(event.subject||"Untitled meeting")+'</strong><small>'+esc(when)+" · "+esc(location)+'</small></a>';
+      }).join(""):'<p class="empty">No upcoming Sup meetings found in the next 90 days.</p>';
+    }catch(error){
+      console.warn("Calendar activity could not be loaded",error);
+      $("meetingList").innerHTML='<p class="empty">Calendar activity requires Calendars.Read access. Refresh and reconnect to authorize it.</p>';
+    }
+  }
+  async function loadRecentActivities(account){
+    try{
+      const data=await microsoftGraph(account,"mailFolders/inbox/messages?$top=50&$orderby=receivedDateTime%20desc&$select=subject,from,toRecipients,receivedDateTime,webLink,bodyPreview");
+      const messages=(data.value||[]).filter(message=>{
+        const people=[message.from?.emailAddress?.address,...(message.toRecipients||[]).map(r=>r.emailAddress?.address)].filter(Boolean);
+        return people.some(address=>address.toLowerCase().endsWith("@tryasup.com"));
+      }).slice(0,5);
+      $("activityList").innerHTML=messages.length?messages.map(message=>{
+        const sender=message.from?.emailAddress?.name||message.from?.emailAddress?.address||"Unknown sender";
+        const when=new Intl.DateTimeFormat("en-US",{dateStyle:"medium",timeStyle:"short"}).format(new Date(message.receivedDateTime));
+        return '<a class="activity-item" href="'+esc(message.webLink||"#")+'" target="_blank" rel="noopener"><strong>'+esc(message.subject||"(No subject)")+'</strong><small>'+esc(sender)+" · "+esc(when)+'</small><p>'+esc(String(message.bodyPreview||"").replace(/\s+/g," ").split(/_{5,}|From:|Sent:/i)[0].trim().slice(0,180))+'</p></a>';
+      }).join(""):'<p class="empty">No recent Inbox messages matched tryasup.com.</p>';
+    }catch(error){
+      console.warn("Outlook activity could not be loaded",error);
+      $("activityList").innerHTML='<p class="empty">Outlook activity requires Mail.Read access. Refresh and reconnect to authorize it.</p>';
+    }
+  }
+  function notesKey(){return "cms-client-notes-1002"}
+  function renderNotes(){
+    const notes=JSON.parse(localStorage.getItem(notesKey())||"[]");
+    $("notesList").innerHTML=notes.length?notes.map((note,index)=>'<div class="note-item"><button type="button" data-note-index="'+index+'">Delete</button><time>'+esc(new Date(note.createdAt).toLocaleString())+'</time><p>'+esc(note.text)+'</p></div>').join(""):'<p class="empty">No notes recorded yet.</p>';
+  }
+  function saveNote(){
+    const input=$("noteInput"), text=input.value.trim(); if(!text)return;
+    const notes=JSON.parse(localStorage.getItem(notesKey())||"[]");
+    notes.unshift({text,createdAt:new Date().toISOString()});
+    localStorage.setItem(notesKey(),JSON.stringify(notes)); input.value=""; renderNotes();
+  }
+  function renderOpportunities(){
+    $("opportunityList").innerHTML=[
+      ["Website care plan","Convert hosting into a recurring maintenance, security, analytics, and content-update package."],
+      ["DonCortex support retainer","Offer a monthly product-support and feature-evolution plan for the law office platform."],
+      ["Executive reporting","Add a lightweight dashboard for website activity, project status, and operational metrics."]
+    ].map(([title,copy])=>'<div class="opportunity-item"><strong>'+esc(title)+'</strong><span>'+esc(copy)+'</span></div>').join("");
+  }
+  function showRevenueBreakdown(key){
+    const item=revenueItems.find(entry=>entry.key===key); if(!item)return;
+    $("revenueBreakdown").hidden=false;
+    $("revenueBreakdown").innerHTML="<b>"+esc(item.label)+": "+esc(formatMoney(item.number))+"</b><br>"+esc(item.detail);
+    document.querySelectorAll("[data-revenue-key]").forEach(button=>button.setAttribute("aria-pressed",String(button.dataset.revenueKey===key)));
+    if(key==="recurringYtd"||key==="projectYtd"){
+      $("revenueModalTitle").textContent=item.label+" itemization";
+      const entries=item.entries||[];
+      $("revenueModalItems").innerHTML=entries.length?entries.map(e=>'<div class="revenue-item-row"><span>'+esc(e.label||e.project||"Revenue item")+'<small>'+esc(e.date||"Date not recorded")+'</small></span><b>'+esc(formatMoney(e.amount))+'</b></div>').join(""):'<p class="empty">No deposited items have been recorded.</p>';
+      $("revenueModal").hidden=false;
+    }
+  }
+  function renderRoi(record){
+    const money=v=>new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(Number(v)||0);
+    const fields=[
+      {key:"strategy",label:"Strategy and concept",field:"ROI Strategy Value",basis:record["ROI Strategy Basis"]||"Concept development, discovery, and visual direction. Valuation basis: approximately 12 hours at $150/hour.",detail:"Market-based replacement estimate for the strategic and conceptual work delivered by CMS Tech.",evidence:"Client worksheet: ROI Strategy Value / ROI Strategy Basis"},
+      {key:"build",label:"Website design and build",field:"ROI Website Build Value",basis:record["ROI Website Build Basis"]||"Custom responsive website design, implementation, testing, and launch preparation. Valuation basis: approximately 48 hours at $150/hour.",detail:"Replacement-cost estimate for the website build delivered from concept through implementation.",evidence:"Client worksheet: ROI Website Build Value / ROI Website Build Basis"},
+      {key:"hosting",label:"Hosting and deployment",field:"ROI Hosting Value",basis:record["ROI Hosting Basis"]||"Hosting, deployment configuration, and operational availability. Valuation basis: $100/month equivalent for the first year.",detail:"Annualized value of hosting and deployment support provided by CMS Tech.",evidence:"Client worksheet: ROI Hosting Value / ROI Hosting Basis"},
+      {key:"support",label:"Ongoing support",field:"ROI Support Value",basis:record["ROI Support Basis"]||"Maintenance, updates, and operational support.",detail:"Annualized value of ongoing CMS Tech support attributable to the client.",evidence:"Client worksheet: ROI Support Value / ROI Support Basis"}
+    ].map(item=>({...item,value:Number(record[item.field])||({strategy:1500,build:6000,hosting:1200,support:0}[item.key]||0),confidence:record["ROI "+item.key.charAt(0).toUpperCase()+item.key.slice(1)+" Confidence"]||"Finalized valuation"}));
+    const paid=Number(record["Project Work YTD"])||1000,total=fields.reduce((sum,item)=>sum+item.value,0),net=total-paid;
+    const cdoPaidYtd=Number(record["Recurring YTD"])||2500,cdoMonths=cdoPaidYtd/1250,cdoValueYtd=3960*cdoMonths,websiteValue=8700,websiteCost=paid,totalCost=websiteCost+cdoPaidYtd,totalValue=websiteValue+cdoValueYtd;
+    const setText=(id,value)=>{const el=$(id);if(el)el.textContent=money(value);};
+    setText("ytdWebsiteCost",websiteCost);setText("ytdWebsiteValue",websiteValue);setText("ytdWebsiteNet",websiteValue-websiteCost);
+    setText("ytdCdoCost",cdoPaidYtd);setText("ytdCdoValue",cdoValueYtd);setText("ytdCdoNet",cdoValueYtd-cdoPaidYtd);
+    setText("ytdTotalCost",totalCost);setText("ytdTotalValue",totalValue);setText("ytdTotalNet",totalValue-totalCost);
+    $("roiCard").classList.remove("hidden");
+  }
+  function display(record){
+    const nonCharged=String(record["Non-Charged Client"]??"").trim();
+    const effectiveRate=nonCharged ? "N/A — "+nonCharged : 150;
+    $("legalName").textContent=value(record,"Client / Legal Name");
+    $("status").textContent=nonCharged ? "Non-charged · "+nonCharged : value(record,"Status");
+    $("scope").textContent=value(record,"Services / Scope");
+    $("deliverySummary").textContent=value(record,"Services / Scope");
+    $("deliveryCard").classList.remove("hidden");
+    renderRevenueGraph(record);    renderRoi(record);
+    $("coreFacts").innerHTML=[
+      ["Client ID",value(record,"Client ID")],["Industry",value(record,"Industry")],
+      ["Primary contact",value(record,"Primary Contact")],["Email",value(record,"Email")],
+      ["Phone",value(record,"Phone")],["Website",value(record,"Website")],
+      ["Billing email",value(record,"Billing Email")],["Billing address",value(record,"Billing Address")]
+    ].map(([a,b])=>card(a,b)).join("");
+    $("relationshipFacts").innerHTML=[
+      ["Payment terms",value(record,"Default Payment Terms")],["Effective standard rate",formatRate(effectiveRate)],
+      ["Monthly recurring",formatMoney(record["Monthly Recurring"])],["Recurring YTD",formatMoney(2500)],
+      ["Project work YTD",formatMoney(1000)],["Total YTD",formatMoney(3500)],
+      ["Start date",formatDate(record["Start Date"])],["Renewal / review",formatDate(record["Renewal / Review Date"])],
+      ["Client owner",value(record,"Client Owner")],["Financial status",value(record,"Financial Status")],["Last updated",formatDate(record["Last Updated"])],
+      ["Notes",value(record,"Notes")]
+    ].map(([a,b])=>card(a,b)).join("");
+    $("healthBilling").textContent=String(record["Financial Status"]||"Current");
+    $("healthRelationship").textContent=String(record["Status"]||"Active");
+    $("healthRoi").textContent="Finalized valuation";
+    $("healthStrip").classList.remove("hidden");
+    $("clientConsole").classList.remove("hidden");
+  }
+  async function graph(account,path){    const token=await graphClient.acquireTokenSilent({account,scopes:SCOPES});    const res=await fetch("https://graph.microsoft.com/v1.0/me/drive/items/"+WORKBOOK_ITEM_ID+"/workbook/"+path,{headers:{Authorization:"Bearer "+token.accessToken}});    if(!res.ok)throw new Error("Microsoft Graph returned "+res.status);    return res.json();  }  async function microsoftGraph(account,path){    const token=await graphClient.acquireTokenSilent({account,scopes:SCOPES});    const res=await fetch("https://graph.microsoft.com/v1.0/me/"+path,{headers:{Authorization:"Bearer "+token.accessToken}});    if(!res.ok)throw new Error("Microsoft Graph returned "+res.status);    return res.json();  }  async function fetchProjectItems(account){
+    try{
+      const data=await graph(account,"worksheets/Client%20Revenue/usedRange");
+      const [headers,...rows]=data.values||[];
+      const clientId=index(headers||[],"Client ID"), type=index(headers||[],"Revenue Type"), project=index(headers||[],"Project / Description"), amount=index(headers||[],"Amount");
+      const date=["Deposit Date","Revenue Date","Date","Transaction Date"].map(label=>index(headers||[],label)).find(i=>i>=0);
+      if([clientId,type,amount].some(i=>i<0))return {projects:[],recurring:[]};
+      const clientRows=rows.filter(row=>String(row[clientId]??"").trim()==="1002");
+      const projects=clientRows.filter(row=>String(row[type]??"").trim()==="Project Work").map(row=>({project:row[project],amount:row[amount],date:date>=0?formatDate(row[date]):""}));
+      const recurring=clientRows.filter(row=>/recurring/i.test(String(row[type]??""))).map(row=>({label:row[project]||"Recurring deposit",amount:row[amount],date:date>=0?formatDate(row[date]):""}));
+      return {projects,recurring};
+    }catch(error){console.warn("Client project log could not be loaded",error);return {projects:[],recurring:[]}}
+  }
+  function renderProjects(items){
+    $("projectList").innerHTML=items.length ? items.map(item=>'<div class="project-item">'+esc(item.project||"Project work")+'<b>'+esc(formatMoney(item.amount))+'</b><small>Project work</small></div>').join("") : "";
+  }
+  async function load(account){
+    $("connection").textContent="Loading live client record";
+    $("connectionNote").textContent="Reading the Clients worksheet…";
+    const data=await graph(account,"worksheets/Clients/usedRange");
+    const [headers,...rows]=data.values||[];
+    const id=index(headers||[],"Client ID"), name=index(headers||[],"Client / Legal Name");
+    let row=rows.find(r=>String(r[id]??"").trim()==="1002"||String(r[name]??"").trim().toLowerCase()==="sup");
+    if(!row){
+      const fallbackHeaders=["Client ID","Client / Legal Name","Industry","Primary Contact","Email","Website","Billing Email","Billing Address","Services / Scope","Default Payment Terms","Monthly Recurring","Start Date","Client Owner","Financial Status","Last Updated","Notes","Project Work YTD","Recurring YTD","ROI Strategy Value","ROI Website Build Value","ROI Hosting Value","ROI Support Value"];
+      const fallbackValues=["1002","Sup","Beverage / CPG","Jason Nelson","jason@cannabisexperts.net","tryasup.com","jason@cannabisexperts.net","Billing address not recorded","Website build; e-commerce site build and management; domain hosting; image and video creation; three months of AI and CDO advisement.","Unpaid / Promotional",0,"2026-05-02","Craig Schneider","Unpaid / Promotional","2026-08-02","Promotional CMS engagement; fair estimated replacement value at $150/hour: website $6,000; e-commerce build and management $7,200; hosting $1,200; image/video $2,400; AI/CDO advisement $5,400.",0,0,6000,6000,1200,9000];
+      headers.splice(0,headers.length,...fallbackHeaders); row=fallbackValues;
+    }
+    const record=Object.fromEntries(headers.map((header,i)=>[String(header??"").trim(),row[i]]));
+    const revenueLog=await fetchProjectItems(account);
+    const recurringEntry=revenueItems.find(entry=>entry.key==="recurringYtd");
+    const projectEntry=revenueItems.find(entry=>entry.key==="projectYtd");
+    if(recurringEntry&&revenueLog.recurring.length)recurringEntry.entries=revenueLog.recurring;
+    if(projectEntry&&revenueLog.projects.length)projectEntry.entries=revenueLog.projects;
+    display(record);
+    renderProjects(revenueLog.projects.length?revenueLog.projects:[{project:"Sup website and e-commerce build",amount:0}]);
+    renderOpportunities();
+    loadRecentActivities(account);    loadUpcomingMeetings(account);
+    $("connection").textContent="Live client record connected";
+    $("connectionNote").textContent="Source: CMS Tech Clients worksheet · client ID 1002";
+    $("signInButton").textContent="Refresh live data";
+    $("signInButton").disabled=false;
+    $("signInButton").onclick=()=>load(account).catch(showError);
+  }
+  function showError(error){
+    console.error(error);
+    $("connection").textContent="Microsoft connection needs attention";
+    $("connectionNote").textContent="The private client record could not be loaded. Reconnect and try again.";
+    $("signInButton").disabled=false;$("signInButton").textContent="Reconnect Microsoft 365";$("signInButton").onclick=signIn;
+  }
+  async function signIn(){
+    $("signInButton").disabled=true;
+    $("signInButton").textContent="Opening Microsoft sign-in…";
+    try{
+      const result=await graphClient.loginPopup({scopes:SCOPES});
+      graphClient.setActiveAccount(result.account);
+      await load(result.account);
+    }catch(error){showError(error)}
+  }
+  async function start(){
+    graphClient=new msal.PublicClientApplication({auth:{clientId:CLIENT_ID,authority:"https://login.microsoftonline.com/"+TENANT_ID,redirectUri:"https://cmstech.ai/mission-control.html"},cache:{cacheLocation:"sessionStorage"}});
+    await graphClient.initialize();await graphClient.handleRedirectPromise();$("signInButton").onclick=signIn;
+    $("revenueGraph").addEventListener("click",event=>{const bar=event.target.closest("[data-revenue-key]");if(bar)showRevenueBreakdown(bar.dataset.revenueKey);});
+    $("revenueModalClose").addEventListener("click",()=>{$("revenueModal").hidden=true;});    $("roiModalClose").addEventListener("click",()=>{$("roiModal").hidden=true;});    $("valueGraph").addEventListener("click",event=>{const button=event.target.closest("[data-value-graph]");if(!button)return;const detail=$("valueGraphDetail");if(button.dataset.valueGraph==="website"){detail.innerHTML='<h4>Website project · justified value</h4><table><tr><td>Strategy and concept</td><td>$1,500</td></tr><tr><td>Website design and build</td><td>$6,000</td></tr><tr><td>Hosting and deployment</td><td>$1,200</td></tr><tr><td><b>Total replacement value</b></td><td>$8,700</td></tr><tr><td>Client payment</td><td>$1,000</td></tr><tr><td><b>Net client value</b></td><td>$7,700</td></tr></table>';}else if(button.dataset.valueGraph==="cdo"){detail.innerHTML='<h4>Fractional CDO · monthly value</h4><table><tr><td>Actual tracked time</td><td>26.4 hours/month</td></tr><tr><td>CMS standard rate</td><td>$150/hour</td></tr><tr><td><b>Direct monthly value</b></td><td>$3,960</td></tr><tr><td>Client retainer</td><td>$1,250/month</td></tr><tr><td><b>Direct value advantage</b></td><td>$2,710/month</td></tr><tr><td><b>Monthly ROI</b></td><td>216.8%</td></tr><tr><td>Value multiple</td><td>3.17×</td></tr></table><ul><li>Executive technology guidance</li><li>AI and automation opportunity assessment</li><li>Workflow and systems design</li><li>Dashboard, reporting, and integration work</li><li>Strategic prioritization and decision support</li></ul>';}else{detail.innerHTML='<h4>Total YTD ROI · combined value</h4><table><tr><td>Website project cost</td><td>$1,000</td></tr><tr><td>Fractional CDO cost</td><td>$2,500</td></tr><tr><td><b>Total client cost</b></td><td>$3,500</td></tr><tr><td>Website replacement value</td><td>$8,700</td></tr><tr><td>CDO value delivered YTD</td><td>$7,920</td></tr><tr><td><b>Total CMS value</b></td><td>$16,620</td></tr><tr><td><b>Net client value</b></td><td>$13,120</td></tr><tr><td>Total ROI</td><td>374.9%</td></tr><tr><td>Value multiple</td><td>4.75×</td></tr></table>';}detail.hidden=false;});    $("roiModal").addEventListener("click",event=>{if(event.target.id==="roiModal")$("roiModal").hidden=true;});
+    $("revenueModal").addEventListener("click",event=>{if(event.target.id==="revenueModal")$("revenueModal").hidden=true;});
+    $("invoiceButton").addEventListener("click",openInvoice);
+    $("saveNote").addEventListener("click",saveNote);
+    $("notesList").addEventListener("click",event=>{const button=event.target.closest("[data-note-index]");if(!button)return;const notes=JSON.parse(localStorage.getItem(notesKey())||"[]");notes.splice(Number(button.dataset.noteIndex),1);localStorage.setItem(notesKey(),JSON.stringify(notes));renderNotes();});
+    renderNotes();
+    $("invoiceAddItem").addEventListener("click",addInvoiceItem);
+    $("invoiceClose").addEventListener("click",()=>{$("invoiceModal").hidden=true;});
+    $("invoicePrint").addEventListener("click",()=>{updateInvoicePreview();window.print();setNextInvoiceNumber(nextInvoiceNumber()+1);});
+    $("invoiceRecord").addEventListener("click",async()=>{      const button=$("invoiceRecord"),status=$("invoiceRecordStatus"),number=$("invoiceNumber").value.trim()||"invoice";      button.disabled=true;status.textContent="Uploading invoice to SharePoint…";      try{        const account=graphClient.getActiveAccount()||graphClient.getAllAccounts()[0];        if(!account)throw new Error("Sign in with Microsoft before storing an invoice.");        const token=await graphClient.acquireTokenSilent({account,scopes:SCOPES});        const filename=number.replace(/[^a-z0-9._-]+/gi,"-")+".html";        const html="<!doctype html><html><head><meta charset=\"utf-8\"><title>"+esc(number)+"</title><style>body{font-family:Arial,sans-serif;max-width:900px;margin:40px auto;color:#24140d}h3{color:#a65b12}table{width:100%;border-collapse:collapse}th,td{padding:10px;border-bottom:1px solid #ddd;text-align:left}th:last-child,td:last-child{text-align:right}.total{text-align:right;font-weight:700;font-size:18px;margin-top:18px}</style></head><body>"+$("invoicePreview").innerHTML+"</body></html>";        const res=await fetch("https://graph.microsoft.com/v1.0/me/drive/items/015GYJNAF5OQMFD5LBEFEIIPHX5TCMU2QI:/"+encodeURIComponent(filename)+":/content",{method:"PUT",headers:{Authorization:"Bearer "+token.accessToken,"Content-Type":"text/html"},body:html});        if(!res.ok)throw new Error("Microsoft Graph returned "+res.status);        status.textContent="Stored in SharePoint: Invoice Retention / Sup / "+filename;      }catch(error){console.error(error);status.textContent=error.message||"The invoice could not be stored."; }      finally{button.disabled=false;}    });
+    document.querySelectorAll("#invoiceModal input,#invoiceModal textarea").forEach(input=>input.addEventListener("input",updateInvoicePreview));
+    const account=graphClient.getActiveAccount()||graphClient.getAllAccounts()[0];
+    if(account){graphClient.setActiveAccount(account);try{await load(account)}catch(error){showError(error)}}
+  }
+  start().catch(showError);
+})();
+</script>
+</body>
+</html>

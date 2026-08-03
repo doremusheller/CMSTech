@@ -26,6 +26,23 @@
           "Emergency Glitter Recovery Plan",
           3400
         ]
+      ],
+      "clientId": "GW-1001",
+      "financialStatus": "Current",
+      "owner": "Shag Fantastiq",
+      "relationship": "Active · mildly chaotic",
+      "nextMilestone": "Moon-stage rehearsal",
+      "openDecisions": 3,
+      "clientMood": "Optimistically caffeinated",
+      "activities": [
+        "Portal rehearsal approved",
+        "Invoice question resolved",
+        "Risk flagged"
+      ],
+      "nextActions": [
+        "Lock rehearsal logistics",
+        "Approve portal copy",
+        "Review $980 alert"
       ]
     },
     {

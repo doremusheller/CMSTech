@@ -271,8 +271,8 @@
     const rows=items.map(item=>"<tr><td>"+esc(item.description)+"<br><small>"+esc(item.qty)+" x "+money(item.rate)+"</small></td><td>"+money(item.qty*item.rate)+"</td></tr>").join("");
     $("invoicePreview").innerHTML="<div style='display:flex;justify-content:space-between;gap:20px;align-items:start'><div style='display:flex;align-items:center;gap:10px'><img src=\"https://raw.githubusercontent.com/doremusheller/CMSTech/main/siglaw/cmslogo3.png\" alt=\"CMS Tech\" style=\"height:42px;width:auto;max-width:180px;object-fit:contain\"><div><strong style=\"letter-spacing:.12em\">CMS TECH</strong><br><span style=\"color:#c9b7a9\">Technical Optimization</span></div></div><div><h3>INVOICE</h3><div>"+esc($("invoiceNumber").value)+"</div></div></div><hr><p><strong>Bill to:</strong><br>Signature Law Partners<br>934 Hartinger St., Colorado Springs, CO 80916<br>admin@siglawpartners.com</p><p><strong>Issue date:</strong> "+esc($("invoiceDate").value)+" &nbsp; <strong>Due:</strong> "+esc($("invoiceDueDate").value)+"</p><img class=\"invoice-easter-egg\" src=\"https://raw.githubusercontent.com/doremusheller/CMSTech/main/siglaw/dontithe.png\" alt=\"Don Tithe\" title=\"A Don Tithe surprise\"><table><tr><th>Description</th><th>Amount</th></tr>"+rows+"</table><div class='total'>Total due: "+money(total)+"</div><p><small>"+esc($("invoiceTerms").value)+"<br>"+esc($("invoiceNotes").value)+"</small></p>";
   }
-  function nextInvoiceNumber(){const stored=Number(localStorage.getItem("cms-next-invoice-number-1001")||"2");return Number.isFinite(stored)&&stored>1?stored:2;}
-  function setNextInvoiceNumber(number){localStorage.setItem("cms-next-invoice-number-1001",String(number));}
+  function nextInvoiceNumber(){const stored=Number(localStorage.getItem("cms-next-invoice-number-1001-reset-2026-08")||"2");return Number.isFinite(stored)&&stored>1?stored:2;}
+  function setNextInvoiceNumber(number){localStorage.setItem("cms-next-invoice-number-1001-reset-2026-08",String(number));}
   function openInvoice(){
     const today=new Date().toISOString().slice(0,10);
     if(!$("invoiceDate").value)$("invoiceDate").value=today;

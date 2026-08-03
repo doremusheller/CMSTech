@@ -287,7 +287,7 @@
       const data=await microsoftGraph(account,"calendarView?"+params.toString());
       const meetings=(data.value||[]).filter(event=>{
         const attendees=(event.attendees||[]).map(a=>a.emailAddress?.address||"").join(" ").toLowerCase();
-        return attendees.includes("@tryasup.com")||/sup|siglaw/i.test(event.subject||"");
+        return attendees.includes("@cannabisexperts.net")||/sup/i.test(event.subject||"");
       }).slice(0,5);
       $("healthMeeting").textContent=meetings.length?new Intl.DateTimeFormat("en-US",{dateStyle:"medium"}).format(new Date(meetings[0].start?.dateTime)):"None scheduled";
       $("meetingList").innerHTML=meetings.length?meetings.map(event=>{

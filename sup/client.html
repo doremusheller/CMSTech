@@ -243,9 +243,9 @@
     nextDueDate.setDate(nextDueDate.getDate() + ((dueDay-nextDueDate.getDate()+31)%31 || 31));
     const dueDateLabel=new Intl.DateTimeFormat("en-US",{month:"long",day:"numeric",year:"numeric"}).format(nextDueDate);
     const items=[
-      {key:"recurringYtd",label:"Recurring YTD",amount:2500,entries:[{label:"Monthly recurring deposit",amount:1250,date:"June 3, 2026"},{label:"Monthly recurring deposit",amount:1250,date:"July 3, 2026"}],detail:"Two deposited recurring payments: June 3 and July 3, 2026."},
-      {key:"recurringDue",label:"Recurring due",amount:record["Monthly Recurring"],detail:"Upcoming monthly recurring for Sup due "+dueDateLabel+"; it is not included in YTD until deposited."},
-      {key:"projectYtd",label:"Sup hosted website",amount:1000,entries:[{label:"Sup hosted website",amount:1000,date:"Recorded deposit"}],detail:"Recorded project deposit for the Sup hosted website."}
+      {key:"recurringYtd",label:"Recurring YTD",amount:0,entries:[],detail:"No paid recurring revenue; Sup is an unpaid promotional client."},
+      {key:"recurringDue",label:"Recurring due",amount:0,detail:"No recurring charge: Sup is an unpaid promotional client."},
+      {key:"projectYtd",label:"Sup hosted website",amount:0,entries:[],detail:"No paid project revenue; Sup is an unpaid promotional client."}
     ];
     const usable=items.map(item=>({...item,number:Number(item.amount)})).filter(item=>Number.isFinite(item.number));
     revenueItems=usable;
@@ -356,8 +356,8 @@
       {key:"hosting",label:"Hosting and deployment",field:"ROI Hosting Value",basis:record["ROI Hosting Basis"]||"Hosting, deployment configuration, and operational availability. Valuation basis: $100/month equivalent for the first year.",detail:"Annualized value of hosting and deployment support provided by CMS Tech.",evidence:"Client worksheet: ROI Hosting Value / ROI Hosting Basis"},
       {key:"support",label:"Ongoing support",field:"ROI Support Value",basis:record["ROI Support Basis"]||"Maintenance, updates, and operational support.",detail:"Annualized value of ongoing CMS Tech support attributable to the client.",evidence:"Client worksheet: ROI Support Value / ROI Support Basis"}
     ].map(item=>({...item,value:Number(record[item.field])||({strategy:1500,build:6000,hosting:1200,support:0}[item.key]||0),confidence:record["ROI "+item.key.charAt(0).toUpperCase()+item.key.slice(1)+" Confidence"]||"Finalized valuation"}));
-    const paid=Number(record["Project Work YTD"])||1000,total=fields.reduce((sum,item)=>sum+item.value,0),net=total-paid;
-    const cdoPaidYtd=Number(record["Recurring YTD"])||2500,cdoMonths=cdoPaidYtd/1250,cdoValueYtd=3960*cdoMonths,websiteValue=8700,websiteCost=paid,totalCost=websiteCost+cdoPaidYtd,totalValue=websiteValue+cdoValueYtd;
+    const paid=Number(record["Project Work YTD"])||0,total=fields.reduce((sum,item)=>sum+item.value,0),net=total-paid;
+    const cdoPaidYtd=Number(record["Recurring YTD"])||0,cdoMonths=cdoPaidYtd/1250,cdoValueYtd=3960*cdoMonths,websiteValue=8700,websiteCost=paid,totalCost=websiteCost+cdoPaidYtd,totalValue=websiteValue+cdoValueYtd;
     const setText=(id,value)=>{const el=$(id);if(el)el.textContent=money(value);};
     setText("ytdWebsiteCost",websiteCost);setText("ytdWebsiteValue",websiteValue);setText("ytdWebsiteNet",websiteValue-websiteCost);
     setText("ytdCdoCost",cdoPaidYtd);setText("ytdCdoValue",cdoValueYtd);setText("ytdCdoNet",cdoValueYtd-cdoPaidYtd);

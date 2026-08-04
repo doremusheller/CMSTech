@@ -138,14 +138,18 @@
     box-sizing:border-box!important;
     transform:none!important;
     overflow:hidden!important;
-    display:flex!important;
-    flex-direction:column!important;
-    justify-content:space-between!important;
+    display:block!important;
+    position:relative!important;
     padding:24px 28px 18px!important;
   }
-  .invoice-brand,.invoice-parties,.invoice-lines,.invoice-lower,.invoice-footer{flex:0 0 auto}
   .invoice-parties{padding-top:18px!important;padding-bottom:18px!important}
-  .invoice-lower{padding-top:18px!important;padding-bottom:18px!important}
+  .invoice-lower{padding-top:18px!important;padding-bottom:0!important}
+  .invoice-footer{
+    position:absolute!important;
+    left:28px!important;
+    right:28px!important;
+    bottom:18px!important;
+  }
 }
 </style></head>
 <body>

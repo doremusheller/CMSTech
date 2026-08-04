@@ -1,0 +1,12 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "node",
+    "GOOGLE_ANALYTICS_PROPERTY_ID": "REPLACE_WITH_NUMERIC_PROPERTY_ID",
+    "GOOGLE_SEARCH_CONSOLE_SITE_URL": "https://www.cmstech.ai/",
+    "GOOGLE_SERVICE_ACCOUNT_JSON": "{\"type\":\"service_account\",\"project_id\":\"...\"}",
+    "ALLOWED_ORIGIN": "https://cmstech.ai",
+    "REQUIRE_ENTRA_AUTH": "false"
+  }
+}

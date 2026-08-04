@@ -294,7 +294,7 @@
   function openInvoice(){
     const today=new Date().toISOString().slice(0,10);
     if(!$("invoiceDate").value)$("invoiceDate").value=today;
-    if(!$("invoiceDueDate").value)$("invoiceDueDate").value=today;
+    if(!$("invoiceDueDate").value){const due=new Date();due.setDate(due.getDate()+30);$("invoiceDueDate").value=due.toISOString().slice(0,10);}
     $("invoiceNumber").value="SLP-"+new Date().getFullYear()+"-"+String(nextInvoiceNumber()).padStart(3,"0");
     $("invoiceModal").hidden=false;updateInvoicePreview();
   }

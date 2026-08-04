@@ -1,0 +1,18 @@
+{
+  "name": "cms-tech-analytics-bridge",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/functions/*.js",
+  "scripts": {
+    "start": "func start",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.7.2",
+    "google-auth-library": "^10.3.0"
+  },
+  "devDependencies": {
+    "azure-functions-core-tools": "^4.0.6821"
+  }
+}

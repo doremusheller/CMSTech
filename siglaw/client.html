@@ -130,7 +130,22 @@
 @media print{
   @page{size:Letter;margin:0}
   .invoice-preview{width:8.5in!important;height:11in!important;max-height:11in!important;overflow:hidden!important;margin:0!important;padding:0!important}
-  .invoice-sheet{width:10.625in!important;height:11in!important;min-height:11in!important;max-height:11in!important;transform:scale(.8);transform-origin:top left;overflow:hidden!important;padding:18px 22px 12px!important}
+  .invoice-sheet{
+    width:8.5in!important;
+    height:11in!important;
+    min-height:11in!important;
+    max-height:11in!important;
+    box-sizing:border-box!important;
+    transform:none!important;
+    overflow:hidden!important;
+    display:flex!important;
+    flex-direction:column!important;
+    justify-content:space-between!important;
+    padding:24px 28px 18px!important;
+  }
+  .invoice-brand,.invoice-parties,.invoice-lines,.invoice-lower,.invoice-footer{flex:0 0 auto}
+  .invoice-parties{padding-top:18px!important;padding-bottom:18px!important}
+  .invoice-lower{padding-top:18px!important;padding-bottom:18px!important}
 }
 </style></head>
 <body>

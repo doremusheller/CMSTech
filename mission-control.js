@@ -3,7 +3,7 @@
   const TENANT_ID = "04bfc180-5650-4f0b-9a97-22fc45c33b9c";
   const WORKBOOK_ITEM_ID = "015GYJNAHEDZFFW2NWT5CZ6D5HMWSBNW7W";
   const SCOPES = ["User.Read", "Files.ReadWrite"];
-  const MAIL_SCOPE = "Mail.Send";
+  const MAIL_SCOPE = "Mail.Send";\n  const ANALYTICS_API_SCOPE = "api://" + CLIENT_ID + "/Analytics.Read";
   const $ = id => document.getElementById(id);
   const esc = value => String(value ?? "").replace(/[&<>"']/g, char => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[char]));
   const money = value => new Intl.NumberFormat("en-US",{style:"currency",currency:"USD"}).format(value || 0);
@@ -464,7 +464,7 @@
     if (account) {
       graphClient.setActiveAccount(account);
       $("signInButton").textContent = "Loading private ledger…";
-      try { await fetchLedger(account); } catch (error) { showError(error); }
+      try { await fetchLedger(account); window.dispatchEvent(new CustomEvent("cms:authenticated")); } catch (error) { showError(error); }
     }
   }
   start().catch(showError);

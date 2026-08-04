@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width,initial-scale=1">\n  <meta name="cms-analytics-api" content="">
   <meta name="color-scheme" content="dark">
   <meta name="description" content="CMS Tech Mission Control">
   <title>CMS Tech: Mission Control</title>
@@ -199,7 +199,7 @@
       <p class="review-state" id="reviewState"></p>
     </section>
   </div>
-<script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@3.28.1/lib/msal-browser.min.js"></script><script src="mission-control.js"></script><script>document.getElementById('collectiveRoiChart')?.addEventListener('click',function(){const detail=document.getElementById('collectiveRoiBreakdown');const open=detail.hidden;detail.hidden=!open;this.setAttribute('aria-expanded',String(open));});</script><script>document.getElementById("collectiveRoiDetailToggle")?.addEventListener("click",function(){const detail=document.getElementById("collectiveRoiClientMath");const open=detail.hidden;detail.hidden=!open;this.setAttribute("aria-expanded",String(open));this.textContent=open?"Hide client-level math":"Show client-level math";});</script><script>
+<script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@3.28.1/lib/msal-browser.min.js"></script><script src="mission-control.js"></script><script src="analytics-panel.js"></script><script>document.getElementById('collectiveRoiChart')?.addEventListener('click',function(){const detail=document.getElementById('collectiveRoiBreakdown');const open=detail.hidden;detail.hidden=!open;this.setAttribute('aria-expanded',String(open));});</script><script>document.getElementById("collectiveRoiDetailToggle")?.addEventListener("click",function(){const detail=document.getElementById("collectiveRoiClientMath");const open=detail.hidden;detail.hidden=!open;this.setAttribute("aria-expanded",String(open));this.textContent=open?"Hide client-level math":"Show client-level math";});</script><script>
 (() => {
   const panel = document.getElementById("linkedinAudienceSignal");
   if (!panel) return;

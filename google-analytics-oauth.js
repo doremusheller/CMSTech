@@ -2,6 +2,7 @@
   const meta = name => document.querySelector(`meta[name="${name}"]`)?.content?.trim();
   const clientId = meta("cms-google-oauth-client-id");
   const siteUrl = meta("cms-search-console-site");
+  const configuredPropertyId = meta("cms-google-analytics-property-id");
   const propertyName = meta("cms-google-analytics-property") || "CMS Tech Website";
   const host = document.querySelector(".foot");
   if (!host) return;
@@ -27,7 +28,7 @@
   async function loadData() {
     $("googleStatus").textContent="Loading Google data…"; $("googleConnect").disabled=true;
     try {
-      propertyId=propertyId||await discoverProperty(); const base=`https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}`;
+      propertyId=propertyId||configuredPropertyId||await discoverProperty(); const base=`https://analyticsdata.googleapis.com/v1beta/properties/${propertyId}`;
       const batch=await api(`${base}:batchRunReports`,{requests:[{dateRanges:[{startDate:"30daysAgo",endDate:"today"}],metrics:[{name:"activeUsers"},{name:"screenPageViews"}]},{dateRanges:[{startDate:"30daysAgo",endDate:"today"}],dimensions:[{name:"date"}],metrics:[{name:"activeUsers"}],orderBys:[{dimension:{dimensionName:"date"}}]},{dateRanges:[{startDate:"30daysAgo",endDate:"today"}],dimensions:[{name:"pagePath"},{name:"pageTitle"}],metrics:[{name:"screenPageViews"}],orderBys:[{metric:{metricName:"screenPageViews"},desc:true}],limit:"6"},{dateRanges:[{startDate:"30daysAgo",endDate:"today"}],dimensions:[{name:"sessionDefaultChannelGroup"}],metrics:[{name:"sessions"}],orderBys:[{metric:{metricName:"sessions"},desc:true}],limit:"6"}]});
       const reports=batch.reports||[], summary=reports[0]||{}, trend=reports[1]||{}, pages=reports[2]||{}, sources=reports[3]||{}; const summaryValues=summary.rows?.[0]?.metricValues||[]; $("gaUsers").textContent=fmt(summaryValues[0]?.value); $("gaViews").textContent=fmt(summaryValues[1]?.value); drawTrend(trend.rows||[]);
       const realtime=await api(`${base}:runRealtimeReport`,{metrics:[{name:"activeUsers"}]}); $("gaActiveNow").textContent=fmt(realtime.rows?.[0]?.metricValues?.[0]?.value);

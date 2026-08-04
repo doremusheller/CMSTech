@@ -83,6 +83,20 @@
 .linkedin-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:9px}.linkedin-metric{min-height:70px;padding:11px 13px;border:1px solid rgba(255,255,255,.09);border-radius:11px;background:rgba(0,0,0,.2)}.linkedin-metric span{display:block;color:#a99180;font-size:8px;font-weight:800;letter-spacing:.14em;text-transform:uppercase}.linkedin-metric strong{display:block;margin-top:6px;color:var(--cyan);font:500 23px Georgia,serif}.linkedin-metric small{color:#947b6a;font-size:9px}
 .linkedin-actions{display:grid;gap:8px;min-width:148px}.linkedin-action{display:grid;place-items:center;min-height:38px;padding:0 13px;border:1px solid rgba(56,223,208,.5);border-radius:9px;color:var(--cyan);font-size:10px;font-weight:800;text-align:center}.linkedin-action.primary{border-color:#61a9ff;background:rgba(42,96,167,.2);color:#b9d8ff}.linkedin-status{grid-column:1/-1;margin:-7px 0 0;color:#806f64;font-size:9px;letter-spacing:.04em}.linkedin-status[data-live="true"]{color:#75dcca}
 @media(max-width:900px){.linkedin-signal{grid-template-columns:1fr}.linkedin-actions{grid-template-columns:1fr 1fr}.linkedin-status{grid-column:auto}}@media(max-width:560px){.linkedin-metrics{grid-template-columns:1fr}.linkedin-actions{grid-template-columns:1fr}}
+</style><style>
+.top-linkedin-link{display:inline-flex;align-items:center;border:1px solid rgba(97,169,255,.55);border-radius:999px;padding:6px 10px;color:#b9d8ff;font-size:10px;font-weight:800;letter-spacing:.04em}
+.top-linkedin-link:hover{background:rgba(42,96,167,.2)}
+@media(min-width:901px){
+  main.shell{gap:8px!important}
+  .hero{grid-template-columns:minmax(0,1fr) 260px!important;gap:18px!important;padding:12px 0 4px!important}
+  .logo-card{padding:8px!important;min-height:0!important}
+  .logo-card img{max-height:42px!important}
+  .logo-card small{padding:6px 4px 0!important;font-size:7px!important}
+  .auth{margin-bottom:6px!important}
+  .controls{margin-bottom:6px!important}
+  .kpis{margin-bottom:6px!important}
+  .client-zone{margin-top:8px!important}
+}
 </style></head>
 <body>
   <main class="shell">
@@ -95,7 +109,7 @@
         <div class="eyebrow">Artificial Intelligence · Infrastructure · Intelligent Teams</div>
         <h1>COMMAND <span>&amp; CONTROL</span></h1>
         
-        <div class="signals"><span><b>CMSLedger</b> expense intelligence</span><span><b>Live</b> Microsoft 365 source</span><span><b>Private</b> by design</span></div>
+        <div class="signals"><span><b>CMSLedger</b> expense intelligence</span><span><b>Live</b> Microsoft 365 source</span><span><b>Private</b> by design</span><a class="top-linkedin-link" href="https://www.linkedin.com/company/112707297/" target="_blank" rel="noopener">View LinkedIn Page ↗</a></div>
       </div>
       <div class="logo-card"><img src="assets/cmslogo3.png" alt="CMS Technical Optimization"><small>Mission control · private CMS Tech workspace</small></div>
     </section>
@@ -145,22 +159,6 @@
       <div class="collective-roi-total"><span>Total CMS value <strong>$38,820</strong></span><span>Client cost <strong>$3,500</strong></span><span>Net value <strong>$35,320</strong></span></div>
       <div class="collective-roi-breakdown" id="collectiveRoiBreakdown" hidden><h3>Collective ROI math</h3><p><b>Combined CMS value</b> · $16,620 + $22,200 = $38,820.</p><p><b>Combined client cost</b> · $3,500 + $0 = $3,500.</p><p><b>Collective net value</b> · $38,820 − $3,500 = $35,320. The promotional Sup value is included in delivered value and does not imply collected revenue.</p><button class="collective-roi-detail-toggle" id="collectiveRoiDetailToggle" type="button" aria-expanded="false" aria-controls="collectiveRoiClientMath">Show client-level math</button><div id="collectiveRoiClientMath" hidden><p><b>Signature Law</b> · 110.8 estimated hours × $150/hour = $16,620 CMS value; $3,500 client cost; $13,120 net value.</p><ul><li>Website design/build: 58 hours · $8,700</li><li>Fractional CDO/advisement: 52.8 hours · $7,920</li><li>Total: 110.8 hours · $16,620</li></ul><p><b>Sup</b> · 148 estimated hours × $150/hour = $22,200 promotional CMS value; $0 client cost; $22,200 net value.</p><ul><li>Website, e-commerce build/management, domain hosting, image and video creation: 88 hours · $13,200</li><li>Three months AI/CDO advisement: 60 hours · $9,000</li><li>Total: 148 hours · $22,200</li></ul></div></div>
     </section>
-    <section class="block linkedin-signal" id="linkedinAudienceSignal" data-source="linkedin-followers.json" aria-labelledby="linkedinSignalTitle">
-      <div class="linkedin-identity">
-        <img class="linkedin-logo" src="assets/cmslogo3.png" alt="">
-        <div><span class="linkedin-platform">LinkedIn · Audience signal</span><h2 class="linkedin-name" id="linkedinSignalTitle">CMS Technical Optimization</h2><span class="tag">Organization 112707297</span></div>
-      </div>
-      <div class="linkedin-metrics" aria-live="polite">
-        <div class="linkedin-metric"><span>Followers</span><strong id="linkedinFollowerCount">11</strong><small>Current audience</small></div>
-        <div class="linkedin-metric"><span>30-day gain</span><strong id="linkedinFollowerGain">—</strong><small id="linkedinGainNote">Connect API for trend</small></div>
-        <div class="linkedin-metric"><span>Last synchronized</span><strong id="linkedinLastSync">Snapshot</strong><small id="linkedinSyncNote">API-ready</small></div>
-      </div>
-      <div class="linkedin-actions">
-        <a class="linkedin-action primary" href="https://www.linkedin.com/company/112707297/" target="_blank" rel="noopener">View LinkedIn Page ↗</a>
-        <a class="linkedin-action" href="https://www.linkedin.com/company/112707297/admin/analytics/followers/" target="_blank" rel="noopener">Follower analytics ↗</a>
-      </div>
-      <p class="linkedin-status" id="linkedinStatus">Showing the latest saved follower snapshot. Live refresh activates when the LinkedIn Community Management API feed is connected.</p>
-    </section>
     <footer class="foot">CMS Tech Mission Control · CMSLedger · Microsoft 365 protected data</footer>
   </main>
   <div class="deposit-modal" id="depositModal" hidden aria-hidden="true">
@@ -200,38 +198,5 @@
       <p class="review-state" id="reviewState"></p>
     </section>
   </div>
-<script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@3.28.1/lib/msal-browser.min.js"></script><script src="mission-control.js"></script><script>document.getElementById('collectiveRoiChart')?.addEventListener('click',function(){const detail=document.getElementById('collectiveRoiBreakdown');const open=detail.hidden;detail.hidden=!open;this.setAttribute('aria-expanded',String(open));});</script><script>document.getElementById("collectiveRoiDetailToggle")?.addEventListener("click",function(){const detail=document.getElementById("collectiveRoiClientMath");const open=detail.hidden;detail.hidden=!open;this.setAttribute("aria-expanded",String(open));this.textContent=open?"Hide client-level math":"Show client-level math";});</script><script>
-(() => {
-  const panel = document.getElementById("linkedinAudienceSignal");
-  if (!panel) return;
-  const count = document.getElementById("linkedinFollowerCount");
-  const gain = document.getElementById("linkedinFollowerGain");
-  const gainNote = document.getElementById("linkedinGainNote");
-  const sync = document.getElementById("linkedinLastSync");
-  const syncNote = document.getElementById("linkedinSyncNote");
-  const status = document.getElementById("linkedinStatus");
-  const number = new Intl.NumberFormat();
-  const source = panel.dataset.source;
-  fetch(source + "?v=" + Date.now(), { cache: "no-store" })
-    .then(response => { if (!response.ok) throw new Error("Follower feed unavailable"); return response.json(); })
-    .then(data => {
-      if (Number.isFinite(Number(data.followers))) count.textContent = number.format(Number(data.followers));
-      if (Number.isFinite(Number(data.gain30d))) {
-        const value = Number(data.gain30d);
-        gain.textContent = (value > 0 ? "+" : "") + number.format(value);
-        gainNote.textContent = "Net new followers";
-      }
-      if (data.lastUpdated) {
-        const updated = new Date(data.lastUpdated);
-        sync.textContent = updated.toLocaleDateString(undefined,{month:"short",day:"numeric"});
-        syncNote.textContent = updated.toLocaleTimeString(undefined,{hour:"numeric",minute:"2-digit"});
-      }
-      if (data.live === true) {
-        status.textContent = "Live LinkedIn audience data connected.";
-        status.dataset.live = "true";
-      }
-    })
-    .catch(() => { status.textContent = "Showing the latest saved follower snapshot. LinkedIn API connection pending."; });
-})();
-</script><script src="google-analytics-oauth.js"></script>\n</body>
+<script src="https://cdn.jsdelivr.net/npm/@azure/msal-browser@3.28.1/lib/msal-browser.min.js"></script><script src="mission-control.js"></script><script>document.getElementById('collectiveRoiChart')?.addEventListener('click',function(){const detail=document.getElementById('collectiveRoiBreakdown');const open=detail.hidden;detail.hidden=!open;this.setAttribute('aria-expanded',String(open));});</script><script>document.getElementById("collectiveRoiDetailToggle")?.addEventListener("click",function(){const detail=document.getElementById("collectiveRoiClientMath");const open=detail.hidden;detail.hidden=!open;this.setAttribute("aria-expanded",String(open));this.textContent=open?"Hide client-level math":"Show client-level math";});</script><script src="google-analytics-oauth.js"></script>\n</body>
 </html>

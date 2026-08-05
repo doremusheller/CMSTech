@@ -223,6 +223,39 @@
 }
 </style>
 
+<style>
+/* Keep the Don Tithe gag and caption in the invoice body, outside the footer. */
+@media print {
+  .invoice-footer,
+  .invoice-easter-egg {
+    display: none !important;
+  }
+
+  .invoice-gag {
+    display: grid !important;
+    position: absolute !important;
+    right: 28px !important;
+    bottom: 1.25in !important;
+    width: 110px !important;
+    height: 120px !important;
+    z-index: 5 !important;
+    pointer-events: none !important;
+  }
+
+  .invoice-dontithe {
+    display: block !important;
+    max-width: 100% !important;
+    max-height: 92px !important;
+  }
+
+  .invoice-gag em {
+    display: block !important;
+    font-size: 9px !important;
+    white-space: nowrap !important;
+  }
+}
+</style>
+
 </head>
 <body>
   <main class="shell">

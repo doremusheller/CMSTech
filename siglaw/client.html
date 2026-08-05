@@ -151,7 +151,79 @@
     bottom:18px!important;
   }
 }
-</style></head>
+</style>
+<style>
+/* Final invoice print contract: one clean Letter page, no controls or decorative footer. */
+@media print {
+  @page { size: Letter; margin: 0; }
+
+  html, body {
+    width: 8.5in !important;
+    height: 11in !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+  }
+
+  .shell > *:not(#invoiceModal),
+  .invoice-head,
+  .invoice-form,
+  .invoice-extra-row,
+  .invoice-actions,
+  .invoice-footer,
+  .invoice-gag,
+  .invoice-easter-egg {
+    display: none !important;
+  }
+
+  #invoiceModal {
+    position: static !important;
+    display: block !important;
+    width: 8.5in !important;
+    height: 11in !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    background: transparent !important;
+  }
+
+  .invoice-card {
+    width: 8.5in !important;
+    height: 11in !important;
+    max-width: none !important;
+    max-height: none !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+    background: transparent !important;
+  }
+
+  .invoice-preview {
+    width: 8.5in !important;
+    height: 11in !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: 0 !important;
+    border-radius: 0 !important;
+  }
+
+  .invoice-sheet {
+    box-sizing: border-box !important;
+    width: 9.45in !important;
+    height: 12.22in !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: hidden !important;
+    transform: scale(.9) !important;
+    transform-origin: top left !important;
+  }
+}
+</style>
+
+</head>
 <body>
   <main class="shell">
     <header class="mast">

@@ -65,6 +65,7 @@ document.getElementById("cancelGift").onclick=()=>{modal.hidden=true;otherInitia
 modal.addEventListener("click",e=>{if(e.target===modal)modal.hidden=true;});
 document.getElementById("giftForm").addEventListener("submit",e=>{e.preventDefault();const amount=Number(document.getElementById("giftAmount").value),note=document.getElementById("giftNote").value.trim(),initiativeId=initiative.value,initiativeName=initiativeId==="OTHER"?(otherInitiative.value.trim()||"Other"):initiative.options[initiative.selectedIndex].text;selected.lastGift=amount;selected.notes.unshift({amount,date:document.getElementById("giftDate").value,initiativeId,initiativeName,note:note||"No note entered."});modal.hidden=true;otherInitiative.hidden=true;e.target.reset();show(selected.id);render();});
 render();
+if(location.hash)show(location.hash.slice(1));
 </script>
 </body>
 </html>

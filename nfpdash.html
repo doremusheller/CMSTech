@@ -27,7 +27,7 @@
   const state={newDonors:[]};
   const controls=document.createElement('div');
   controls.id='demoControls';
-  controls.innerHTML='<button class="demoButton" type="button" id="addDonor">＋ Add fictional donor</button>';
+  controls.innerHTML='<button class="demoButton" type="button" id="addDonor">＋ Add fictional donor</button><a class="demoButton" href="nfpdonors.html">⌕ View donors</a>';
   const hero=document.querySelector('.hero'); hero?.after(controls);
   const panel=document.createElement('section');
   panel.id='donorPanel'; panel.className='panel';

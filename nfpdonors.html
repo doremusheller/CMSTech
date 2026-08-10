@@ -30,61 +30,26 @@ const firstNames=["Maya","Andre","Tasha","Marcus","Elena","Nia","Caleb","Priya",
 const lastNames=["Chen","Lewis","Reed","Brooks","Williams","Martinez","Patel","Green","Davis","Rodriguez"];
 const regions=["Midwest","Northeast","Southeast","Southwest","West","Pacific Northwest"];
 const statuses=["Active","Active","Active","Recurring","Major Donor","Lapsed"];
-const donors=Array.from({length:100},(_,i)=>({
- id:"DON-"+String(i+1).padStart(6,"0"),
- name:firstNames[i%firstNames.length]+" "+lastNames[Math.floor(i/firstNames.length)%lastNames.length],
- region:regions[i%regions.length],
- status:statuses[i%statuses.length],
- lastGift:125+(i%8)*75,
- notes:i<60?[{date:"2026-08-"+String((i%28)+1).padStart(2,"0"),amount:125+(i%8)*75,note:"Thank-you and stewardship note recorded for the demonstration donor."}]:[]
-}));
+const donors=Array.from({length:100},(_,i)=>({id:"DON-"+String(i+1).padStart(6,"0"),name:firstNames[i%firstNames.length]+" "+lastNames[Math.floor(i/firstNames.length)%lastNames.length],region:regions[i%regions.length],status:statuses[i%statuses.length],lastGift:125+(i%8)*75,lastEmailDate:"2026-08-"+String((i%28)+1).padStart(2,"0"),lastEmailSubject:"Drumma’s Yutes Foundation · donor follow-up",notes:i<60?[{date:"2026-08-"+String((i%28)+1).padStart(2,"0"),amount:125+(i%8)*75,note:"Thank-you and stewardship note recorded for the demonstration donor."}]:[]}));
 const grid=document.getElementById("donors"),search=document.getElementById("search"),count=document.getElementById("count"),detail=document.getElementById("detail"),modal=document.getElementById("giftModal"),prev=document.getElementById("prevPage"),next=document.getElementById("nextPage"),pageStatus=document.getElementById("pageStatus");
 let selected=null,page=0,matches=[];
 function render(){
- const q=search.value.trim().toLowerCase();
- matches=donors.filter(d=>Object.values(d).some(v=>String(v).toLowerCase().includes(q)));
- const pages=Math.max(1,Math.ceil(matches.length/10)); page=Math.min(page,pages-1);
- const visible=matches.slice(page*10,page*10+10);
- count.textContent=matches.length+" donor"+(matches.length===1?"":"s")+" shown";
- pageStatus.textContent="Donors "+(matches.length? page*10+1:0)+"–"+Math.min((page+1)*10,matches.length)+" of "+matches.length;
- prev.disabled=page===0; next.disabled=page>=pages-1;
- grid.innerHTML=visible.length?visible.map(d=>'<tr><td><a href="#'+d.id+'" data-donor="'+d.id+'">'+d.name+'</a></td><td>'+d.region+'</td><td><span class="status">'+d.status+'</span></td><td>').join(""):'<tr><td colspan="6" class="empty">No donors match that search.</td></tr>';
+ const q=search.value.trim().toLowerCase(); matches=donors.filter(d=>Object.values(d).some(v=>String(v).toLowerCase().includes(q)));
+ const pages=Math.max(1,Math.ceil(matches.length/10)); page=Math.min(page,pages-1); const visible=matches.slice(page*10,page*10+10);
+ count.textContent=matches.length+" donor"+(matches.length===1?"":"s")+" shown"; pageStatus.textContent="Donors "+(matches.length?page*10+1:0)+"–"+Math.min((page+1)*10,matches.length)+" of "+matches.length; prev.disabled=page===0; next.disabled=page>=pages-1;
+ grid.innerHTML=visible.length?visible.map(d=>'<tr><td><a href="#'+d.id+'" data-donor="'+d.id+'">'+d.name+'</a></td><td>'+d.region+'</td><td><span class="status">'+d.status+'</span></td><td>$'+d.lastGift.toLocaleString()+'</td><td>'+d.lastEmailDate+'</td><td>'+d.lastEmailSubject+'</td></tr>').join(""):'<tr><td colspan="6" class="empty">No donors match that search.</td></tr>';
 }
 function show(id){
- selected=donors.find(d=>d.id===id); if(!selected)return;
- detail.classList.add("open");
- detail.innerHTML='<div class="detailHead"><div><h2>'+selected.name+'</h2><div class="detailMeta"><strong>'+selected.id+'</strong><br>'+selected.region+' · '+selected.status+'<br>Last gift: $'+selected.lastGift.toLocaleString()+'</div></div><button class="action" type="button" id="closeDetail">Close</button></div><div class="detailActions"><button class="action" type="button" id="addGift">＋ Add Donation</button></div><div class="detailNotes" id="notes"><h3>Donation notes</h3>'+(selected.notes.length?selected.notes.map(n=>'<div class="note"><strong>'+n.date+'</strong> · $'+n.amount.toLocaleString()+'<br>'+n.note+'</div>').join(""):'<div class="note">No donation notes recorded yet.</div>')+'</div>';
- document.getElementById("closeDetail").onclick=()=>detail.classList.remove("open");
- document.getElementById("addGift").onclick=()=>{modal.hidden=false;document.getElementById("giftDate").value=new Date().toISOString().slice(0,10);};
- location.hash=id;
+ selected=donors.find(d=>d.id===id); if(!selected)return; detail.classList.add("open");
+ detail.innerHTML='<div class="detailHead"><div><h2>'+selected.name+'</h2><div class="detailMeta"><strong>'+selected.id+'</strong><br>'+selected.region+' · '+selected.status+'<br>Last gift: $'+selected.lastGift.toLocaleString()+'<br>Last email: '+selected.lastEmailDate+'<br>Subject: '+selected.lastEmailSubject+'</div></div><button class="action" type="button" id="closeDetail">Close</button></div><div class="detailActions"><button class="action" type="button" id="addGift">＋ Add Donation</button></div><div class="detailNotes" id="notes"><h3>Donation notes</h3>'+(selected.notes.length?selected.notes.map(n=>'<div class="note"><strong>'+n.date+'</strong> · $'+n.amount.toLocaleString()+'<br>'+n.note+'</div>').join(""):'<div class="note">No donation notes recorded yet.</div>')+'</div>';
+ document.getElementById("closeDetail").onclick=()=>detail.classList.remove("open"); document.getElementById("addGift").onclick=()=>{modal.hidden=false;document.getElementById("giftDate").value=new Date().toISOString().slice(0,10);}; location.hash=id;
 }
 grid.addEventListener("click",e=>{const a=e.target.closest("[data-donor]");if(a){e.preventDefault();show(a.dataset.donor);}});
 search.addEventListener("input",()=>{page=0;render();});
 prev.onclick=()=>{if(page>0){page--;render();window.scrollTo({top:document.querySelector(".grid").offsetTop-20,behavior:"smooth"});}};
 next.onclick=()=>{if(page<Math.ceil(matches.length/10)-1){page++;render();window.scrollTo({top:document.querySelector(".grid").offsetTop-20,behavior:"smooth"});}};
-document.getElementById("cancelGift").onclick=()=>modal.hidden=true;
-modal.addEventListener("click",e=>{if(e.target===modal)modal.hidden=true;});
-document.getElementById("giftForm").addEventListener("submit",e=>{e.preventDefault();const amount=Number(document.getElementById("giftAmount").value);const note=document.getElementById("giftNote").value.trim();selected.lastGift=amount;selected.notes.unshift({amount,date:document.getElementById("giftDate").value,note:note||"No note entered."});modal.hidden=true;e.target.reset();show(selected.id);render();});
-render();
-</script>
-</body>
-</html>+d.lastGift.toLocaleString()+'</td><td>'+d.lastEmailDate+'</td><td>'+d.lastEmailSubject+'</td></tr>').join(""):'<tr><td colspan="4" class="empty">No donors match that search.</td></tr>';
-}
-function show(id){
- selected=donors.find(d=>d.id===id); if(!selected)return;
- detail.classList.add("open");
- detail.innerHTML='<div class="detailHead"><div><h2>'+selected.name+'</h2><div class="detailMeta"><strong>'+selected.id+'</strong><br>'+selected.region+' · '+selected.status+'<br>Last gift: $'+selected.lastGift.toLocaleString()+'</div></div><button class="action" type="button" id="closeDetail">Close</button></div><div class="detailActions"><button class="action" type="button" id="addGift">＋ Add Donation</button></div><div class="detailNotes" id="notes"><h3>Donation notes</h3>'+(selected.notes.length?selected.notes.map(n=>'<div class="note"><strong>'+n.date+'</strong> · $'+n.amount.toLocaleString()+'<br>'+n.note+'</div>').join(""):'<div class="note">No donation notes recorded yet.</div>')+'</div>';
- document.getElementById("closeDetail").onclick=()=>detail.classList.remove("open");
- document.getElementById("addGift").onclick=()=>{modal.hidden=false;document.getElementById("giftDate").value=new Date().toISOString().slice(0,10);};
- location.hash=id;
-}
-grid.addEventListener("click",e=>{const a=e.target.closest("[data-donor]");if(a){e.preventDefault();show(a.dataset.donor);}});
-search.addEventListener("input",()=>{page=0;render();});
-prev.onclick=()=>{if(page>0){page--;render();window.scrollTo({top:document.querySelector(".grid").offsetTop-20,behavior:"smooth"});}};
-next.onclick=()=>{if(page<Math.ceil(matches.length/10)-1){page++;render();window.scrollTo({top:document.querySelector(".grid").offsetTop-20,behavior:"smooth"});}};
-document.getElementById("cancelGift").onclick=()=>modal.hidden=true;
-modal.addEventListener("click",e=>{if(e.target===modal)modal.hidden=true;});
-document.getElementById("giftForm").addEventListener("submit",e=>{e.preventDefault();const amount=Number(document.getElementById("giftAmount").value);const note=document.getElementById("giftNote").value.trim();selected.lastGift=amount;selected.notes.unshift({amount,date:document.getElementById("giftDate").value,note:note||"No note entered."});modal.hidden=true;e.target.reset();show(selected.id);render();});
+document.getElementById("cancelGift").onclick=()=>modal.hidden=true; modal.addEventListener("click",e=>{if(e.target===modal)modal.hidden=true;});
+document.getElementById("giftForm").addEventListener("submit",e=>{e.preventDefault();const amount=Number(document.getElementById("giftAmount").value),note=document.getElementById("giftNote").value.trim();selected.lastGift=amount;selected.notes.unshift({amount,date:document.getElementById("giftDate").value,note:note||"No note entered."});modal.hidden=true;e.target.reset();show(selected.id);render();});
 render();
 </script>
 </body>

@@ -20,9 +20,9 @@ main{max-width:1120px;margin:auto;padding:58px clamp(18px,5vw,72px) 80px}.eyebro
 <main>
 <div class="eyebrow">Donor relationships</div>
 <h1>Know who’s<br><span>in the groove.</span></h1>
-<p class="intro">Search the donor registry by name, region, channel, or relationship. This first viewer uses demonstration records while the SharePoint-backed donor connection is built.</p>
+<p class="intro">Search the donor registry by name, region, donor status, or record ID. This first viewer uses demonstration records while the SharePoint-backed donor connection is built.</p>
 <div class="toolbar"><input class="search" id="search" type="search" placeholder="Search donors…" aria-label="Search donors"><span class="count" id="count"></span></div>
-<section class="grid" id="donors" aria-live="polite"></section>
+<section class="grid" aria-live="polite"><table><thead><tr><th>Record</th><th>Name</th><th>Region</th><th>Donor status</th><th>Last gift amount</th></tr></thead><tbody id="donors"></tbody></table></section>
 <div class="foot">Drumma's Yutes Foundation · Donor Viewer · Fictional demonstration data</div>
 </main>
 <script>
@@ -41,9 +41,15 @@ const donors=[
 const grid=document.getElementById("donors"),search=document.getElementById("search"),count=document.getElementById("count");
 function render(){
  const q=search.value.trim().toLowerCase();
- const matches=donors.filter(d=>Object.values(d).some(v=>v.toLowerCase().includes(q)));
+ const matches=donors.filter(d=>Object.values(d).some(v=>String(v).toLowerCase().includes(q)));
  count.textContent=matches.length+" donor"+(matches.length===1?"":"s")+" shown";
- grid.innerHTML=matches.length?matches.map(d=>'<article class="card"><strong>'+d.name+'</strong><div class="meta">'+d.region+' · Preferred contact: '+d.channel+'</div><span class="tag">'+d.relationship+'</span></article>').join(""):'<p class="empty">No donors match that search.</p>';
+ grid.innerHTML=matches.length?matches.map((d,i)=>{
+   const lastGift=125+(i%8)*75;
+   return '<tr><td><a href="#'+d.id+'">'+d.id+'</a></td><td>'+d.name+'</td><td>'+d.region+'</td><td><span class="status">'+d.status+'</span></td><td>("input",render);render();
+</script>
+</body>
+</html>+lastGift.toLocaleString()+'</td></tr>';
+ }).join(""):'<tr><td colspan="5" class="empty">No donors match that search.</td></tr>';
 }
 search.addEventListener("input",render);render();
 </script>

@@ -54,6 +54,7 @@ function show(id){
  document.getElementById("closeDetail").onclick=()=>detail.classList.remove("open");
  document.getElementById("addGift").onclick=()=>{document.getElementById("donorContext").innerHTML="<strong>"+selected.name+"</strong><br>Donor ID: "+selected.id+"<br>Primary contact: "+(selected.preferredChannel||"—")+" · "+(selected.email||selected.phone||"—");modal.hidden=false;document.getElementById("giftDate").value=new Date().toISOString().slice(0,10);};
  location.hash=id;
+ if(params.get("donor")===id||location.hash==="#"+id)requestAnimationFrame(()=>detail.scrollIntoView({behavior:"auto",block:"start"}));
 }
 grid.addEventListener("click",e=>{const a=e.target.closest("[data-donor]");if(a){e.preventDefault();show(a.dataset.donor);}});
 search.addEventListener("input",()=>{page=0;render();});

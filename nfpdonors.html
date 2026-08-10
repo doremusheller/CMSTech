@@ -39,7 +39,7 @@ const grid=document.getElementById("donors"),search=document.getElementById("sea
 let selected=null,page=0,matches=[];const requestedProgram=new URLSearchParams(location.search).get("program")||"";const requestedProgramName=new URLSearchParams(location.search).get("name")||"";if(requestedProgramName)document.querySelector(".intro").textContent="Donors participating in "+requestedProgramName+" are shown first. Search the full registry by name, region, status, or record ID.";
 function render(){
  const q=search.value.trim().toLowerCase();
- matches=donors.filter(d=>Object.values(d).some(v=>String(v).toLowerCase().includes(q)));if(requestedProgram){const participation=d=>{const values=[d.preferredProgramId,d.preferredProgramName,...(d.notes||[]).map(n=>n.initiativeName)];return values.some(v=>String(v||"").toLowerCase()===requestedProgram.toLowerCase()||String(v||"").toLowerCase().includes(requestedProgram.toLowerCase()))?1:0;};matches.sort((a,b)=>participation(b)-participation(a));}
+ const participation=d=>{const values=[d.preferredProgramId,d.preferredProgramName,...(d.notes||[]).map(n=>n.initiativeName)];return values.some(v=>String(v||"").toLowerCase()===requestedProgram.toLowerCase()||String(v||"").toLowerCase().includes(requestedProgram.toLowerCase()));};matches=donors.filter(d=>Object.values(d).some(v=>String(v).toLowerCase().includes(q))&&(!requestedProgram||participation(d)));
  const pages=Math.max(1,Math.ceil(matches.length/10)); page=Math.min(page,pages-1);
  const visible=matches.slice(page*10,page*10+10);
  count.textContent=matches.length+" donor"+(matches.length===1?"":"s")+" shown";

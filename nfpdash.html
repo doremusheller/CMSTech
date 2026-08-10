@@ -48,4 +48,37 @@
   document.getElementById('donorForm').addEventListener('submit',e=>{e.preventDefault();const d={id:'DEMO-DON-'+String(state.newDonors.length+1).padStart(3,'0'),name:document.getElementById('donorName').value.trim(),region:document.getElementById('donorRegion').value,channel:document.getElementById('donorChannel').value};state.newDonors.push(d);const k=[...document.querySelectorAll('.card')].find(x=>x.querySelector('label')?.textContent.toLowerCase().includes('active donors'));const v=k?.querySelector('.value');if(v)v.textContent=String(84+state.newDonors.length);list();close();});
   document.getElementById('resetDonorDemo').onclick=()=>{state.newDonors.length=0;list();const k=[...document.querySelectorAll('.card')].find(x=>x.querySelector('label')?.textContent.toLowerCase().includes('active donors'));const v=k?.querySelector('.value');if(v)v.textContent='84';};
 })();
+</script><script>
+(()=> {
+  const money=v=>"$"+Math.round(v).toLocaleString();
+  const donors=[...document.querySelectorAll(".donorItem")];
+  const state=window.drummaDemoState||(window.drummaDemoState={gifts:0,campaigns:0});
+  const controls=document.getElementById("demoControls");
+  if(!controls)return;
+  const make=(id,label)=>{const b=document.createElement("button");b.className="demoButton";b.type="button";b.id=id;b.textContent=label;controls.append(b);return b};
+  const gift=make("recordGift","＋ Record gift");
+  const campaign=make("buildCampaign","＋ Build campaign");
+  const reset=make("resetMissionDemo","Reset all demo activity");
+  const cardByLabel=label=>[...document.querySelectorAll(".card")].find(x=>x.querySelector("label")?.textContent.trim().toLowerCase()===label.toLowerCase());
+  const setMetric=(label,value)=>{const c=cardByLabel(label);if(c?.querySelector(".value"))c.querySelector(".value").textContent=value};
+  gift.onclick=()=>{
+    const raw=prompt("Gift amount (fictional demo data):","250");
+    const amount=Number(String(raw||"").replace(/[$,]/g,""));
+    if(!Number.isFinite(amount)||amount<=0)return;
+    state.gifts++; const current=Number((cardByLabel("Lifetime giving")?.querySelector(".value")?.textContent||"$1.27M").replace(/[$,M]/g,""))||1.27;
+    setMetric("Lifetime giving","$"+(current+amount/1000000).toFixed(2)+"M");
+    setMetric("Active donors",String(84+(window.drummaDemoState?.gifts||0)));
+    const panel=[...document.querySelectorAll(".panel")].find(x=>x.querySelector("h2")?.textContent==="Stewardship queue");
+    if(panel){const note=document.createElement("div");note.className="alert";note.innerHTML="<strong>New gift recorded</strong><em>"+money(amount)+" · session only</em>";panel.append(note);}
+  };
+  campaign.onclick=()=>{
+    const name=prompt("Campaign name:","Groove the Future");
+    if(!name?.trim())return;
+    state.campaigns++; const panel=[...document.querySelectorAll(".panel")].find(x=>x.querySelector("h2")?.textContent==="Campaign performance");
+    if(panel){const row=document.createElement("div");row.className="row";row.innerHTML='<div class="rowtop"><span>'+name.replace(/[<>]/g,"")+'</span><span>0%</span></div><div class="bar"><i style="width:0%"></i></div>';panel.append(row);}
+    const queue=[...document.querySelectorAll(".panel")].find(x=>x.querySelector("h2")?.textContent==="Stewardship queue");
+    if(queue){const note=document.createElement("div");note.className="alert";note.innerHTML="<strong>New campaign opened</strong><em>"+name.replace(/[<>]/g,"")+" · session only</em>";queue.append(note);}
+  };
+  reset.onclick=()=>{if(!confirm("Reset all fictional session activity?"))return;location.reload();};
+})();
 </script></body></html>

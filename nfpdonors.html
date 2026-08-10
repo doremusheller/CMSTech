@@ -55,48 +55,4 @@ document.getElementById("giftForm").addEventListener("submit",e=>{e.preventDefau
 render();
 </script>
 </body>
-</html>+d.lastGift.toLocaleString()+'</td><td data-label="Last email">'+d.lastEmailDate+'</td><td data-label="Subject">'+d.lastEmailSubject+'</td></tr>').join(""):'<tr><td colspan="6" class="empty">No donors match that search.</td></tr>';
-}
-function show(id){
- selected=donors.find(d=>d.id===id); if(!selected)return; detail.classList.add("open");
- detail.innerHTML='<div class="detailHead"><div><h2>'+selected.name+'</h2><div class="detailMeta"><strong>'+selected.id+'</strong><br>'+selected.region+' · '+selected.status+'<br>Last gift: $'+selected.lastGift.toLocaleString()+'<br>Last email: '+selected.lastEmailDate+'<br>Subject: '+selected.lastEmailSubject+'</div></div><button class="action" type="button" id="closeDetail">Close</button></div><div class="detailActions"><button class="action" type="button" id="addGift">＋ Add Donation</button></div><div class="detailNotes" id="notes"><h3>Donation notes</h3>'+(selected.notes.length?selected.notes.map(n=>'<div class="note"><strong>'+n.date+'</strong> · $'+n.amount.toLocaleString()+'<br>'+n.note+'</div>').join(""):'<div class="note">No donation notes recorded yet.</div>')+'</div>';
- document.getElementById("closeDetail").onclick=()=>detail.classList.remove("open"); document.getElementById("addGift").onclick=()=>{modal.hidden=false;document.getElementById("giftDate").value=new Date().toISOString().slice(0,10);}; location.hash=id;
-}
-grid.addEventListener("click",e=>{const a=e.target.closest("[data-donor]");if(a){e.preventDefault();show(a.dataset.donor);}});
-search.addEventListener("input",()=>{page=0;render();});
-prev.onclick=()=>{if(page>0){page--;render();window.scrollTo({top:document.querySelector(".grid").offsetTop-20,behavior:"smooth"});}};
-next.onclick=()=>{if(page<Math.ceil(matches.length/10)-1){page++;render();window.scrollTo({top:document.querySelector(".grid").offsetTop-20,behavior:"smooth"});}};
-document.getElementById("cancelGift").onclick=()=>modal.hidden=true; modal.addEventListener("click",e=>{if(e.target===modal)modal.hidden=true;});
-document.getElementById("giftForm").addEventListener("submit",e=>{e.preventDefault();const amount=Number(document.getElementById("giftAmount").value),note=document.getElementById("giftNote").value.trim();selected.lastGift=amount;selected.notes.unshift({amount,date:document.getElementById("giftDate").value,note:note||"No note entered."});modal.hidden=true;e.target.reset();show(selected.id);render();});
-render();
-</script>
-</body>
-</html>+n.amount.toLocaleString()+' · '+(n.initiativeName||'Initiative not specified')+'<br>'+n.note+'</div>').join(""):'<div class="note">No donation notes recorded yet.</div>')+'</div>';
- document.getElementById("closeDetail").onclick=()=>detail.classList.remove("open"); document.getElementById("addGift").onclick=()=>{modal.hidden=false;document.getElementById("giftDate").value=new Date().toISOString().slice(0,10);}; location.hash=id;
-}
-grid.addEventListener("click",e=>{const a=e.target.closest("[data-donor]");if(a){e.preventDefault();show(a.dataset.donor);}});
-search.addEventListener("input",()=>{page=0;render();});
-prev.onclick=()=>{if(page>0){page--;render();window.scrollTo({top:document.querySelector(".grid").offsetTop-20,behavior:"smooth"});}};
-next.onclick=()=>{if(page<Math.ceil(matches.length/10)-1){page++;render();window.scrollTo({top:document.querySelector(".grid").offsetTop-20,behavior:"smooth"});}};
-const initiative=document.getElementById("giftInitiative"),otherInitiative=document.getElementById("otherInitiative"); initiative.addEventListener("change",()=>{otherInitiative.hidden=initiative.value!=="OTHER";otherInitiative.required=initiative.value==="OTHER";}); document.getElementById("cancelGift").onclick=()=>{modal.hidden=true;otherInitiative.hidden=true;}; modal.addEventListener("click",e=>{if(e.target===modal)modal.hidden=true;});
-document.getElementById("giftForm").addEventListener("submit",e=>{e.preventDefault();const amount=Number(document.getElementById("giftAmount").value),note=document.getElementById("giftNote").value.trim(),initiativeId=initiative.value,initiativeName=initiativeId==="OTHER"?(otherInitiative.value.trim()||"Other"):initiative.options[initiative.selectedIndex].text;selected.lastGift=amount;selected.notes.unshift({amount,date:document.getElementById("giftDate").value,initiativeId,initiativeName,note:note||"No note entered."});modal.hidden=true;otherInitiative.hidden=true;e.target.reset();show(selected.id);render();});
-render();
-</script>
-</body>
-</html>+d.lastGift.toLocaleString()+'</td><td data-label="Last email">'+d.lastEmailDate+'</td><td data-label="Subject">'+d.lastEmailSubject+'</td></tr>').join(""):'<tr><td colspan="6" class="empty">No donors match that search.</td></tr>';
-}
-function show(id){
- selected=donors.find(d=>d.id===id); if(!selected)return; detail.classList.add("open");
- detail.innerHTML='<div class="detailHead"><div><h2>'+selected.name+'</h2><div class="detailMeta"><strong>'+selected.id+'</strong><br>'+selected.region+' · '+selected.status+'<br>Last gift: $'+selected.lastGift.toLocaleString()+'<br>Last email: '+selected.lastEmailDate+'<br>Subject: '+selected.lastEmailSubject+'</div></div><button class="action" type="button" id="closeDetail">Close</button></div><div class="detailActions"><button class="action" type="button" id="addGift">＋ Add Donation</button></div><div class="detailNotes" id="notes"><h3>Donation notes</h3>'+(selected.notes.length?selected.notes.map(n=>'<div class="note"><strong>'+n.date+'</strong> · $'+n.amount.toLocaleString()+'<br>'+n.note+'</div>').join(""):'<div class="note">No donation notes recorded yet.</div>')+'</div>';
- document.getElementById("closeDetail").onclick=()=>detail.classList.remove("open"); document.getElementById("addGift").onclick=()=>{modal.hidden=false;document.getElementById("giftDate").value=new Date().toISOString().slice(0,10);}; location.hash=id;
-}
-grid.addEventListener("click",e=>{const a=e.target.closest("[data-donor]");if(a){e.preventDefault();show(a.dataset.donor);}});
-search.addEventListener("input",()=>{page=0;render();});
-prev.onclick=()=>{if(page>0){page--;render();window.scrollTo({top:document.querySelector(".grid").offsetTop-20,behavior:"smooth"});}};
-next.onclick=()=>{if(page<Math.ceil(matches.length/10)-1){page++;render();window.scrollTo({top:document.querySelector(".grid").offsetTop-20,behavior:"smooth"});}};
-document.getElementById("cancelGift").onclick=()=>modal.hidden=true; modal.addEventListener("click",e=>{if(e.target===modal)modal.hidden=true;});
-document.getElementById("giftForm").addEventListener("submit",e=>{e.preventDefault();const amount=Number(document.getElementById("giftAmount").value),note=document.getElementById("giftNote").value.trim();selected.lastGift=amount;selected.notes.unshift({amount,date:document.getElementById("giftDate").value,note:note||"No note entered."});modal.hidden=true;e.target.reset();show(selected.id);render();});
-render();
-</script>
-</body>
 </html>

@@ -9,4 +9,43 @@
 <div class="cols"><section class="panel"><h2>Campaign performance</h2><div class="row"><div class="rowtop"><span>Summer Soundcheck</span><span>56%</span></div><div class="bar"><i style="width:56%"></i></div></div><div class="row"><div class="rowtop"><span>Instruments in Every Hand</span><span>72%</span></div><div class="bar"><i style="width:72%"></i></div></div><div class="row"><div class="rowtop"><span>Future Frequencies</span><span>48%</span></div><div class="bar"><i style="width:48%"></i></div></div><div class="row"><div class="rowtop"><span>Community Groove Grants</span><span>55%</span></div><div class="bar"><i style="width:55%"></i></div></div><div class="row"><div class="rowtop"><span>The Very Reasonable Raffle</span><span>82%</span></div><div class="bar"><i style="width:82%"></i></div></div></section>
 <section class="panel"><h2>Program impact</h2><div class="impact"><span>Beat Lab</span><b>3,880</b></div><div class="impact"><span>Instrument Access</span><b>2,975</b></div><div class="impact"><span>Yutes on the Move</span><b>1,860</b></div><div class="impact"><span>Digital Classroom</span><b>6,420</b></div><div class="impact"><span>Community Groove Grants</span><b>875</b></div></section>
 <section class="panel"><h2>Stewardship queue</h2><div class="alert"><strong>9 overdue actions</strong><em>Thank-yous need attention</em></div><div class="alert"><strong>28 open pledges</strong><em>Promises with paperwork</em></div><div class="alert"><strong>10 recurring donors</strong><em>A useful little chorus</em></div><div class="alert"><strong>8 active campaigns</strong><em>Many hands, one mission</em></div></section>
-<section class="panel"><h2>The point of the machinery</h2><p class="intro" style="font-size:.96rem">Donors, gifts, campaigns, stewardship, programs, and outcomes in one clear operating view—without asking anyone to perform spreadsheet archaeology before breakfast.</p></section></div><div class="foot">Drumma's Yutes Foundation Mission Control · Fictional demonstration data · Built by CMS Technical Optimization</div></main></body></html>
+<section class="panel"><h2>The point of the machinery</h2><p class="intro" style="font-size:.96rem">Donors, gifts, campaigns, stewardship, programs, and outcomes in one clear operating view—without asking anyone to perform spreadsheet archaeology before breakfast.</p></section></div><div class="foot">Drumma's Yutes Foundation Mission Control · Fictional demonstration data · Built by CMS Technical Optimization</div></main><style>
+#demoControls{display:flex;gap:10px;flex-wrap:wrap;margin:0 0 18px}
+.demoButton{border:1px solid var(--copper);background:#21130d;color:var(--gold);border-radius:6px;padding:11px 15px;font-weight:800;cursor:pointer}
+.demoButton:hover{background:#342014}
+#donorPanel{margin-top:16px}
+#donorList{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.donorItem{border:1px solid var(--line);border-radius:8px;padding:13px;background:#1a1821}
+.donorItem strong{display:block;color:var(--cream);margin-bottom:4px}
+.donorItem small{color:var(--muted)}
+#donorModal[hidden]{display:none}
+#donorModal{position:fixed;inset:0;z-index:20;display:grid;place-items:center;padding:18px;background:#000b}
+.donorDialog{width:min(480px,100%);background:var(--panel);border:1px solid var(--copper);border-radius:10px;padding:24px;box-shadow:0 20px 70px #000}
+.donorDialog h2{font:500 1.7rem Georgia,serif;margin:0 0 16px;color:var(--cream)}
+.donorDialog label{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.1em;margin:12px 0 5px}
+.donorDialog input,.donorDialog select{width:100%;padding:11px;border:1px solid var(--line);border-radius:5px;background:#0d0e15;color:var(--cream)}
+.donorActions{display:flex;gap:9px;margin-top:18px}.donorActions button{flex:1}
+</style>
+<script>
+(()=> {
+  const state={newDonors:[]};
+  const controls=document.createElement('div');
+  controls.id='demoControls';
+  controls.innerHTML='<button class="demoButton" type="button" id="addDonor">＋ Add fictional donor</button><button class="demoButton" type="button" id="resetDonorDemo">Reset donor demo</button>';
+  const hero=document.querySelector('.hero'); hero?.after(controls);
+  const panel=document.createElement('section');
+  panel.id='donorPanel'; panel.className='panel';
+  panel.innerHTML='<h2>Session donor registry</h2><p class="cash-note">New entries live only in this browser session. Refreshing the page sends them back into the cosmic filing cabinet.</p><div id="donorList"><p class="cash-note">No new donors entered yet.</p></div>';
+  controls.after(panel);
+  const modal=document.createElement('div'); modal.id='donorModal'; modal.hidden=true;
+  modal.innerHTML='<form class="donorDialog" id="donorForm"><h2>Add a fictional donor</h2><label for="donorName">Name</label><input id="donorName" required placeholder="e.g. Maya Chen"><label for="donorRegion">Region</label><select id="donorRegion"><option>Midwest</option><option>Northeast</option><option>Southeast</option><option>Southwest</option><option>West</option><option>Pacific Northwest</option></select><label for="donorChannel">Preferred channel</label><select id="donorChannel"><option>Email</option><option>Phone</option><option>Mail</option><option>SMS</option></select><div class="donorActions"><button class="demoButton" type="button" id="cancelDonor">Cancel</button><button class="demoButton" type="submit">Add donor</button></div></form>';
+  document.body.append(modal);
+  const list=()=>{const el=document.getElementById('donorList');el.innerHTML=state.newDonors.length?state.newDonors.map(d=>'<article class="donorItem"><strong>'+d.name+'</strong><small>'+d.region+' · '+d.channel+' · '+d.id+'</small></article>').join(''):'<p class="cash-note">No new donors entered yet.</p>';};
+  const open=()=>{modal.hidden=false;document.getElementById('donorName').focus();};
+  const close=()=>{modal.hidden=true;document.getElementById('donorForm').reset();};
+  document.getElementById('addDonor').onclick=open; document.getElementById('cancelDonor').onclick=close;
+  modal.addEventListener('click',e=>{if(e.target===modal)close();});
+  document.getElementById('donorForm').addEventListener('submit',e=>{e.preventDefault();const d={id:'DEMO-DON-'+String(state.newDonors.length+1).padStart(3,'0'),name:document.getElementById('donorName').value.trim(),region:document.getElementById('donorRegion').value,channel:document.getElementById('donorChannel').value};state.newDonors.push(d);const k=[...document.querySelectorAll('.card')].find(x=>x.querySelector('label')?.textContent.toLowerCase().includes('active donors'));const v=k?.querySelector('.value');if(v)v.textContent=String(84+state.newDonors.length);list();close();});
+  document.getElementById('resetDonorDemo').onclick=()=>{state.newDonors.length=0;list();const k=[...document.querySelectorAll('.card')].find(x=>x.querySelector('label')?.textContent.toLowerCase().includes('active donors'));const v=k?.querySelector('.value');if(v)v.textContent='84';};
+})();
+</script></body></html>

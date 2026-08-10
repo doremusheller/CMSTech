@@ -26,7 +26,7 @@ main{max-width:1120px;margin:auto;padding:58px clamp(18px,5vw,72px) 80px}.eyebro
 <div class="foot">Drumma's Yutes Foundation · Donor Viewer · Fictional demonstration data</div>
 </main>
 <script>
-const donors=[{"id":"DON-000001","name":"Maya Chen","region":"Midwest","status":"Major Donor","channel":"Email","lastGift":125},{"id":"DON-000002","name":"Andre Williams","region":"Southeast","status":"Active","channel":"Email","lastGift":200},{"id":"DON-000003","name":"Priya Patel","region":"Northeast","status":"Active","channel":"Email","lastGift":275},{"id":"DON-000004","name":"Marcus Green","region":"Midwest","status":"Recurring","channel":"Email","lastGift":350},{"id":"DON-000005","name":"Elena Rodriguez","region":"Southwest","status":"Active","channel":"Email","lastGift":425},{"id":"DON-000006","name":"Jordan Brooks","region":"West","status":"Active","channel":"Email","lastGift":500},{"id":"DON-000007","name":"Naomi Okafor","region":"Pacific Northwest","status":"Major Donor","channel":"Email","lastGift":575},{"id":"DON-000008","name":"Caleb Thompson","region":"Southeast","status":"Active","channel":"Email","lastGift":650},{"id":"DON-000009","name":"Sofia Martinez","region":"Southwest","status":"Active","channel":"Email","lastGift":125},{"id":"DON-000010","name":"Terrence Davis","region":"Midwest","status":"Lapsed","channel":"Email","lastGift":200}];
+const donors=[{"id":"DON-000001","name":"Maya Chen","region":"Midwest","status":"Major Donor","lastGift":125},{"id":"DON-000002","name":"Andre Williams","region":"Southeast","status":"Active","lastGift":200},{"id":"DON-000003","name":"Priya Patel","region":"Northeast","status":"Active","lastGift":275},{"id":"DON-000004","name":"Marcus Green","region":"Midwest","status":"Recurring","lastGift":350},{"id":"DON-000005","name":"Elena Rodriguez","region":"Southwest","status":"Active","lastGift":425},{"id":"DON-000006","name":"Jordan Brooks","region":"West","status":"Active","lastGift":500},{"id":"DON-000007","name":"Naomi Okafor","region":"Pacific Northwest","status":"Major Donor","lastGift":575},{"id":"DON-000008","name":"Caleb Thompson","region":"Southeast","status":"Active","lastGift":650},{"id":"DON-000009","name":"Sofia Martinez","region":"Southwest","status":"Active","lastGift":125},{"id":"DON-000010","name":"Terrence Davis","region":"Midwest","status":"Lapsed","lastGift":200}];
 const grid=document.getElementById("donors");
 const search=document.getElementById("search");
 const count=document.getElementById("count");
@@ -38,12 +38,6 @@ function render(){
 }
 search.addEventListener("input",render);
 render();
-</script>
-</body>
-</html>+lastGift.toLocaleString()+'</td></tr>';
- }).join(""):'<tr><td colspan="5" class="empty">No donors match that search.</td></tr>';
-}
-search.addEventListener("input",render);render();
 </script>
 </body>
 </html>

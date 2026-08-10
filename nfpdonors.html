@@ -36,10 +36,10 @@ const baseDonors=Array.from({length:100},(_,i)=>({id:"DON-"+String(i+1).padStart
 const sessionDonors=(JSON.parse(sessionStorage.getItem("drummasYutesDemoWorkbook")||'{"Donors":[]}').Donors||[]).map(d=>({id:d.id,name:d.name,region:d.region,status:d.status||"Prospect",lastGift:Number(d.lastGift||d.firstGift||0),lastEmailDate:d.lastEmailDate||"—",lastEmailSubject:d.lastEmailSubject||"—",email:d.email||"—",phone:d.phone||"—",preferredChannel:d.preferredChannel||"—",preferredProgramName:d.preferredProgramName||"—",donorType:d.donorType||"Individual",firstGiftDate:d.firstGiftDate||"—",firstGift:Number(d.firstGift||0),recurring:!!d.recurring,contactConsent:!!d.contactConsent,notes:d.notes?[{date:d.createdAt?d.createdAt.slice(0,10):"—",amount:Number(d.firstGift||0),initiativeName:d.preferredProgramName||"Program not specified",note:d.notes}]:[]}));
 const donors=baseDonors.concat(sessionDonors);
 const grid=document.getElementById("donors"),search=document.getElementById("search"),count=document.getElementById("count"),detail=document.getElementById("detail"),modal=document.getElementById("giftModal"),prev=document.getElementById("prevPage"),next=document.getElementById("nextPage"),pageStatus=document.getElementById("pageStatus");
-let selected=null,page=0,matches=[];
+let selected=null,page=0,matches=[];const requestedProgram=new URLSearchParams(location.search).get("program")||"";const requestedProgramName=new URLSearchParams(location.search).get("name")||"";if(requestedProgramName)document.querySelector(".intro").textContent="Donors participating in "+requestedProgramName+" are shown first. Search the full registry by name, region, status, or record ID.";
 function render(){
  const q=search.value.trim().toLowerCase();
- matches=donors.filter(d=>Object.values(d).some(v=>String(v).toLowerCase().includes(q)));
+ matches=donors.filter(d=>Object.values(d).some(v=>String(v).toLowerCase().includes(q)));if(requestedProgram){const participation=d=>{const values=[d.preferredProgramId,d.preferredProgramName,...(d.notes||[]).map(n=>n.initiativeName)];return values.some(v=>String(v||"").toLowerCase()===requestedProgram.toLowerCase()||String(v||"").toLowerCase().includes(requestedProgram.toLowerCase()))?1:0;};matches.sort((a,b)=>participation(b)-participation(a));}
  const pages=Math.max(1,Math.ceil(matches.length/10)); page=Math.min(page,pages-1);
  const visible=matches.slice(page*10,page*10+10);
  count.textContent=matches.length+" donor"+(matches.length===1?"":"s")+" shown";

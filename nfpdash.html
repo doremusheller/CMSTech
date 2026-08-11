@@ -36,7 +36,7 @@ main{max-width:1380px;padding:24px clamp(16px,3vw,42px) 48px}
 </style><style id="command-center-layout">
 /* Mission Control: fixed desktop canvas, compact operational panels */
 @media(min-width:851px){
-  html,body{height:100%;overflow:hidden}
+  html,body{min-height:100%;height:auto;overflow-x:hidden;overflow-y:auto}
   header{height:58px}
   main{height:calc(100vh - 58px);max-width:none;padding:16px 28px 14px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(360px,.85fr);grid-template-rows:auto auto minmax(0,1fr) auto;grid-template-areas:"hero hero" "actions actions" "giving radar" "donors donors";gap:10px}
   .hero{grid-area:hero;display:flex;justify-content:space-between;align-items:center;padding:0;min-height:105px}

@@ -43,7 +43,44 @@
 @media(max-width:600px){.shell{padding:10px 10px 34px}.hero{min-height:440px;padding:25px 16px 245px}.hero h1{font-size:48px}.hero p{font-size:12px}.shag{height:250px}.module-grid{gap:8px}.module{min-height:125px}.section-head{margin-top:22px}}
 
 .dashboard-bridge{display:flex;justify-content:center;align-items:center;gap:14px;width:max-content;max-width:calc(100% - 28px);margin:10px auto 2px;padding:8px 16px 8px 8px;border:1px solid rgba(255,211,84,.28);border-radius:12px;background:linear-gradient(105deg,rgba(49,22,86,.72),rgba(18,5,37,.55));color:var(--muted);font:500 18px Georgia,serif;text-align:left;box-shadow:0 10px 24px rgba(0,0,0,.16)}.dashboard-bridge img{width:72px;height:48px;object-fit:cover;border:1px solid rgba(255,211,84,.48);border-radius:7px;box-shadow:0 4px 14px rgba(0,0,0,.28)}.dashboard-bridge a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(255,211,84,.55);transition:color .18s ease,border-color .18s ease}.dashboard-bridge a:hover{color:var(--aqua);border-color:var(--aqua)}.dashboard-bridge em{font-style:italic}.dashboard-bridge small{display:block;margin-top:4px;color:var(--muted);font:11px/1.35 Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:.01em}@media(max-width:600px){.dashboard-bridge{gap:10px;padding:7px 12px 7px 7px;font-size:15px}.dashboard-bridge img{width:58px;height:40px}.dashboard-bridge small{font-size:10px}}
-</style><style>.cms-return{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,194,71,.5);border-radius:999px;padding:8px 12px;color:#ffc247;text-decoration:none;font-size:11px;font-weight:800;letter-spacing:.04em;white-space:nowrap}.cms-return:hover{background:rgba(255,194,71,.12);color:#fff}</style></head><body><main class="shell">
+</style><style>.cms-return{display:inline-flex;align-items:center;gap:6px;border:1px solid rgba(255,194,71,.5);border-radius:999px;padding:8px 12px;color:#ffc247;text-decoration:none;font-size:11px;font-weight:800;letter-spacing:.04em;white-space:nowrap}.cms-return:hover{background:rgba(255,194,71,.12);color:#fff}</style><style id="mission-control-module-tighten">
+@media(min-width:851px){
+  .module-grid{
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    gap:10px!important;
+    margin-top:14px!important;
+  }
+  .module{
+    min-height:150px!important;
+    padding:17px 18px!important;
+    border-radius:12px!important;
+  }
+  .module .eyebrow{font-size:9px}
+  .module b{
+    font-size:clamp(15px,1.45vw,22px)!important;
+    line-height:1.05!important;
+    white-space:nowrap!important;
+    letter-spacing:-.025em;
+    margin-top:8px!important;
+  }
+  .module p{
+    margin-top:9px!important;
+    font-size:11px!important;
+    line-height:1.35!important;
+    max-width:250px!important;
+  }
+  .module .go{right:14px;bottom:14px;width:30px;height:30px}
+}
+@media(max-width:850px){
+  .module-grid{gap:10px!important}
+  .module{min-height:150px!important;padding:16px!important}
+  .module b{font-size:21px!important;line-height:1.05!important}
+}
+@media(max-width:560px){
+  .module-grid{grid-template-columns:1fr!important}
+  .module b{white-space:normal!important}
+}
+</style></head><body><main class="shell">
 <header class="mast"><div class="brand"><span class="mark">GW</span>Hyperspace Logistics Command Center</div><div class="header-actions"><a class="cms-return" href="https://cmstech.ai/index.html">Return to CMS Tech ↗</a><button class="demo-reset" id="resetDemo" type="button">Reset Demo Data</button><span class="private">Fictional demo data</span></div></header>
 <section class="hero"><i class="orb"></i><i class="orbit"></i><div class="hero-copy"><div class="eyebrow">Ghetto Wookie presents</div><h1>MISSION <i>CONTROL</i></h1><p>Mission Control is the operating brain for the Ghetto Wookie financial stack—one command surface for receipt intake, ledger intelligence, cash visibility, client operations, and WookWeb’s protected AI workspace for iterative page previews and change control.</p></div><img class="shag" src="assets/shag-fantastiq-cfo.svg" alt="Shag Fantastiq, Ghetto Wookie Digital CFO"><div class="shag-label"><small>Digital CFO · command architect</small><b>Shag Fantastiq</b></div></section>
 <div class="dashboard-bridge"><img src="assets/yourbizthumb.png" alt="" aria-hidden="true"><div><span>Not a wookie?</span> <a href="dashchoice.html">Control <em>your</em> business.</a><small>Explore custom control-center directions for the work you actually need to manage.</small></div></div>

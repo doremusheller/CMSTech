@@ -81,10 +81,12 @@ The production SmartLedger workflow can extend beyond manual review with live AI
    - Preserve clear handoffs between AI automation and human operators.
    - Make every automated action reviewable from the ledger and audit-trail views.
 
-### Production guardrails
+#\n## Production guardrails\n\n- Automations operate only on approved inboxes, systems, and data scopes.\n- Payment submission remains policy-controlled, with human approval where required.\n- AI-generated classifications and messages are logged and can be corrected.\n- Sensitive actions use role-aware access, validation, idempotency checks, and failure-safe retries.\n- The current demo remains fictional and browser-local; these live automations describe the intended production workflow.\n
 
-- Automations operate only on approved inboxes, systems, and data scopes.
-- Payment submission remains policy-controlled, with human approval where required.
-- AI-generated classifications and messages are logged and can be corrected.
-- Sensitive actions use role-aware access, validation, idempotency checks, and failure-safe retries.
-- The current demo remains fictional and browser-local; these live automations describe the intended production workflow.
+## Authentication and live-system note
+
+The live automations are wired into the production workflow. The workbook is the private Microsoft 365 source and data store; it is not the complete workflow by itself.
+
+The public ledger surface is intentionally gated behind Microsoft sign-in. Before authentication, it shows only the connection prompt and empty-state controls, so email scanning, AI processing, submitter communication, payment submission, exception handling, and automation history are not visible. After an authorized user signs in, the live workflow operates against the private workbook and connected automation services.
+
+This means an unauthenticated inspection of `ledger.html` cannot be used to conclude that those automations are absent. The workbook-backed ledger is the authenticated system-of-record view for the broader live workflow.

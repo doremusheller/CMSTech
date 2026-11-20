@@ -3,29 +3,128 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="A brief overview of the SmartPublish workflow by CMS Tech.">
-<title>CMS Tech | SmartPublish Workflow Brief</title>
+<meta name="description" content="A proposed attorney-controlled blog and SEO publishing workspace for Signature Law Partners.">
+<title>SmartPublish | A publishing workspace for Signature Law</title>
 <style>
-:root{--navy:#07111f;--navy2:#0d2034;--gold:#d8ad5a;--cream:#f5f1e8;--muted:#b9c4d0;--line:#ffffff20}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--navy);color:var(--cream);font-family:Inter,Arial,sans-serif}a{color:inherit;text-decoration:none}.wrap{width:min(1120px,calc(100% - 44px));margin:auto}.header{display:flex;justify-content:space-between;align-items:center;padding:28px 0;border-bottom:1px solid var(--line)}.brand{font:700 1rem Georgia,serif;letter-spacing:.2em}.brand span{color:var(--gold)}.tag{color:var(--muted);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase}.hero{padding:78px 0 82px;background:radial-gradient(circle at 82% 15%,#244c7066,transparent 35%),linear-gradient(135deg,var(--navy),var(--navy2))}.eyebrow{color:var(--gold);font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase}.hero h1{max-width:900px;margin:18px 0 22px;font:400 clamp(3rem,7vw,6rem)/.98 Georgia,serif;letter-spacing:-.045em}.hero p{max-width:760px;color:var(--muted);font-size:clamp(1.05rem,2vw,1.25rem);line-height:1.7}.hero-image{display:block;width:100%;margin-top:48px;border:1px solid #d8ad5a66;border-radius:20px;box-shadow:0 24px 70px #0008}.hero-demo{display:inline-flex;margin-top:18px;padding:13px 18px;border:1px solid var(--gold);border-radius:999px;background:var(--gold);color:var(--navy);font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}.section{padding:92px 0;background:var(--cream);color:var(--navy)}.section h2{margin:15px 0 45px;font:400 clamp(2.3rem,5vw,4.2rem)/1.05 Georgia,serif;letter-spacing:-.035em}.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.step{padding:27px;border-radius:18px;background:#fff;box-shadow:0 18px 45px #15233318}.step strong{display:block;color:#9b7933;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase}.step h3{margin:22px 0 10px;font:400 1.7rem Georgia,serif}.step p{margin:0;color:#53606d;line-height:1.7}.note{padding:70px 0;background:#101e2c}.note h2{margin:0 0 18px;font:400 clamp(2rem,4vw,3.5rem)/1.05 Georgia,serif}.note p{max-width:780px;color:var(--muted);line-height:1.75}.back{display:inline-flex;margin-top:18px;padding:14px 18px;border:1px solid var(--gold);border-radius:999px;background:var(--gold);color:var(--navy);font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}footer{padding:28px 0;border-top:1px solid var(--line);color:#8e9baa;font-size:.75rem;display:flex;justify-content:space-between}@media(max-width:800px){.steps{grid-template-columns:1fr 1fr}}@media(max-width:560px){.wrap{width:min(100% - 30px,1120px)}.header{align-items:flex-start;gap:14px;flex-direction:column}.tag{font-size:.62rem}.hero{padding:58px 0}.section{padding:65px 0}.steps{grid-template-columns:1fr}footer{gap:12px;flex-direction:column}}
+:root{--navy:#07111f;--navy2:#10263a;--gold:#d8ad5a;--cream:#f5f1e8;--ink:#142235;--muted:#b9c4d0;--body:#53606d;--line:#ffffff20;--white:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--navy);color:var(--cream);font-family:Inter,Arial,sans-serif}
+a{color:inherit;text-decoration:none}
+.wrap{width:min(1120px,calc(100% - 44px));margin:auto}
+.header{display:flex;justify-content:space-between;align-items:center;padding:24px 0;border-bottom:1px solid var(--line)}
+.brand{font:700 1rem Georgia,serif;letter-spacing:.2em}
+.brand span{color:var(--gold)}
+.tag,.eyebrow{font-size:.72rem;letter-spacing:.16em;text-transform:uppercase}
+.tag{color:var(--muted)}
+.hero{padding:82px 0 88px;background:radial-gradient(circle at 85% 10%,#244c7066,transparent 34%),linear-gradient(135deg,var(--navy),var(--navy2))}
+.eyebrow{color:var(--gold);font-weight:700}
+.hero h1{max-width:900px;margin:18px 0 22px;font:400 clamp(3rem,7vw,6rem)/.98 Georgia,serif;letter-spacing:-.045em}
+.hero .lede{max-width:780px;color:var(--muted);font-size:clamp(1.08rem,2vw,1.3rem);line-height:1.75}
+.hero-actions{display:flex;align-items:center;gap:20px;flex-wrap:wrap;margin-top:30px}
+.button{display:inline-flex;align-items:center;justify-content:center;padding:14px 19px;border:1px solid var(--gold);border-radius:999px;background:var(--gold);color:var(--navy);font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.text-link{color:var(--cream);font-size:.9rem}
+.hero-image{display:block;width:100%;margin-top:50px;border:1px solid #d8ad5a66;border-radius:18px;box-shadow:0 24px 70px #0008}
+.section{padding:88px 0;background:var(--cream);color:var(--ink)}
+.section h2,.dark-section h2{margin:14px 0 18px;font:400 clamp(2.25rem,5vw,4rem)/1.06 Georgia,serif;letter-spacing:-.035em}
+.intro{max-width:740px;margin:0 0 38px;color:var(--body);font-size:1.08rem;line-height:1.75}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.feature,.step,.phase{padding:26px;border:1px solid #14223512;border-radius:16px;background:var(--white);box-shadow:0 14px 40px #15233310}
+.feature .num,.step strong,.phase strong{display:block;color:#9b7933;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase}
+.feature h3,.step h3,.phase h3{margin:16px 0 9px;font:400 1.5rem Georgia,serif}
+.feature p,.step p,.phase p{margin:0;color:var(--body);line-height:1.7}
+.dark-section{padding:82px 0;background:#101e2c}
+.dark-section .intro{color:var(--muted)}
+.workflow{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.step{background:#172a3d;border-color:#ffffff18;box-shadow:none}
+.step p{color:var(--muted)}
+.control-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:34px}
+.control{padding:28px;border-left:2px solid var(--gold);background:#ffffff09}
+.control h3{margin:0 0 10px;font:400 1.4rem Georgia,serif}
+.control p{margin:0;color:var(--muted);line-height:1.75}
+.phase-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:35px}
+.phase{background:#fff}
+.phase h3{font-size:1.35rem}
+.closing{padding:72px 0;background:linear-gradient(120deg,#172a3d,#0b1725)}
+.closing h2{max-width:780px}
+.closing p{max-width:760px;color:var(--muted);line-height:1.75}
+footer{padding:26px 0;border-top:1px solid var(--line);color:#8e9baa;font-size:.75rem;display:flex;justify-content:space-between;gap:14px}
+@media(max-width:850px){.feature-grid,.phase-grid{grid-template-columns:1fr 1fr}.workflow{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.wrap{width:min(100% - 30px,1120px)}.header{align-items:flex-start;gap:12px;flex-direction:column}.tag{font-size:.62rem}.hero{padding:60px 0}.section,.dark-section{padding:64px 0}.feature-grid,.phase-grid,.workflow,.control-grid{grid-template-columns:1fr}footer{flex-direction:column}}
 </style>
 </head>
 <body>
-<header class="wrap header"><a class="brand" href="https://www.cmstech.ai/">CMS<span>TECH</span></a><span class="tag">SmartPublish workflow brief</span></header>
+<header class="wrap header">
+  <a class="brand" href="https://www.cmstech.ai/">CMS<span>TECH</span></a>
+  <span class="tag">A proposal for Signature Law Partners</span>
+</header>
 <main>
-<section class="hero"><div class="wrap"><div class="eyebrow">SmartPublish / Publishing operations</div><h1>A simpler publishing system, built for Signature Law.</h1><p>SmartPublish is a custom WordPress-lite-style workspace: familiar enough to feel natural, purpose-built enough to simplify content operations, SEO optimization, review, and controlled site publishing.</p><img class="hero-image" src="assets/smartpublishflow.png" alt="SmartPublish workflow from lawyer-authored content through custom site publishing"><a class="hero-demo" href="doncortex.html">Back to SmartPublish ↗</a></div></section>
-<section class="section"><div class="wrap"><div class="eyebrow">The workflow</div><h2>Human authorship. Systematic optimization.</h2><div class="steps">
-<article class="step"><strong>01 / Author</strong><h3>Lawyer-written content</h3><p>Live attorneys create the article and retain ownership of the legal judgment, voice, and substance.</p></article>
-<article class="step"><strong>02 / Access</strong><h3>Microsoft Entra ID</h3><p>Authorized users sign in through secure, role-aware client access with no credentials exposed to the application.</p></article>
-<article class="step"><strong>03 / Organize</strong><h3>Custom publishing workspace</h3><p>Choose a content type and focused template for practice areas, FAQs, insights, locations, or firm updates.</p></article>
-<article class="step"><strong>04 / Optimize</strong><h3>Built-in SEO dashboard</h3><p>Review titles, slugs, metadata, links, schema, readability, accessibility, and content structure without AI drafting.</p></article>
-<article class="step"><strong>05 / Preview</strong><h3>Search and site preview</h3><p>Inspect how the page, search result, metadata, and mobile presentation will appear before release.</p></article>
-<article class="step"><strong>06 / Approval</strong><h3>Attorney review</h3><p>Resolve checklist items, confirm safeguards, and make the client-controlled publishing decision.</p></article>
-<article class="step"><strong>07 / Publish</strong><h3>Custom site publishing</h3><p>Save as draft, schedule, or release the approved update through the purpose-built publishing boundary.</p></article>
-<article class="step"><strong>08 / Control</strong><h3>Audit and refresh</h3><p>Keep the content record, approval history, publishing result, and future optimization needs visible.</p></article>
-</div></div></section>
-<section class="note"><div class="wrap"><div class="eyebrow">Built for the real work</div><h2>Familiar CMS simplicity. Signature Law control.</h2><p>SmartPublish is not a generic WordPress installation. It is a custom publishing system designed around the workflows, SEO needs, permissions, and review standards of Signature Law.</p><a class="back" href="doncortex.html">Back to DonCortex ↗</a></div></section>
+<section class="hero">
+  <div class="wrap">
+    <div class="eyebrow">SmartPublish / A focused publishing workspace</div>
+    <h1>Publish useful legal insight with confidence.</h1>
+    <p class="lede">SmartPublish is a proposed, site-connected blog workspace for Signature Law: one place to organize articles, improve search readiness with AI assistance, review the finished page, and publish only after attorney approval.</p>
+    <div class="hero-actions">
+      <a class="button" href="#workflow">See how it works</a>
+      <a class="text-link" href="doncortex.html">Explore CMS Tech ↗</a>
+    </div>
+    <img class="hero-image" src="assets/smartpublishflow.png" alt="SmartPublish concept workflow from attorney-authored content through review and publishing">
+  </div>
+</section>
+
+<section class="section" id="workspace">
+  <div class="wrap">
+    <div class="eyebrow">The workspace</div>
+    <h2>A small tool built around the publishing job.</h2>
+    <p class="intro">The goal is to give the firm the everyday convenience of a basic content management system without adding a general-purpose platform and a pile of plugins to maintain.</p>
+    <div class="feature-grid">
+      <article class="feature"><span class="num">01 / Repository</span><h3>Find every article</h3><p>Keep drafts and published posts in one searchable library, organized by topic, practice area, tags, author, and status.</p></article>
+      <article class="feature"><span class="num">02 / Editor</span><h3>Write and shape</h3><p>Use a straightforward editor for titles, article text, images, links, categories, and search metadata, with autosave and revision history.</p></article>
+      <article class="feature"><span class="num">03 / Preview</span><h3>Review the real page</h3><p>Preview the article in the firm’s site design, including desktop and mobile layouts, before it goes live.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="dark-section" id="workflow">
+  <div class="wrap">
+    <div class="eyebrow">A clear path to publication</div>
+    <h2>Attorney judgment stays in the driver’s seat.</h2>
+    <p class="intro">SmartPublish can help prepare a post for discovery. The lawyer remains responsible for the legal analysis, accuracy, client confidentiality, and final approval.</p>
+    <div class="workflow">
+      <article class="step"><strong>01 / Draft</strong><h3>Start with firm content</h3><p>An attorney or authorized staff member creates a post and adds its topic, author, and intended audience.</p></article>
+      <article class="step"><strong>02 / Improve</strong><h3>Get SEO suggestions</h3><p>AI reviews the supplied article and suggests a search title, description, headings, related internal links, and clarity improvements.</p></article>
+      <article class="step"><strong>03 / Review</strong><h3>Check and preview</h3><p>Resolve editorial and technical checks, inspect the search preview, and review the formatted page on desktop and mobile.</p></article>
+      <article class="step"><strong>04 / Approve</strong><h3>Publish deliberately</h3><p>An authorized reviewer approves the final version. The system records the decision and publishes the approved post.</p></article>
+    </div>
+    <div class="control-grid">
+      <div class="control"><h3>AI assists with discoverability</h3><p>It can explain its recommendations and offer editable alternatives. It does not invent legal authority, add unsupported claims, or publish on its own.</p></div>
+      <div class="control"><h3>The firm controls release</h3><p>Drafts stay private. Only an approved post can move to the public site, and a retained revision record makes later corrections manageable.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="eyebrow">Start with the essentials</div>
+    <h2>Useful from the first release. Extend only when needed.</h2>
+    <p class="intro">A practical first version can focus on the blog workflow, then add capabilities based on how the firm actually uses it.</p>
+    <div class="phase-grid">
+      <article class="phase"><strong>First release</strong><h3>Blog publishing</h3><p>Secure editor, draft library, categories and tags, SEO assistance, page preview, approval, publishing, and revision history.</p></article>
+      <article class="phase"><strong>Next, if useful</strong><h3>Editorial operations</h3><p>Multiple reviewer roles, scheduled publication, reusable templates, image handling, and a content calendar.</p></article>
+      <article class="phase"><strong>Designed to fit</strong><h3>The existing site</h3><p>Published posts should follow Signature Law’s current visual design and connect cleanly to its blog index and search metadata.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="closing">
+  <div class="wrap">
+    <div class="eyebrow">SmartPublish by CMS Technical Optimization</div>
+    <h2>A lean publishing system for a firm that wants control.</h2>
+    <p>We would confirm the firm’s editors, approval steps, hosting, and preferred sign-in method before choosing the implementation. Then we can build a small working prototype around a real post and validate the workflow before committing to a full rollout.</p>
+    <a class="button" href="mailto:info@cmstech.ai?subject=SmartPublish%20for%20Signature%20Law">Discuss the workflow</a>
+  </div>
+</section>
 </main>
-<footer class="wrap"><span>CMS Technical Optimization</span><span>Custom AI systems for real organizations.</span></footer>
+<footer class="wrap"><span>CMS Technical Optimization</span><span>Engineering practical AI systems for real organizations.</span></footer>
 </body>
 </html>
